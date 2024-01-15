@@ -5,7 +5,7 @@
   "sites": [
     {
       "key": "csp_豆瓣",
-      "name": "🌕豆瓣┃软件接口皆是免费,禁止贩卖『个人自用』💢v2401",
+      "name": "🌕光头祝您观影愉快",
       "type": 3,
       "api": "csp_DouDou",
       "searchable": 0,
@@ -32,74 +32,6 @@
       "changeable": 0,
       "ext": "http://127.0.0.1:9978/file/tvbox/token.txt",
       "jar": "./lib/alibaba.jar"
-    },
-    {
-      "key": "商店",
-      "name": "🎰┃蜂蜜┃商店",
-      "type": 3,
-      "api": "csp_Market",
-      "searchable": 0,
-      "changeable": 0,
-      "ext": "./lib/market.json",
-      "jar": "./lib/app.jar"
-    },
-    {
-      "key": "直播转点播",
-      "name": "📺︎┃电视┃点播",
-      "playerType": 1,
-      "type": 3,
-      "api": "./lib/zb.min.js",
-      "searchable": 1,
-      "quickSearch": 0,
-      "filterable": 0,
-      "ext": "./lib/zb.json"
-    },
-    {
-      "key": "csp_AList",
-      "name": "小雅｜云盘",
-      "type": 3,
-      "playerType": 1,
-      "api": "csp_AList",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": {
-        "vodPic": "https://up.mediy.cn/033_喜欢_adf390021f221477b26a94f5eaf02643.png",
-        "drives": [
-          {
-            "name": "Ecve",
-            "server": "https://pan.ecve.cn/"
-          },
-          {
-            "name": "小鸭",
-            "server": "https://pan.mediy.cn/"
-          },
-          {
-            "name": "秋雨",
-            "server": "https://share.qiuyu.org/"
-          },
-          {
-            "name": "小雅",
-            "server": "http://alist.xiaoya.pro/"
-          },
-          {
-            "name": "七米蓝",
-            "server": "https://al.chirmyram.com/"
-          },
-          {
-            "name": "蓼茶",
-            "server": "http://175.178.16.226:62494/"
-          },
-          {
-            "name": "柯南",
-            "server": "https://alist.523.monster/"
-          },
-          {
-            "name": "老谭",
-            "server": "https://pan.cqtjy.cn/ali"
-          }
-        ]
-      }
     },
     {
       "key": "玩偶哥哥",
@@ -140,6 +72,13 @@
       "filterable": 1,
       "jar": "./lib/duo.jar"
     },
+    {"key":"小柚","name":"🍊小柚┃App","type":3,"api":"csp_AppSK","searchable":1,"quickSearch":1,"changeable":1,"ext":"FbjPcVZY48PN/RIZ5QqOrsp7JoZYCZdLEy9R9ri6ykNdUNSIsT3IgxCP9qyzByO7ZG6Z030vgWoyXGNlCJx9KFpYXtyZ3B/cLTtO0SAclaw3AOm0fS9oLx2taGF6hg=="},
+{"key":"萌米","name":"👀萌米┃App","type":3,"api":"csp_AppMao","searchable":1,"quickSearch":1,"changeable":1,"ext":"FbjKZ1gO+9u81wMIxzHg+7x1Oep4CIFuZAlCy8a4qCgjGLacnxDo6wiBr66jP3X8J2mRx31u1XgkTTVrENVjfhQKUN2Yi12XNWQSlmVZxLtiSaSiZG0xf1Hw"},
+{"key":"嘿嘿","name":"💡嘿嘿┃App","type":3,"api":"csp_AppMao","searchable":1,"quickSearch":1,"changeable":1,"ext":"FbjDcUxPqpfNr0QF4QvE6sExbcBEGIRZVnQTs7Kyyk1SScOZ8j/C1ATO/eqjASKwdHWA2zQtjGMwVDA+Ttluew9LCZzZnFyFNWEAlX0KjLdiSaX+NDNVdVG1JjEvnt3n7STfbcZ8C5QA+hYk60bwQH58e7eO7msRAJ0ZbmFDDly40NBDxuYsAq8lZuJzVkw0ZkMhqBM9YRPP8mMU/CJYsuBptunppHVQfFQjk8wxXjVRsNe75CuoY+zt9w+Smcm9PL37bGJHS6+1cFg1xMgqVxqvyPfuq5Dvyo1q66Q1NXwhDe4x21KVg4iRMET6Z3Jna25wcmku6xbznbFxlZqH3DqtpBKXLcNrx6n6vgn+/lHRmp5g13bG1xc/jwO78tZL0Pei6A=="},
+{"key":"毛驴","name":"🍓毛驴┃直连","type":3,"api":"csp_MLYS","searchable":1,"quickSearch":1,"changeable":1,"ext":"https://www.maolvys.com/"},
+{"key":"星奇","name":"💥星奇┃App","type":3,"api":"csp_AppMao","playerType":2,"searchable":1,"quickSearch":1,"changeable":1,"ext":"FbjDcUxPqpfNr0QF4QvE6sExbd4UXJxJXzdL462ywU1XScGa5G6Hj0/c+Ou1GW6rdX6N2XIhnD46QzIsRoZ8bk4fG4OYi0iCaWwRj2ddkacwFqHtLjQhalHqIy0+kpiTv2eOfJYxTshgrxcJ+g3lEHx7ZLC9kB1TCfZUSHwqHB3tt6V/1OhRENIOZNRFfXVBEFd7jQg+J06kjCAF7z1Bt8hRvMjC2VcbQXsEz8MCZDgu06C9/wirWcTa/wWJsfT+Z7fXaDs+dIWMYiwf6td5CWTx6LfL6eTuiMhs2KU5Byw9F+4Y/AHBg4r+LEe+Hm4EM2d8X3ca5zHSj+kjmpXOiGDo4TalFqgTq67eggmthCbV2d131SKc03V+5gruudQQk/Tb9e4lg6SQhA9/5kWOOM/LRmkqIxSt6d0wpu7yKKh65enwKbgasc93/HnGr6W4LuZjf6eYnS2GgRzWRE0fT5lYNmxnWeRnYuLhoZbDqslAfJzg"},
+    {"key":"Xinsj","name":"👓视觉┃直连","type":3,"api":"csp_Xinsj","searchable":1,"quickSearch":1,"changeable":1,"ext":"https://www.hdmyy.com/"},
+{"key":"南坊","name":"☀南坊┃App","type":3,"api":"csp_AppMao","searchable":1,"quickSearch":1,"changeable":1,"ext":"FbjCcU1KqpC5pkRX4Q3D+NciPclIFs4EHzRV89m3pENRS6PivxPrlXvH/4efUSWwUCWwwk8srkIDSXN9RIJkSCZPJqnRikLRakBH0XBB6uNlX6XgMjhUKBTbBXopnsWdvXX6OowIBLQ78wghs3yRbgJxOYvrglBVIeI4cTcDGxixtMJ+yL0zE9g1d+N2RH4JERZh3CoYXSO1hH420ARbjt08lerroREmfGoT8JEGfTFW3MrK3hWueIyRsyOllsj/P87VXSxEVLnwNm4fos8lCFL74+azvs61n89svqg="},
     {
       "key": "csp_Btwtoo",
       "name": "✌┃两个┃鼻涕",
@@ -555,27 +494,6 @@
       "ext": "./lib/360影视.js"
     },
     {
-      "key": "dr_奇珍异兽",
-      "name": "🦍奇珍┃异兽",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "ext": "./lib/奇珍异兽.js"
-    },
-    {
-      "key": "dr_腾云驾雾",
-      "name": "☁️腾云┃驾雾",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "ext": "./lib/腾云驾雾.js"
-    },
-    {
-      "key": "dr_百忙无果",
-      "name": "🍋百忙┃无果",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "ext": "./lib/百忙无果.js"
-    },
-    {
       "key": "csp_Free",
       "name": "💰️┃Free┃影院",
       "type": 3,
@@ -640,17 +558,6 @@
       "filterable": 1,
       "jar": "./lib/HCCX.jar",
       "ext": "./lib/黑狐影视.json"
-    },
-    {
-      "key": "csp_奇优",
-      "name": "🧼┃奇优┃影院",
-      "type": 3,
-      "api": "csp_XBPQ",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "jar": "./lib/HCCX.jar",
-      "ext": "./lib/奇优影院.json"
     },
     {
       "key": "csp_TVB",
@@ -2367,6 +2274,34 @@
     }
   ],
   "parses": [
+     {
+      "name": "虾米",
+      "type": 0,
+      "url": "https://jx.xmflv.com/?url=",
+      "ext": {
+        "flag": [
+          "qq",
+          "腾讯",
+          "qiyi",
+          "爱奇艺",
+          "奇艺",
+          "youku",
+          "优酷",
+          "sohu",
+          "搜狐",
+          "letv",
+          "乐视",
+          "mgtv",
+          "芒果",
+          "imgo",
+          "rx",
+          "ltnb",
+          "bilibili",
+          "1905",
+          "xigua"
+        ]
+      }
+    },
     {
       "name": "Json聚合",
       "type": 3,
@@ -2529,34 +2464,6 @@
         "header": {
           "User-Agent": "okhttp/4.1.0"
         }
-      }
-    },
-    {
-      "name": "虾米",
-      "type": 0,
-      "url": "https://jx.xmflv.com/?url=",
-      "ext": {
-        "flag": [
-          "qq",
-          "腾讯",
-          "qiyi",
-          "爱奇艺",
-          "奇艺",
-          "youku",
-          "优酷",
-          "sohu",
-          "搜狐",
-          "letv",
-          "乐视",
-          "mgtv",
-          "芒果",
-          "imgo",
-          "rx",
-          "ltnb",
-          "bilibili",
-          "1905",
-          "xigua"
-        ]
       }
     },
     {
