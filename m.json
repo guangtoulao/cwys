@@ -13,56 +13,6 @@
       "filterable": 0
     },
     {
-      "key": "dr_豆瓣",
-      "name": "🌞┃豆瓣┃自用",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "searchable": 0,
-      "quickSearch": 0,
-      "filterable": 1,
-      "ext": "./lib/豆瓣.js"
-    },
-    {
-      "key": "csp_KungFu404",
-      "name": "🔥设置Token",
-      "type": 3,
-      "api": "csp_KungFu404",
-      "searchable": 0,
-      "filterable": 0,
-      "changeable": 0,
-      "ext": "http://127.0.0.1:9978/file/tvbox/token.txt",
-      "jar": "./lib/alibaba.jar"
-    },
-    {
-      "key": "玩偶哥哥",
-      "name": "👽┃玩偶┃哥哥",
-      "type": 3,
-      "api": "csp_WoGG",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0,
-      "ext": "http://127.0.0.1:9978/file/tvbox/token.txt"
-    },
-    {
-      "key": "南瓜",
-      "name": "🎃南瓜┃App",
-      "type": 3,
-      "api": "csp_NanGua",
-      "playerType": 2,
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1
-    },
-    {
-      "key": "77",
-      "name": "👒七七┃App",
-      "type": 3,
-      "api": "csp_Kunyu77",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1
-    },
-    {
       "key": "Kuaikan",
       "name": "🦋┃快看┃影视",
       "type": 3,
