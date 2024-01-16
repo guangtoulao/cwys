@@ -5,9 +5,9 @@
 熊猫频道,https://gcwbndks.v.kcdnvip.com/gcwbnd/xiongmao03_2/index.m3u8
 
 
-CCTV1,http://dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221226231/index.m3u8
-CCTV2,http://dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221226195/index.m3u8
-CCTV3,http://dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221226397/index.m3u8
+CCTV1,http://stream.smntv.cn/smtv1/sd/live.m3u8
+CCTV2,http://39.134.24.162/dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221226195/index.m3u8
+CCTV3,http://60.205.114.16/ysp/cctv3.m3u8
 CCTV4,http://dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221226191/index.m3u8
 CCTV5,http://dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221226395/index.m3u8
 CCTV5+,http://dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221226221/index.m3u8
@@ -23,9 +23,9 @@ CCTV14,http://dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221226193/index.m3u8
 CCTV15,http://dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221225785/index.m3u8
 CCTV16,http://dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221226921/index.m3u8
 CCTV17,http://dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221226198/index.m3u8
-CCTV1,https://live.goodiptv.club/api/bestv.php?id=cctv1hd8m/8000000
+CCTV1,http://[2409:8087:1e03:21::2]:6060/cms001/ch00000090990000001022/index.m3u8
 CCTV2,https://live.goodiptv.club/api/bestv.php?id=cctv2hd8m/8000000
-CCTV3,https://live.goodiptv.club/api/bestv.php?id=cctv38m/8000000
+CCTV3,http://dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221226009/index.m3u8
 CCTV4,https://live.goodiptv.club/api/bestv.php?id=cctv4hd8m/8000000
 CCTV5,https://live.goodiptv.club/api/bestv.php?id=cctv58m/8000000
 CCTV5+,https://live.goodiptv.club/api/bestv.php?id=cctv5phd8m/8000000
@@ -46,9 +46,9 @@ CCTV-4k,https://live.goodiptv.club/api/bestv.php?id=cctv4k/15000000
 
 
 CCTV17,https://live.goodiptv.club/api/bestv.php?id=cctv17hd8m/8000000
-CCTV1,http://180.97.247.27/4403-tx.otvstream.otvcloud.com/otv/skcc/live/channel1/index.m3u8
-CCTV2,http://180.97.247.27/4403-tx.otvstream.otvcloud.com/otv/skcc/live/channel2/index.m3u8
-CCTV3,http://180.97.247.27/4403-tx.otvstream.otvcloud.com/otv/skcc/live/channel3/index.m3u8
+CCTV1,http://111.225.92.130:8800/hls/1/index.m3u8
+CCTV2,http://60.205.114.16/ysp/cctv2.m3u8
+CCTV3,https://live.goodiptv.club/api/bestv.php?id=cctv38m/8000000
 CCTV3,http://180.97.247.27/1301-tx.otvstream.otvcloud.com/otv/skcc/live/channel41139/index.m3u8
 CCTV4,http://180.97.247.27/4403-tx.otvstream.otvcloud.com/otv/skcc/live/channel4/index.m3u8
 CCTV5,http://180.97.247.27/4403-tx.otvstream.otvcloud.com/otv/skcc/live/channel5/index.m3u8
@@ -74,9 +74,9 @@ CCTV17,http://180.97.247.27/4309-tx.otvstream.otvcloud.com/otv/skcc/live/channel
 CGTN,http://180.97.247.27/4309-tx.otvstream.otvcloud.com/otv/skcc/live/channel15/index.m3u8
 CGTN纪录,http://180.97.247.27/4403-tx.otvstream.otvcloud.com/otv/skcc/live/channel14/index.m3u8
 
-CCTV1,http://gs.tuntun.tech:6688/udp/239.93.0.184:5140
-CCTV2,http://gs.tuntun.tech:6688/udp/239.93.1.23:6000
-CCTV3,http://gs.tuntun.tech:6688/udp/239.93.1.11:2223
+CCTV1,http://l.cztvcloud.com/channels/lantian/SXshangyu1/720p.m3u8
+CCTV2,http://121.24.99.45:8090/hls/10/index.m3u8
+CCTV3,http://121.24.99.45:8090/hls/11/index.m3u8
 CCTV4,http://gs.tuntun.tech:6688/udp/239.93.1.105:5140
 CCTV5,http://gs.tuntun.tech:6688/udp/239.93.1.12:2224
 CCTV6,http://gs.tuntun.tech:6688/udp/239.93.1.13:2226
@@ -123,7 +123,7 @@ CCTV13,https://live-play.cctvnews.cctv.com/cctv/merge_cctv13.m3u8
 CCTV13,http://223.95.111.98:5555/newlive/live/hls/13/live.m3u8
 CCTV15,http://39.134.24.162/dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221225785/index.m3u8?
 CCTV1,http://39.134.24.162/dbiptv.sn.chinamobile.com/PLTV/88888888/224/3221225804/1.m3u8
-CCTV2,http://39.134.24.162/dbiptv.sn.chinamobile.com/PLTV/88888888/224/3221226195/1.m3u8
+CCTV2,http://121.24.99.45:8090/hls/10/index.m3u8
 CCTV13,http://39.134.24.162/dbiptv.sn.chinamobile.com/PLTV/88888888/224/3221226233/1.m3u8
 CCTV15,http://39.134.24.162/dbiptv.sn.chinamobile.com/PLTV/88888888/224/3221225785/1.m3u8
 CCTV16,http://39.134.24.162/dbiptv.sn.chinamobile.com/PLTV/88888888/224/3221226921/1.m3u8
