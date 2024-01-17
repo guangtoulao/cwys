@@ -12,31 +12,6 @@
       "quickSearch": 0,
       "filterable": 0
     },
-        {
-            "key": "天天", 
-            "name": "弹幕 | 天天[jar]", 
-            "type": 3, 
-            "api": "csp_TTian", 
-            "playerType": 1, 
-            "ext": "http://op.ysdqjs.cn$$$null$$$1"
-        }, 
-        {
-            "key": "NanGua", 
-            "name": "弹幕 | 南瓜[jar]", 
-            "type": 3, 
-            "api": "csp_NanGua", 
-            "searchable": 1, 
-            "changeable": 1, 
-            "ext": "null$$$1"
-        }, 
-        {
-            "key": "蝴蝶", 
-            "name": "弹幕 | 蝴蝶[jar]", 
-            "type": 3, 
-            "api": "csp_Hudie", 
-            "playerType": 2, 
-            "ext": "https://yundun-hdsign.zhuifeng100.cn|kT2taP|75f7fac7f56d812d1f9ce89d9f312984|b7688bd6347da0b2b62515b0730b872b$$$null$$$1"
-        }, 
     {
       "key": "Kuaikan",
       "name": "🦋┃快看┃影视",
@@ -344,16 +319,6 @@
       "quickSearch": 1,
       "filterable": 1,
       "ext": "./lib/xsj.js"
-    },
-    {
-      "key": "js_骚火电影",
-      "name": "🔥┃骚火┃影视",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "./lib/saohuo.js"
     },
     {
       "key": "js_bzys",
@@ -689,16 +654,6 @@
       "filterable": 1,
       "jar": "./lib/HCCX.jar",
       "ext": "./lib/达达龟影视.json"
-    },
-     {
-      "key": "csp_威士",
-      "name": "威士影视|T追剧",
-      "type": 3,
-      "api": "csp_XBPQ",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "./lib/威士影视.json"
     },
     {
       "key": "csp_TVB",
