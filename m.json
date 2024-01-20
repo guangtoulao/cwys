@@ -23,6 +23,13 @@
       "jar": "./lib/duo.jar"
     },
      {
+      "key": "畅梦影视",
+      "name": "影视 | 畅梦影视",
+      "type": 3,
+      "api": "./lib/drpy.min.js",
+      "ext": "./lib/畅梦影视.js"
+    },
+     {
       "key": "玩偶哥哥",
       "name": "👽玩偶哥哥┃4K弹幕不断流",
       "type": 3,
