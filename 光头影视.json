@@ -254,6 +254,106 @@
       "api": "./lib/drpy2.min.js",
       "ext": "./lib/大米星球.js"
     },
+      {
+      "key": "神仙影视",
+      "name": "影视 | 神仙自营",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "分类url": "http://ys.sxtv.top/index.php/vod/type/id/{cateId}/area/{area}/by/{by}/class/{class}/page/{catePg}/year/{year}.html",
+        "分类": "电影$1#电视剧$2#综艺$3#动漫$4#电影解说$5"
+      }
+    },
+        {
+      "key": "影视工厂",
+      "name": "影视 | 影视工厂",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "分类url:https://www.ysgc.fun/vodtype/{cateId}/area/{area}/by/{by}/class/{class}/page/{catePg}/year/{year}.html,分类:电影$1#电视剧$2#综艺$3#动漫$4"
+    },
+    {
+      "key": "鸭奈飞",
+      "name": "影视 | 鸭奈飞",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "分类url:https://www.yanaifei.me/vod/type/{cateId}/area/{area}/by/{by}/class/{class}/page/{catePg}/year/{year}.html,分类:电影$1#电视剧$2#综艺$3#动漫$4"
+    },
+      {
+      "key": "策驰影院",
+      "name": "影视 | 策驰影院",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "./json/cechi.json"
+    },
+    {
+      "key": "圣城影视",
+      "name": "影视 | 圣城影视",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "./json/圣城影视.json"
+    },
+    {
+      "key": "萌猫影视",
+      "name": "影视 | 萌猫影视",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "./json/萌猫影视.json"
+    },
+    {
+      "key": "爱看影视",
+      "name": "影视 | 爱看影视",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "./json/爱看影视.json"
+    },
+    {
+      "key": "新浪",
+      "name": "影视 | 新浪资源",
+      "type": 1,
+      "api": "http://api.xinlangapi.com/xinlangapi.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "playUrl": "",
+      "categories": [
+        "电影",
+        "动漫",
+        "动漫电影",
+        "战争片",
+        "动作片",
+        "喜剧片",
+        "科幻片",
+        "恐怖片",
+        "日剧",
+        "电视剧",
+        "大陆剧",
+        "港澳剧",
+        "台湾剧",
+        "韩剧",
+        "欧美剧"
+      ]
+    },
     {
       "key": "欧帝影院",
       "name": "欧帝影院",
