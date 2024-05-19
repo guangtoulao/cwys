@@ -226,6 +226,106 @@
       },
       "jar": "./lib/danmu.jar;md5;1cd84661732d6bfd7fd4cc8f78cfad42"
     },
+      {
+      "key": "神仙影视",
+      "name": "影视 | 神仙自营",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "分类url": "http://ys.sxtv.top/index.php/vod/type/id/{cateId}/area/{area}/by/{by}/class/{class}/page/{catePg}/year/{year}.html",
+        "分类": "电影$1#电视剧$2#综艺$3#动漫$4#电影解说$5"
+      }
+    },
+      {
+      "key": "影视工厂",
+      "name": "影视 | 影视工厂",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "分类url:https://www.ysgc.fun/vodtype/{cateId}/area/{area}/by/{by}/class/{class}/page/{catePg}/year/{year}.html,分类:电影$1#电视剧$2#综艺$3#动漫$4"
+    },
+       {
+      "key": "鸭奈飞",
+      "name": "影视 | 鸭奈飞",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "分类url:https://www.yanaifei.me/vod/type/{cateId}/area/{area}/by/{by}/class/{class}/page/{catePg}/year/{year}.html,分类:电影$1#电视剧$2#综艺$3#动漫$4"
+    },
+    {
+      "key": "新浪",
+      "name": "影视 | 新浪资源",
+      "type": 1,
+      "api": "http://api.xinlangapi.com/xinlangapi.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "playUrl": "",
+      "categories": [
+        "电影",
+        "动漫",
+        "动漫电影",
+        "战争片",
+        "动作片",
+        "喜剧片",
+        "科幻片",
+        "恐怖片",
+        "日剧",
+        "电视剧",
+        "大陆剧",
+        "港澳剧",
+        "台湾剧",
+        "韩剧",
+        "欧美剧"
+      ]
+    },
+       {
+      "key": "农民",
+      "name": "🌾农民┃秒播",
+      "type": 3,
+      "api": "csp_Nmys",
+      "timeout": 15,
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "ext": "https://k.hhyyqq.com/uploads/itvbox/json/nm0416.json"
+    },
+      {
+      "key": "一起看",
+      "name": "影视 | 一起看",
+      "type": 3,
+      "api": "csp_YQKan",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1
+    },
+       {
+      "key": "策驰影院",
+      "name": "影视 | 策驰影院",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "./lib/cechi.json"
+    },
+      {
+      "key": "爱看影视",
+      "name": "影视 | 爱看影视",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "./lib/爱看影视.json"
+    },
        {
       "key": "追剧迷",
       "name": "追剧迷",
@@ -760,6 +860,41 @@
       "quickSearch": 0,
       "changeable": 0,
       "ext": "https://gitlab.com/fantaiying/ext/-/raw/main/biliych.json"
+    },
+       {
+      "key": "music",
+      "name": "音乐|狗狗",
+      "type": 3,
+      "api": "csp_Music",
+      "searchable": 0,
+      "jar": "https://k.hhyyqq.com/uploads/itvbox/jar/YSZYZ.jar;md5;b7a9c006c3a4985d809c4a1bcd5fa865",
+      "changeable": 0,
+      "style": {
+        "type": "rect",
+        "ratio": 1.433
+      }
+    },
+       {
+      "key": "哔哩音乐",
+      "name": "🎧哔哩｜音乐",
+      "type": 3,
+      "api": "csp_Bili",
+      "searchable": 0,
+      "quickSearch": 1,
+      "filterable": 1,
+      "jar": "http://rihou.vip:88/hccx/HeChengChaXiu.jar",
+      "ext": "http://rihou.vip:88/hccx/%E5%93%94%E5%93%A9%E9%9F%B3%E4%B9%90.json"
+    },
+      {
+      "key": "相声小品",
+      "name": "🅱相声｜小品",
+      "type": 3,
+      "api": "csp_Bili",
+      "searchable": 0,
+      "quickSearch": 1,
+      "filterable": 1,
+      "jar": "http://rihou.vip:88/hccx/HeChengChaXiu.jar",
+      "ext": "http://rihou.vip:88/hccx/哔哩相声.json"
     },
        {
       "key": "夸克玩偶弹幕",
