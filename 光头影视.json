@@ -226,6 +226,17 @@
       },
       "jar": "./lib/danmu.jar;md5;1cd84661732d6bfd7fd4cc8f78cfad42"
     },
+        {
+      "key": "农民",
+      "name": "🌾农民┃秒播",
+      "type": 3,
+      "api": "csp_Nmys",
+      "timeout": 15,
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "ext": "https://k.hhyyqq.com/uploads/itvbox/json/nm0416.json"
+    },
        {
       "key": "追剧迷",
       "name": "追剧迷",
@@ -990,6 +1001,17 @@
       "quickSearch": 0,
       "changeable": 0,
       "ext": "./lib/bilibili.json"
+    },
+       {
+      "key": "相声小品",
+      "name": "🅱相声｜小品",
+      "type": 3,
+      "api": "csp_Bili",
+      "searchable": 0,
+      "quickSearch": 1,
+      "filterable": 1,
+      "jar": "http://rihou.vip:88/hccx/HeChengChaXiu.jar",
+      "ext": "http://rihou.vip:88/hccx/哔哩相声.json"
     },
     {
       "key": "Biliych",
