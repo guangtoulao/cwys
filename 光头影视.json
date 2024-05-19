@@ -3,13 +3,11 @@
   "wallpaper": "https://api.likepoems.com/img/bing",
   "sites": [
     {
-      "key": "豆豆",
-      "name": "🌕光头祝您观影愉快",
+      "key": "豆瓣",
+      "name": "光头祝您观影愉快",
       "type": 3,
-      "api": "csp_DouDou",
-      "searchable": 0,
-      "quickSearch": 0,
-      "filterable": 0
+      "api": "csp_Douban",
+      "searchable": 0
     },
     {
       "key": "云盘登录",
