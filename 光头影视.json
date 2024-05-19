@@ -226,17 +226,6 @@
       },
       "jar": "./lib/danmu.jar;md5;1cd84661732d6bfd7fd4cc8f78cfad42"
     },
-        {
-      "key": "农民",
-      "name": "🌾农民┃秒播",
-      "type": 3,
-      "api": "csp_Nmys",
-      "timeout": 15,
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1,
-      "ext": "https://k.hhyyqq.com/uploads/itvbox/json/nm0416.json"
-    },
        {
       "key": "追剧迷",
       "name": "追剧迷",
@@ -264,106 +253,6 @@
       "type": 3,
       "api": "./lib/drpy2.min.js",
       "ext": "./lib/大米星球.js"
-    },
-      {
-      "key": "神仙影视",
-      "name": "影视 | 神仙自营",
-      "type": 3,
-      "api": "csp_XBPQ",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": {
-        "分类url": "http://ys.sxtv.top/index.php/vod/type/id/{cateId}/area/{area}/by/{by}/class/{class}/page/{catePg}/year/{year}.html",
-        "分类": "电影$1#电视剧$2#综艺$3#动漫$4#电影解说$5"
-      }
-    },
-        {
-      "key": "影视工厂",
-      "name": "影视 | 影视工厂",
-      "type": 3,
-      "api": "csp_XBPQ",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "分类url:https://www.ysgc.fun/vodtype/{cateId}/area/{area}/by/{by}/class/{class}/page/{catePg}/year/{year}.html,分类:电影$1#电视剧$2#综艺$3#动漫$4"
-    },
-    {
-      "key": "鸭奈飞",
-      "name": "影视 | 鸭奈飞",
-      "type": 3,
-      "api": "csp_XBPQ",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "分类url:https://www.yanaifei.me/vod/type/{cateId}/area/{area}/by/{by}/class/{class}/page/{catePg}/year/{year}.html,分类:电影$1#电视剧$2#综艺$3#动漫$4"
-    },
-      {
-      "key": "策驰影院",
-      "name": "影视 | 策驰影院",
-      "type": 3,
-      "api": "csp_XBPQ",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "./json/cechi.json"
-    },
-    {
-      "key": "圣城影视",
-      "name": "影视 | 圣城影视",
-      "type": 3,
-      "api": "csp_XBPQ",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "./json/圣城影视.json"
-    },
-    {
-      "key": "萌猫影视",
-      "name": "影视 | 萌猫影视",
-      "type": 3,
-      "api": "csp_XBPQ",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "./json/萌猫影视.json"
-    },
-    {
-      "key": "爱看影视",
-      "name": "影视 | 爱看影视",
-      "type": 3,
-      "api": "csp_XBPQ",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "./json/爱看影视.json"
-    },
-    {
-      "key": "新浪",
-      "name": "影视 | 新浪资源",
-      "type": 1,
-      "api": "http://api.xinlangapi.com/xinlangapi.php/provide/vod/",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "playUrl": "",
-      "categories": [
-        "电影",
-        "动漫",
-        "动漫电影",
-        "战争片",
-        "动作片",
-        "喜剧片",
-        "科幻片",
-        "恐怖片",
-        "日剧",
-        "电视剧",
-        "大陆剧",
-        "港澳剧",
-        "台湾剧",
-        "韩剧",
-        "欧美剧"
-      ]
     },
     {
       "key": "欧帝影院",
@@ -499,150 +388,6 @@
       "jar": "http://我不是.摸鱼儿.top/by/jar/xpbq.php",
       "searchable": 1,
       "changeable": 1
-    },
-     {
-      "key": "影探蓝光",
-      "name": "🕵️影探┃蓝光┃纯净",
-      "type": 3,
-      "api": "csp_App",
-      "jar": "http://我不是.摸鱼儿.top/by/jar/xpbq.php",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 0,
-      "ext": "z6aMzDclLwZa7eCQN0nAaMJTu+8HfYERSWRA9AuiPd5ju12RwkZY66pe1tXgTKme4myqMhNAu9a5aDusX/CFhq0GULMcLI0pBe4sO5Jk9iHT4EzGybWth1IYcQZzmT/Uknh6TZ6cHKTEuxhe9kEcbHe/matKBgar76JHg9Ss2kMqYgvU1NSsFSnVVAE7LeVECZO0XGQyrUS8VCpRjkdBsxmMhpS0QcwkxE57v9xCb+A="
-    },
-     {
-      "key": "雪儿",
-      "name": "❄️雪儿┃蓝光┃在线",
-      "type": 3,
-      "api": "csp_XBPQ",
-      "jar": "http://我不是.摸鱼儿.top/by/jar/xpbq.php",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "http://我不是.摸鱼儿.top/api/moyu.php?file=雪儿"
-    },
-        {
-      "key": "韩圈",
-      "name": "🦄韩圈┃蓝光┃无广",
-      "type": 3,
-      "api": "csp_HanXiaoQuan",
-      "jar": "http://我不是.摸鱼儿.top/by/jar/danmu.php",
-      "playerType": 2,
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "timeout": 10
-    },
-      {
-      "key": "七味影视",
-      "name": "🌿七味┃蓝光┃秒播",
-      "type": 3,
-      "api": "csp_XBPQ",
-      "jar": "http://我不是.摸鱼儿.top/by/jar/xpbq.php",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "http://我不是.摸鱼儿.top/api/moyu.php?file=七味"
-    },
-      {
-      "key": "兄弟影视",
-      "name": "🫨兄弟┃蓝光┃无广",
-      "type": 3,
-      "api": "csp_Wexxiongdiys",
-      "jar": "http://我不是.摸鱼儿.top/by/jar/xpbq.php",
-      "searchable": 1,
-      "changeable": 1
-    },
-    {
-      "key": "机器人bot",
-      "name": "🤖机器┃蓝光┃无广",
-      "type": 3,
-      "api": "csp_Ikanbot",
-      "jar": "http://我不是.摸鱼儿.top/by/jar/danmu.php",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1
-    },
-       {
-      "key": "明日影视",
-      "name": "🪁明日┃蓝光┃秒播",
-      "type": 3,
-      "api": "csp_WexMingriys",
-      "jar": "http://我不是.摸鱼儿.top/by/jar/xpbq.php",
-      "searchable": 1,
-      "changeable": 1
-    },
-    {
-      "key": "央视经典",
-      "name": "🇨🇳央视┃经典┃合集",
-      "type": 3,
-      "api": "csp_Bili",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 0,
-      "ext": "http://我不是.摸鱼儿.top/api/moyu.php?file=央视经典"
-    },
-      {
-      "key": "sp360",
-      "name": "🐛360┃蓝光┃解析",
-      "type": 3,
-      "api": "csp_Sp360",
-      "jar": "http://我不是.摸鱼儿.top/by/jar/danmu.php",
-      "searchable": 1,
-      "filterable": 1,
-      "changeable": 1,
-      "timeout": 25
-    },
-      {
-      "key": "子子影视",
-      "name": "👶子子┃蓝光┃在线",
-      "type": 3,
-      "api": "csp_XYQHiker",
-      "jar": "http://我不是.摸鱼儿.top/by/jar/xpbq.php",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "http://我不是.摸鱼儿.top/api/moyu.php?file=子子影视"
-    },
-    {
-      "key": "csp_疯狗",
-      "name": "🐶疯狗┃蓝光┃在线",
-      "type": 3,
-      "api": "csp_XBPQ",
-      "jar": "http://我不是.摸鱼儿.top/by/jar/xpbq.php",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "http://我不是.摸鱼儿.top/api/moyu.php?file=疯狗"
-    },
-    {
-      "key": "看呗",
-      "name": "🎞️看呗┃蓝光┃在线",
-      "type": 3,
-      "api": "https://github.moeyy.xyz/https://raw.githubusercontent.com/PizazzGY/TVBox/main/JS/drpy.min.js",
-      "ext": "https://github.moeyy.xyz/https://raw.githubusercontent.com/PizazzGY/TVBox/main/JS/看了么.js"
-    },
-    {
-      "key": "网飞影视",
-      "name": "🛸网飞┃蓝光┃在线",
-      "type": 3,
-      "api": "https://github.moeyy.xyz/https://raw.githubusercontent.com/PizazzGY/TVBox/main/JS/drpy.min.js",
-      "ext": "https://github.moeyy.xyz/https://raw.githubusercontent.com/PizazzGY/TVBox/main/JS/网飞TV.js"
-    },
-    {
-      "key": "在线之家",
-      "name": "🔗在线┃蓝光┃纯净",
-      "type": 3,
-      "api": "https://github.moeyy.xyz/https://raw.githubusercontent.com/PizazzGY/TVBox/main/JS/drpy.min.js",
-      "ext": "https://github.moeyy.xyz/https://raw.githubusercontent.com/PizazzGY/TVBox/main/JS/在线之家.js"
-    },
-    {
-      "key": "碟调影视",
-      "name": "🏰碟调┃蓝光┃在线",
-      "type": 3,
-      "api": "https://github.moeyy.xyz/https://raw.githubusercontent.com/PizazzGY/TVBox/main/JS/drpy.min.js",
-      "ext": "https://github.moeyy.xyz/https://raw.githubusercontent.com/PizazzGY/TVBox/main/JS/碟调影视.js"
     },
     {
       "key": "玩偶",
@@ -1003,17 +748,6 @@
       "ext": "./lib/bilibili.json"
     },
        {
-      "key": "相声小品",
-      "name": "🅱相声｜小品",
-      "type": 3,
-      "api": "csp_Bili",
-      "searchable": 0,
-      "quickSearch": 1,
-      "filterable": 1,
-      "jar": "http://rihou.vip:88/hccx/HeChengChaXiu.jar",
-      "ext": "http://rihou.vip:88/hccx/哔哩相声.json"
-    },
-    {
       "key": "Biliych",
       "name": "🅱明星┃演唱会",
       "type": 3,
@@ -1025,7 +759,7 @@
       "searchable": 1,
       "quickSearch": 0,
       "changeable": 0,
-      "ext": "./lib/biliych.json"
+      "ext": "https://gitlab.com/fantaiying/ext/-/raw/main/biliych.json"
     },
        {
       "key": "夸克玩偶弹幕",
