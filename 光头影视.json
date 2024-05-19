@@ -4,7 +4,7 @@
   "sites": [
     {
       "key": "豆豆",
-      "name": "🌕全接口智能过滤广告",
+      "name": "🌕光头祝您观影愉快",
       "type": 3,
       "api": "csp_DouDou",
       "searchable": 0,
@@ -741,14 +741,6 @@
       "changeable": 1
     },
     {
-      "key": "文才影视",
-      "name": "文才影视",
-      "type": 3,
-      "api": "csp_Wexwencai",
-      "searchable": 1,
-      "changeable": 1
-    },
-    {
       "key": "秒播短剧",
       "name": "秒播短剧",
       "type": 3,
@@ -761,6 +753,15 @@
       "name": "极品短剧",
       "type": 3,
       "api": "csp_Wexduanjuvmp",
+      "searchable": 1,
+      "changeable": 1
+    },
+      {
+      "key": "文才影视",
+      "name": "文才┃蓝光┃纯净",
+      "type": 3,
+      "api": "csp_Wexwencai",
+      "jar": "http://我不是.摸鱼儿.top/by/jar/xpbq.php",
       "searchable": 1,
       "changeable": 1
     },
@@ -791,15 +792,6 @@
       "searchable": 1,
       "changeable": 0,
       "ext": "mDw3UhvpqIkZ5UdXklz/4Il9zM5cNjB0mlRRZ9AJtWoDBppZXY/MdmoGXv//uRgRP2GmDU4DQ0dtJ3TOynvDwm+Yb2YXjCzfj0qmrCIfLeBniWNTsTxzfA32PGyymnWql5B8DHQxKbHgDEgJ6j4L4w=="
-    },
-    {
-      "key": "看看影视",
-      "name": "看看影视",
-      "type": 3,
-      "api": "csp_WebIV",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 0
     },
     {
       "key": "米米影视",
