@@ -651,56 +651,6 @@
       "changeable": 0
     },
     {
-      "key": "夸搜",
-      "name": "🐺夸搜┃搜索",
-      "type": 3,
-      "api": "csp_PanSearch",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0,
-      "ext": "http://127.0.0.1:9978/file/tvbox/token.txt"
-    },
-    {
-      "key": "YiSo",
-      "name": "😹易搜┃搜索",
-      "type": 3,
-      "api": "csp_YiSo",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0,
-      "ext": "http://127.0.0.1:9978/file/tvbox/token.txt"
-    },
-    {
-      "key": "PanSou",
-      "name": "🦊盘搜┃搜索",
-      "type": 3,
-      "api": "csp_PanSou",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0,
-      "ext": "http://127.0.0.1:9978/file/tvbox/token.txt"
-    },
-    {
-      "key": "UpYun",
-      "name": "😻Up搜┃搜索",
-      "type": 3,
-      "api": "csp_UpYun",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0,
-      "ext": "http://127.0.0.1:9978/file/tvbox/token.txt"
-    },
-    {
-      "key": "PanSearch",
-      "name": "🙀盘Se┃搜索",
-      "type": 3,
-      "api": "csp_PanSearch",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0,
-      "ext": "http://127.0.0.1:9978/file/tvbox/token.txt"
-    },
-    {
       "key": "push_agent",
       "name": "🛴手机┃推送",
       "type": 3,
@@ -736,128 +686,6 @@
       "quickSearch": 0,
       "changeable": 0,
       "ext": "https://gitlab.com/fantaiying/ext/-/raw/main/biliych.json"
-    },
-       {
-      "key": "夸克玩偶弹幕",
-      "name": "夸克｜玩偶",
-      "type": 3,
-      "api": "csp_Wobg",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "changeable": 1,
-      "ext": {
-        "token": "http://127.0.0.1:9978/file/TVBox/token.txt",
-        "cookie": "http://127.0.0.1:9978/file/TVBox/quark.txt",
-        "danmu": true
-      },
-      "jar": "./danmu.jar;md5;1cd84661732d6bfd7fd4cc8f78cfad42"
-    },
-    {
-      "key": "夸克土豆弹幕",
-      "name": "夸克｜土豆",
-      "type": 3,
-      "api": "csp_Wobg",
-      "quickSearch": 1,
-      "changeable": 1,
-      "filterable": 1,
-      "ext": {
-        "token": "http://127.0.0.1:9978/file/TVBox/token.txt",
-        "cookie": "http://127.0.0.1:9978/file/TVBox/quark.txt",
-        "site": "https://tudou.lvdoui.top",
-        "danmu": true
-      },
-      "jar": "./danmu.jar;md5;1cd84661732d6bfd7fd4cc8f78cfad42"
-    },
-    {
-      "key": "夸克多多弹幕",
-      "name": "夸克｜多多",
-      "type": 3,
-      "api": "csp_Wobg",
-      "quickSearch": 1,
-      "changeable": 1,
-      "filterable": 1,
-      "ext": {
-        "token": "http://127.0.0.1:9978/file/TVBox/token.txt",
-        "cookie": "http://127.0.0.1:9978/file/TVBox/quark.txt",
-        "site": "https://tv.yydsys.top",
-        "danmu": true
-      },
-      "jar": "./danmu.jar;md5;1cd84661732d6bfd7fd4cc8f78cfad42"
-    },
-    {
-      "key": "夸克团长弹幕",
-      "name": "夸克｜团长",
-      "type": 3,
-      "api": "csp_Tzfile",
-      "searchable": 1,
-      "filterable": 1,
-      "changeable": 1,
-      "ext": {
-        "token": "http://127.0.0.1:9978/file/TVBox/token.txt",
-        "cookie": "http://127.0.0.1:9978/file/TVBox/quark.txt",
-        "danmu": true
-      },
-      "jar": "./danmu.jar;md5;1cd84661732d6bfd7fd4cc8f78cfad42"
-    },
-    {
-      "key": "夸克盘搜弹幕",
-      "name": "夸克｜盘搜",
-      "type": 3,
-      "api": "csp_Qkpanso",
-      "searchable": 1,
-      "filterable": 1,
-      "changeable": 1,
-      "ext": {
-        "cookie": "http://127.0.0.1:9978/file/TVBox/quark.txt",
-        "danmu": true
-      },
-      "jar": "./danmu.jar;md5;1cd84661732d6bfd7fd4cc8f78cfad42"
-    },
-    {
-      "key": "夸克影搜弹幕",
-      "name": "夸克｜影搜",
-      "type": 3,
-      "api": "csp_Yingso",
-      "searchable": 1,
-      "filterable": 0,
-      "changeable": 1,
-      "ext": {
-        "token": "http://127.0.0.1:9978/file/TVBox/token.txt",
-        "cookie": "http://127.0.0.1:9978/file/TVBox/quark.txt",
-        "danmu": true
-      },
-      "jar": "./danmu.jar;md5;1cd84661732d6bfd7fd4cc8f78cfad42"
-    },
-    {
-      "key": "夸克趣盘搜弹幕",
-      "name": "夸克｜趣盘搜",
-      "type": 3,
-      "api": "csp_QuPanSou",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "changeable": 1,
-      "ext": {
-        "cookie": "http://127.0.0.1:9978/file/TVBox/quark.txt",
-        "danmu": true
-      },
-      "jar": "./danmu.jar;md5;1cd84661732d6bfd7fd4cc8f78cfad42"
-    },
-    {
-      "key": "夸克爱盘搜弹幕",
-      "name": "夸克｜爱盘搜",
-      "type": 3,
-      "api": "csp_AiPanSou",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "changeable": 1,
-      "ext": {
-        "cookie": "http://127.0.0.1:9978/file/TVBox/quark.txt",
-        "danmu": true
-      },
-      "jar": "./danmu.jar;md5;1cd84661732d6bfd7fd4cc8f78cfad42"
     },
     {
       "key": "Nbys",
@@ -1133,7 +961,7 @@
      {
       "name": "live",
       "type": 0,
-      "url": "./live.txt",
+      "url": "./lib/live.txt",
       "playerType": 1,
       "epg": "https://epg.mxdyeah.top/api/diyp/?ch={name}&date={date}"
     },
