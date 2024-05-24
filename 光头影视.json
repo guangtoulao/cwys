@@ -40,6 +40,44 @@
       "ext": "./lib/芒果视频.js"
     },
     {
+      "key": "Qtv",
+      "name": "无意云┃企鹅┃官源",
+      "type": 3,
+      "api": "http://alist.xn--z7x900a.live/ddrpy2.m.js",
+      "ext": "http://alist.xn--z7x900a.live/腾云.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "drpy_js_百忙无果",
+      "name": "无意云┃芒果┃官源",
+      "type": 3,
+      "api": "https://github.moeyy.xyz/https://raw.githubusercontent.com/hjdhnx/dr_py/main/libs/drpy2.min.js",
+      "ext": "https://github.moeyy.xyz/https://raw.githubusercontent.com/hjdhnx/dr_py/main/js/百忙无果.js"
+    },
+    {
+      "key": "drpy_js_优酷",
+      "name": "无意云┃优酷┃官源",
+      "type": 3,
+      "api": "https://github.moeyy.xyz/https://raw.githubusercontent.com/hjdhnx/dr_py/main/libs/drpy2.min.js",
+      "ext": "https://github.moeyy.xyz/https://raw.githubusercontent.com/hjdhnx/dr_py/main/js/优酷.js"
+    },
+    {
+      "key": "drpy_js_奇珍异兽",
+      "name": "无意云┃爱奇┃官源",
+      "type": 3,
+      "api": "http://alist.xn--z7x900a.live/ddrpy2.m.js",
+      "ext": "http://alist.xn--z7x900a.live/爱奇.js"
+    },
+    {
+      "key": "搜狗",
+      "name": "无意云┃搜狗┃官源",
+      "type": 3,
+      "api": "https://weixine.net/js/lib/drpy2.min.js",
+      "ext": "https://weixine.net/js/caigou.js"
+    },
+    {
       "key": "乐鱼影视",
       "name": "乐鱼影视",
       "type": 3,
@@ -208,24 +246,6 @@
       "type": 3,
       "api": "./lib/drpy2.min.js",
       "ext": "./lib/追剧迷.js"
-    },
-    {
-      "key": "农民影视",
-      "name": "💡农民┃影视",
-      "type": 3,
-      "api": "csp_WebNM",
-      "jar": "http://www.wya6.cn/tz/wyog.php",
-      "searchable": 1,
-      "quickSearch": 0,
-      "filterable": 0,
-      "ext": "https://v.nmvod.cn"
-    },
-   {
-      "key": "drpy_js_农民",
-      "name": "影视 | 农民",
-      "type": 3,
-      "api": "https://ghproxy.net/https://raw.githubusercontent.com/hjdhnx/dr_py/main/libs/drpy2.min.js",
-      "ext": "https://ghproxy.net/https://raw.githubusercontent.com/hjdhnx/dr_py/main/js/农民影视.js"
     },
      {
       "key": "畅梦",
