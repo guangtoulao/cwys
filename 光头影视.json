@@ -559,6 +559,356 @@
       "quickSearch": 1,
       "changeable": 1
     },
+      {
+      "key": "Wexxpgtv",
+      "name": "🍎红富士┃TV┃App",
+      "type": 3,
+      "api": "csp_Wexxpgtv",
+      "searchable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "Wexkukantv",
+      "name": "😁看呗┃TV┃App",
+      "type": 3,
+      "api": "csp_Wexkukantv",
+      "searchable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "mingriyingshi",
+      "name": "☀️明日┃影视┃App",
+      "type": 3,
+      "api": "csp_WexMingriys",
+      "searchable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "Fujutv",
+      "name": "🍩腐剧┃TV┃App",
+      "type": 3,
+      "api": "csp_WexFujutv",
+      "searchable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "Wexhanxiaoquan",
+      "name": "🇰🇷韩圈┃TV┃App",
+      "type": 3,
+      "api": "csp_Wexhanxiaoquan",
+      "searchable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "Wexhanjutv",
+      "name": "🇰🇷韩剧┃TV┃App",
+      "type": 3,
+      "api": "csp_Wexhanjutv",
+      "searchable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "Wexdiguatv",
+      "name": "⛷️追剧┃TV┃App",
+      "type": 3,
+      "api": "csp_Wexdiguatv",
+      "searchable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "Fangniu4k",
+      "name": "👎放牛┃TV┃App",
+      "type": 3,
+      "api": "csp_WexFangniu4k",
+      "searchable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "Wexshandian",
+      "name": "⚡️闪电┃秒播┃直连",
+      "type": 3,
+      "api": "csp_Wexshandian",
+      "searchable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "WexTiantianys",
+      "name": "🌤️明天┃秒播┃直连",
+      "type": 3,
+      "api": "csp_WexTiantianys",
+      "searchable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "Wexjiohub",
+      "name": "🎉啾啾┃影视┃直连",
+      "type": 3,
+      "api": "csp_Wexjiohub",
+      "searchable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "Wexwencai",
+      "name": "🎇文才┃影视┃直连",
+      "type": 3,
+      "api": "csp_Wexwencai",
+      "searchable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "Wexbaipiao",
+      "name": "🌟星星┃影视┃直连",
+      "type": 3,
+      "api": "csp_Wexbaipiao",
+      "searchable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "Subaibai",
+      "name": "🐇拜拜┃影视┃直连",
+      "type": 3,
+      "api": "csp_Subaibai",
+      "searchable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "WexShijuedy",
+      "name": "👓看看┃影视┃直连",
+      "type": 3,
+      "api": "csp_WexShijuedy",
+      "searchable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "csp_Nmys",
+      "name": "🎅‍伯伯┃影视┃直连",
+      "type": 3,
+      "api": "csp_WexNmys",
+      "searchable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "哔嘀影视",
+      "name": "🚨喇叭┃影视┃直连",
+      "type": 3,
+      "api": "csp_WexBDys",
+      "searchable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "Wexlibhd",
+      "name": "🌚进口┃影视┃直连",
+      "type": 3,
+      "api": "csp_Wexlibhd",
+      "searchable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "Diduanys",
+      "name": "🙈深渊┃影视┃直连",
+      "type": 3,
+      "api": "csp_WexDiduanys",
+      "searchable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "F4kvm",
+      "name": "🦑纯享┃影视┃直连",
+      "type": 3,
+      "api": "csp_WexF4kvm",
+      "searchable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "Wexbttwo",
+      "name": "🐸大鼻涕┃影视┃直连",
+      "type": 3,
+      "api": "csp_Wexbttwo",
+      "searchable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "haiwaikan",
+      "name": "🛝海看┃秒播┃采集",
+      "type": 1,
+      "api": "https://haiwaikan.com/api.php/provide/vod?",
+      "searchable": 1,
+      "changeable": 1,
+      "categories": [
+        "国产剧",
+        "韩剧",
+        "日剧",
+        "台剧",
+        "泰剧",
+        "港剧",
+        "欧美剧",
+        "冒险片",
+        "剧情片",
+        "动作片",
+        "同性片",
+        "喜剧片",
+        "奇幻片",
+        "恐怖片",
+        "悬疑片",
+        "惊悚片",
+        "战争片",
+        "歌舞片",
+        "灾难片",
+        "爱情片",
+        "犯罪片",
+        "科幻片",
+        "纪录片",
+        "经典片",
+        "动画电影",
+        "韩国综艺",
+        "国产综艺",
+        "日本综艺",
+        "欧美综艺",
+        "日本动漫",
+        "国产动漫",
+        "欧美动漫"
+      ]
+    },
+    {
+      "key": "360",
+      "name": "🛝360┃秒播┃采集",
+      "type": 1,
+      "api": "https://360zy.com/api.php/provide/vod?",
+      "searchable": 1,
+      "changeable": 1,
+      "categories": [
+        "电影",
+        "连续剧",
+        "综艺",
+        "动漫",
+        "动作片",
+        "喜剧片",
+        "爱情片",
+        "科幻片",
+        "恐怖片",
+        "剧情片",
+        "战争片",
+        "国产剧",
+        "香港剧",
+        "韩国剧",
+        "欧美剧",
+        "台湾剧",
+        "日本剧",
+        "海外剧",
+        "泰国剧",
+        "大陆综艺",
+        "港台综艺",
+        "日韩综艺",
+        "欧美综艺",
+        "国产动漫",
+        "欧美动漫",
+        "日韩动漫",
+        "爽文短剧",
+        "体育",
+        "NBA",
+        "足球",
+        "篮球"
+      ]
+    },
+    {
+      "key": "爱坤",
+      "name": "🛝爱坤┃秒播┃采集",
+      "type": 1,
+      "api": "https://ikunzyapi.com/api.php/provide/vod?",
+      "searchable": 1,
+      "changeable": 1,
+      "categories": [
+        "电影",
+        "连续剧",
+        "综艺",
+        "动漫",
+        "动作片",
+        "喜剧片",
+        "爱情片",
+        "科幻片",
+        "恐怖片",
+        "剧情片",
+        "战争片",
+        "国产剧",
+        "香港剧",
+        "韩国剧",
+        "欧美剧",
+        "台湾剧",
+        "日本剧",
+        "海外剧",
+        "泰国剧",
+        "大陆综艺",
+        "港台综艺",
+        "日韩综艺",
+        "欧美综艺",
+        "国产动漫",
+        "欧美动漫",
+        "日韩动漫",
+        "爽文短剧",
+        "体育",
+        "足球",
+        "NBA",
+        "CBA",
+        "德甲",
+        "意甲",
+        "英超",
+        "西甲",
+        "法甲",
+        "WCBA",
+        "LPL"
+      ]
+    },
+    {
+      "key": "Wexduanjuquark",
+      "name": "🌸短劇┃夸克┃直连",
+      "type": 3,
+      "api": "csp_Wexduanjuquark",
+      "searchable": 1,
+      "changeable": 1,
+      "style": {
+        "type": "list"
+      }
+    },
+    {
+      "key": "Wexduanjuvop",
+      "name": "🌸短劇┃秒播┃直连",
+      "type": 3,
+      "api": "csp_Wexduanjuvop",
+      "searchable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "Wexduanjuhema",
+      "name": "🌸短劇┃仙品┃直连",
+      "type": 3,
+      "api": "csp_Wexduanjuhema",
+      "searchable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "Wexduanjuv1mp",
+      "name": "🌸短劇┃极品┃直连",
+      "type": 3,
+      "api": "csp_Wexduanjuvmp",
+      "searchable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "Wexduanjuvip",
+      "name": "🌸短劇┃精品┃直连",
+      "type": 3,
+      "api": "csp_Wexduanjuvip",
+      "searchable": 1,
+      "changeable": 1
+    },
+    {
+      "key": "顶级4K",
+      "name": "🛩️顶级┃4K┃P2P",
+      "type": 3,
+      "api": "csp_Wexwo4k",
+      "searchable": 1,
+      "changeable": 0
+    },
     {
       "key": "厂长",
       "name": "📔厂长┃不卡",
@@ -929,6 +1279,26 @@
           "User-Agent": "okhttp/4.1.0"
         }
       }
+    },
+      {
+      "name": "一",
+      "type": 1,
+      "url": "http://pan.qiaoji8.com/tvbox/gouzi.php?url="
+    },
+    {
+      "name": "二",
+      "type": 1,
+      "url": "http://119.91.123.253:2345/Api/yun.php?url="
+    },
+    {
+      "name": "三",
+      "type": 1,
+      "url": "http://xxjx.qqwx.ren/?url="
+    },
+    {
+      "name": "四",
+      "type": 1,
+      "url": "http://pan.qiaoji8.com/tvbox/neibu.php?url="
     },
     {
       "name": "聚合",
