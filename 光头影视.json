@@ -1061,6 +1061,22 @@
       "api": "https://ghproxy.net/https://raw.githubusercontent.com/hjdhnx/dr_py/main/libs/drpy2.min.js",
       "ext": "https://ghproxy.net/https://raw.githubusercontent.com/hjdhnx/dr_py/main/js/酷狗MV.js"
     },
+     {
+      "key": "Yinyuetai",
+      "name": "🎸音悦台┃音乐┃MV",
+      "type": 3,
+      "api": "csp_WexYinyuetai",
+      "searchable": 1,
+      "changeable": 0
+    },
+    {
+      "key": "Iktv",
+      "name": "🎤KTV┃音乐┃MV",
+      "type": 3,
+      "api": "csp_WexIktv",
+      "searchable": 1,
+      "changeable": 0
+    },
     {
       "key": "酷奇",
       "name": "🎤酷奇┃MV",
