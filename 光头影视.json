@@ -11,15 +11,6 @@
       "quickSearch": 0,
       "filterable": 0
     },
-       {
-      "key": "33ys",
-      "name": "三六┃视频",
-      "type": 3,
-      "api": "csp_SP33",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1
-    },
     {
       "key": "qysp",
       "name": "奇艺┃视频",
@@ -70,8 +61,6 @@
       "filterable": 1,
       "ext": "http://cdn.teyonds.com/js/搜狗视频.js"
     },
-    {"key":"飘花电影","name":"飘花电影","type":1,"api":"http://www.zzrhgg.com/api.php/provide/vod/","searchable":1,"quickSearch":1},
-{"key":"淘片资源","name":"淘片资源(优)","type":1,"api":"https://taopianapi.com/home/cjapi/as/mc10/vod/json","searchable":1,"quickSearch":1},
    {
       "key": "看看影视",
       "name": "💡看看┃影视",
@@ -82,6 +71,11 @@
       "quickSearch": 1,
       "filterable": 0
     },
+    {"key":"csp_SP360","name":"360","type":3,"api":"csp_SP360","searchable":1,"quickSearch":1,"filterable":1},
+{"key":"U酷","name":"U酷","type":1,"api":"https://api.ukuapi.com/api.php/provide/vod/","searchable":1,"quickSearch":1},
+{"key":"腾讯","name":"腾云驾雾","type":1,"api":"https://wabc.ml/mao/1.php/provide/vod/","playUrl":"parse:parwix1","searchable":1,"quickSearch":1},
+{"key":"爱奇艺","name":"奇珍异兽","type":1,"api":"https://wabc.ml/mao/2.php/provide/vod/","searchable":1,"quickSearch":1},
+    {"key":"csp_MGTV","name":"锋芒毕露","type":3,"api":"csp_MGTV","searchable":1,"quickSearch":1,"filterable":1},
     {
       "key": "乐鱼影视",
       "name": "乐鱼影视",
