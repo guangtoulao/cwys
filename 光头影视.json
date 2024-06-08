@@ -275,15 +275,14 @@
       "ext": "./lib/茶杯狐.js"
     },
    {
-      "key": "农民",
-      "name": "农民┃秒播",
+      "key": "js_农民",
+      "name": "👨‍🌾┃农民┃影视",
       "type": 3,
-      "api": "csp_Nmys",
-      "timeout": 15,
+      "api": "./lib/drpy2.min.js",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 1,
-      "ext": "https://k.hhyyqq.com/uploads/itvbox/json/nm0416.json"
+      "filterable": 1,
+      "ext": "./lib/nongmin.js"
     },
     {
       "key": "碟调影视",
