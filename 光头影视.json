@@ -274,16 +274,6 @@
       "api": "./lib/drpy2.min.js",
       "ext": "./lib/茶杯狐.js"
     },
-   {
-      "key": "js_农民",
-      "name": "👨‍🌾┃农民┃影视",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "./lib/nongmin.js"
-    },
     {
       "key": "碟调影视",
       "name": "碟调影视",
@@ -716,27 +706,7 @@
       "changeable": 0,
       "ext": "http://www.xb6v.com/"
     },
-        {
-      "key": "央视经典",
-      "name": "📺央视｜经典",
-      "type": 3,
-      "api": "csp_Bili",
-      "searchable": 0,
-      "quickSearch": 1,
-      "filterable": 1,
-      "jar": "./lib/HCCX.jar",
-      "ext": "./lib/哔哩经典.json"
-    },
-     {
-      "key": "cctv",
-      "name": "📺央视｜大全",
-      "type": 3,
-      "api": "csp_CCTV",
-      "searchable": 0,
-      "filterable": 0,
-      "jar": "./lib/HCCX.jar",
-      "ext": "./lib/央视大全.json"
-    },
+
      {
       "key": "drpy_js_酷狗MV",
       "name": "MV | 酷狗",
