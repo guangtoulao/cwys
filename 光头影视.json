@@ -71,11 +71,6 @@
       "quickSearch": 1,
       "filterable": 0
     },
-    {"key":"csp_SP360","name":"360","type":3,"api":"csp_SP360","searchable":1,"quickSearch":1,"filterable":1},
-{"key":"U酷","name":"U酷","type":1,"api":"https://api.ukuapi.com/api.php/provide/vod/","searchable":1,"quickSearch":1},
-{"key":"腾讯","name":"腾云驾雾","type":1,"api":"https://wabc.ml/mao/1.php/provide/vod/","playUrl":"parse:parwix1","searchable":1,"quickSearch":1},
-{"key":"爱奇艺","name":"奇珍异兽","type":1,"api":"https://wabc.ml/mao/2.php/provide/vod/","searchable":1,"quickSearch":1},
-    {"key":"csp_MGTV","name":"锋芒毕露","type":3,"api":"csp_MGTV","searchable":1,"quickSearch":1,"filterable":1},
     {
       "key": "乐鱼影视",
       "name": "乐鱼影视",
