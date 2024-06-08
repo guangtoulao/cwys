@@ -1,6 +1,6 @@
 {
-  "spider": "https://fs-im-kefu.7moor-fs1.com/ly/4d2c3f00-7d4c-11e5-af15-41bf63ae4ea0/1715980119184/fan.txt;md5;f4a9956bae884c4a952da9152c0ed446",
-  "wallpaper": "https://深色壁纸.xxooo.cf/",
+  "spider": "https://fs-im-kefu.7moor-fs1.com/ly/4d2c3f00-7d4c-11e5-af15-41bf63ae4ea0/1717572233059/fan.txt;md5;aa164c88dfaf62b98b44fc6086a77fef",
+  "wallpaper": "https://深色壁纸.饭.eu.org/",
   "sites": [
     {
       "key": "豆豆",
@@ -11,33 +11,74 @@
       "quickSearch": 0,
       "filterable": 0
     },
-      {
-      "key": "爱奇艺",
-      "name": "爱奇艺",
+       {
+      "key": "33ys",
+      "name": "三六┃视频",
       "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "ext": "./lib/爱奇艺.js"
-    },
-      {
-      "key": "腾讯视频",
-      "name": "腾讯视频",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "ext": "./lib/腾讯视频.js"
+      "api": "csp_SP33",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1
     },
     {
-      "key": "优酷视频",
-      "name": "优酷视频",
+      "key": "qysp",
+      "name": "奇艺┃视频",
       "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "ext": "./lib/优酷视频.js"
+      "api": "http://cdn.teyonds.com/js/drpy2.min.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "http://cdn.teyonds.com/js/奇艺视频.js"
     },
     {
-      "key": "芒果视频",
-      "name": "芒果视频",
+      "key": "txsp",
+      "name": "腾讯┃视频",
       "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "ext": "./lib/芒果视频.js"
+      "api": "http://cdn.teyonds.com/js/drpy2.min.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "http://cdn.teyonds.com/js/腾讯视频.js"
+    },
+    {
+      "key": "yksp",
+      "name": "优酷┃视频",
+      "type": 3,
+      "api": "http://cdn.teyonds.com/js/drpy2.min.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "http://cdn.teyonds.com/js/优酷视频.js"
+    },
+    {
+      "key": "mgsp",
+      "name": "芒果┃视频",
+      "type": 3,
+      "api": "http://cdn.teyonds.com/js/drpy2.min.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "http://cdn.teyonds.com/js/芒果视频.js"
+    },
+    {
+      "key": "sgys",
+      "name": "搜狗┃视频",
+      "type": 3,
+      "api": "http://cdn.teyonds.com/js/drpy2.min.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "http://cdn.teyonds.com/js/搜狗视频.js"
+    },
+   {
+      "key": "看看影视",
+      "name": "💡看看┃影视",
+      "type": 3,
+      "api": "csp_WebIV",
+      "jar": "http://www.wya6.cn/tz/wyog.php",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0
     },
     {
       "key": "乐鱼影视",
@@ -208,13 +249,6 @@
       "type": 3,
       "api": "./lib/drpy2.min.js",
       "ext": "./lib/追剧迷.js"
-    },
-     {
-      "key": "畅梦",
-      "name": "畅梦┃秒播",
-      "type": 3,
-      "api": "https://weixine.net/js/lib/drpy2.min.js",
-      "ext": "https://weixine.net/js/changmeng.js"
     },
      {
       "key": "drpy_js_影渣渣",
@@ -509,16 +543,6 @@
       "changeable": 1
     },
     {
-      "key": "酷看",
-      "name": "💡酷看┃秒播",
-      "type": 3,
-      "api": "csp_Kkys",
-      "timeout": 15,
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1
-    },
-    {
       "key": "视觉",
       "name": "👓视觉┃多线",
       "type": 3,
@@ -528,17 +552,6 @@
       "quickSearch": 1,
       "changeable": 1,
       "ext": "https://www.80yy3.com/"
-    },
-    {
-      "key": "南瓜",
-      "name": "🎃南瓜┃多线",
-      "type": 3,
-      "api": "csp_NanGua",
-      "timeout": 15,
-      "playerType": 2,
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1
     },
     {
       "key": "苹果",
@@ -558,95 +571,6 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1
-    },
-    {
-      "key": "360",
-      "name": "🛝360┃秒播┃采集",
-      "type": 1,
-      "api": "https://360zy.com/api.php/provide/vod?",
-      "searchable": 1,
-      "changeable": 1,
-      "categories": [
-        "电影",
-        "连续剧",
-        "综艺",
-        "动漫",
-        "动作片",
-        "喜剧片",
-        "爱情片",
-        "科幻片",
-        "恐怖片",
-        "剧情片",
-        "战争片",
-        "国产剧",
-        "香港剧",
-        "韩国剧",
-        "欧美剧",
-        "台湾剧",
-        "日本剧",
-        "海外剧",
-        "泰国剧",
-        "大陆综艺",
-        "港台综艺",
-        "日韩综艺",
-        "欧美综艺",
-        "国产动漫",
-        "欧美动漫",
-        "日韩动漫",
-        "爽文短剧",
-        "体育",
-        "NBA",
-        "足球",
-        "篮球"
-      ]
-    },
-    {
-      "key": "爱坤",
-      "name": "🛝爱坤┃秒播┃采集",
-      "type": 1,
-      "api": "https://ikunzyapi.com/api.php/provide/vod?",
-      "searchable": 1,
-      "changeable": 1,
-      "categories": [
-        "电影",
-        "连续剧",
-        "综艺",
-        "动漫",
-        "动作片",
-        "喜剧片",
-        "爱情片",
-        "科幻片",
-        "恐怖片",
-        "剧情片",
-        "战争片",
-        "国产剧",
-        "香港剧",
-        "韩国剧",
-        "欧美剧",
-        "台湾剧",
-        "日本剧",
-        "海外剧",
-        "泰国剧",
-        "大陆综艺",
-        "港台综艺",
-        "日韩综艺",
-        "欧美综艺",
-        "国产动漫",
-        "欧美动漫",
-        "日韩动漫",
-        "爽文短剧",
-        "体育",
-        "足球",
-        "NBA",
-        "CBA",
-        "德甲",
-        "意甲",
-        "英超",
-        "西甲",
-        "法甲",
-        "WCBA",
-        "LPL"
-      ]
     },
     {
       "key": "厂长",
@@ -800,7 +724,7 @@
       "api": "https://ghproxy.net/https://raw.githubusercontent.com/hjdhnx/dr_py/main/libs/drpy2.min.js",
       "ext": "https://ghproxy.net/https://raw.githubusercontent.com/hjdhnx/dr_py/main/js/酷狗MV.js"
     },
-     {
+      {
       "key": "Yinyuetai",
       "name": "🎸音悦台┃音乐┃MV",
       "type": 3,
@@ -885,15 +809,6 @@
       "changeable": 0
     },
     {
-      "key": "push_agent",
-      "name": "🛴手机┃推送",
-      "type": 3,
-      "api": "csp_Push",
-      "searchable": 0,
-      "quickSearch": 0,
-      "ext": "http://127.0.0.1:9978/file/tvbox/token.txt"
-    },
-    {
       "key": "Bili",
       "name": "🅱哔哔┃合集",
       "type": 3,
@@ -952,33 +867,6 @@
       "quickSearch": 1,
       "filterable": 1,
       "ext": "http://rihou.cc:88/hccx/哔哩经典.json"
-    },
-    {
-      "key": "Nbys",
-      "name": "🛫泥巴┃飞",
-      "type": 3,
-      "api": "csp_NiNi",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1
-    },
-     {
-      "key": "fan",
-      "name": "导航 https://饭太硬.top",
-      "type": 3,
-      "api": "csp_XPath",
-      "searchable": 0,
-      "quickSearch": 0,
-      "changeable": 0
-    },
-    {
-      "key": "cc",
-      "name": "请勿相信视频中广告",
-      "type": 3,
-      "api": "csp_XPath",
-      "searchable": 0,
-      "quickSearch": 0,
-      "changeable": 0
     }
   ],
  "parses": [
@@ -1182,32 +1070,6 @@
       "regex": [
         "#EXT-X-KEY:METHOD=NONE\\r*\\n*#EXTINF:5,[\\s\\S]*?#EXT-X-DISCONTINUITY",
         "#EXT-X-KEY:METHOD=NONE\\r*\\n*#EXTINF:2\\.4,[\\s\\S]*?#EXT-X-DISCONTINUITY"
-      ]
-    },
-    {
-      "name": "磁力广告",
-      "hosts": [
-        "magnet"
-      ],
-      "regex": [
-        "更多",
-        "请访问",
-        "example",
-        "社 區",
-        "x u u",
-        "直 播",
-        "更 新",
-        "社 区",
-        "有趣",
-        "有 趣",
-        "英皇体育",
-        "全中文AV在线",
-        "澳门皇冠赌场",
-        "哥哥快来",
-        "美女荷官",
-        "裸聊",
-        "新片首发",
-        "UUE29"
       ]
     },
     {
