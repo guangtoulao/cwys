@@ -717,6 +717,27 @@
       "changeable": 0,
       "ext": "http://www.xb6v.com/"
     },
+        {
+      "key": "央视经典",
+      "name": "📺央视｜经典",
+      "type": 3,
+      "api": "csp_Bili",
+      "searchable": 0,
+      "quickSearch": 1,
+      "filterable": 1,
+      "jar": "./lib/HCCX.jar",
+      "ext": "./lib/哔哩经典.json"
+    },
+     {
+      "key": "cctv",
+      "name": "📺央视｜大全",
+      "type": 3,
+      "api": "csp_CCTV",
+      "searchable": 0,
+      "filterable": 0,
+      "jar": "./lib/HCCX.jar",
+      "ext": "./lib/央视大全.json"
+    },
      {
       "key": "drpy_js_酷狗MV",
       "name": "MV | 酷狗",
