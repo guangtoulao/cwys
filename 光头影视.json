@@ -70,6 +70,8 @@
       "filterable": 1,
       "ext": "http://cdn.teyonds.com/js/搜狗视频.js"
     },
+    {"key":"飘花电影","name":"飘花电影","type":1,"api":"http://www.zzrhgg.com/api.php/provide/vod/","searchable":1,"quickSearch":1},
+{"key":"淘片资源","name":"淘片资源(优)","type":1,"api":"https://taopianapi.com/home/cjapi/as/mc10/vod/json","searchable":1,"quickSearch":1},
    {
       "key": "看看影视",
       "name": "💡看看┃影视",
