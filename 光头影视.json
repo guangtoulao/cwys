@@ -689,7 +689,28 @@
       "changeable": 0,
       "ext": "http://www.xb6v.com/"
     },
-
+  {
+      "key": "相声小品",
+      "name": "🇹┃58相声┃小品",
+      "type": 3,
+      "api": "csp_Bili",
+      "searchable": 0,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "./lib/哔哩相声.json"
+    },
+  {
+      "key": "MTV",
+      "name": "🇹┃热门歌曲┃大全",
+"type":3,
+    "ua": "okhttp/3.15",
+    "api":"csp_Bili",
+    "style":{"type":"rect","ratio":1.597},
+    "searchable":0,
+    "quickSearch":0,
+    "changeable":0,
+    "ext":"./lib/MTV.json"
+  },
      {
       "key": "drpy_js_酷狗MV",
       "name": "MV | 酷狗",
