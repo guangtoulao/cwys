@@ -793,6 +793,36 @@
       }
     }
   ],
+    "lives": [
+  
+    {
+      "name": "bingcha（咪咕1080）",
+      "type": 0,
+      "url": "https://gongdian.top/tv/bingcha",
+      "playerType": 1
+    },
+    {
+      "name": "咪咕-720P",
+      "type": 0,
+      "url": "https://gongdian.top/tv/develop202",
+      "playerType": 1,
+      "logo": "https://gongdian.top/tv/taibiao/{name}.png"
+    },
+    {
+      "name": "酒店源",
+      "type": 0,
+      "url": "https://gongdian.top/tv/guovin",
+      "playerType": 1,
+      "logo": "https://gongdian.top/tv/taibiao/{name}.png"
+    },
+    {
+      "name": "webview源",
+      "type": 0,
+      "url": "https://gongdian.top/tv/webvideo.txt",
+      "playerType": 1,
+      "logo": "https://gongdian.top/tv/taibiao/{name}.png"
+    }
+  ],
   "rules": [
     {
       "name": "量子非凡",
