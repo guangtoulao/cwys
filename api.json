@@ -213,6 +213,7 @@
         "name": "咕噜咕噜",
         "package": "com.bd.tool.gulu",
         "buildNumber": "2001",
+		"jar":"https://hubp.llkk.cc/https://raw.githubusercontent.com/guangtoulao/juhe/refs/heads/main/spider.jar",
         "buildSignature": "B07C8F6DBEBD3ABEE6A4A4DE2BFBBF29A0AC3F984D532A39448EC3BF5DD36311"
       }
     },
