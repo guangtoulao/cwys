@@ -97,7 +97,14 @@
   "key": "瓜子影视",
   "name": "瓜子｜影视",
   "type": 3,
-  "api": "https://xn--hiih-wn6lw489o.u.nxog.top/apib.php?id=13",
+  "api": "{
+  "key": "瓜子影视",
+  "name": "瓜子｜影视",
+  "type": 3,
+  "api": "./lib/Gz360.js",
+  "searchable": 1,
+  "quickSearch": 1
+}",
   "searchable": 1,
   "quickSearch": 1
 },
