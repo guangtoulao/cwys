@@ -93,7 +93,14 @@
 			"indexs": 1,
 			"jar": "https://ncstatic.clewm.net/rsrc/2026/0508/12/fa4fb98f628143fd9f8e6c921bbf925f.png;md5;552795D869EE1E3CDE4E232AF9B2E868"
 		}, 
-
+        {
+  "key": "瓜子影视",
+  "name": "瓜子｜影视",
+  "type": 3,
+  "api": "https://xn--hiih-wn6lw489o.u.nxog.top/apib.php?id=13",
+  "searchable": 1,
+  "quickSearch": 1
+},
 		{
 			"key": "天天",
 			"name": "天天秒播",
