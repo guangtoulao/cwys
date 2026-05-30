@@ -85,7 +85,7 @@
 	],
 	"sites": [{
 			"key": "豆瓣",
-			"name": "🍥┃豆瓣┃仅供测试，请于测试完毕后24小时删除🍥",
+			"name": "豆瓣 | 首页",
 			"type": 3,
 			"api": "csp_DouDou",
 			"searchable": 0,
@@ -93,10 +93,15 @@
 			"indexs": 1,
 			"jar": "https://ncstatic.clewm.net/rsrc/2026/0508/12/fa4fb98f628143fd9f8e6c921bbf925f.png;md5;552795D869EE1E3CDE4E232AF9B2E868"
 		}, 
-		
+		  {
+      "key": "瓜子影视",
+      "name": "瓜子｜影视",
+      "type": 3,
+      "api": "csp_Gz360"
+    },
 		{
 			"key": "天天",
-			"name": "🧿┃天天┃秒播",
+			"name": "天天秒播",
 			"type": 3,
 			"api": "csp_TTian",
 			"searchable": 1,
@@ -107,7 +112,7 @@
 		},
 		{
 			"key": "柠檬",
-			"name": "🍋┃柠檬┃秒播",
+			"name": "柠檬秒播",
 			"type": 3,
 			"api": "csp_Nmvod",
 			"playerType": 2,
@@ -116,7 +121,7 @@
 		},
 		{
 			"key": "热播",
-			"name": "🐠┃热播┃秒播",
+			"name": "热播秒播",
 			"type": 3,
 			"api": "csp_TianTian",
 			"searchable": 1,
@@ -128,7 +133,7 @@
 	
 		{
 			"key": "戒",
-			"name": "🐌┃视界┃秒播",
+			"name": "视界秒播",
 			"type": 3,
 			"api": "./lib/界.py",
 			"searchable": 1,
@@ -139,7 +144,7 @@
 		
 		{
 			"key": "nangua",
-			"name": "🎃┃南瓜┃秒播",
+			"name": "南瓜秒播",
 			"type": 3,
 			"api": "csp_NanGua",
 			"playerType": 2,
@@ -147,7 +152,7 @@
 			"ext": "7lj763gg0939795i017ii486k512jkihhilg9g0h96j865740113"
 		}, {
 			"key": "橘皮",
-			"name": "🍊┃橘皮┃影视",
+			"name": "橘皮影视",
 			"type": 3,
 			"api": "csp_Jpys",
 			"playerType": 1,
@@ -155,7 +160,7 @@
 			"ext": "7lj763gg402i7942463j9j9jh84l8798l8gli652828g332i"
 		}, {
 			"key": "剧评",
-			"name": "🤪┃剧评┃影视",
+			"name": "剧评影视",
 			"type": 3,
 			"api": "csp_Jpys",
 			"playerType": 1,
@@ -166,7 +171,7 @@
 		
 		{
 			"key": "py_文才",
-			"name": "🖍️┃文才┃影视",
+			"name": "文才影视",
 			"type": 3,
 			"api": "./lib/文才.py",
 			"searchable": 1,
@@ -179,7 +184,7 @@
 		
 		{
 			"key": "农民",
-			"name": "👶┃旺旺┃影视",
+			"name": "农民影视",
 			"type": 3,
 			"api": "csp_NongMin",
 			"searchable": 1,
@@ -188,7 +193,7 @@
 		},
 		{
 			"key": "哔哩集合",
-			"name": "🅱️┃哔哩┃集合",
+			"name": "哔哩集合",
 			"type": 3,
 			"api": "csp_Bili",
 			"searchable": 0,
@@ -206,7 +211,7 @@
 	
 		{
 			"key": "啊哈DJ",
-			"name": "🎹┃啊哈┃音乐",
+			"name": "啊哈音乐",
 			"type": 3,
 			"api": "csp_XBPQ",
 			"searchable": 1,
@@ -217,7 +222,7 @@
 		},
 		{
 			"key": "酷狗音乐",
-			"name": "🎸┃酷狗┃音乐",
+			"name": "酷狗音乐",
 			"type": 3,
 			"api": "csp_Kugou",
 			"style": {
@@ -230,7 +235,7 @@
 		},
 		{
 			"key": "MV演唱会",
-			"name": "🎵┃歌曲┃M V",
+			"name": "歌曲M V",
 			"type": 3,
 			"api": "csp_Bili",
 			"style": {
@@ -246,7 +251,7 @@
 		},
 		{
 			"key": "MV_vod",
-			"name": "🎤┃电视┃MTV",
+			"name": "电视MTV",
 			"type": 3,
 			"api": "csp_Bili",
 			"style": {
@@ -258,51 +263,6 @@
 			"changeable": 1,
 			"ext": {
 				"json": "./lib/mtv.json"
-			}
-		},
-	
-		{
-			"key": "哔哩影视",
-			"name": "🅱️┃哔哩┃影视",
-			"type": 3,
-			"api": "./lib/drpy2.min.js",
-			"searchable": 0,
-			"quickSearch": 0,
-			"filterable": 0,
-			"style": {
-				"type": "rect",
-				"ratio": 1.433
-			},
-			"ext": "./lib/blys.js"
-		},
-		{
-			"key": "哔哩影音",
-			"name": "🅱️┃哔哩┃影音",
-			"type": 3,
-			"api": "./lib/drpy2.min.js",
-			"searchable": 0,
-			"quickSearch": 0,
-			"filterable": 0,
-			"style": {
-				"type": "rect",
-				"ratio": 1.433
-			},
-			"ext": "./lib/wdbl.js"
-		},
-		{
-			"key": "哔哩健身",
-			"name": "🅱️┃哔哩┃健身",
-			"type": 3,
-			"api": "csp_Bili",
-			"searchable": 0,
-			"quickSearch": 0,
-			"filterable": 0,
-			"style": {
-				"type": "rect",
-				"ratio": 1.433
-			},
-			"ext": {
-				"json": "./lib/bili.json"
 			}
 		}
 	],
