@@ -93,6 +93,113 @@
 			"indexs": 1,
 			"jar": "https://ncstatic.clewm.net/rsrc/2026/0508/12/fa4fb98f628143fd9f8e6c921bbf925f.png;md5;552795D869EE1E3CDE4E232AF9B2E868"
 		}, 
+		 {
+      "key": "csp_Gz360",
+      "name": "瓜子影视",
+      "type": 3,
+      "timeout": 12,
+      "searchable": 1,
+      "quickSearch": 0,
+      "api": "csp_Gz360",
+      "jar": "https://nos.netease.com/youdata-netease/public-utilUpload-JmRa9APut9aGqC1f31GJN.zip"
+    },
+    {
+      "key": "腾腾",
+      "name": "腾讯视频",
+      "type": 3,
+      "api": "http://rihou.cc:88/js/drpy2.min.js",
+      "ext": "http://rihou.cc:88/js/腾腾.js",
+      "jar": "https://wp.kayyw.com/f/YkNQho/%E6%9F%92%E8%B1%AA.jar"
+    },
+    {
+      "key": "酷酷",
+      "name": "优酷视频",
+      "type": 3,
+      "api": "http://rihou.cc:88/js/drpy2.min.js",
+      "ext": "http://rihou.cc:88/js/酷酷.js",
+      "jar": "https://wp.kayyw.com/f/YkNQho/%E6%9F%92%E8%B1%AA.jar"
+    },
+    {
+      "key": "奇",
+      "name": "爱奇视频",
+      "type": 3,
+      "api": "http://rihou.cc:88/js/drpy2.min.js",
+      "ext": "http://rihou.cc:88/js/奇奇.js",
+      "jar": "https://wp.kayyw.com/f/YkNQho/%E6%9F%92%E8%B1%AA.jar"
+    },
+    {
+      "key": "果果",
+      "name": "芒果视频",
+      "type": 3,
+      "api": "http://rihou.cc:88/js/drpy2.min.js",
+      "ext": "http://rihou.cc:88/js/果果.js",
+      "jar": "https://wp.kayyw.com/f/YkNQho/%E6%9F%92%E8%B1%AA.jar"
+    },
+    {
+      "key": "360",
+      "name": "六零影视",
+      "type": 1,
+      "api": "https://360zy.com/api.php/provide/vod",
+      "searchable": 1,
+      "quickSearch": 1,
+      "playurl": "https://www.360jiexi.com/player/?url=",
+      "categories": [
+        "喜剧片",
+        "科幻片",
+        "恐怖片",
+        "爱情片",
+        "剧情片",
+        "战争片",
+        "记录片",
+        "国产剧",
+        "欧美剧",
+        "香港剧",
+        "韩国剧",
+        "台湾剧",
+        "日本剧",
+        "海外剧",
+        "泰国剧",
+        "国产动漫",
+        "日韩动漫",
+        "欧美动漫",
+        "港台动漫",
+        "海外动漫",
+        "大陆综艺",
+        "港台综艺",
+        "日韩综艺",
+        "欧美综艺"
+      ],
+      "jar": "https://wp.kayyw.com/f/YkNQho/%E6%9F%92%E8%B1%AA.jar"
+    },
+    {
+      "key": "3QQQ",
+      "name": "鹅厂影视",
+      "type": 3,
+      "timeout": 15,
+      "api": "csp_App3Q",
+      "jar": "https://cdn2.wemiaow.com/20260401232042-14-Vwa30U.jpg;md5;59bcc1aa8c1ecf7d08a282ac63705ab3"
+    },
+    {
+      "key": "华谊",
+      "name": "华谊蓝光",
+      "type": 3,
+      "api": "csp_AppDrama",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "appName": "华谊",
+        "publicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCp9Ek4wIlQAtwFnuBRlsFiow2tr+4UOciGeNKbY7nL74etUqUb6fvpOSOHhFEfaWlfwUpOB17x3JEL3No19nfjCeVYrYPjlJcgoqUWH/tfIfFAQWvtxBIBlKazkhw8d3ChysWmeWRikKqkBsVRY4oqNPuj4sjm6Zult0U4I4prRQIDAQAB",
+        "dataKey": "NDBYSZR1DMRRZ05NSUCWEJNIYWLBPT0=",
+        "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
+        "pkg": "com.muyue.tool",
+        "host": "",
+        "site": "https://vip.123pan.cn/1851089669/oss/az5.txt",
+        "version": "1.0.0.4",
+        "decrypt": "1"
+      },
+      "jar": "https://pic7.fukit.cn/autoupload/gE6Y0Af2tjXBCNig6CtNDI12_FRYNb81z6UPhMWD8iI/20260427/vG3w/0X0/04270828.png"
+    },
 		{
 			"key": "天天",
 			"name": "天天秒播",
