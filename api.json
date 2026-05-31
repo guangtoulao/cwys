@@ -393,6 +393,22 @@
       "genre": "shortdrama"
     },
     {
+  "key": "MTV",
+  "name": "明星MV",
+  "type": 3,
+  "api": "csp_Bili",
+  "style": {
+    "type": "rect",
+    "ratio": 1.597
+  },
+  "searchable": 0,
+  "quickSearch": 0,
+  "changeable": 0,
+  "ext": {
+    "json": "https://gcore.jsdelivr.net/gh/yuanhsing/freed@master/tvbox/bili_mv.txt"
+  }
+},
+    {
       "key": "呦呦DJ",
       "name": "呦呦音乐",
       "type": 3,
