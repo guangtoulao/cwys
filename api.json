@@ -80,41 +80,6 @@
       "type": 3,
       "api": "csp_Gz360"
     },
-    {
-      "key": "热播影视",
-      "name": "热播┃影视",
-      "type": 3,
-      "api": "csp_AppRJ",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 0,
-      "ext": {
-        "url": "http://v.rbotv.cn"
-      }
-    },
-   	{
-      "key": "糯米",
-      "name": "糯米┃秒播",
-      "type": 3,
-      "api": "csp_NmyswvGuard",
-      "timeout": 15,
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1,
-      "jar": "https://file.icve.com.cn/file_doc/337/535/54485FADC1D244DC8CD5D5AEE59C6D51.jpg"
-    },
-   	{
-      "key": "文采",
-      "name": "文采┃秒播",
-      "type": 3,
-      "api": "csp_JpysGuard",
-      "timeout": 10,
-      "playerType": 2,
-      "searchable": 1,
-     "quickSearch": 1,
-     "changeable": 1,
-     "jar": "https://file.icve.com.cn/file_doc/337/535/54485FADC1D244DC8CD5D5AEE59C6D51.jpg"
-    },
  	  {
      "key": "猫猫",
      "name": "猫猫┃多线",
@@ -168,12 +133,33 @@
   "jar": "https://raw.giteeusercontent.com/guangtoulan/cwys/raw/main/jar/vox.jar"
 },
  {
+  "key": "热播影视",
+  "name": "热播｜APP",
+  "type": 3,
+  "api": "csp_AppRJ",
+  "searchable": 1,
+  "quickSearch": 1,
+  "filterable": 0,
+  "ext": {
+    "url": "http://v.rbotv.cn"
+  },
+  "jar": "https://raw.giteeusercontent.com/guangtoulan/cwys/raw/main/jar/xinfu.jar"
+},
+ {
   "key": "YYNB",
   "name": "永远┃秒播",
   "type": 1,
   "api": "https://post.cfysoft.cc/api.php/provide/vod/",
   "playUrl": "json:https://json.cfysoft.cc/api/?key=6af47759daf81f86dc123f0f519bf73d&url=",
   "jar": "https://raw.giteeusercontent.com/guangtoulan/cwys/raw/main/jar/xinfu.jar"
+},
+{
+  "key": "csp_Wwys",
+  "name": "壹米|蓝光",
+  "type": 3,
+  "api": "csp_Wwys",
+  "jar": "https://cdn2.wemiaow.com/20260401232042-14-Vwa30U.jpg;md5;59bcc1aa8c1ecf7d08a282ac63705ab3",
+  "ext": "https://vip.wwgz.cn:5200"
 },
     {
       "key": "三秋影视",
@@ -266,22 +252,6 @@
         "package": "com.yingfu.mobile.android.pgsp",
         "buildNumber": "2003",
         "buildSignature": "054FA8DDA4319C6B6A9B954CA5777541C993F00B1B0BD4394F7EDE48184C4594"
-      }
-    },
-    {
-      "key": "顾我99",
-      "name": "顾我┃影视",
-      "type": 3,
-      "api": "csp_App99",
-      "ext": {
-        "host": "http://117.50.200.113:19987/app/bn",
-        "LoginPath": "/app/log",
-        "appkey": "040f9b1bc5e942569b5c3e63943306ab",
-        "versionName": "4.3.1",
-        "name": "顾我追剧",
-        "package": "com.guwozhuijux.app",
-        "buildNumber": "2001",
-        "buildSignature": "5AD4436C4730FFE26910C86278B80F3E661C317FFC3616F702D20A729262624A"
       }
     },
     {
@@ -382,22 +352,6 @@
         "site": "./other/app_dyttandroid.txt",
         "version": "5.0.0.1",
         "decrypt": "0"
-      }
-    },
-    {
-      "key": "金牌",
-      "name": "金牌┃影视",
-      "type": 3,
-      "api": "csp_AppQi",
-      "searchable": 1,
-      "changeable": 1,
-      "ext": {
-        "url": "https://qj4.catbb.xyz",
-        "dataKey": "eecbio48dsq13kkk",
-        "dataIv": "eecbio48dsq13kkk",
-        "search": "searchList4",
-        "init": "initV122",
-        "ua": "okhttp/3.10.0"
       }
     },
     {
