@@ -165,7 +165,7 @@
   "api": "https://cj.jusj.top/api.php/provide/vod/?ac=list",
   "searchable": 1,
   "changeable": 1,
-  "jar": "./jar/vox.jar"
+  "jar": "https://raw.giteeusercontent.com/guangtoulan/cwys/raw/main/jar/vox.jar
 },
  {
   "key": "YYNB",
