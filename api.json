@@ -155,7 +155,7 @@
   "name": "旺旺┃影视",
   "type": 3,
   "api": "csp_XBPQ",
-  "ext": "./xb/旺旺影视.json",
+  "ext": "https://raw.giteeusercontent.com/guangtoulan/cwys/raw/main/lib/旺旺影视.json",
   "jar": "https://raw.giteeusercontent.com/guangtoulan/cwys/raw/main/jar/xbpq.jar"
 },
 {
