@@ -1,5 +1,5 @@
 {
-  "spider": "./spider.jar",
+  "spider": "./jar/54485FADC1D244DC8CD5D5AEE59C6D51.jpg",
   "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
   "logo": "http://127.0.0.1:9978/file/TVBox/logo.png",
   "sites": [
@@ -9,6 +9,16 @@
       "type": 3,
       "api": "csp_Douban",
       "searchable": 0
+    },
+     {
+      "key": "点我切源",
+      "name": "嘟嘟盘容量，到【太太太硬了】领取",
+      "type": 3,
+      "api": "csp_DouDouGuard",
+      "indexs": 1,
+      "searchable": 0,
+      "quickSearch": 0,
+      "changeable": 0
     },
     {
       "key": "配置中心",
