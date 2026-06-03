@@ -81,20 +81,6 @@
       "api": "csp_Gz360"
     },
     {
-      "key": "茉莉",
-      "name": "茉莉┃影视",
-      "type": 3,
-      "api": "csp_AppGet",
-      "searchable": 1,
-      "changeable": 1,
-      "ext": {
-        "site": "https://gitee.com/wmmoliill/wimg/raw/master/img/bk/9.txt",
-        "dataKey": "88689667dce61725",
-        "dataIv": "88689667dce61725"
-      },
-      "jar": "https://ym.wya6.cn/tz/wyxs.php"
-    },
-    {
       "key": "旺旺影视",
       "name": "旺旺┃影视",
       "type": 3,
