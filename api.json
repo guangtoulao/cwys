@@ -753,7 +753,5 @@
   ],
   "ads": [
     "static-mozai.4gtv.tv"
-  ],
-  "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
-  "spider": "./spider.jar"
+  ]
 }
