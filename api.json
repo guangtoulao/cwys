@@ -39,6 +39,43 @@
       "quickSearch": 1,
       "filterable": 0
     },
+     {
+      "key": "腾讯视频",
+      "name": "腾讯|视频",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "ext": "./lib/腾讯视频.js"
+    },
+    {
+      "key": "芒果视频",
+      "name": "芒果|视频",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "ext": "./lib/芒果视频.js"
+    },
+     {
+      "key": "爱奇艺",
+      "name": "奇艺|视频",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "ext": "./lib/爱奇艺.js"
+    },
+    {
+      "key": "优酷视频",
+      "name": "优酷|视频",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "ext": "./lib/优酷视频.js"
+    },
+    {
+      "key": "gm4k",
+      "name": "高码|限时",
+      "type": 4,
+      "api": "https://wy.wya6.cn/djcs/gm.php",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
     {
       "key": "热播影视",
       "name": "热播｜APP",
