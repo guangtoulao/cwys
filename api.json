@@ -102,15 +102,31 @@
   "jar": "https://xpb.mhfs.eu.org/ZJ/XPB/spider20260509.jar"
 },
 {
-  "key": "ngys",
-  "name": "南瓜 | 影视",
+  "key": "天天",
+  "name": "天天 | 秒播",
   "type": 3,
-  "api": "csp_NanGua",
-  "searchable": 1,
   "quickSearch": 1,
-  "changeable": 1,
-  "playerType": 2,
-  "jar": "https://xpb.mhfs.eu.org/ZJ/XPB/spider20260509.jar"
+  "searchable": 1,
+  "api": "csp_AppRJ",
+  "timeout": 12,
+  "ext": "vxw35/hHSj07Q+maxQzOVMq1rjRCOTXpUCx8iKu5jIg=",
+  "jar": "https://cn.oilgasgpts.com/resource/profile/2026/05/18/NJ4ZWwg7_20260518095827A465.jpg"
+},
+{
+  "key": "葫芦",
+  "name": "葫芦 | 秒播",
+  "type": 3,
+  "api": "csp_AppGet",
+  "ext": "https://mobile-1251126973.cos.ap-guangzhou.myqcloud.com/maccos_config.txt|8R33VQSxzmCaHpEX|V122|okhttp/3.10.0",
+  "jar": "https://cn.oilgasgpts.com/resource/profile/2026/05/18/NJ4ZWwg7_20260518095827A465.jpg"
+},
+{
+  "key": "麦田",
+  "name": "麦田 | 秒播",
+  "type": 3,
+  "api": "csp_AppV6",
+  "ext": "http://172.247.227.203:25321/mtys.php",
+  "jar": "https://cn.oilgasgpts.com/resource/profile/2026/05/18/NJ4ZWwg7_20260518095827A465.jpg"
 },
 {
   "key": "光影",
