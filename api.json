@@ -89,16 +89,6 @@
       "ext": "[object Object]"
     },
     {
-      "key": "天堂",
-      "name": "槐树｜APP",
-      "type": 3,
-      "api": "csp_AppDrama",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "[object Object]"
-    },
-    {
       "key": "橘汁",
       "name": "橘汁｜APP",
       "type": 3,
