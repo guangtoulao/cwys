@@ -1,5 +1,4 @@
 {
- 
   "sites": [
     {
       "key": "豆瓣",
@@ -15,6 +14,24 @@
       "name": "配置｜中心",
       "type": 3,
       "api": "csp_Config",
+      "searchable": 0,
+      "quickSearch": 1,
+      "filterable": 0
+    },
+    {
+      "key": "本地",
+      "name": "本地｜视频",
+      "type": 3,
+      "api": "csp_LocalFile",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0
+    },
+    {
+      "key": "预告",
+      "name": "新片｜预告",
+      "type": 3,
+      "api": "csp_YGP",
       "searchable": 0,
       "quickSearch": 1,
       "filterable": 0
@@ -41,6 +58,16 @@
     {
       "key": "橙子99",
       "name": "橙子丨APP",
+      "type": 3,
+      "api": "csp_App99",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0,
+      "ext": "[object Object]"
+    },
+    {
+      "key": "追番99",
+      "name": "追番｜APP",
       "type": 3,
       "api": "csp_App99",
       "searchable": 1,
@@ -89,8 +116,28 @@
       "ext": "[object Object]"
     },
     {
+      "key": "天堂",
+      "name": "天堂｜APP",
+      "type": 3,
+      "api": "csp_AppDrama",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "[object Object]"
+    },
+    {
       "key": "橘汁",
       "name": "橘汁｜APP",
+      "type": 3,
+      "api": "csp_AppDrama",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "[object Object]"
+    },
+    {
+      "key": "华谊",
+      "name": "华谊｜APP",
       "type": 3,
       "api": "csp_AppDrama",
       "searchable": 1,
@@ -190,7 +237,7 @@
     },
     {
       "key": "秒看",
-      "name": "极速｜APP",
+      "name": "秒看｜APP",
       "type": 3,
       "api": "csp_AppGet",
       "searchable": 1,
@@ -295,7 +342,7 @@
     },
     {
       "key": "骚火影视",
-      "name": "樱桃｜影视",
+      "name": "骚火｜影视",
       "type": 3,
       "api": "csp_SaoHuo",
       "searchable": 1,
@@ -352,8 +399,8 @@
       "filterable": 0
     },
     {
-      "key": "DJ",
-      "name": "车载｜DJ",
+      "key": "轮回DJ",
+      "name": "轮回｜DJ",
       "type": 3,
       "api": "csp_Djlh",
       "searchable": 1,
@@ -457,7 +504,7 @@
       }
     },
     {
-      "name": "taopian",
+      "name": "淘片",
       "type": 0,
       "url": "https://jx.yparse.com/index.php?url=",
       "ext": {
@@ -506,6 +553,41 @@
         }
       }
     }
+  ],
+  "flags": [
+    "youku",
+    "优酷",
+    "优 酷",
+    "优酷视频",
+    "qq",
+    "腾讯",
+    "腾 讯",
+    "腾讯视频",
+    "iqiyi",
+    "qiyi",
+    "奇艺",
+    "爱奇艺",
+    "爱 奇 艺",
+    "m1905",
+    "xigua",
+    "letv",
+    "leshi",
+    "乐视",
+    "乐 视",
+    "sohu",
+    "搜狐",
+    "搜 狐",
+    "搜狐视频",
+    "tudou",
+    "pptv",
+    "mgtv",
+    "芒果",
+    "imgo",
+    "芒果TV",
+    "芒 果 T V",
+    "bilibili",
+    "哔 哩",
+    "哔 哩 哔 哩"
   ],
   "ijk": [
     {
@@ -668,5 +750,10 @@
         }
       ]
     }
-  ]
+  ],
+  "ads": [
+    "static-mozai.4gtv.tv"
+  ],
+  "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
+  "spider": "./spider.jar"
 }
