@@ -49,16 +49,6 @@
       "ext": "[object Object]"
     },
     {
-      "key": "追番99",
-      "name": "追番｜APP",
-      "type": 3,
-      "api": "csp_App99",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 0,
-      "ext": "[object Object]"
-    },
-    {
       "key": "咕噜99",
       "name": "咕噜丨APP",
       "type": 3,
