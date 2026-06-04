@@ -118,7 +118,7 @@
     },
     {
       "key": "官采",
-      "name": "官采｜资源",
+      "name": "采集｜资源",
       "type": 1,
       "api": "https://cj.jusj.top/api.php/provide/vod/?ac=list",
       "searchable": 1,
