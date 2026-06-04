@@ -606,7 +606,7 @@
     },
     {
       "key": "呦呦DJ",
-      "name": "呦呦 | DJ",
+      "name": "呦呦 | 音乐",
       "type": 3,
       "api": "csp_Djuu",
       "style": {
@@ -615,7 +615,7 @@
     },
     {
       "key": "轮回DJ",
-      "name": "轮回 | DJ",
+      "name": "蹦迪 | 音乐",
       "type": 3,
       "api": "csp_Djlh",
       "style": {
