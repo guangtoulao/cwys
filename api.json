@@ -611,7 +611,7 @@
       "epg": "https://epg.112114.eu.org/?ch={name}&date={date}"
     },
     {
-      "name": "电视直播",
+      "name": "直播",
       "type": 0,
       "url": "./lib/657d29be8e72802eb9dbff859e968e11.txt",
       "timeout": 10,
@@ -619,7 +619,7 @@
       "logo": "https://epg.112114.xyz/logo/{name}.png"
     },
     {
-      "name": "央视直播",
+      "name": "直播0",
       "type": "0",
       "pass": true,
       "url": "https://gh-proxy.org/https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/refs/heads/Jsnzkpg/Jsnzkpg1",
@@ -627,14 +627,14 @@
       "logo": "https://epg.112114.xyz/logo/{name}.png"
     },
     {
-      "name": "央视直播1",
+      "name": "直播1",
       "type": 0,
       "url": "https://gongdian.top/tv/iptv",
       "playerType": 1,
       "logo": "https://gongdian.top/tv/taibiao/{name}.png"
     },
     {
-      "name": "央视直播2",
+      "name": "直播2",
       "type": "0",
       "pass": true,
       "url": "https://gh-proxy.org/https://raw.githubusercontent.com/develop202/migu_video/refs/heads/main/interface.txt",
@@ -642,7 +642,7 @@
       "logo": "https://epg.112114.xyz/logo/{name}.png"
     },
     {
-      "name": "电视直播央视直播3",
+      "name": "直播3",
       "type": "0",
       "pass": true,
       "url": "./lib/live.txt",
@@ -650,25 +650,25 @@
       "logo": "https://epg.112114.xyz/logo/{name}.png"
     },
     {
-      "name": "央视直播4",
+      "name": "直播4",
       "type": 0,
       "url": "./lib/zb.txt",
       "timeout": 10
     },
     {
-      "name": "央视直播5",
+      "name": "直播5",
       "type": 0,
       "url": "./lib/iptv.txt",
       "timeout": 10
     },
     {
-      "name": "央视直播6",
+      "name": "直播6",
       "type": 0,
       "url": "https://52xiaobai.cn/ceshi/zb.php",
       "timeout": 10
     },
     {
-      "name": "央视直播7",
+      "name": "直播7",
       "type": 0,
       "url": "./lib/live.txt",
       "playerType": 1,
@@ -677,13 +677,13 @@
       "logo": "https://epg.112114.xyz/logo/{name}.png"
     },
     {
-      "name": "央视直播8",
+      "name": "直播8",
       "type": 0,
       "url": "./lib/iptv.m3u",
       "playerType": 2
     },
     {
-      "name": "咪咕直播",
+      "name": "直播9",
       "type": 0,
       "url": "./lib/result.m3u",
       "timeout": 10,
