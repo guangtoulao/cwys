@@ -99,16 +99,6 @@
       "ext": "[object Object]"
     },
     {
-      "key": "华谊",
-      "name": "华谊｜APP",
-      "type": 3,
-      "api": "csp_AppDrama",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "[object Object]"
-    },
-    {
       "key": "苹果",
       "name": "苹果｜APP",
       "type": 3,
