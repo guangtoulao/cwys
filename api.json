@@ -29,7 +29,7 @@
     },
     {
       "key": "腾腾",
-      "name": "腾讯┃视频",
+      "name": "腾讯｜视频",
       "type": 3,
       "api": "./lib/drpy2.min.js",
       "ext": "./lib/腾腾.js",
@@ -37,7 +37,7 @@
     },
     {
       "key": "酷酷",
-      "name": "优酷┃视频",
+      "name": "优酷｜视频",
       "type": 3,
       "api": "./lib/drpy2.min.js",
       "ext": "./lib/酷酷.js",
@@ -45,7 +45,7 @@
     },
     {
       "key": "奇",
-      "name": "爱奇┃视频",
+      "name": "爱奇｜视频",
       "type": 3,
       "api": "./lib/drpy2.min.js",
       "ext": "./lib/奇奇.js",
@@ -53,7 +53,7 @@
     },
     {
       "key": "果果",
-      "name": "芒果┃视频",
+      "name": "芒果｜视频",
       "type": 3,
       "api": "./lib/drpy2.min.js",
       "ext": "./lib/果果.js",
@@ -61,7 +61,7 @@
     },
      {
       "key": "旺旺影视",
-      "name": "旺旺┃影视",
+      "name": "旺旺｜影视",
       "type": 3,
       "api": "csp_XBPQ",
       "ext": "http://rihou.cc:88/xb/%E6%97%BA%E6%97%BA%E5%BD%B1%E8%A7%86.json",
@@ -69,7 +69,7 @@
     },
     {
       "key": "csp_mgtva",
-      "name": "木瓜┃影视",
+      "name": "木瓜｜影视",
       "type": 3,
       "api": "csp_XBPQ",
       "searchable": 1,
@@ -84,7 +84,7 @@
     },
     {
       "key": "熊猫影视",
-      "name": "熊猫┃影视",
+      "name": "熊猫｜影视",
       "type": 3,
       "api": "csp_XBPQ",
       "ext": {
@@ -95,7 +95,7 @@
     },
     {
       "key": "猫猫",
-      "name": "猫猫┃多线",
+      "name": "猫猫｜多线",
       "type": 3,
       "api": "csp_AppSxGuard",
       "timeout": 10,
@@ -107,7 +107,7 @@
     },
      {
       "key": "奶酪",
-      "name": "麻花┃秒播",
+      "name": "麻花｜秒播",
       "type": 3,
       "api": "csp_T4Guard",
       "searchable": 1,
@@ -118,7 +118,7 @@
     },
     {
       "key": "官采",
-      "name": "官采┃资源",
+      "name": "官采｜资源",
       "type": 1,
       "api": "https://cj.jusj.top/api.php/provide/vod/?ac=list",
       "searchable": 1,
@@ -127,7 +127,7 @@
     },
      {
       "key": "csp_Wwys",
-      "name": "壹米┃蓝光",
+      "name": "壹米｜蓝光",
       "type": 3,
       "api": "csp_Wwys",
       "jar": "https://cdn2.wemiaow.com/20260401232042-14-Vwa30U.jpg;md5;59bcc1aa8c1ecf7d08a282ac63705ab3",
@@ -323,16 +323,6 @@
       "ext": "[object Object]"
     },
     {
-      "key": "映画",
-      "name": "映画｜APP",
-      "type": 3,
-      "api": "csp_AppGet",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 0,
-      "ext": "[object Object]"
-    },
-    {
       "key": "王子",
       "name": "王子｜APP",
       "type": 3,
@@ -498,7 +488,7 @@
     },
      {
       "key": "csp_Kugou",
-      "name": "酷狗┃音乐",
+      "name": "酷狗｜音乐",
       "type": 3,
       "api": "csp_Kugou",
       "jar": "https://gitee.com/tianwikeji/jar/raw/master/Yoursmile.jar",
@@ -514,7 +504,7 @@
     },
     {
       "key": "MTV",
-      "name": "明星┃MV",
+      "name": "明星｜MV",
       "type": 3,
       "api": "csp_BiliGuard",
       "style": {
@@ -531,7 +521,7 @@
     },
     {
       "key": "MTV1",
-      "name": "易听┃音乐",
+      "name": "易听｜音乐",
       "type": 3,
       "api": "csp_MusicGuard",
       "style": {
