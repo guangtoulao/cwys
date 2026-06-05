@@ -1,0 +1,7 @@
+# 针对你的接口文件，做UA判断
+location /api.json {
+    # 如果不是TVBox的客户端（不是okhttp的UA），就跳爱奇艺首页
+    if ($http_user_agent !~* "okhttp") {
+        return 302 https://www.iqiyi.com/;
+    }
+}
