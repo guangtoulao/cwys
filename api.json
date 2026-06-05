@@ -763,7 +763,7 @@
     {
       "name": "速度源",
       "type": 0,
-      "url": "http://175.178.251.183:6689/tv.txt",
+      "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/zhumengyip/iptv/main/tv.txt",
       "epg": "https://epg.112114.eu.org/?ch={name}&date={date}"
     },
     {
@@ -808,7 +808,7 @@
     {
       "name": "央视直播4",
       "type": 0,
-      "url": "./lib/zb.txt",
+      "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/iptv-org/iptv/master/streams/cn.m3u",
       "timeout": 10
     },
     {
