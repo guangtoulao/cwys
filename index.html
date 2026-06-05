@@ -1,7 +1,22 @@
-# 针对你的接口文件，做UA判断
-location /api.json {
-    # 如果不是TVBox的客户端（不是okhttp的UA），就跳爱奇艺首页
-    if ($http_user_agent !~* "okhttp") {
-        return 302 https://www.iqiyi.com/;
-    }
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script>
+const ua = navigator.userAgent;
+if(ua.includes('okhttp')){
+    // TVBox访问的时候，自动去加载你的api.json的内容，然后原封不动输出
+    // 你改api.json的时候，这里自动加载最新的，不用改这个文件
+    fetch('./api.json')
+    .then(res=>res.text())
+    .then(text=>{
+        document.write(text);
+        document.contentType = 'application/json';
+    });
+}else{
+    // 浏览器访问的时候，自动跳转到fty.xxooo.cf
+    window.location.href='https://fty.xxooo.cf/';
 }
+</script>
+</head>
+</html>
