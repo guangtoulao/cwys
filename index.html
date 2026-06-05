@@ -1,22 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<script>
-const ua = navigator.userAgent;
-if(ua.includes('okhttp')){
-    // TVBox访问的时候，自动去加载你的api.json的内容，然后原封不动输出
-    // 你改api.json的时候，这里自动加载最新的，不用改这个文件
-    fetch('./api.json')
-    .then(res=>res.text())
-    .then(text=>{
-        document.write(text);
-        document.contentType = 'application/json';
-    });
-}else{
-    // 浏览器访问的时候，自动跳转到fty.xxooo.cf
-    window.location.href='https://fty.xxooo.cf/';
+export default {
+  async fetch(request) {
+    const url = new URL(request.url);
+    const ua = request.headers.get('User-Agent') || '';
+    const isTvbox = ua.includes('okhttp');
+
+    // 1. TVBox访问根目录：直接返回你的api.json，纯JSON，它能正常解析
+    if (url.pathname === '/' && isTvbox) {
+      return fetch(`https://raw.githubusercontent.com/guangtoulao/cwys/refs/heads/main/api.json`);
+    }
+
+    // 2. 浏览器访问根目录：直接跳转到fty，看不到你的接口
+    if (url.pathname === '/' && !isTvbox) {
+      return Response.redirect('https://fty.xxooo.cf/', 302);
+    }
+
+    // 3. 你自己要改导航页/看自己的页面：访问index.html，不管啥UA都正常打开
+    if (url.pathname === '/index.html') {
+      return fetch(`https://raw.githubusercontent.com/guangtoulao/cwys/index.html`);
+    }
+
+    // 4. 其他所有请求（比如你自己要改api.json，浏览器访问api.json）：
+    // 浏览器看api.json就跳走，TVBox看就正常返回
+    if (url.pathname === '/api.json') {
+      if (isTvbox) return fetch(`https://raw.githubusercontent.com/guangtoulao/cwys/refs/heads/main/api.json`);
+      else return Response.redirect('https://fty.xxooo.cf/', 302);
+    }
+
+    // 剩下的静态资源啥的，都正常走GitHub Pages
+    return fetch(request);
+  }
 }
-</script>
-</head>
-</html>
