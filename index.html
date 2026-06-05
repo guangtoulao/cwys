@@ -1,32 +1,299 @@
-export default {
-  async fetch(request) {
-    const url = new URL(request.url);
-    const ua = request.headers.get('User-Agent') || '';
-    const isTvbox = ua.includes('okhttp');
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TVBox工具导航</title>
+    <!-- 引入图标库 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #121212 0%, #1e1e2e 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+        .title h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .title p {
+            color: #aaa;
+            font-size: 1.1rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        .card {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px;
+            border-radius: 12px;
+            transition: background 0.2s, transform 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+        }
+        .card:hover {
+            background: rgba(255,255,255,0.05);
+            transform: translateY(-2px);
+        }
+        .icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 28px;
+            color: white;
+        }
+        .content {
+            flex: 1;
+            padding-top: 4px;
+        }
+        .name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: white;
+        }
+        .desc {
+            font-size: 0.95rem;
+            color: #aaa;
+            line-height: 1.5;
+        }
+        /* 图标颜色，跟你截图里的对齐了 */
+        .icon-wechat { background: #07c160; }
+        .icon-daoguan { background: #9c27b0; }
+        .icon-wanou { background: #f44336; }
+        .icon-decrypt { background: #2196f3; }
+        .icon-ibox { background: #00bcd4; }
+        .icon-ok { background: #ff9800; }
+        .icon-yingcang { background: #ff5722; }
+        .icon-taiwan { background: #ff9800; }
+        .icon-apple { background: #607d8b; }
+        .icon-taiduan { background: #2196f3; }
+        .icon-taikuai { background: #3f51b5; }
+        .icon-taibian { background: #ff5722; }
+        .icon-download { background: #e91e63; }
+        .icon-live { background: #f44336; }
+        .icon-qiushui { background: #00bcd4; }
+        .icon-kaisuu { background: #2196f3; }
+        .icon-aida { background: #3f51b5; }
+        .icon-search { background: #212121; }
+        .icon-convert { background: #ffc107; }
+        .icon-hengchuang { background: #2196f3; }
 
-    // 1. TVBox访问根目录：直接返回你的api.json，纯JSON，它能正常解析
-    if (url.pathname === '/' && isTvbox) {
-      return fetch(`https://raw.githubusercontent.com/guangtoulao/cwys/refs/heads/main/api.json`);
-    }
+        @media (max-width: 992px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .title h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <h1>TVBox工具导航</h1>
+            <p>点击图标，一键跳转到对应工具</p>
+        </div>
+        <div class="grid">
+            <!-- 每个卡片，把href改成你自己的网站链接就行！ -->
+            <a href="http://m.wmsio.cn/" class="card" target="_blank">
+                <div class="icon icon-wechat">
+                    <i class="fa fa-wrench"></i>
+                </div>
+                <div class="content">
+                    <div class="name">公众号</div>
+                    <div class="desc">盒子地窖</div>
+                </div>
+            </a>
 
-    // 2. 浏览器访问根目录：直接跳转到fty，看不到你的接口
-    if (url.pathname === '/' && !isTvbox) {
-      return Response.redirect('https://fty.xxooo.cf/', 302);
-    }
+            <a href="https://www.jyshare.com/" class="card" target="_blank">
+                <div class="icon icon-daoguan">
+                    <i class="fa fa-wrench"></i>
+                </div>
+                <div class="content">
+                    <div class="name">菜鸟工具</div>
+                    <div class="desc">不止于工具</div>
+                </div>
+            </a>
 
-    // 3. 你自己要改导航页/看自己的页面：访问index.html，不管啥UA都正常打开
-    if (url.pathname === '/index.html') {
-      return fetch(`https://raw.githubusercontent.com/guangtoulao/cwys/index.html`);
-    }
+            <a href="https://www.32r.com/zt/dgyjzzrj/" class="card" target="_blank">
+                <div class="icon icon-wanou">
+                    <i class="fa fa-wrench"></i>
+                </div>
+                <div class="content">
+                    <div class="name">PS绿色</div>
+                    <div class="desc">修图PS</div>
+                </div>
+            </a>
 
-    // 4. 其他所有请求（比如你自己要改api.json，浏览器访问api.json）：
-    // 浏览器看api.json就跳走，TVBox看就正常返回
-    if (url.pathname === '/api.json') {
-      if (isTvbox) return fetch(`https://raw.githubusercontent.com/guangtoulao/cwys/refs/heads/main/api.json`);
-      else return Response.redirect('https://fty.xxooo.cf/', 302);
-    }
+            <a href="https://steampp.net/" class="card" target="_blank">
+                <div class="icon icon-decrypt">
+                    <i class="fa fa-wrench"></i>
+                </div>
+                <div class="content">
+                    <div class="name">瓦特工具</div>
+                    <div class="desc">github加速</div>
+                </div>
+            </a>
 
-    // 剩下的静态资源啥的，都正常走GitHub Pages
-    return fetch(request);
-  }
-}
+            <a href="https://kstore.cc/login?Rurl=%2Ffile%3FfilePath%3D%252F%26fileType%3D0" class="card" target="_blank">
+                <div class="icon icon-ibox">
+                    <i class="fa fa-wrench"></i>
+                </div>
+                <div class="content">
+                    <div class="name">凯速</div>
+                    <div class="desc">代码托管平台</div>
+                </div>
+            </a>
+
+            <a href="https://dash.cloudflare.com/" class="card" target="_blank">
+                <div class="icon icon-ok">
+                    <i class="fa fa-wrench"></i>
+                </div>
+                <div class="content">
+                    <div class="name">域名托管</div>
+                </div>
+            </a>
+
+            <a href="https://dash.domain.digitalplat.org/" class="card" target="_blank">
+                <div class="icon icon-yingcang">
+                    <i class="fa fa-wrench"></i>
+                </div>
+                <div class="content">
+                    <div class="name">域名申请</div>
+                </div>
+            </a>
+
+            <a href="https://www.lddgo.net/base/class?classID=1" class="card" target="_blank">
+                <div class="icon icon-taiwan">
+                    <i class="fa fa-wrench"></i>
+                </div>
+                <div class="content">
+                    <div class="name">在线工具</div>
+                </div>
+            </a>
+
+            <a href="https://你的太短链接" class="card" target="_blank">
+                <div class="icon icon-taiduan">
+                    <i class="fa fa-search"></i>
+                </div>
+                <div class="content">
+                    <div class="name">太短</div>
+                    <div class="desc">缩短链接,屌!也不是很短~</div>
+                </div>
+            </a>
+
+            <a href="https://你的太快链接" class="card" target="_blank">
+                <div class="icon icon-taikuai">
+                    <i class="fa fa-github"></i>
+                </div>
+                <div class="content">
+                    <div class="name">太快</div>
+                    <div class="desc">GitHub 文件加速</div>
+                </div>
+            </a>
+
+            <a href="https://你的太能编链接" class="card" target="_blank">
+                <div class="icon icon-taibian">
+                    <i class="fa fa-edit"></i>
+                </div>
+                <div class="content">
+                    <div class="name">太能编</div>
+                    <div class="desc">接口配置编辑器,支持加解密</div>
+                </div>
+            </a>
+
+            <a href="https://你的软件下载链接" class="card" target="_blank">
+                <div class="icon icon-download">
+                    <i class="fa fa-download"></i>
+                </div>
+                <div class="content">
+                    <div class="name">软件下载</div>
+                    <div class="desc">奇奇持续更新分享各种BOX改版</div>
+                </div>
+            </a>
+
+            <a href="https://你的直播大全链接" class="card" target="_blank">
+                <div class="icon icon-live">
+                    <i class="fa fa-play"></i>
+                </div>
+                <div class="content">
+                    <div class="name">直播大全</div>
+                    <div class="desc">CCTV直播大全</div>
+                </div>
+            </a>
+
+            <a href="https://你的秋水网链接" class="card" target="_blank">
+                <div class="icon icon-qiushui">
+                    <i class="fa fa-globe"></i>
+                </div>
+                <div class="content">
+                    <div class="name">秋水网</div>
+                    <div class="desc">简单易用的导航网站</div>
+                </div>
+            </a>
+
+            <a href="https://你的爱达杂货铺链接" class="card" target="_blank">
+                <div class="icon icon-aida">
+                    <i class="fa fa-a"></i>
+                </div>
+                <div class="content">
+                    <div class="name">爱达杂货铺</div>
+                    <div class="desc">收集那些有用的东西</div>
+                </div>
+            </a>
+
+            <a href="https://你的直播源搜索链接" class="card" target="_blank">
+                <div class="icon icon-search">
+                    <i class="fa fa-search"></i>
+                </div>
+                <div class="content">
+                    <div class="name">直播源搜索引擎</div>
+                    <div class="desc">国内外电视直播源搜索, m3u8、flv、rtsp......</div>
+                </div>
+            </a>
+
+            <a href="https://你的转换工具链接" class="card" target="_blank">
+                <div class="icon icon-convert">
+                    <i class="fa fa-exchange"></i>
+                </div>
+                <div class="content">
+                    <div class="name">直播源格式转换</div>
+                    <div class="desc">直播源格式在线转换工具</div>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</body>
+</html>
