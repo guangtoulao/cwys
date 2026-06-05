@@ -12,13 +12,26 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         body {
-            background: linear-gradient(135deg, #121212 0%, #1e1e2e 100%);
+            background: #000;
             min-height: 100vh;
             padding: 40px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        /* 动态背景的画布，放在最底层 */
+        #canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1; /* 内容放在背景上面 */
         }
         .title {
             text-align: center;
@@ -50,7 +63,7 @@
             color: white;
         }
         .card:hover {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.08);
             transform: translateY(-2px);
         }
         .icon {
@@ -101,6 +114,9 @@
     </style>
 </head>
 <body>
+    <!-- 动态背景画布 -->
+    <canvas id="canvas"></canvas>
+
     <div class="container">
         <div class="title">
             <h1>TVBox工具导航</h1>
@@ -121,7 +137,7 @@
             <!--2 菜鸟工具 jyshare.com -->
             <a href="https://www.jyshare.com/" class="card" target="_blank">
                 <div class="icon">
-                    <img src="https://raw.giteeusercontent.com/guangtoulan/cwys/raw/main/icons/cainiao.png" alt="菜鸟工具">
+                    <img src="https://www.webicon.cc/icon?url=jyshare.com&size=128" alt="菜鸟工具">
                 </div>
                 <div class="content">
                     <div class="name">菜鸟工具</div>
@@ -143,7 +159,7 @@
             <!--4 瓦特工具 steampp.net -->
             <a href="https://steampp.net/" class="card" target="_blank">
                 <div class="icon">
-                    <img src="https://raw.giteeusercontent.com/guangtoulan/cwys/raw/main/icons/steampp.net-icon.ico" alt="瓦特工具">
+                    <img src="https://www.webicon.cc/icon?url=steampp.net&size=128" alt="瓦特工具">
                 </div>
                 <div class="content">
                     <div class="name">瓦特工具</div>
@@ -192,7 +208,7 @@
                 </div>
             </a>
 
-            <!--9 太短（后续你填网址后替换域名即可）-->
+            <!--9 太短 -->
             <a href="https://你的太短链接" class="card" target="_blank">
                 <div class="icon">
                     <img src="https://www.webicon.cc/icon?url=baidu.com&size=128" alt="太短">
@@ -258,10 +274,10 @@
                 </div>
             </a>
 
-            <!--15 爱达杂货铺【后续替换你本地A图标上传后的链接】 -->
+            <!--15 爱达杂货铺 -->
             <a href="https://你的爱达杂货铺链接" class="card" target="_blank">
                 <div class="icon">
-                    <img src="https://www.webicon.cc/icon?url=bing.com&size=128" alt="爱达杂货铺">
+                    <img src="https://你的爱达图标地址" alt="爱达杂货铺">
                 </div>
                 <div class="content">
                     <div class="name">爱达杂货铺</div>
@@ -269,10 +285,10 @@
                 </div>
             </a>
 
-            <!--16 直播源搜索引擎【后续替换IPTV图标链接】 -->
+            <!--16 直播源搜索引擎 -->
             <a href="https://你的直播源搜索链接" class="card" target="_blank">
                 <div class="icon">
-                    <img src="https://www.webicon.cc/icon?url=iptv.org&size=128" alt="直播源搜索引擎">
+                    <img src="https://你的IPTV图标地址" alt="直播源搜索引擎">
                 </div>
                 <div class="content">
                     <div class="name">直播源搜索引擎</div>
@@ -293,5 +309,70 @@
 
         </div>
     </div>
+
+    <!-- 动态粒子背景的JS代码 -->
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let lines = [];
+        const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dfe6e9', '#fd79a8', '#a29bfe', '#81ecec', '#55efc4'];
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+
+        class Line {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = height;
+                this.speed = 2 + Math.random() * 4;
+                this.angle = -Math.PI / 2 + (Math.random() - 0.5) * 0.8;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.width = 2 + Math.random() * 2;
+                this.length = 50 + Math.random() * 100;
+            }
+
+            update() {
+                this.x += Math.cos(this.angle) * this.speed;
+                this.y += Math.sin(this.angle) * this.speed;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(
+                    this.x + Math.cos(this.angle) * this.length,
+                    this.y + Math.sin(this.angle) * this.length
+                );
+                ctx.strokeStyle = this.color;
+                ctx.lineWidth = this.width;
+                ctx.globalAlpha = 0.7;
+                ctx.stroke();
+                ctx.globalAlpha = 1;
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            
+            if(Math.random() < 0.5) {
+                lines.push(new Line());
+            }
+
+            lines = lines.filter(line => {
+                line.update();
+                line.draw();
+                return line.y > -line.length;
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+        animate();
+    </script>
 </body>
 </html>
