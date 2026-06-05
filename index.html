@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TVBox工具导航</title>
-    <!-- 引入图标库 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
     <style>
         * {
             margin: 0;
@@ -63,8 +61,13 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            font-size: 28px;
-            color: white;
+            overflow: hidden;
+            background:#222;
+        }
+        .icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         .content {
             flex: 1;
@@ -81,27 +84,6 @@
             color: #aaa;
             line-height: 1.5;
         }
-        /* 图标颜色，跟你截图里的对齐了 */
-        .icon-wechat { background: #07c160; }
-        .icon-daoguan { background: #9c27b0; }
-        .icon-wanou { background: #f44336; }
-        .icon-decrypt { background: #2196f3; }
-        .icon-ibox { background: #00bcd4; }
-        .icon-ok { background: #ff9800; }
-        .icon-yingcang { background: #ff5722; }
-        .icon-taiwan { background: #ff9800; }
-        .icon-apple { background: #607d8b; }
-        .icon-taiduan { background: #2196f3; }
-        .icon-taikuai { background: #3f51b5; }
-        .icon-taibian { background: #ff5722; }
-        .icon-download { background: #e91e63; }
-        .icon-live { background: #f44336; }
-        .icon-qiushui { background: #00bcd4; }
-        .icon-kaisuu { background: #2196f3; }
-        .icon-aida { background: #3f51b5; }
-        .icon-search { background: #212121; }
-        .icon-convert { background: #ffc107; }
-        .icon-hengchuang { background: #2196f3; }
 
         @media (max-width: 992px) {
             .grid {
@@ -125,10 +107,10 @@
             <p>点击图标，一键跳转到对应工具</p>
         </div>
         <div class="grid">
-            <!-- 每个卡片，把href改成你自己的网站链接就行！ -->
+            <!--1 盒子地窖 m.wmsio.cn -->
             <a href="http://m.wmsio.cn/" class="card" target="_blank">
-                <div class="icon icon-wechat">
-                    <i class="fa fa-wrench"></i>
+                <div class="icon">
+                    <img src="https://www.webicon.cc/icon?url=m.wmsio.cn&size=128" alt="盒子地窖">
                 </div>
                 <div class="content">
                     <div class="name">公众号</div>
@@ -136,9 +118,10 @@
                 </div>
             </a>
 
+            <!--2 菜鸟工具 jyshare.com -->
             <a href="https://www.jyshare.com/" class="card" target="_blank">
-                <div class="icon icon-daoguan">
-                    <i class="fa fa-wrench"></i>
+                <div class="icon">
+                    <img src="https://www.webicon.cc/icon?url=jyshare.com&size=128" alt="菜鸟工具">
                 </div>
                 <div class="content">
                     <div class="name">菜鸟工具</div>
@@ -146,9 +129,10 @@
                 </div>
             </a>
 
+            <!--3 PS绿色 32r.com -->
             <a href="https://www.32r.com/zt/dgyjzzrj/" class="card" target="_blank">
-                <div class="icon icon-wanou">
-                    <i class="fa fa-wrench"></i>
+                <div class="icon">
+                    <img src="https://www.webicon.cc/icon?url=32r.com&size=128" alt="PS绿色">
                 </div>
                 <div class="content">
                     <div class="name">PS绿色</div>
@@ -156,9 +140,10 @@
                 </div>
             </a>
 
+            <!--4 瓦特工具 steampp.net -->
             <a href="https://steampp.net/" class="card" target="_blank">
-                <div class="icon icon-decrypt">
-                    <i class="fa fa-wrench"></i>
+                <div class="icon">
+                    <img src="https://www.webicon.cc/icon?url=steampp.net&size=128" alt="瓦特工具">
                 </div>
                 <div class="content">
                     <div class="name">瓦特工具</div>
@@ -166,9 +151,10 @@
                 </div>
             </a>
 
+            <!--5 凯速 kstore.cc -->
             <a href="https://kstore.cc/login?Rurl=%2Ffile%3FfilePath%3D%252F%26fileType%3D0" class="card" target="_blank">
-                <div class="icon icon-ibox">
-                    <i class="fa fa-wrench"></i>
+                <div class="icon">
+                    <img src="https://www.webicon.cc/icon?url=kstore.cc&size=128" alt="凯速">
                 </div>
                 <div class="content">
                     <div class="name">凯速</div>
@@ -176,36 +162,40 @@
                 </div>
             </a>
 
+            <!--6 CF域名托管 dash.cloudflare.com -->
             <a href="https://dash.cloudflare.com/" class="card" target="_blank">
-                <div class="icon icon-ok">
-                    <i class="fa fa-wrench"></i>
+                <div class="icon">
+                    <img src="https://www.webicon.cc/icon?url=cloudflare.com&size=128" alt="域名托管">
                 </div>
                 <div class="content">
                     <div class="name">域名托管</div>
                 </div>
             </a>
 
+            <!--7 域名申请 domain.digitalplat.org -->
             <a href="https://dash.domain.digitalplat.org/" class="card" target="_blank">
-                <div class="icon icon-yingcang">
-                    <i class="fa fa-wrench"></i>
+                <div class="icon">
+                    <img src="https://www.webicon.cc/icon?url=domain.digitalplat.org&size=128" alt="域名申请">
                 </div>
                 <div class="content">
                     <div class="name">域名申请</div>
                 </div>
             </a>
 
+            <!--8 在线工具 lddgo.net -->
             <a href="https://www.lddgo.net/base/class?classID=1" class="card" target="_blank">
-                <div class="icon icon-taiwan">
-                    <i class="fa fa-wrench"></i>
+                <div class="icon">
+                    <img src="https://www.webicon.cc/icon?url=lddgo.net&size=128" alt="在线工具">
                 </div>
                 <div class="content">
                     <div class="name">在线工具</div>
                 </div>
             </a>
 
+            <!--9 太短（后续你填网址后替换域名即可）-->
             <a href="https://你的太短链接" class="card" target="_blank">
-                <div class="icon icon-taiduan">
-                    <i class="fa fa-search"></i>
+                <div class="icon">
+                    <img src="https://www.webicon.cc/icon?url=baidu.com&size=128" alt="太短">
                 </div>
                 <div class="content">
                     <div class="name">太短</div>
@@ -213,9 +203,10 @@
                 </div>
             </a>
 
+            <!--10 太快 -->
             <a href="https://你的太快链接" class="card" target="_blank">
-                <div class="icon icon-taikuai">
-                    <i class="fa fa-github"></i>
+                <div class="icon">
+                    <img src="https://www.webicon.cc/icon?url=github.com&size=128" alt="太快">
                 </div>
                 <div class="content">
                     <div class="name">太快</div>
@@ -223,9 +214,10 @@
                 </div>
             </a>
 
+            <!--11 太能编 -->
             <a href="https://你的太能编链接" class="card" target="_blank">
-                <div class="icon icon-taibian">
-                    <i class="fa fa-edit"></i>
+                <div class="icon">
+                    <img src="https://www.webicon.cc/icon?url=json.cn&size=128" alt="太能编">
                 </div>
                 <div class="content">
                     <div class="name">太能编</div>
@@ -233,9 +225,10 @@
                 </div>
             </a>
 
+            <!--12 软件下载 -->
             <a href="https://你的软件下载链接" class="card" target="_blank">
-                <div class="icon icon-download">
-                    <i class="fa fa-download"></i>
+                <div class="icon">
+                    <img src="https://www.webicon.cc/icon?url=qq.com&size=128" alt="软件下载">
                 </div>
                 <div class="content">
                     <div class="name">软件下载</div>
@@ -243,9 +236,10 @@
                 </div>
             </a>
 
+            <!--13 直播大全 -->
             <a href="https://你的直播大全链接" class="card" target="_blank">
-                <div class="icon icon-live">
-                    <i class="fa fa-play"></i>
+                <div class="icon">
+                    <img src="https://www.webicon.cc/icon?url=cctv.com&size=128" alt="直播大全">
                 </div>
                 <div class="content">
                     <div class="name">直播大全</div>
@@ -253,9 +247,10 @@
                 </div>
             </a>
 
+            <!--14 秋水网 -->
             <a href="https://你的秋水网链接" class="card" target="_blank">
-                <div class="icon icon-qiushui">
-                    <i class="fa fa-globe"></i>
+                <div class="icon">
+                    <img src="https://www.webicon.cc/icon?url=hao123.com&size=128" alt="秋水网">
                 </div>
                 <div class="content">
                     <div class="name">秋水网</div>
@@ -263,9 +258,10 @@
                 </div>
             </a>
 
+            <!--15 爱达杂货铺【后续替换你本地A图标上传后的链接】 -->
             <a href="https://你的爱达杂货铺链接" class="card" target="_blank">
-                <div class="icon icon-aida">
-                    <i class="fa fa-a"></i>
+                <div class="icon">
+                    <img src="https://www.webicon.cc/icon?url=bing.com&size=128" alt="爱达杂货铺">
                 </div>
                 <div class="content">
                     <div class="name">爱达杂货铺</div>
@@ -273,9 +269,10 @@
                 </div>
             </a>
 
+            <!--16 直播源搜索引擎【后续替换IPTV图标链接】 -->
             <a href="https://你的直播源搜索链接" class="card" target="_blank">
-                <div class="icon icon-search">
-                    <i class="fa fa-search"></i>
+                <div class="icon">
+                    <img src="https://www.webicon.cc/icon?url=iptv.org&size=128" alt="直播源搜索引擎">
                 </div>
                 <div class="content">
                     <div class="name">直播源搜索引擎</div>
@@ -283,9 +280,10 @@
                 </div>
             </a>
 
+            <!--17 直播源格式转换 -->
             <a href="https://你的转换工具链接" class="card" target="_blank">
-                <div class="icon icon-convert">
-                    <i class="fa fa-exchange"></i>
+                <div class="icon">
+                    <img src="https://www.webicon.cc/icon?url=convertio.co&size=128" alt="直播源格式转换">
                 </div>
                 <div class="content">
                     <div class="name">直播源格式转换</div>
