@@ -763,7 +763,7 @@
     {
       "name": "速度源",
       "type": 0,
-      "url": "./lib/live.txt",
+      "url": "http://175.178.251.183:6689/tv.txt",
       "epg": "https://epg.112114.eu.org/?ch={name}&date={date}"
     },
     {
