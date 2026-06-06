@@ -70,15 +70,18 @@
       "type": 3,
       "api": "csp_Gz360"
     },
-    {
-      "key": "nangua",
-      "name": "南瓜影视",
-      "api": "https://www.nangua99.com/api.php/provide/vod/",
-      "type": 1,
-      "search": 1,
-      "quickSearch": 1,
-      "filter": 1
-    },
+   {
+  "key": "nangua",
+  "name": "南瓜影视",
+  "api": "https://www.nangua99.com/api.php/provide/vod/",
+  "type": 1,
+  "search": 1,
+  "quickSearch": 1,
+  "filter": 1,
+  "header": {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+  }
+},
     {
       "key": "csp_Wwys",
       "name": "壹米 | 蓝光",
