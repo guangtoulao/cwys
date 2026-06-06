@@ -36,7 +36,7 @@
       "api": "csp_YGP",
       "searchable": 0
     },
-      {
+    {
       "key": "腾讯视频",
       "name": "腾讯 | 视频",
       "type": 3,
@@ -64,142 +64,142 @@
       "api": "./lib/drpy2.min.js",
       "ext": "./lib/优酷视频.js"
     },
-     {
+    {
       "key": "瓜子影视",
       "name": "瓜子 | 影视",
       "type": 3,
       "api": "csp_Gz360"
     },
     {
-  "name": "南瓜影视",
-  "api": "https://www.nangua99.com/api.php/provide/vod/",
-  "type": 1,
-  "search": 1,
-  "quickSearch": 1,
-  "filter": 1,
-  "header": {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
-  }
-},
+      "name": "南瓜影视",
+      "api": "https://www.nangua99.com/api.php/provide/vod/",
+      "type": 1,
+      "search": 1,
+      "quickSearch": 1,
+      "filter": 1,
+      "header": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+      }
+    },
     {
-  "key": "csp_Wwys",
-  "name": "壹米 | 蓝光",
-  "type": 3,
-  "api": "csp_Wwys",
-  "jar": "https://cdn2.wemiaow.com/20260401232042-14-Vwa30U.jpg;md5;59bcc1aa8c1ecf7d08a282ac63705ab3",
-  "ext": "https://vip.wwgz.cn:5200"
-},
-{
-  "key": "旺旺影视",
-  "name": "旺旺 | 影视",
-  "type": 3,
-  "api": "csp_XBPQ",
-  "ext": "http://rihou.cc:88/xb/%E6%97%BA%E6%97%BA%E5%BD%B1%E8%A7%86.json",
-  "jar": "http://rihou.cc:88/jar/xbpq.jar"
-},
-{
-  "key": "csp_mgtva",
-  "name": "木瓜 | 影视",
-  "type": 3,
-  "api": "csp_XBPQ",
-  "searchable": 1,
-  "quickSearch": 1,
-  "filterable": 1,
-  "ext": {
-    "分类url": "https://www.muguatva.com/s/{cateId}/area/{area}/class/{class}/page/{catePg}/year/{year}.html",
-    "分类": "电影&电视剧&综艺&动漫",
-    "分类值": "dianying&lianxuju&zongyi&dongman"
-  },
-  "jar": "https://xpb.mhfs.eu.org/ZJ/XPB/spider20260509.jar"
-},
-{
-  "key": "天天",
-  "name": "天天 | 秒播",
-  "type": 3,
-  "quickSearch": 1,
-  "searchable": 1,
-  "api": "csp_AppRJ",
-  "timeout": 12,
-  "ext": "vxw35/hHSj07Q+maxQzOVMq1rjRCOTXpUCx8iKu5jIg=",
-  "jar": "https://cn.oilgasgpts.com/resource/profile/2026/05/18/NJ4ZWwg7_20260518095827A465.jpg"
-},
-{
-  "key": "葫芦",
-  "name": "葫芦 | 秒播",
-  "type": 3,
-  "api": "csp_AppGet",
-  "ext": "https://mobile-1251126973.cos.ap-guangzhou.myqcloud.com/maccos_config.txt|8R33VQSxzmCaHpEX|V122|okhttp/3.10.0",
-  "jar": "https://cn.oilgasgpts.com/resource/profile/2026/05/18/NJ4ZWwg7_20260518095827A465.jpg"
-},
-{
-  "key": "麦田",
-  "name": "麦田 | 秒播",
-  "type": 3,
-  "api": "csp_AppV6",
-  "ext": "http://172.247.227.203:25321/mtys.php",
-  "jar": "https://cn.oilgasgpts.com/resource/profile/2026/05/18/NJ4ZWwg7_20260518095827A465.jpg"
-},
-{
-  "key": "光影",
-  "name": "光影 | 不卡",
-  "type": 3,
-  "api": "csp_T4Guard",
-  "searchable": 1,
-  "quickSearch": 1,
-  "changeable": 0,
-  "ext": "rfOIzPkSUkANv6AT2prC8en3+Trbx4j10CIoZMv3Ag4bdEYQqTMqu/Z3YPtC2NJv6n6YeZdgyWlo4WJjBL5gUt6B7LvCEDT4CLrWka31GRq7jwVkfQRB/Jy9HkG7E8xUBIJi5DdVFk3qAuGnwUWqQNRblRxzHW+tdSm6zoFcG/QkZ97bzWOXn0fzbgwjBDkBHgcPIYjlULlctCNKgJ9DzGNSl+zMZDZgmxczsZeeahRS38Cst3qvaHn1T2lmLBGVGXPaRovi77LPRRDOJSNRrdpvCHdRikYwgar0MU56hXMGeGBiKp/OmGTIYR8dFRGvZ/m8xGOqs8U13h6wvADOGlYoP9VaQBqTcDnz9Q0Urhw3oFXWyvIlUrDhX9la5L2NYzagbyk3afqhxeSXXp07nAFsNy2CojHRTbmz4eohLoIJTSi2DzPpheVx1DAapfgRdTc7Ax5ddYpN338GiDAa0GnEgLe04a1pZ5jF+/Q7HJswqlSO+DXCQ3FjRbb/ZPQcozcCWwzhUHE1QUAt799V9DPMuiHGyudIcZarGQmezB+Lb45RdHIRy0PXD+NRVPJlfDFD5FMGSqsiVklibvuwlVHT8J5vHgh/1nEZoI1RlYYLrkjTts2EeQmrpB/sgLyo1vnjFw==",
-  "jar": "https://file.icve.com.cn/file_doc/788/735/C50B7DDAF597139120718BE046239DAB.jpg"
-},
-{
-  "key": "立播",
-  "name": "立播 | 不卡",
-  "type": 3,
-  "api": "csp_LibvioGuard",
-  "timeout": 10,
-  "searchable": 1,
-  "quickSearch": 1,
-  "changeable": 1,
-  "ext": {
-    "Cloud-drive": "tvfan/Cloud-drive.txt",
-    "siteUrl": "https://www.libvio.run"
-  },
-  "jar": "https://file.icve.com.cn/file_doc/788/735/C50B7DDAF597139120718BE046239DAB.jpg"
-},
-{
-  "key": "糯米",
-  "name": "糯米 | 秒播",
-  "type": 3,
-  "api": "csp_NmyswvGuard",
-  "timeout": 15,
-  "searchable": 1,
-  "quickSearch": 1,
-  "changeable": 1,
-  "jar": "https://file.icve.com.cn/file_doc/788/735/C50B7DDAF597139120718BE046239DAB.jpg"
-},
-{
-  "key": "文采",
-  "name": "文采 | 秒播",
-  "type": 3,
-  "api": "csp_JpysGuard",
-  "timeout": 10,
-  "playerType": 2,
-  "searchable": 1,
-  "quickSearch": 1,
-  "changeable": 1,
-  "jar": "https://file.icve.com.cn/file_doc/788/735/C50B7DDAF597139120718BE046239DAB.jpg"
-},
-{
-  "key": "猫猫",
-  "name": "猫猫 | 多线",
-  "type": 3,
-  "api": "csp_AppSxGuard",
-  "timeout": 10,
-  "searchable": 1,
-  "quickSearch": 1,
-  "changeable": 1,
-  "ext": "rfOb1uAWbkRHp7hdxprG9un3+TDC2t/rlTwlcMr+ChdbeV8Q9y9xsKxqfbtO0M05tGWcacFVm2c45jhyH6t1Rt6A6PjICGqxV+uN1uOqS2/x0Vp5J0Vfo8usQADpHg==",
-  "jar": "https://file.icve.com.cn/file_doc/788/735/C50B7DDAF597139120718BE046239DAB.jpg"
-},
+      "key": "csp_Wwys",
+      "name": "壹米 | 蓝光",
+      "type": 3,
+      "api": "csp_Wwys",
+      "jar": "https://cdn2.wemiaow.com/20260401232042-14-Vwa30U.jpg;md5;59bcc1aa8c1ecf7d08a282ac63705ab3",
+      "ext": "https://vip.wwgz.cn:5200"
+    },
+    {
+      "key": "旺旺影视",
+      "name": "旺旺 | 影视",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "ext": "http://rihou.cc:88/xb/%E6%97%BA%E6%97%BA%E5%BD%B1%E8%A7%86.json",
+      "jar": "http://rihou.cc:88/jar/xbpq.jar"
+    },
+    {
+      "key": "csp_mgtva",
+      "name": "木瓜 | 影视",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "分类url": "https://www.muguatva.com/s/{cateId}/area/{area}/class/{class}/page/{catePg}/year/{year}.html",
+        "分类": "电影&电视剧&综艺&动漫",
+        "分类值": "dianying&lianxuju&zongyi&dongman"
+      },
+      "jar": "https://xpb.mhfs.eu.org/ZJ/XPB/spider20260509.jar"
+    },
+    {
+      "key": "天天",
+      "name": "天天 | 秒播",
+      "type": 3,
+      "quickSearch": 1,
+      "searchable": 1,
+      "api": "csp_AppRJ",
+      "timeout": 12,
+      "ext": "vxw35/hHSj07Q+maxQzOVMq1rjRCOTXpUCx8iKu5jIg=",
+      "jar": "https://cn.oilgasgpts.com/resource/profile/2026/05/18/NJ4ZWwg7_20260518095827A465.jpg"
+    },
+    {
+      "key": "葫芦",
+      "name": "葫芦 | 秒播",
+      "type": 3,
+      "api": "csp_AppGet",
+      "ext": "https://mobile-1251126973.cos.ap-guangzhou.myqcloud.com/maccos_config.txt|8R33VQSxzmCaHpEX|V122|okhttp/3.10.0",
+      "jar": "https://cn.oilgasgpts.com/resource/profile/2026/05/18/NJ4ZWwg7_20260518095827A465.jpg"
+    },
+    {
+      "key": "麦田",
+      "name": "麦田 | 秒播",
+      "type": 3,
+      "api": "csp_AppV6",
+      "ext": "http://172.247.227.203:25321/mtys.php",
+      "jar": "https://cn.oilgasgpts.com/resource/profile/2026/05/18/NJ4ZWwg7_20260518095827A465.jpg"
+    },
+    {
+      "key": "光影",
+      "name": "光影 | 不卡",
+      "type": 3,
+      "api": "csp_T4Guard",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": "rfOIzPkSUkANv6AT2prC8en3+Trbx4j10CIoZMv3Ag4bdEYQqTMqu/Z3YPtC2NJv6n6YeZdgyWlo4WJjBL5gUt6B7LvCEDT4CLrWka31GRq7jwVkfQRB/Jy9HkG7E8xUBIJi5DdVFk3qAuGnwUWqQNRblRxzHW+tdSm6zoFcG/QkZ97bzWOXn0fzbgwjBDkBHgcPIYjlULlctCNKgJ9DzGNSl+zMZDZgmxczsZeeahRS38Cst3qvaHn1T2lmLBGVGXPaRovi77LPRRDOJSNRrdpvCHdRikYwgar0MU56hXMGeGBiKp/OmGTIYR8dFRGvZ/m8xGOqs8U13h6wvADOGlYoP9VaQBqTcDnz9Q0Urhw3oFXWyvIlUrDhX9la5L2NYzagbyk3afqhxeSXXp07nAFsNy2CojHRTbmz4eohLoIJTSi2DzPpheVx1DAapfgRdTc7Ax5ddYpN338GiDAa0GnEgLe04a1pZ5jF+/Q7HJswqlSO+DXCQ3FjRbb/ZPQcozcCWwzhUHE1QUAt799V9DPMuiHGyudIcZarGQmezB+Lb45RdHIRy0PXD+NRVPJlfDFD5FMGSqsiVklibvuwlVHT8J5vHgh/1nEZoI1RlYYLrkjTts2EeQmrpB/sgLyo1vnjFw==",
+      "jar": "https://file.icve.com.cn/file_doc/788/735/C50B7DDAF597139120718BE046239DAB.jpg"
+    },
+    {
+      "key": "立播",
+      "name": "立播 | 不卡",
+      "type": 3,
+      "api": "csp_LibvioGuard",
+      "timeout": 10,
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "ext": {
+        "Cloud-drive": "tvfan/Cloud-drive.txt",
+        "siteUrl": "https://www.libvio.run"
+      },
+      "jar": "https://file.icve.com.cn/file_doc/788/735/C50B7DDAF597139120718BE046239DAB.jpg"
+    },
+    {
+      "key": "糯米",
+      "name": "糯米 | 秒播",
+      "type": 3,
+      "api": "csp_NmyswvGuard",
+      "timeout": 15,
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "jar": "https://file.icve.com.cn/file_doc/788/735/C50B7DDAF597139120718BE046239DAB.jpg"
+    },
+    {
+      "key": "文采",
+      "name": "文采 | 秒播",
+      "type": 3,
+      "api": "csp_JpysGuard",
+      "timeout": 10,
+      "playerType": 2,
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "jar": "https://file.icve.com.cn/file_doc/788/735/C50B7DDAF597139120718BE046239DAB.jpg"
+    },
+    {
+      "key": "猫猫",
+      "name": "猫猫 | 多线",
+      "type": 3,
+      "api": "csp_AppSxGuard",
+      "timeout": 10,
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "ext": "rfOb1uAWbkRHp7hdxprG9un3+TDC2t/rlTwlcMr+ChdbeV8Q9y9xsKxqfbtO0M05tGWcacFVm2c45jhyH6t1Rt6A6PjICGqxV+uN1uOqS2/x0Vp5J0Vfo8usQADpHg==",
+      "jar": "https://file.icve.com.cn/file_doc/788/735/C50B7DDAF597139120718BE046239DAB.jpg"
+    },
     {
       "key": "热播影视",
       "name": "热播 | 影视",
@@ -650,37 +650,37 @@
       }
     },
     {
-  "key": "MTV",
-  "name": "明星 | 歌曲",
-  "type": 3,
-  "api": "csp_BiliGuard",
-  "style": {
-    "type": "rect",
-    "ratio": 1.597
-  },
-  "searchable": 0,
-  "quickSearch": 0,
-  "changeable": 0,
-  "ext": {
-    "json": "https://nos.netease.com/ysf/5af5fbe12a88b7c45aa1c21e6551826c.txt"
-  },
-  "jar": "https://file.icve.com.cn/file_doc/788/735/C50B7DDAF597139120718BE046239DAB.jpg"
-},
+      "key": "MTV",
+      "name": "明星 | 歌曲",
+      "type": 3,
+      "api": "csp_BiliGuard",
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      },
+      "searchable": 0,
+      "quickSearch": 0,
+      "changeable": 0,
+      "ext": {
+        "json": "https://nos.netease.com/ysf/5af5fbe12a88b7c45aa1c21e6551826c.txt"
+      },
+      "jar": "https://file.icve.com.cn/file_doc/788/735/C50B7DDAF597139120718BE046239DAB.jpg"
+    },
     {
-  "key": "MTV1",
-  "name": "易听 | 音乐",
-  "type": 3,
-  "api": "csp_MusicGuard",
-  "style": {
-    "type": "rect",
-    "ratio": 1
-  },
-  "playerType": 2,
-  "searchable": 1,
-  "quickSearch": 0,
-  "changeable": 0,
-  "jar": "https://file.icve.com.cn/file_doc/788/735/C50B7DDAF597139120718BE046239DAB.jpg"
-},
+      "key": "MTV1",
+      "name": "易听 | 音乐",
+      "type": 3,
+      "api": "csp_MusicGuard",
+      "style": {
+        "type": "rect",
+        "ratio": 1
+      },
+      "playerType": 2,
+      "searchable": 1,
+      "quickSearch": 0,
+      "changeable": 0,
+      "jar": "https://file.icve.com.cn/file_doc/788/735/C50B7DDAF597139120718BE046239DAB.jpg"
+    },
     {
       "key": "哔哩合集",
       "name": "哔哩 | 合集",
@@ -770,7 +770,7 @@
       "changeable": 0
     }
   ],
-   "lives": [
+  "lives": [
     {
       "name": "速度源",
       "type": 0,
