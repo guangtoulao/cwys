@@ -772,21 +772,13 @@
     }
   ],
   "lives": [
-   {
-  "name": "fty",
-  "type": 0,
-  "url": "https://gh.927223.xyz/https://raw.githubusercontent.com/develop202/migu_video/refs/heads/main/interface.txt",
-  "playerType": 2,
-  "epg": "http://diyp5.112114.xyz/?ch={name}&date={date}",
-  "logo": "https://epg.112114.xyz/logo/{name}.png"
-},
     {
-  "name": "lan",
-  "type": 0,
-  "url": "https://raw.giteeusercontent.com/guangtoulan/cwys/raw/main/lib/lan.txt",
-  "epg": "http://diyp5.112114.xyz/?ch={name}&date={date}",
-  "logo": "https://epg.112114.xyz/logo/{name}.png"
-},
+      "name": "lan",
+      "type": 0,
+      "url": "https://raw.giteeusercontent.com/guangtoulan/cwys/raw/main/lib/lan.txt",
+      "epg": "http://diyp5.112114.xyz/?ch={name}&date={date}",
+      "logo": "https://epg.112114.xyz/logo/{name}.png"
+    },
     {
       "name": "咪咕直播",
       "type": 0,
