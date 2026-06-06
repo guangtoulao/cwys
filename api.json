@@ -781,13 +781,13 @@
   "logo": "https://epg.112114.xyz/logo/{name}.png"
 },
     {
-      "name": "电视直播",
-      "type": 0,
-      "url": "./lib/657d29be8e72802eb9dbff859e968e11.txt",
-      "timeout": 10,
-      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
-      "logo": "https://epg.112114.xyz/logo/{name}.png"
-    },
+  "name": "lan",
+  "type": 0,
+  "url": "https://raw.giteeusercontent.com/guangtoulan/cwys/raw/main/lib/lan.txt",
+  "playerType": 2,
+  "epg": "http://diyp5.112114.xyz/?ch={name}&date={date}",
+  "logo": "https://epg.112114.xyz/logo/{name}.png"
+},
     {
       "name": "咪咕直播",
       "type": 0,
