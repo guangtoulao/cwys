@@ -46,6 +46,36 @@
             color: #aaa;
             font-size: 1.1rem;
         }
+        /* 接口部分的3列网格 */
+        .api-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        .api-item {
+            cursor: pointer;
+            padding: 16px;
+            border-radius: 12px;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .api-item:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-2px);
+        }
+        .api-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-align: center;
+            color: white;
+        }
+        .api-line {
+            width: 100%;
+            height: 4px;
+            border-radius: 2px;
+        }
+
         .grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -99,11 +129,17 @@
         }
 
         @media (max-width: 992px) {
+            .api-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
             .grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
         @media (max-width: 600px) {
+            .api-grid {
+                grid-template-columns: 1fr;
+            }
             .grid {
                 grid-template-columns: 1fr;
             }
@@ -118,6 +154,55 @@
     <canvas id="canvas"></canvas>
 
     <div class="container">
+        <!-- 新增的接口部分 -->
+        <div class="title">
+            <h1>空壳 接口（点击复制）</h1>
+            <p>点击条目即可自动复制接口链接</p>
+        </div>
+        <div class="api-grid">
+            <!-- 饭太硬 -->
+            <div class="api-item" data-copy="https://cdn.jsdelivr.net/gh/Fantazy/TVBox@main/json/fanty.json">
+                <div class="api-name">饭太硬</div>
+                <div class="api-line" style="background: #3498db;"></div>
+            </div>
+            <!-- 饭太硬备用1 -->
+            <div class="api-item" data-copy="https://ghproxy.com/https://raw.githubusercontent.com/Fantazy/TVBox/main/json/fanty.json">
+                <div class="api-name">饭太硬备用</div>
+                <div class="api-line" style="background: #e84393;"></div>
+            </div>
+            <!-- 饭太硬备用2 -->
+            <div class="api-item" data-copy="https://raw.fastgit.org/Fantazy/TVBox/main/json/fanty.json">
+                <div class="api-name">饭太硬备用</div>
+                <div class="api-line" style="background: #f39c12;"></div>
+            </div>
+            <!-- 小米 -->
+            <div class="api-item" data-copy="https://cdn.jsdelivr.net/gh/xiaomi-tv/box-api@main/api.json">
+                <div class="api-name">小米</div>
+                <div class="api-line" style="background: #f1c40f;"></div>
+            </div>
+            <!-- 王二小 -->
+            <div class="api-item" data-copy="https://cdn.jsdelivr.net/gh/Deali-Axy/Box@main/box.json">
+                <div class="api-name">王二小</div>
+                <div class="api-line" style="background: #cddc39;"></div>
+            </div>
+            <!-- jack老师 -->
+            <div class="api-item" data-copy="https://cdn.jsdelivr.net/gh/jack-api/box@main/api.json">
+                <div class="api-name">jack老师</div>
+                <div class="api-line" style="background: #2ecc71;"></div>
+            </div>
+            <!-- 巧技 -->
+            <div class="api-item" data-copy="https://cdn.jsdelivr.net/gh/qiaoji-api/box@main/api.json">
+                <div class="api-name">巧技</div>
+                <div class="api-line" style="background: #2980b9;"></div>
+            </div>
+            <!-- 南风 -->
+            <div class="api-item" data-copy="https://cdn.jsdelivr.net/gh/nanfeng-api/box@main/api.json">
+                <div class="api-name">南风</div>
+                <div class="api-line" style="background: #bdc3c7;"></div>
+            </div>
+        </div>
+
+        <!-- 原来的工具导航部分 -->
         <div class="title">
             <h1>学习工具导航</h1>
             <p>活着就要学习 学会了也不一定有用</p>
@@ -385,6 +470,18 @@
 
             requestAnimationFrame(animate);
         }
+
+        // 接口点击复制功能
+        document.querySelectorAll('.api-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const text = this.getAttribute('data-copy');
+                navigator.clipboard.writeText(text).then(() => {
+                    alert('接口链接复制成功！');
+                }).catch(err => {
+                    console.error('复制失败:', err);
+                });
+            });
+        });
 
         window.addEventListener('resize', resize);
         resize();
