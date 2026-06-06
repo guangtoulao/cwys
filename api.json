@@ -71,14 +71,6 @@
       "api": "csp_Gz360"
     },
     {
-  "name": "南瓜影视",
-  "api": "https://www.nangua99.com/api.php/provide/vod/",
-  "type": 1,
-  "search": 1,
-  "quickSearch": 1,
-  "filter": 1
-},
-    {
       "key": "csp_Wwys",
       "name": "壹米 | 蓝光",
       "type": 3,
