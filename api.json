@@ -37,18 +37,6 @@
       "searchable": 0
     },
     {
-  "key":"555影视",
-  "name":"555影视",
-  "type": 3,
-  "api": "https://555k15.com/vodtype/2.html",
-  "searchable": 1,
-  "playerType": 2,
-  "list": "regex://<div class=\"module-items module-poster-items-base\">(.*?)</div>",
-  "title": "regex://<div class=\"module-poster-item-title\">(.*?)</div>",
-  "img": "regex://<img class=\"lazyload lazy-loaded\" data-original=\"(.*?)\">",
-  "url": "regex://<a href=\"(.*?)\" title=\".*?\" class=\"module-poster-item module-item\">"
-},
-    {
       "key": "腾讯视频",
       "name": "腾讯 | 视频",
       "type": 3,
