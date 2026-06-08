@@ -771,7 +771,7 @@
     {
       "name": "lan",
       "type": 0,
-      "url": "https://raw.giteeusercontent.com/guangtoulan/cwys/raw/main/lib/lan.txt",
+      "url": "./lib/lan.txt",
       "epg": "http://diyp5.112114.xyz/?ch={name}&date={date}",
       "logo": "https://epg.112114.xyz/logo/{name}.png"
     },
