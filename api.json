@@ -36,9 +36,9 @@
       "api": "csp_YGP",
       "searchable": 0
     },
- {
+    {
     "key": "XBPQ_测试站点",
-    "name": "光头",
+    "name": "测试站点",
     "type": 3,
     "api": "csp_XBPQ",
     "searchable": 1,
@@ -47,9 +47,9 @@
     "ext": {
         "作者": "集多",
         "编码": "UTF-8",
-        "请求头": "User-Agent$MOBILE_UA",
+        "请求头": "User-Agent$PC_UA\nReferer$https://rrys25.com/",
         "图片代理": "1",
-        "播放请求头": "User-Agent$MOBILE_UA",
+        "播放请求头": "User-Agent$PC_UA\nReferer$https://rrys25.com/",
         "主页url": "https://rrys25.com/",
         "首页": "120",
         "起始页": "1",
