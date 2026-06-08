@@ -1,0 +1,18 @@
+#EXTM3U
+#EXTHTTP:{"Referer":"https://tv.cctv.com","User-Agent":"Mozilla/5.0 (Linux; Android) TVBox/1.0"}
+#EXTINF:-1,CCTV1综合
+https://cctvalih5.cctv.com/hd/live/cctv1.m3u8
+#EXTINF:-1,CCTV2财经
+https://cctvalih5.cctv.com/hd/live/cctv2.m3u8
+#EXTINF:-1,CCTV3综艺
+https://cctvalih5.cctv.com/hd/live/cctv3.m3u8
+#EXTINF:-1,CCTV13新闻
+https://cctvalih5.cctv.com/hd/live/cctv13.m3u8
+#EXTINF:-1,CCTV5体育
+https://cctvalih5.cctv.com/hd/live/cctv5.m3u8
+#EXTINF:-1,湖南卫视
+https://live.hntv.tv/hd/live/hunan.m3u8
+#EXTINF:-1,浙江卫视
+https://ztlive.cztv.com/live/zjstv.m3u8
+#EXTINF:-1,东方卫视
+https://live.smgbb.cn/live/dftvhd.m3u8
