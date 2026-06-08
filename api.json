@@ -36,26 +36,27 @@
       "api": "csp_YGP",
       "searchable": 0
     },
-    {
-    "key": "XBPQ_瓜子电影",
-    "name": "瓜子电影",
+  {
+    "key": "XBPQ_测试站点",
+    "name": "测试站点",
     "type": 3,
     "api": "csp_XBPQ",
     "searchable": 1,
     "quickSearch": 1,
     "filterable": 1,
     "ext": {
-        "作者": "光头",
+        "作者": "集多",
         "编码": "UTF-8",
         "请求头": "User-Agent$MOBILE_UA",
         "图片代理": "1",
         "播放请求头": "User-Agent$MOBILE_UA",
-        "主页url": "https://ng3.app/",
+        "主页url": "https://www.mountaindojo.com/",
         "首页": "120",
         "起始页": "1",
+        "导演": "光头&&",
         "跳转播放链接": "var player_*\"url\":\"&&\"",
         "搜索模式": "1",
-        "分类url": "https://ng3.app/?nav_id=4&t_id=2",
+        "分类url": "https://www.mountaindojo.com/movies/2.html",
         "分类": "电影$1#电视剧$2#综艺$3#动漫$4"
     }
 },
