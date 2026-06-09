@@ -37,15 +37,18 @@
       "searchable": 0
     },
     {
-  "key": "腾讯线路",
-  "name": "腾讯丨采集",
-  "type": 1,
-  "api": "https://ikunzyapi.com/api.php/provide/vod/from/qq",
-  "searchable": 1,
-  "quickSearch": 1,
-  "filterable": 1,
-  "categories": ["电影", "电视剧", "综艺", "动漫", "纪录片"]
-},
+      "key": "南瓜",
+      "name": "南瓜",
+      "type": "3",
+      "api": "http://mg.zrjx.xyz/api",
+      "searchUrl": "http://mg.zrjx.xyz/api/search?wd=**",
+      "playerType": 0,
+      "categories": [
+        "电影",
+        "电视剧",
+        "综艺"
+      ]
+    },
     {
       "key": "腾讯视频",
       "name": "腾讯 | 视频",
