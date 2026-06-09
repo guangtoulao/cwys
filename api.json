@@ -36,24 +36,6 @@
       "api": "csp_YGP",
       "searchable": 0
     },
-     {
-      "key": "点播源",
-      "name": "点播源",
-      "type": 3,
-      "api": "https://vip.1905.com/",
-      "playUrl": "https://vip.1905.com/play/1732194.shtml",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 0,
-      "categories": [
-        "国产剧",
-        "港台剧",
-        "日韩剧",
-        "欧美剧",
-        "泰剧",
-        "综艺"
-      ]
-    },
     {
       "key": "腾讯视频",
       "name": "腾讯 | 视频",
