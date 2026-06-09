@@ -760,14 +760,12 @@
     }
   ],
   "lives": [
-      {
-      "name": "develop202",
-      "type": 0,
-      "url": "./lib/interface.txt",
-      "playerType": 2,
-      "epg": "http://diyp5.112114.xyz/?ch={name}&date={date}",
-      "logo": "https://epg.112114.xyz/logo/{name}.png"
-    },
+       {
+          "name": "速度源",
+          "type": 0,
+          "url": "./lib/live.txt",
+          "epg": "https://epg.112114.eu.org/?ch={name}&date={date}"
+        },
     {
       "name": "lan",
       "type": 0,
