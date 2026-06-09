@@ -36,14 +36,22 @@
       "api": "csp_YGP",
       "searchable": 0
     },
-    {
-      "key": "site_1780978475727",
-      "name": "果果",
+   {
+      "key": "策驰影院",
+      "name": "策驰影院",
       "type": 1,
       "api": "https://www.erkys.com/type/{tid}/page/{pg}.html",
       "searchable": 1,
       "quickSearch": 1,
-      "filterable": 1
+      "filterable": 0,
+      "ext": {
+        "list": "ul.stui-vodlist li",
+        "vod_id": "a@href",
+        "vod_name": "a@title",
+        "vod_pic": "img@data-original",
+        "vod_remarks": "span.pic-text@text",
+        "class": "电影=1,电视剧=2,动漫=3,综艺=4"
+      }
     },
     {
       "key": "腾讯视频",
