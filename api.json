@@ -36,6 +36,25 @@
       "api": "csp_YGP",
       "searchable": 0
     },
+     {
+      "key": "dd",
+      "name": "dd",
+      "type": 2,
+      "api": "https://www.erkys.com/",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "",
+      "categories": [
+        "电影",
+        "电视剧",
+        "少儿",
+        "动漫",
+        "综艺",
+        "国产剧",
+        "短剧"
+      ]
+    },
   {
     "key": "XBPQ_策驰影视",
     "name": "策驰影视",
