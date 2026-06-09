@@ -37,15 +37,6 @@
       "searchable": 0
     },
     {
-      "key": "呃呃",
-      "name": "呃呃",
-      "type": "3",
-      "api": "https://www.1905.com/",
-      "searchUrl": "https://vip.1905.com/play/1704435.shtml",
-      "playerType": 0,
-      "categories": []
-    },
-    {
       "key": "腾讯视频",
       "name": "腾讯 | 视频",
       "type": 3,
