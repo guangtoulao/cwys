@@ -36,25 +36,28 @@
       "api": "csp_YGP",
       "searchable": 0
     },
-   {
-      "key": "等等",
-      "name": "刚刚",
-      "type": 1,
-      "api": "https://www.example.com/type/{tid}/page/{pg}.html",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 0,
-      "ext": {
-        "list": "li div",
-        "vod_id": "a@href",
-        "vod_name": "a@text",
-        "vod_pic": "img@data-original",
-        "vod_remarks": ".pic-text@text",
-        "headers": {
-          "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36"
-        }
-      }
-    },
+  {
+    "key": "XBPQ_策驰影视",
+    "name": "策驰影视",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "searchable": 1,
+    "quickSearch": 1,
+    "filterable": 1,
+    "ext": {
+        "作者": "君子兰",
+        "编码": "UTF-8",
+        "请求头": "User-Agent$MOBILE_UA",
+        "图片代理": "1",
+        "播放请求头": "User-Agent$MOBILE_UA",
+        "首页": "120",
+        "起始页": "1",
+        "跳转播放链接": "var player_*\"url\":\"&&\"",
+        "搜索模式": "1",
+        "分类url": "https://ng3.app/searchPage?type=%E5%AE%B6%E5%BA%AD&nav_id=4",
+        "分类": "电影$1#电视剧$2#综艺$3#动漫$4"
+    }
+},
     {
       "key": "腾讯视频",
       "name": "腾讯 | 视频",
