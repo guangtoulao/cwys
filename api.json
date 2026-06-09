@@ -38,20 +38,18 @@
     },
    {
       "key": "等等",
-      "name": "等等",
+      "name": "刚刚",
       "type": 1,
-      "api": "https://www.erkys.com//vod/show/{tid}/page/{pg}.html",
+      "api": "https://www.example.com/type/{tid}/page/{pg}.html",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 0,
       "ext": {
-        "list": "ul.stui-vodlist li",
+        "list": "li div",
         "vod_id": "a@href",
-        "vod_name": "a@title",
+        "vod_name": "a@text",
         "vod_pic": "img@data-original",
         "vod_remarks": ".pic-text@text",
-        "vod_play_url": ".playlink@href",
-        "picProxy": "1",
         "headers": {
           "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36"
         }
