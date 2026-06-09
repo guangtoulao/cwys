@@ -37,17 +37,13 @@
       "searchable": 0
     },
     {
-      "key": "南瓜",
-      "name": "南瓜",
+      "key": "呃呃",
+      "name": "呃呃",
       "type": "3",
-      "api": "http://mg.zrjx.xyz/api",
-      "searchUrl": "http://mg.zrjx.xyz/api/search?wd=**",
+      "api": "https://www.1905.com/",
+      "searchUrl": "https://vip.1905.com/play/1704435.shtml",
       "playerType": 0,
-      "categories": [
-        "电影",
-        "电视剧",
-        "综艺"
-      ]
+      "categories": []
     },
     {
       "key": "腾讯视频",
