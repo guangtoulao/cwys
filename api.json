@@ -760,6 +760,12 @@
     }
   ],
   "lives": [
+        {
+          "name": "XPB源",
+          "type": 0,
+          "url": "./lib/HZ.txt",
+          "epg": "https://epg.112114.eu.org/?ch={name}&date={date}"
+        },
        {
           "name": "速度源",
           "type": 0,
