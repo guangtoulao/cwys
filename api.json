@@ -37,10 +37,10 @@
       "searchable": 0
     },
     {
-      "key": "site_1780978274917",
+      "key": "site_1780978475727",
       "name": "果果",
       "type": 1,
-      "api": "https://www.erkys.com/",
+      "api": "https://www.erkys.com/type/{tid}/page/{pg}.html",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
