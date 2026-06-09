@@ -43,7 +43,7 @@
     "api": "csp_XBPQ",
     "searchable": 1,
     "quickSearch": 1,
-    "filterable": 1,
+    "filterable": 0,
     "ext": {
         "作者": "集多",
         "编码": "UTF-8",
@@ -51,10 +51,10 @@
         "图片代理": "0",
         "播放请求头": "User-Agent$Mozilla/5.0 (Android 13; Chrome/125.0 Mobile Safari/537.36",
         "主页url": "http://tjyilanhotel.com/",
-        "首页": "20",
+        "首页": "10",
         "起始页": "1",
         "跳转播放链接": "var player_*\"url\":\"&&\"",
-        "搜索模式": "1",
+        "搜索模式": "0",
         "分类url": "http://tjyilanhotel.com/vodtype/3.html",
         "分类": "电影$1#电视剧$2#综艺$3#动漫$4"
     }
