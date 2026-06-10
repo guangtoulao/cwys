@@ -760,13 +760,6 @@
     }
   ],
   "lives": [
-     
-       {
-  "name": "源",
-  "type": 0,
-  "url": "./lib/junzilan.txt",
-  "epg": "https://epg.112114.eu.org/?ch={name}&date={date}"
-},
     {
   "name": "XPB源",
   "type": 0,
