@@ -1,4 +1,0 @@
-#EXTM3U
-
-#EXTINF:-1 tvg-name="CCTV13" tvg-id="CCTV13" tvg-logo="https://tb.zbds.top/logo/CCTV13.png" group-title="央视频道", CCTV13
-http://221.226.51.220:50081/newlive/live/hls/1/live.m3u8
