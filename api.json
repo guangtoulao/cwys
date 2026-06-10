@@ -763,7 +763,7 @@
      {
   "name": "cctv",
   "type": 0,
-  "url": "./lib/cctv.txt",
+  "url": "https://live.zbds.top/tv/iptv4.txt",
   "epg": "https://epg.112114.eu.org/?ch={name}&date={date}"
 },
     {
