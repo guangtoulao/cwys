@@ -760,12 +760,6 @@
     }
   ],
   "lives": [
-     {
-  "name": "cctv",
-  "type": 0,
-  "url": "https://gh-proxy.com/raw.githubusercontent.com/suxuang/myIPTV/main/移动专享.txt",
-  "epg": "https://epg.112114.eu.org/?ch={name}&date={date}"
-},
     {
   "name": "XPB源",
   "type": 0,
