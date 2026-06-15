@@ -72,25 +72,14 @@
     },
     {
     "key": "XBPQ_555电影",
-    "name": "555电影",
+    "name": "三五 | 电影",
     "type": 3,
     "api": "csp_XBPQ",
     "searchable": 1,
     "quickSearch": 1,
     "filterable": 1,
     "ext": {
-    "作者": "君子兰",
-        "编码": "UTF-8",
-        "请求头": "User-Agent$MOBILE_UA",
-        "图片代理": "1",
-        "播放请求头": "User-Agent$MOBILE_UA",
-        "主页url": "https://www.5dy0.top/index/home.html",
-        "首页": "10",
-        "起始页": "1",
-        "跳转播放链接": "var player_*\"url\":\"&&\"",
-        "搜索模式": "1",
-        "分类url": "https://www.5dy0.top/vodtype/2.html{cateId}{class}{cateId}",
-        "分类": "电影$1#电视剧$2#综艺$3#动漫$4"
+IuS9nOiAhSI6ICLlkJvlrZDlhbAiLAogICAgICAgICLnvJbnoIEiOiAiVVRGLTgiLAogICAgICAgICLor7fmsYLlpLQiOiAiVXNlci1BZ2VudCRNT0JJTEVfVUEiLAogICAgICAgICLlm77niYfku6PnkIYiOiAiMSIsCiAgICAgICAgIuaSreaUvuivt+axguWktCI6ICJVc2VyLUFnZW50JE1PQklMRV9VQSIsCiAgICAgICAgIuS4u+mhtXVybCI6ICJodHRwczovL3d3dy41ZHkwLnRvcC9pbmRleC9ob21lLmh0bWwiLAogICAgICAgICLpppbpobUiOiAiMTAiLAogICAgICAgICLotbflp4vpobUiOiAiMSIsCiAgICAgICAgIui3s+i9rOaSreaUvumTvuaOpSI6ICJ2YXIgcGxheWVyXypcInVybFwiOlwiJiZcIiIsCiAgICAgICAgIuaQnOe0ouaooeW8jyI6ICIxIiwKICAgICAgICAi5YiG57G7dXJsIjogImh0dHBzOi8vd3d3LjVkeTAudG9wL3ZvZHR5cGUvMi5odG1se2NhdGVJZH17Y2xhc3N9e2NhdGVJZH0iLAogICAgICAgICLliIbnsbsiOiAi55S15b2xJDEj55S16KeG5YmnJDIj57u86Im6JDMj5Yqo5ryrJDQi
     }
     },
     {
