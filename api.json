@@ -70,6 +70,28 @@
       "type": 3,
       "api": "csp_Gz360"
     },
+    {
+    "key": "XBPQ_腾腾",
+    "name": "腾腾",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "searchable": 1,
+    "quickSearch": 1,
+    "filterable": 1,
+    "ext": {
+        "作者": "君子兰",
+        "编码": "UTF-8",
+        "请求头": "User-Agent$MOBILE_UA Referer$shturl.cc/eryGIcvBfh",
+        "播放请求头": "User-Agent$MOBILE_UA",
+        "主页url": "https://v.qq.com/",
+        "首页": "5",
+        "起始页": "1",
+        "跳转播放链接": "var player_*\"url\":\"&&\"",
+        "搜索模式": "1",
+        "分类url": "https://v.qq.com/channel/movie",
+        "分类": "电影$1#电视剧$2#综艺$3#动漫$4"
+    }
+},
   {
     "key": "XBPQ_三五 | 影视",
     "name": "三五 | 影视",
