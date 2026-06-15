@@ -71,6 +71,29 @@
       "api": "csp_Gz360"
     },
     {
+    "key": "XBPQ_555电影",
+    "name": "555电影",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "searchable": 1,
+    "quickSearch": 1,
+    "filterable": 1,
+    "ext": {
+    "作者": "君子兰",
+        "编码": "UTF-8",
+        "请求头": "User-Agent$MOBILE_UA",
+        "图片代理": "1",
+        "播放请求头": "User-Agent$MOBILE_UA",
+        "主页url": "https://www.5dy0.top/index/home.html",
+        "首页": "10",
+        "起始页": "1",
+        "跳转播放链接": "var player_*\"url\":\"&&\"",
+        "搜索模式": "1",
+        "分类url": "https://www.5dy0.top/vodtype/2.html{cateId}{class}{cateId}",
+        "分类": "电影$1#电视剧$2#综艺$3#动漫$4"
+    }
+    },
+    {
       "key": "csp_Wwys",
       "name": "壹米 | 蓝光",
       "type": 3,
