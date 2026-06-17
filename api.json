@@ -352,7 +352,7 @@
     },
     {
       "key": "修罗影视",
-      "name": "修罗|影视",
+      "name": "萝卜|影视",
       "api": "csp_Xlys",
       "type": 3,
       "ext": "https://www.xlysw.ggff.net"
@@ -390,12 +390,6 @@
       "style": {
         "type": "list"
       }
-    },
-    {
-      "key": "爱听音乐",
-      "name": "爱听|音乐",
-      "type": 3,
-      "api": "./lib/爱听音乐.py"
     },
     {
       "key": "哔哩合集",
