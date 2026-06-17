@@ -4,14 +4,14 @@
   "sites": [
     {
       "key": "豆瓣",
-      "name": "豆瓣｜首页",
+      "name": "豆瓣|首页",
       "type": 3,
       "api": "csp_Douban",
       "searchable": 0
     },
     {
       "key": "配置中心",
-      "name": "配置｜中心",
+      "name": "配置|中心",
       "type": 3,
       "api": "csp_Config",
       "searchable": 0,
@@ -24,41 +24,41 @@
     },
     {
       "key": "本地",
-      "name": "本地｜视频",
+      "name": "本地|视频",
       "type": 3,
       "api": "csp_LocalFile"
     },
-     {
+     { 
       "key": "腾讯视频",
-      "name": "腾讯 | 视频",
+      "name": "腾讯|视频",
       "type": 3,
       "api": "./lib/drpy2.min.js",
       "ext": "./lib/腾讯视频.js"
     },
     {
       "key": "芒果视频",
-      "name": "芒果 | 视频",
+      "name": "芒果|视频",
       "type": 3,
       "api": "./lib/drpy2.min.js",
       "ext": "./lib/芒果视频.js"
     },
     {
       "key": "爱奇艺",
-      "name": "奇艺 | 视频",
+      "name": "奇艺|视频",
       "type": 3,
       "api": "./lib/drpy2.min.js",
       "ext": "./lib/爱奇艺.js"
     },
     {
       "key": "优酷视频",
-      "name": "优酷 | 视频",
+      "name": "优酷|视频",
       "type": 3,
       "api": "./lib/drpy2.min.js",
       "ext": "./lib/优酷视频.js"
     },
      {
       "key": "csp_Wwys",
-      "name": "壹米 | 蓝光",
+      "name": "壹米|蓝光",
       "type": 3,
       "api": "csp_Wwys",
       "jar": "https://cdn2.wemiaow.com/20260401232042-14-Vwa30U.jpg;md5;59bcc1aa8c1ecf7d08a282ac63705ab3",
@@ -66,7 +66,7 @@
     },
     {
       "key": "旺旺影视",
-      "name": "旺旺 | 影视",
+      "name": "旺旺|影视",
       "type": 3,
       "api": "csp_XBPQ",
       "ext": "http://rihou.cc:88/xb/%E6%97%BA%E6%97%BA%E5%BD%B1%E8%A7%86.json",
@@ -74,7 +74,7 @@
     },
     {
       "key": "天天",
-      "name": "天天 | 秒播",
+      "name": "天天|秒播",
       "type": 3,
       "quickSearch": 1,
       "searchable": 1,
@@ -85,7 +85,7 @@
     },
     {
       "key": "热播影视",
-      "name": "热播｜APP",
+      "name": "热播|影视",
       "type": 3,
       "api": "csp_AppRJ",
       "searchable": 1,
@@ -97,13 +97,13 @@
     },
     {
       "key": "三秋影视",
-      "name": "金秋｜APP",
+      "name": "金秋|影视",
       "type": 3,
       "api": "csp_App3Q"
     },
     {
       "key": "咕噜",
-      "name": "咕噜丨APP",
+      "name": "葫芦|影视",
       "type": 3,
       "api": "csp_App99",
       "ext": {
@@ -119,7 +119,7 @@
     },
     {
       "key": "橘汁",
-      "name": "橘汁｜APP",
+      "name": "橘汁|影视",
       "type": 3,
       "api": "csp_AppDrama",
       "searchable": 1,
@@ -139,7 +139,7 @@
     },
     {
       "key": "华谊",
-      "name": "华谊｜APP",
+      "name": "华谊|影视",
       "type": 3,
       "api": "csp_AppDrama",
       "searchable": 1,
@@ -159,7 +159,7 @@
     },
     {
       "key": "苹果",
-      "name": "苹果｜APP",
+      "name": "苹果|影视",
       "type": 3,
       "api": "csp_AppDrama",
       "searchable": 1,
@@ -179,7 +179,7 @@
     },
     {
       "key": "薯条",
-      "name": "薯条｜APP",
+      "name": "薯条|影视",
       "type": 3,
       "api": "csp_AppDrama",
       "searchable": 1,
@@ -199,28 +199,28 @@
     },
     {
       "key": "湘漓",
-      "name": "湘漓｜APP",
+      "name": "黄瓜|影视",
       "type": 3,
       "api": "csp_AppFox",
       "ext": "https://ledayy.com"
     },
     {
       "key": "嘉禾",
-      "name": "嘉禾｜APP",
+      "name": "嘉禾|影视",
       "type": 3,
       "api": "csp_AppFox",
       "ext": "https://www.baidukuaiy.top"
     },
     {
       "key": "峥嵘",
-      "name": "峥嵘｜APP",
+      "name": "鎏金|影视",
       "type": 3,
       "api": "csp_AppFox",
       "ext": "https://api2026.hboqy.cn"
     },
     {
       "key": "金牌",
-      "name": "金牌｜APP",
+      "name": "金牌|影视",
       "type": 3,
       "api": "csp_AppQi",
       "searchable": 1,
@@ -236,7 +236,7 @@
     },
     {
       "key": "茉莉",
-      "name": "茉莉｜APP",
+      "name": "茉莉|影视",
       "type": 3,
       "api": "csp_AppGet",
       "searchable": 1,
@@ -249,13 +249,13 @@
     },
     {
       "key": "三六零",
-      "name": "三六｜视频",
+      "name": "三六|视频",
       "type": 3,
       "api": "csp_SP360"
     },
     {
       "key": "厂长影视",
-      "name": "厂长｜影视",
+      "name": "厂长|影视",
       "type": 3,
       "api": "csp_Czsapp",
       "searchable": 1,
@@ -265,27 +265,27 @@
     },
     {
       "key": "修罗影视",
-      "name": "修罗｜影视",
+      "name": "修罗|影视",
       "api": "csp_Xlys",
       "type": 3,
       "ext": "https://www.xlysw.ggff.net"
     },
     {
       "key": "瓜子影视",
-      "name": "瓜子｜影视",
+      "name": "瓜子|影视",
       "type": 3,
       "api": "csp_Gz360"
     },
     {
       "key": "农民影视",
-      "name": "农民｜影视",
+      "name": "农民|影视",
       "type": 3,
       "api": "csp_Wwys",
       "ext": "https://vip.wwgz.cn:5200"
     },
     {
   "key": "麦田",
-  "name": "麦田 | 影视",
+  "name": "麦田|影视",
   "type": 3,
   "api": "csp_AppV6",
   "jar": "https://cn.oilgasgpts.com/resource/profile/2026/05/18/NJ4ZWwg7_20260518095827A465.jpg;md5;84edf41db6dbaf56b1ccdc7a11cc0ddf",
@@ -293,7 +293,7 @@
 },
 {
   "key": "大师兄",
-  "name": "悟空 | 影视",
+  "name": "悟空|影视",
   "type": 3,
   "jar": "https://s3plus.meituan.net/opapisdk/op_ticket_1_5677168484_1774853250308_PA5tmo8g_vip.jar;md5;a4f403a000bc5e4ebdd9da27fcb05852",
   "api": "csp_AppV6",
@@ -302,7 +302,7 @@
 },
 {
   "key": "糯米",
-  "name": "糯米 | 秒播",
+  "name": "糯米|秒播",
   "type": 3,
   "api": "csp_NmyswvGuard",
   "timeout": 15,
@@ -313,7 +313,7 @@
 },
 {
   "key": "量子",
-  "name": "量子 | 秒播",
+  "name": "量子|秒播",
   "type": 1,
   "api": "https://cj.lziapi.com/api.php/provide/vod/",
   "searchable": 1,
@@ -348,7 +348,7 @@
 },
 {
   "key": "熊猫影视",
-  "name": "熊猫 | 影视",
+  "name": "熊猫|影视",
   "type": 3,
   "api": "csp_XBPQ",
   "ext": {
@@ -359,7 +359,7 @@
 },
     {
   "key": "MTV",
-  "name": "明星 | 频道",
+  "name": "明星|频道",
   "type": 3,
   "api": "csp_Bili",
   "jar": "https://img2.gelonghui.com/library/9c8e4-b797010b-366e-48f9-86b6-16be897c90c2.png;md5;9c8e45f60d3d413d8b140ec21811deb0",
@@ -375,7 +375,7 @@
 },
     {
       "key": "呦呦DJ",
-      "name": "呦呦｜DJ",
+      "name": "呦呦|音乐",
       "type": 3,
       "api": "csp_Djuu",
       "style": {
@@ -384,7 +384,7 @@
     },
     {
       "key": "轮回DJ",
-      "name": "轮回｜DJ",
+      "name": "轮回|音乐",
       "type": 3,
       "api": "csp_Djlh",
       "style": {
@@ -393,13 +393,13 @@
     },
     {
       "key": "爱听音乐",
-      "name": "爱听｜音乐",
+      "name": "爱听|音乐",
       "type": 3,
       "api": "./lib/爱听音乐.py"
     },
     {
       "key": "哔哩合集",
-      "name": "哔哩｜合集",
+      "name": "哔哩|合集",
       "type": 3,
       "api": "csp_Bili",
       "searchable": 1,
@@ -417,7 +417,7 @@
     },
     {
       "key": "哔哩哔哩演唱会",
-      "name": "哔哩｜音乐",
+      "name": "哔哩|音乐",
       "type": 3,
       "api": "csp_Bili",
       "searchable": 0,
@@ -434,7 +434,7 @@
     },
     {
       "key": "哔哩哔哩相声",
-      "name": "哔哩｜相声",
+      "name": "哔哩|相声",
       "type": 3,
       "api": "csp_Bili",
       "searchable": 0,
@@ -451,7 +451,7 @@
     },
     {
       "key": "哔哩哔哩小品",
-      "name": "哔哩｜小品",
+      "name": "哔哩|小品",
       "type": 3,
       "api": "csp_Bili",
       "searchable": 0,
@@ -468,7 +468,7 @@
     },
     {
       "key": "push_agent",
-      "name": "手机｜推送",
+      "name": "手机|推送",
       "type": 3,
       "api": "csp_Push",
       "searchable": 0,
