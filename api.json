@@ -57,6 +57,16 @@
       "ext": "./lib/优酷视频.js"
     },
     {
+      "key": "瓜子",
+      "name": "葵花|影视",
+      "type": 3,
+      "api": "csp_Gz360",
+      "jar": "https://ghfast.top/https://raw.githubusercontent.com/xuge188/TVBOX/main/spider.jar",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
       "key": "瓜子影视",
       "name": "瓜子|影视",
       "type": 3,
