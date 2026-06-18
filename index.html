@@ -1,520 +1,222 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>工具导航</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
-        body {
-            background: #000;
-            min-height: 100vh;
-            padding: 40px 20px;
-            position: relative;
-            overflow-x: hidden;
-        }
-        /* 动态背景的画布，放在最底层 */
-        #canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1; /* 内容放在背景上面 */
-        }
-        .title {
-            text-align: center;
-            margin-bottom: 60px;
-            color: white;
-        }
-        .title h1 {
-            font-size: 2.5rem;
-            margin-bottom: 24px; /* 加大和下方小字间距 */
-        }
-        .title p {
-            color: #eeeeee; /* 提亮文字，不再浅淡 */
-            font-size: 1.6rem; /* 放大字号 */
-            letter-spacing: 2px; /* 字间距加宽，更好识别 */
-            opacity: 0.95; /* 几乎不透明，解决发淡问题 */
-        }
-        /* 接口部分的3列网格，把底部间距调大了，从40改成80，拉开和下面的距离 */
-        .api-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-bottom: 200px;
-        }
-        .api-item {
-            cursor: pointer;
-            padding: 16px;
-            border-radius: 12px;
-            transition: background 0.2s, transform 0.2s;
-        }
-        .api-item:hover {
-            background: rgba(255,255,255,0.08);
-            transform: translateY(-2px);
-        }
-        .api-name {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            text-align: center;
-            color: white;
-        }
-        .api-line {
-            width: 100%;
-            height: 4px;
-            border-radius: 2px;
-        }
+<meta charset="UTF-8">
+<title>空壳接口导航</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
+/* ========== 全局页面 边距调整区【改这里控制整体上下左右留白】 ========== */
+body{
+    background:#f7f8fa;
+    min-height:100vh;
+    padding: 30px 15px; /* 页面上下内边距 | 页面左右内边距 */
+}
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-        }
-        .card {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            padding: 16px;
-            border-radius: 12px;
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-            text-decoration: none;
-            color: white;
-        }
-        .card:hover {
-            background: rgba(255,255,255,0.08);
-            transform: translateY(-2px);
-        }
-        .icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            overflow: hidden;
-            background:#222;
-        }
-        .icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .content {
-            flex: 1;
-            padding-top: 4px;
-        }
-        .name {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: white;
-        }
-        .desc {
-            font-size: 0.95rem;
-            color: #aaa;
-            line-height: 1.5;
-        }
+/* 搜索框模块 放在页面最顶部 */
+.search-wrap{
+    width:min(94%, 1000px);/* 搜索框最大宽度 */
+    margin:0 auto;
+    background:#fff;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    /* ========== 搜索框内边距、底部间距【调整区】 ========== */
+    padding: 10px 14px;  /* 搜索框上下内边距 | 左右内边距 */
+    margin-bottom: 30px; /* 搜索框和标题的距离 */
+    box-shadow:0 1px 4px #e0e0e0;
+}
+.search-select{
+    border:none;
+    background:transparent;
+    /* ========== 搜索引擎下拉文字大小【调整区】 ========== */
+    font-size: 15px;
+    padding:0 6px;
+    color:#333
+}
+.search-input{
+    flex:1;
+    border:none;
+    background:transparent;
+    outline:none;
+    /* ========== 搜索输入框文字大小【调整区】 ========== */
+    padding: 9px 10px;
+    font-size: 17px;
+}
+.search-btn{
+    border:none;
+    background:#3483eb;
+    color:#fff;
+    border-radius:7px;
+    cursor:pointer;
+    /* ========== 搜索按钮尺寸【调整区】 ========== */
+    padding: 9px 20px; /* 按钮上下 | 按钮左右宽度 */
+    font-size: 15px;
+}
 
-        @media (max-width: 992px) {
-            .api-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        @media (max-width: 600px) {
-            .api-grid {
-                grid-template-columns: 1fr;
-            }
-            .grid {
-                grid-template-columns: 1fr;
-            }
-            .title h1 {
-                font-size: 2rem;
-            }
-        }
-    </style>
+/* 标题区域（搜索框下方） */
+.page-title{
+    text-align:center;
+    color:#222;
+    /* ========== 标题大小、上下间距【调整区】 ========== */
+    font-size: 36px;    /* 标题文字大小 */
+    margin-bottom: 12px;/* 标题和描述的距离 */
+    font-weight:bold
+}
+.page-desc{
+    text-align:center;
+    color:#666;
+    /* ========== 描述文字大小、底部间距【调整区】 ========== */
+    font-size: 16px;    /* 说明文字大小 */
+    margin-bottom: 35px;/* 描述和图标网格的距离 */
+}
+
+/* 图标网格区域（核心，仿趣主页多列图标） */
+.nav-grid{
+    width:min(94%, 1000px);
+    margin:0 auto;
+    display:grid;
+    /* ========== 图标网格列宽、图标之间间距【调整区】 ========== */
+    grid-template-columns: repeat(auto-fill, minmax(82px, 1fr)); /* 单个图标格子最小宽度 */
+    gap: 14px; /* 图标横向、纵向间距大小 */
+    margin-bottom: 25px; /* 图标网格和底部分类栏距离 */
+}
+.nav-item{
+    background:#ffffff;
+    border-radius:9px;
+    padding:10px 4px;
+    text-align:center;
+    cursor:pointer;
+    transition:0.18s;
+    box-shadow:0 1px 3px #e5e5e5;
+}
+.nav-item:hover{transform:translateY(-2px);box-shadow:0 3px 8px #ddd}
+.nav-icon{
+    border-radius:7px;
+    margin:0 auto 7px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-weight:bold;
+    /* ========== 图标方块尺寸、文字大小【调整区】 ========== */
+    width:46px;  /* 图标方块宽度 */
+    height:46px; /* 图标方块高度 */
+    font-size: 19px; /* 图标内文字大小 */
+}
+.nav-name{
+    color:#333;
+    /* ========== 图标下方文字大小【调整区】 ========== */
+    font-size:13px;
+}
+
+/* 底部分类标签栏 */
+.tab-wrap{
+    width:min(94%, 1000px);
+    margin:0 auto;
+    background:#fff;
+    border-radius:9px;
+    padding:11px;
+    box-shadow:0 1px 3px #e5e5e5;
+}
+.tab-list{
+    display:flex;
+    gap:9px;/* 标签之间间距 */
+    flex-wrap:wrap
+}
+.tab-item{
+    color:#555;
+    border-radius:6px;
+    cursor:pointer;
+    /* ========== 分类标签内边距、文字大小【调整区】 ========== */
+    padding:5px 13px;
+    font-size:14px;
+}
+.tab-item.active{background:#f24c7c;color:#fff}
+</style>
 </head>
 <body>
-    <!-- 动态背景画布 -->
-    <canvas id="canvas"></canvas>
+<!-- 【最顶部：搜索框】和趣主页完全一致的顺序 -->
+<div class="search-wrap">
+  <select class="search-select" id="engineSel">
+    <option value="baidu">百度</option>
+    <option value="bing">必应</option>
+  </select>
+  <input class="search-input" id="kwInput" placeholder="搜索影片、影视资源">
+  <button class="search-btn" onclick="doSearch()">搜索</button>
+</div>
 
-    <div class="container">
-        <!-- 新增的接口部分 -->
-        <div class="title">
-            <h1>空壳 接口（点击复制）</h1>
-            <p>点击条目即可自动复制接口链接</p>
-        </div>
-        <div class="api-grid">
-            <!-- 饭太硬 -->
-            <div class="api-item" data-copy="http://fty.xxooo.cf/tv">
-                <div class="api-name">饭太硬</div>
-                <div class="api-line" style="background: #3498db;"></div>
-            </div>
-            <!-- 君子兰 -->
-            <div class="api-item" data-copy="https://cwys.qzz.io/api.json">
-                <div class="api-name">君子兰</div>
-                <div class="api-line" style="background: #e84393;"></div>
-            </div>
-            <!-- 潇洒 -->
-            <div class="api-item" data-copy="https://qist.wyfc.qzz.io/xiaosa/api.json">
-                <div class="api-name">潇洒</div>
-                <div class="api-line" style="background: #f39c12;"></div>
-            </div>
-            <!-- 摸鱼 -->
-            <div class="api-item" data-copy="https://xn--ihqu10cn4c.xn--v4q818bf34b.top/">
-                <div class="api-name">摸鱼</div>
-                <div class="api-line" style="background: #f1c40f;"></div>
-            </div>
-            <!-- 王二小 -->
-            <div class="api-item" data-copy="http://tvbox.xn--4kq62z5rby2qupq9ub.top/">
-                <div class="api-name">王二小</div>
-                <div class="api-line" style="background: #cddc39;"></div>
-            </div>
-            <!-- 影视仓 -->
-            <div class="api-item" data-copy="http://影视仓.com/">
-                <div class="api-name">影视仓</div>
-                <div class="api-line" style="background: #2ecc71;"></div>
-            </div>
-            <!-- 巧技 -->
-            <div class="api-item" data-copy="https://cdn.jsdelivr.net/gh/qiaoji-api/box@main/api.json">
-                <div class="api-name">巧技</div>
-                <div class="api-line" style="background: #2980b9;"></div>
-            </div>
-            <!-- 点播 -->
-            <div class="api-item" data-copy="https://xpb.mhfs.eu.org/ZJ/XPB/api.json">
-                <div class="api-name">点播</div>
-                <div class="api-line" style="background: #bdc3c7;"></div>
-            </div>
-             <!-- 宝盒 -->
-            <div class="api-item" data-copy="http://宝盒接口.top">
-                <div class="api-name">宝盒</div>
-                <div class="api-line" style="background: #bdc3c7;"></div>
-            </div>
-        </div>
+<!-- 搜索框下方：标题+说明文字 -->
+<div class="page-title">空壳 接口</div>
+<div class="page-desc">点击图标自动复制对应接口链接</div>
 
-        <!-- 原来的工具导航部分 -->
-        <div class="title">
-            <h1>学习工具导航</h1>
-            <p>活着就要学习 学会了也不一定有用</p>
-        </div>
-        <div class="grid">
-            <!--1 盒子地窖 m.wmsio.cn -->
-            <a href="http://m.wmsio.cn/" class="card" target="_blank">
-                <div class="icon">
-                    <img src="https://cwys.qzz.io/icons/box%E7%9B%92%E5%AD%90.png" alt="盒子地窖">
-                </div>
-                <div class="content">
-                    <div class="name">盒子地窖</div>
-                    <div class="desc">影视资源</div>
-                </div>
-            </a>
+<!-- 图标导航网格 -->
+<div class="nav-grid">
+  <div class="nav-item" onclick="copyLink('饭太硬接口地址')">
+    <div class="nav-icon" style="background:#0099ff">饭</div>
+    <div class="nav-name">饭太硬</div>
+  </div>
+  <div class="nav-item" onclick="copyLink('君子兰接口地址')">
+    <div class="nav-icon" style="background:#ff3388">君</div>
+    <div class="nav-name">君子兰</div>
+  </div>
+  <div class="nav-item" onclick="copyLink('潇洒接口地址')">
+    <div class="nav-icon" style="background:#ff9900">潇</div>
+    <div class="nav-name">潇洒</div>
+  </div>
+  <div class="nav-item" onclick="copyLink('摸鱼接口地址')">
+    <div class="nav-icon" style="background:#ffdd00">摸</div>
+    <div class="nav-name">摸鱼</div>
+  </div>
+  <div class="nav-item" onclick="copyLink('王二小接口地址')">
+    <div class="nav-icon" style="background:#bbee22">王</div>
+    <div class="nav-name">王二小</div>
+  </div>
+  <div class="nav-item" onclick="copyLink('影视仓接口地址')">
+    <div class="nav-icon" style="background:#22dd66">影</div>
+    <div class="nav-name">影视仓</div>
+  </div>
+  <div class="nav-item" onclick="copyLink('巧技接口地址')">
+    <div class="nav-icon" style="background:#0077cc">巧</div>
+    <div class="nav-name">巧技</div>
+  </div>
+  <div class="nav-item" onclick="copyLink('点播接口地址')">
+    <div class="nav-icon" style="background:#bbbbbb">点</div>
+    <div class="nav-name">点播</div>
+  </div>
+  <div class="nav-item" onclick="copyLink('宝盒接口地址')">
+    <div class="nav-icon" style="background:#999999">宝</div>
+    <div class="nav-name">宝盒</div>
+  </div>
+</div>
 
-             <!--1 软件社 www.rjshe.com/ -->
-            <a href="https://www.rjshe.com/" class="card" target="_blank">
-                <div class="icon">
-                    <img src="https://cwys.qzz.io/icons/android.png?metadata=eyJyIjoibWFpbiIsImZwIjoiaWNvbnMvYW5kcm9pZC5wbmciLCJwaWQiOjQ4MDk5MjI4LCJzdG8iOiJnaXQtc2hhcmRpbmctc3RvLTEwdC0wMDkiLCJycCI6InJlcG9zL2RjLzI5L2RjMjk0NzYxMzM1ZTRhMDkzYmU0YTQwMWUwYzM1YzhlODY3M2ZlM2FjZTJiNjQxNmRkMWVhYzhlOTEwOGQyYmEuZ2l0IiwiaXNwIjp0cnVlLCJleHBpcmVfYXQiOjE3ODE0MTc0MDB9&signature=KKwp_Hx__mQtH-0vTZ4yOiqGN7G-0TGFLTxpvybSYEo" alt="软件社">
-                </div>
-                <div class="content">
-                    <div class="name">软件社</div>
-                    <div class="desc">资源大全</div>
-                </div>
-            </a>
+<!-- 底部分类标签 -->
+<div class="tab-wrap">
+  <div class="tab-list">
+    <div class="tab-item active">影视接口</div>
+    <div class="tab-item">聚合源</div>
+    <div class="tab-item">直播源</div>
+    <div class="tab-item">工具</div>
+    <div class="tab-item">设置</div>
+  </div>
+</div>
 
-            <!--2 菜鸟工具 jyshare.com -->
-            <a href="https://www.jyshare.com/" class="card" target="_blank">
-                <div class="icon">
-                    <img src="https://cwys.qzz.io/icons/favicon-jyshare.com-1-100x100.png" alt="菜鸟工具">
-                </div>
-                <div class="content">
-                    <div class="name">菜鸟工具</div>
-                    <div class="desc">不止于工具</div>
-                </div>
-            </a>
+<script>
+// 搜索功能
+function doSearch(){
+  let kw = document.getElementById("kwInput").value.trim();
+  let eng = document.getElementById("engineSel").value;
+  if(!kw) return alert("请输入搜索关键词");
+  let url = eng === "baidu" 
+    ? `https://www.baidu.com/s?wd=${encodeURIComponent(kw)}`
+    : `https://cn.bing.com/search?q=${encodeURIComponent(kw)}`;
+  window.open(url,"_blank");
+}
+document.getElementById("kwInput").addEventListener("keydown",e=>e.key==="Enter"&&doSearch())
 
-            <!--3 PS绿色 32r.com -->
-            <a href="https://www.32r.com/zt/dgyjzzrj/" class="card" target="_blank">
-                <div class="icon">
-                    <img src="https://cwys.qzz.io/icons/ps.png" alt="PS绿色">
-                </div>
-                <div class="content">
-                    <div class="name">PS绿色</div>
-                    <div class="desc">修图PS</div>
-                </div>
-            </a>
-
-            <!--4 瓦特工具 steampp.net -->
-            <a href="https://steampp.net/" class="card" target="_blank">
-                <div class="icon">
-                    <img src="https://cwys.qzz.io/icons/steampp.net-icon.ico" alt="瓦特工具">
-                </div>
-                <div class="content">
-                    <div class="name">瓦特工具</div>
-                    <div class="desc">github加速</div>
-                </div>
-            </a>
-
-            <!--5 凯速 kstore.cc -->
-            <a href="https://kstore.cc" class="card" target="_blank">
-                <div class="icon">
-                    <img src="https://cwys.qzz.io/icons/l%E5%87%AF%E9%80%9F.png" alt="凯速">
-                </div>
-                <div class="content">
-                    <div class="name">凯速</div>
-                    <div class="desc">代码托管平台</div>
-                </div>
-            </a>
-
-            <!--6 CF域名托管 dash.cloudflare.com -->
-            <a href="https://dash.cloudflare.com/" class="card" target="_blank">
-                <div class="icon">
-                    <img src="https://cwys.qzz.io/icons/favicon-dash.cloudflare.com-2-100x100.png" alt="域名托管">
-                </div>
-                <div class="content">
-                    <div class="name">cloudflare</div>
-                     <div class="desc">域名托管</div>
-                </div>
-            </a>
-
-            <!--7 域名申请 domain.digitalplat.org -->
-            <a href="https://dash.domain.digitalplat.org/" class="card" target="_blank">
-                <div class="icon">
-                    <img src="https://cwys.qzz.io/icons/球.png" alt="域名申请">
-                </div>
-                <div class="content">
-                    <div class="name">digitalplat</div>
-                    <div class="desc">域名申请</div>
-                </div>
-            </a>
-
-            <!--8 在线工具 lddgo.net -->
-            <a href="https://www.lddgo.net/base/class?classID=1" class="card" target="_blank">
-                <div class="icon">
-                    <img src="https://cwys.qzz.io/icons/%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7.png" alt="在线工具">
-                </div>
-                <div class="content">
-                    <div class="name">lddgo</div>
-                     <div class="desc">在线工具</div>
-                </div>
-            </a>
-
-            <!--9 太短 -->
-            <a href="https://xiaomark.com/" class="card" target="_blank">
-                <div class="icon">
-                    <img src="https://cwys.qzz.io/icons/%E5%A4%AA%E7%9F%AD.ico" alt="太短">
-                </div>
-                <div class="content">
-                    <div class="name">太短</div>
-                    <div class="desc">缩短链接,屌!也不是很短~</div>
-                </div>
-            </a>
-
-
-            <!--11 太能编 -->
-            <a href="https://z.qiqiv.cn/" class="card" target="_blank">
-                <div class="icon">
-                    <img src="https://cwys.qzz.io/icons/%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91_%E5%A1%AB%E5%85%85.png" alt="太能编">
-                </div>
-                <div class="content">
-                    <div class="name">太能编</div>
-                    <div class="desc">接口配置编辑器,支持加解密</div>
-                </div>
-            </a>
-
-             <!--12 源获取 -->
-            <a href="https://jiduo.3116598.xyz/XBPQ/" class="card" target="_blank">
-                <div class="icon">
-                    <img src="https://cwys.qzz.io/icons/%E6%8D%95%E8%8E%B7.png" alt="源获取">
-                </div>
-                <div class="content">
-                    <div class="name">源获取</div>
-                    <div class="desc">源获取</div>
-                </div>
-            </a>
-
-
-            <!--13 直播大全 -->
-            <a href="https://tv.cctv.com/live/" class="card" target="_blank">
-                <div class="icon">
-                    <img src="https://cwys.qzz.io/icons/%E6%92%AD%E6%94%BE%E5%99%A8-%E6%92%AD%E6%94%BE.png" alt="直播大全">
-                </div>
-                <div class="content">
-                    <div class="name">直播大全</div>
-                    <div class="desc">CCTV直播大全</div>
-                </div>
-            </a>
-
-            <!--14 秋水网 -->
-            <a href="https://www.qiushui.vip/" class="card" target="_blank">
-                <div class="icon">
-                    <img src="https://cwys.qzz.io/icons/%E7%A7%8B%E6%B0%B4.png" alt="秋水网">
-                </div>
-                <div class="content">
-                    <div class="name">秋水网</div>
-                    <div class="desc">简单易用的导航网站</div>
-                </div>
-            </a>
-
-            <!--15 爱达杂货铺 -->
-            <a href="https://adzhp.cc/" class="card" target="_blank">
-                <div class="icon">
-                    <img src="https://cwys.qzz.io/icons/%E6%9D%82%E8%B4%A7%E9%93%BA.png" alt="爱达杂货铺">
-                </div>
-                <div class="content">
-                    <div class="name">爱达杂货铺</div>
-                    <div class="desc">收集那些有用的东西</div>
-                </div>
-            </a>
-
-            <!--16 直播源搜索引擎 -->
-            <a href="http://www.foodieguide.com/iptvsearch/?s=" class="card" target="_blank">
-                <div class="icon">
-                    <img src="https://cwys.qzz.io/icons/%E7%9B%B4%E6%92%AD%E6%90%9C%E7%B4%A2.png" alt="直播源搜索引擎">
-                </div>
-                <div class="content">
-                    <div class="name">直播源搜索引擎</div>
-                    <div class="desc">国内外电视直播源搜索, m3u8、flv、rtsp......</div>
-                </div>
-            </a>
-
-            <!--17 直播源格式转换 -->
-            <a href="https://sankei.mo/z.html" class="card" target="_blank">
-                <div class="icon">
-                    <img src="https://cwys.qzz.io/icons/%E8%A7%86%E9%A2%91%E7%9B%B4%E6%92%AD.png" alt="直播源格式转换">
-                </div>
-                <div class="content">
-                    <div class="name">直播源格式转换</div>
-                    <div class="desc">直播源格式在线转换工具</div>
-                </div>
-            </a>
-
-            <!--18 阿里图标 -->
-            <a href="https://www.iconfont.cn/" class="card" target="_blank">
-                <div class="icon">
-                    <img src="https://cwys.qzz.io/icons/矢量.png" alt="阿里图标">
-                </div>
-                <div class="content">
-                    <div class="name">阿里图标</div>
-                    <div class="desc">图标大全</div>
-                </div>
-            </a>
-
-             <!--19 影视仓 -->
-            <a href="https://pan.quark.cn/s/0c47dfe3a371#/list/share/c1ac3b5d9d0440b591e5984af370e593" class="card" target="_blank">
-                <div class="icon">
-                    <img src="https://cwys.qzz.io/icons/%E5%BD%B1%E8%A7%86%E4%BB%93.png" alt="影视仓">
-                </div>
-                <div class="content">
-                    <div class="name">影视仓</div>
-                    <div class="desc">影视仓下载</div>
-                </div>
-            </a>
-
-             <!--20 接口解密 -->
-            <a href="https://www.qiushui.vip/gj/jiemi/" class="card" target="_blank">
-                <div class="icon">
-                    <img src="https://cwys.qzz.io/icons/加密解密.png" alt="接口解密">
-                </div>
-                <div class="content">
-                    <div class="name">接口解密</div>
-                    <div class="desc">全能接口解密</div>
-                </div>
-            </a>
-
-        </div>
-    </div>
-
-    <!-- 动态粒子背景的JS代码 -->
-    <script>
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext('2d');
-        let width, height;
-        let lines = [];
-        const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dfe6e9', '#fd79a8', '#a29bfe', '#81ecec', '#55efc4'];
-
-        function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        }
-
-        class Line {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = height;
-                this.speed = 2 + Math.random() * 4;
-                this.angle = -Math.PI / 2 + (Math.random() - 0.5) * 0.8;
-                this.color = colors[Math.floor(Math.random() * colors.length)];
-                this.width = 2 + Math.random() * 2;
-                this.length = 50 + Math.random() * 100;
-            }
-
-            update() {
-                this.x += Math.cos(this.angle) * this.speed;
-                this.y += Math.sin(this.angle) * this.speed;
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.moveTo(this.x, this.y);
-                ctx.lineTo(
-                    this.x + Math.cos(this.angle) * this.length,
-                    this.y + Math.sin(this.angle) * this.length
-                );
-                ctx.strokeStyle = this.color;
-                ctx.lineWidth = this.width;
-                ctx.globalAlpha = 0.7;
-                ctx.stroke();
-                ctx.globalAlpha = 1;
-            }
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
-            
-            if(Math.random() < 0.5) {
-                lines.push(new Line());
-            }
-
-            lines = lines.filter(line => {
-                line.update();
-                line.draw();
-                return line.y > -line.length;
-            });
-
-            requestAnimationFrame(animate);
-        }
-
-        // 接口点击复制功能
-        document.querySelectorAll('.api-item').forEach(item => {
-            item.addEventListener('click', function() {
-                const text = this.getAttribute('data-copy');
-                navigator.clipboard.writeText(text).then(() => {
-                    alert('接口链接复制成功！');
-                }).catch(err => {
-                    console.error('复制失败:', err);
-                });
-            });
-        });
-
-        window.addEventListener('resize', resize);
-        resize();
-        animate();
-    </script>
+// 复制接口功能，把引号内替换成你的真实接口链接
+function copyLink(url){
+  navigator.clipboard.writeText(url).then(()=>alert("复制成功："+url))
+}
+</script>
 </body>
 </html>
