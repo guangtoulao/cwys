@@ -4,138 +4,126 @@
 <meta charset="UTF-8">
 <title>空壳接口导航</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
-/* ========== 全局页面 边距调整区【改这里控制整体上下左右留白】 ========== */
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui, sans-serif;}
+/* ========== 全局页面 调整区【整体背景、页面上下左右留白】 ========== */
 body{
     background:#f7f8fa;
     min-height:100vh;
-    padding: 30px 15px; /* 页面上下内边距 | 页面左右内边距 */
+    padding:40px 20px; /* 页面上下留白 | 页面左右留白 */
+    max-width:1100px;   /* 页面整体最大宽度，不会无限拉宽 */
+    margin:0 auto;      /* 页面整体居中 */
 }
 
-/* 搜索框模块 放在页面最顶部 */
+/* ========== 顶部搜索框模块（和截图完全一致布局）调整区 ========== */
 .search-wrap{
-    width:min(94%, 1000px);/* 搜索框最大宽度 */
-    margin:0 auto;
-    background:#fff;
-    border-radius:10px;
+    background:#ffffff;
+    border-radius:12px; /* 搜索框整体圆角大小 */
     display:flex;
     align-items:center;
-    /* ========== 搜索框内边距、底部间距【调整区】 ========== */
-    padding: 10px 14px;  /* 搜索框上下内边距 | 左右内边距 */
-    margin-bottom: 30px; /* 搜索框和标题的距离 */
-    box-shadow:0 1px 4px #e0e0e0;
+    padding:12px 16px;  /* 搜索框上下内边距 | 左右内边距 */
+    gap:10px;           /* 下拉、输入框、按钮之间空隙 */
+    margin-bottom:40px; /* 搜索框和下方标题距离 */
+    box-shadow:0 1px 3px #eee;
 }
 .search-select{
     border:none;
     background:transparent;
-    /* ========== 搜索引擎下拉文字大小【调整区】 ========== */
-    font-size: 15px;
-    padding:0 6px;
-    color:#333
+    font-size:16px;     /* 搜索引擎文字大小 */
+    color:#333;
+    padding:4px 6px;
 }
 .search-input{
-    flex:1;
+    flex:1; /* 输入框自动占满中间剩余宽度 */
     border:none;
-    background:transparent;
     outline:none;
-    /* ========== 搜索输入框文字大小【调整区】 ========== */
-    padding: 9px 10px;
-    font-size: 17px;
+    font-size:16px;     /* 输入框文字大小 */
+    padding:6px 8px;
+    background:transparent;
 }
 .search-btn{
-    border:none;
     background:#3483eb;
     color:#fff;
-    border-radius:7px;
+    border:none;
+    border-radius:8px;  /* 蓝色搜索按钮圆角 */
+    font-size:15px;
+    padding:8px 22px;   /* 按钮上下高度 | 按钮左右宽度 */
     cursor:pointer;
-    /* ========== 搜索按钮尺寸【调整区】 ========== */
-    padding: 9px 20px; /* 按钮上下 | 按钮左右宽度 */
-    font-size: 15px;
 }
 
-/* 标题区域（搜索框下方） */
+/* ========== 标题区域 调整区 ========== */
 .page-title{
     text-align:center;
+    font-size:42px;     /* 大标题字号 */
     color:#222;
-    /* ========== 标题大小、上下间距【调整区】 ========== */
-    font-size: 36px;    /* 标题文字大小 */
-    margin-bottom: 12px;/* 标题和描述的距离 */
-    font-weight:bold
+    font-weight:bold;
+    margin-bottom:10px;  /* 标题和说明文字间距 */
 }
 .page-desc{
     text-align:center;
+    font-size:17px;     /* 小字说明字号 */
     color:#666;
-    /* ========== 描述文字大小、底部间距【调整区】 ========== */
-    font-size: 16px;    /* 说明文字大小 */
-    margin-bottom: 35px;/* 描述和图标网格的距离 */
+    margin-bottom:45px; /* 说明文字和图标区域间距 */
 }
 
-/* 图标网格区域（核心，仿趣主页多列图标） */
+/* ========== 图标导航网格（横向均匀铺开）调整区 ========== */
 .nav-grid{
-    width:min(94%, 1000px);
-    margin:0 auto;
     display:grid;
-    /* ========== 图标网格列宽、图标之间间距【调整区】 ========== */
-    grid-template-columns: repeat(auto-fill, minmax(82px, 1fr)); /* 单个图标格子最小宽度 */
-    gap: 14px; /* 图标横向、纵向间距大小 */
-    margin-bottom: 25px; /* 图标网格和底部分类栏距离 */
+    grid-template-columns: repeat(auto-fit, minmax(95px, 1fr)); /* 单个图标卡片最小宽度 */
+    gap:18px;           /* 图标横向、纵向间距大小 */
+    margin-bottom:35px; /* 图标和底部分类栏距离 */
 }
 .nav-item{
-    background:#ffffff;
-    border-radius:9px;
-    padding:10px 4px;
+    background:#fff;
+    border-radius:10px; /* 单个图标卡片圆角 */
+    padding:14px 6px;
     text-align:center;
     cursor:pointer;
-    transition:0.18s;
-    box-shadow:0 1px 3px #e5e5e5;
+    box-shadow:0 1px 3px #eee;
+    transition:0.2s;
 }
-.nav-item:hover{transform:translateY(-2px);box-shadow:0 3px 8px #ddd}
+.nav-item:hover{transform:translateY(-3px);box-shadow:0 4px 10px #e0e0e0;}
 .nav-icon{
-    border-radius:7px;
-    margin:0 auto 7px;
+    width:52px;         /* 彩色方块宽度 */
+    height:52px;        /* 彩色方块高度 */
+    border-radius:8px;
+    margin:0 auto 9px;
     display:flex;
     align-items:center;
     justify-content:center;
     color:#fff;
+    font-size:22px;     /* 方块内文字大小 */
     font-weight:bold;
-    /* ========== 图标方块尺寸、文字大小【调整区】 ========== */
-    width:46px;  /* 图标方块宽度 */
-    height:46px; /* 图标方块高度 */
-    font-size: 19px; /* 图标内文字大小 */
 }
 .nav-name{
+    font-size:14px;     /* 图标下方文字大小 */
     color:#333;
-    /* ========== 图标下方文字大小【调整区】 ========== */
-    font-size:13px;
 }
 
-/* 底部分类标签栏 */
+/* ========== 底部分类标签栏（通栏长条）调整区 ========== */
 .tab-wrap{
-    width:min(94%, 1000px);
-    margin:0 auto;
     background:#fff;
-    border-radius:9px;
-    padding:11px;
-    box-shadow:0 1px 3px #e5e5e5;
+    border-radius:10px; /* 底部整栏圆角 */
+    padding:12px 16px;  /* 分类栏上下、左右内边距 */
 }
 .tab-list{
     display:flex;
-    gap:9px;/* 标签之间间距 */
-    flex-wrap:wrap
+    gap:12px;           /* 各个分类标签之间空隙 */
 }
 .tab-item{
+    padding:6px 16px;   /* 单个标签内边距（胖瘦） */
+    border-radius:6px;  /* 标签圆角 */
+    font-size:15px;     /* 标签文字大小 */
     color:#555;
-    border-radius:6px;
     cursor:pointer;
-    /* ========== 分类标签内边距、文字大小【调整区】 ========== */
-    padding:5px 13px;
-    font-size:14px;
 }
-.tab-item.active{background:#f24c7c;color:#fff}
+.tab-item.active{
+    background:#f24c7c; /* 激活标签玫红色背景 */
+    color:#fff;
+}
 </style>
 </head>
 <body>
-<!-- 【最顶部：搜索框】和趣主页完全一致的顺序 -->
+<!-- 1. 页面最顶部：搜索框 -->
 <div class="search-wrap">
   <select class="search-select" id="engineSel">
     <option value="baidu">百度</option>
@@ -145,14 +133,14 @@ body{
   <button class="search-btn" onclick="doSearch()">搜索</button>
 </div>
 
-<!-- 搜索框下方：标题+说明文字 -->
+<!-- 2. 标题+说明 -->
 <div class="page-title">空壳 接口</div>
 <div class="page-desc">点击图标自动复制对应接口链接</div>
 
-<!-- 图标导航网格 -->
+<!-- 3. 9个接口图标（保留全部原版，彩色方块和截图一一对应） -->
 <div class="nav-grid">
   <div class="nav-item" onclick="copyLink('饭太硬接口地址')">
-    <div class="nav-icon" style="background:#0099ff">饭</div>
+    <div class="nav-icon" style="background:#0088ff">饭</div>
     <div class="nav-name">饭太硬</div>
   </div>
   <div class="nav-item" onclick="copyLink('君子兰接口地址')">
@@ -189,7 +177,7 @@ body{
   </div>
 </div>
 
-<!-- 底部分类标签 -->
+<!-- 4. 底部分类标签栏 -->
 <div class="tab-wrap">
   <div class="tab-list">
     <div class="tab-item active">影视接口</div>
@@ -201,7 +189,7 @@ body{
 </div>
 
 <script>
-// 搜索功能
+// 搜索功能（回车/点击按钮均可搜索）
 function doSearch(){
   let kw = document.getElementById("kwInput").value.trim();
   let eng = document.getElementById("engineSel").value;
@@ -213,9 +201,11 @@ function doSearch(){
 }
 document.getElementById("kwInput").addEventListener("keydown",e=>e.key==="Enter"&&doSearch())
 
-// 复制接口功能，把引号内替换成你的真实接口链接
+// 复制接口功能（替换引号内为你的真实接口链接即可恢复之前复制功能）
 function copyLink(url){
-  navigator.clipboard.writeText(url).then(()=>alert("复制成功："+url))
+  navigator.clipboard.writeText(url).then(()=>{
+    alert("复制成功："+url);
+  })
 }
 </script>
 </body>
