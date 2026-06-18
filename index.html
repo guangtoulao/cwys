@@ -62,15 +62,41 @@ body{
     text-align:center;
     font-size:17px;     /* 小字说明字号 */
     color:#666;
-    margin-bottom:45px; /* 说明文字和图标区域间距 */
+    margin-bottom:30px; /* 说明文字和顶部分类栏间距 */
+}
+
+/* ========== 顶部横向分类标签（仿趣主页顶部大分类）调整区 ========== */
+.top-tab-wrap{
+    margin-bottom:35px; /* 顶部标签和图标区域距离 */
+    display:flex;
+    gap:12px;           /* 顶部各个大分类之间空隙 */
+    overflow-x:auto;    /* 手机横向滚动不挤坏 */
+    padding-bottom:6px;
+}
+.top-tab-item{
+    padding:8px 18px;   /* 顶部标签胖瘦 */
+    border-radius:8px;
+    font-size:16px;
+    color:#555;
+    cursor:pointer;
+    white-space:nowrap;
+}
+.top-tab-item.active{
+    background:#fff;
+    color:#222;
+    box-shadow:0 1px 3px #eee;
+    border-bottom:3px solid #32c870; /* 激活底部绿线，和截图AI助手一致 */
 }
 
 /* ========== 图标导航网格（横向均匀铺开）调整区 ========== */
 .nav-grid{
-    display:grid;
+    display:none; /* 默认隐藏，JS控制显示对应分类 */
     grid-template-columns: repeat(auto-fit, minmax(95px, 1fr)); /* 单个图标卡片最小宽度 */
     gap:18px;           /* 图标横向、纵向间距大小 */
     margin-bottom:35px; /* 图标和底部分类栏距离 */
+}
+.nav-grid.show{
+    display:grid;
 }
 .nav-item{
     background:#fff;
@@ -100,23 +126,23 @@ body{
 }
 
 /* ========== 底部分类标签栏（通栏长条）调整区 ========== */
-.tab-wrap{
+.bottom-tab-wrap{
     background:#fff;
     border-radius:10px; /* 底部整栏圆角 */
     padding:12px 16px;  /* 分类栏上下、左右内边距 */
 }
-.tab-list{
+.bottom-tab-list{
     display:flex;
     gap:12px;           /* 各个分类标签之间空隙 */
 }
-.tab-item{
+.bottom-tab-item{
     padding:6px 16px;   /* 单个标签内边距（胖瘦） */
     border-radius:6px;  /* 标签圆角 */
     font-size:15px;     /* 标签文字大小 */
     color:#555;
     cursor:pointer;
 }
-.tab-item.active{
+.bottom-tab-item.active{
     background:#f24c7c; /* 激活标签玫红色背景 */
     color:#fff;
 }
@@ -137,8 +163,18 @@ body{
 <div class="page-title">空壳 接口</div>
 <div class="page-desc">点击图标自动复制对应接口链接</div>
 
-<!-- 3. 9个接口图标（保留全部原版，彩色方块和截图一一对应） -->
-<div class="nav-grid">
+<!-- 【新增：顶部横向大分类（和你截图休闲/AI助手布局完全一样）】 -->
+<div class="top-tab-wrap">
+  <div class="top-tab-item" data-tab="video">影视接口</div>
+  <div class="top-tab-item" data-tab="agg">聚合源</div>
+  <div class="top-tab-item" data-tab="live">直播源</div>
+  <div class="top-tab-item" data-tab="tool">工具</div>
+  <div class="top-tab-item" data-tab="set">设置</div>
+</div>
+
+<!-- 3. 多套图标网格，点击顶部分类自动切换显示 -->
+<!-- 分类1：影视接口（默认展示） -->
+<div class="nav-grid show" data-content="video">
   <div class="nav-item" onclick="copyLink('饭太硬接口地址')">
     <div class="nav-icon" style="background:#0088ff">饭</div>
     <div class="nav-name">饭太硬</div>
@@ -177,18 +213,81 @@ body{
   </div>
 </div>
 
-<!-- 4. 底部分类标签栏 -->
-<div class="tab-wrap">
-  <div class="tab-list">
-    <div class="tab-item active">影视接口</div>
-    <div class="tab-item">聚合源</div>
-    <div class="tab-item">直播源</div>
-    <div class="tab-item">工具</div>
-    <div class="tab-item">设置</div>
+<!-- 分类2：聚合源（点击顶部「聚合源」显示） -->
+<div class="nav-grid" data-content="agg">
+  <div class="nav-item" onclick="copyLink('聚合源1地址')">
+    <div class="nav-icon" style="background:#722ed1">聚</div>
+    <div class="nav-name">聚合一</div>
+  </div>
+  <div class="nav-item" onclick="copyLink('聚合源2地址')">
+    <div class="nav-icon" style="background:#13c2c2">合</div>
+    <div class="nav-name">聚合二</div>
+  </div>
+  <div class="nav-item" onclick="copyLink('聚合源3地址')">
+    <div class="nav-icon" style="background:#fa8c16">源</div>
+    <div class="nav-name">聚合三</div>
+  </div>
+</div>
+
+<!-- 分类3：直播源 -->
+<div class="nav-grid" data-content="live">
+  <div class="nav-item" onclick="copyLink('直播源1')">
+    <div class="nav-icon" style="background:#f5222d">直</div>
+    <div class="nav-name">央视直播</div>
+  </div>
+  <div class="nav-item" onclick="copyLink('直播源2')">
+    <div class="nav-icon" style="background:#52c41a">播</div>
+    <div class="nav-name">地方台</div>
+  </div>
+</div>
+
+<!-- 分类4：工具 -->
+<div class="nav-grid" data-content="tool">
+  <div class="nav-item" onclick="copyLink('工具链接1')">
+    <div class="nav-icon" style="background:#1890ff">工</div>
+    <div class="nav-name">解析工具</div>
+  </div>
+</div>
+
+<!-- 分类5：设置 -->
+<div class="nav-grid" data-content="set">
+  <div class="nav-item">
+    <div class="nav-icon" style="background:#8c8c8c">设</div>
+    <div class="nav-name">网站设置</div>
+  </div>
+</div>
+
+<!-- 底部静态标签栏（仅展示，不切换内容） -->
+<div class="bottom-tab-wrap">
+  <div class="bottom-tab-list">
+    <div class="bottom-tab-item active">影视接口</div>
+    <div class="bottom-tab-item">聚合源</div>
+    <div class="bottom-tab-item">直播源</div>
+    <div class="bottom-tab-item">工具</div>
+    <div class="bottom-tab-item">设置</div>
   </div>
 </div>
 
 <script>
+// ========== 顶部分类切换核心逻辑（实现你截图点击分类换图标效果） ==========
+const topTabs = document.querySelectorAll('.top-tab-item');
+const allContent = document.querySelectorAll('.nav-grid');
+// 默认激活第一个标签
+topTabs[0].classList.add('active');
+
+topTabs.forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    // 清除全部激活状态
+    topTabs.forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    // 隐藏所有图标区
+    allContent.forEach(block=>block.classList.remove('show'));
+    // 显示当前分类对应图标
+    const targetKey = tab.getAttribute('data-tab');
+    document.querySelector(`.nav-grid[data-content="${targetKey}"]`).classList.add('show');
+  })
+})
+
 // 搜索功能（回车/点击按钮均可搜索）
 function doSearch(){
   let kw = document.getElementById("kwInput").value.trim();
