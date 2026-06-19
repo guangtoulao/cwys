@@ -6,33 +6,33 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui, sans-serif;}
 body{
-    /* 全屏风景背景URL */
     background-image: url("https://cwys.qzz.io/icons/桌面.jpg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    padding:40px 20px;
-    min-height: 100vh;
+    padding:40px 20px; /* 页面整体边距：上下40px，左右20px，数值变大页面留白更大 */
+    min-height: 100vh; /* 页面最小高度，不用改 */
 }
 .box-wrap{
-    background:rgba(255,255,255,0.6); /*【可改】透明度/容器宽度 max-width */
+    background:rgba(255,255,255,0.6);
     border-radius:14px;
-    padding:24px;
-    margin-bottom:32px;
-    max-width:1100px;
+    padding:24px; /* 板块内边距：上下左右，数值变大板块内部留白更多 */
+    margin-bottom:32px; /* 板块下方外边距，控制板块之间垂直距离 */
+    max-width:1100px; /* 【改板块最大宽度】数值越大，整体页面越宽 */
     margin-left:auto;
     margin-right:auto;
 }
-/* 搜索框 */
+
+/* ====================== 搜索框 全部尺寸标注 ====================== */
 .search-wrap{
     display:flex;
     align-items:center;
-    padding:16px 20px; /*【可改】搜索框高度 */
-    gap:12px;
-    margin-bottom:40px;
+    padding:16px 20px; /* 【改搜索框高度+左右宽度】上下16px控制高度；左右20px控制横向宽度 */
+    gap:12px; /* 搜索框内文字和按钮之间的横向间距 */
+    margin-bottom:40px; /* 搜索框下方垂直外边距，控制和下方图标区域距离 */
     background:#f3f5f9;
-    border-radius:12px;
-    max-width:700px; /*【可改】搜索框宽度 */
+    border-radius:12px; /* 圆角大小，数值越大圆角越圆 */
+    max-width:700px; /* 【改搜索框整体宽度】数字越大搜索框越宽 */
     margin-left:auto;
     margin-right:auto;
 }
@@ -40,8 +40,8 @@ body{
     flex:1;
     border:none;
     outline:none;
-    font-size:16px; /*【可改】文字大小 */
-    padding:8px 10px;
+    font-size:16px; /* 【改输入文字大小】数字越大文字越大 */
+    padding:8px 10px; /* 输入框内上下高度、左右宽度 */
     background:transparent;
 }
 .search-btn{
@@ -49,48 +49,51 @@ body{
     color:#fff;
     border:none;
     border-radius:8px;
-    font-size:16px;
-    padding:9px 24px; /*【可改】按钮尺寸 */
+    font-size:16px; /* 【按钮文字大小】 */
+    padding:9px 24px; /* 【按钮高度9px / 按钮宽度24px】 */
     cursor:pointer;
 }
-/* 顶部网站图标网格 */
+
+/* ====================== 顶部图标网格 尺寸标注 ====================== */
 .icon-grid{
     display:grid;
+    /* minmax(单个格子最小宽度, 1fr)：80px 【改每个图标格子宽度】 */
     grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    gap:18px; /*【可改】图标间距 */
+    gap:18px; /* 图标格子之间 横向+纵向间距，数字变大格子间隙更大 */
 }
 .icon-card{
     text-align:center;
     cursor:pointer;
 }
 .icon-img{
-    width:48px;  /*【可改】图标宽高 */
-    height:48px;
+    width:48px;  /* 【图标图片宽度】 */
+    height:48px; /* 【图标图片高度】宽高一致为正方形 */
     border-radius:8px;
     object-fit:cover;
-    margin-bottom:8px;
+    margin-bottom:8px; /* 图片和下方文字的垂直距离 */
 }
 .icon-text{
-    font-size:13px; /*【可改】图标下方文字 */
+    font-size:13px; /* 【图标下方文字大小】 */
     color:#222;
-    line-height:1.3;
+    line-height:1.3; /* 文字行高，控制文字上下高度 */
 }
-/* 底部分类标签栏 */
+
+/* ====================== 分类标签栏 尺寸标注 ====================== */
 .tab-bar{
     display:flex;
-    gap:36px; /*【可改】标签间距 */
+    gap:36px; /* 标签之间横向间距 */
     border-bottom:1px solid #eee;
-    padding-bottom:12px;
-    margin-bottom:24px;
+    padding-bottom:12px; /* 标签底部内边距，控制标签和底线距离 */
+    margin-bottom:24px; /* 标签栏和下方接口区域垂直间距 */
     overflow-x:auto;
 }
 .tab-item{
     display:flex;
     align-items:center;
-    gap:6px;
-    font-size:18px; /*【可改】标签文字大小 */
+    gap:6px; /* 标签图标和文字横向间距 */
+    font-size:18px; /* 【标签文字大小】 */
     color:#555;
-    padding:8px 0;
+    padding:8px 0; /* 标签上下内边距，控制标签高度 */
     cursor:pointer;
     position:relative;
     white-space:nowrap;
@@ -100,55 +103,79 @@ body{
     position:absolute;
     left:0;
     bottom:-13px;
-    width:100%;
-    height:3px; /*【可改】下划线粗细 */
+    width:100%; /* 底线宽度铺满标签 */
+    height:3px; /* 【底线粗细高度】数字越大线条越粗 */
     background:#32c870;
 }
 .tab-item.active{
     color:#000;
 }
 .tab-icon{
-    font-size:20px;
+    font-size:20px; /* 标签图标尺寸 */
 }
-/* 分类卡片容器：和顶部网格宽度统一 */
+
+/* ====================== 接口容器网格 尺寸标注 ====================== */
 .category-icon-box{
     display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    gap:18px; /*【可改】底部卡片间距 和上方图标间距一致*/
+    gap:18px 12px; /* 第一个数字：行与行垂直间距；第二个：列与列横向间距 */
 }
-/* TVBOX复制接口卡片 保留原有样式不变 */
+.category-icon-box.tvbox-mode {
+    grid-template-columns: repeat(3, 1fr); /* 固定3列均分宽度，不用改 */
+}
+.category-icon-box.normal-mode {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap:18px;
+}
+
+/* ====================== 1.接口格子整体宽高修改处 ====================== */
 .api-item{
-    background:rgba(255,255,255,0.85);
-    border-radius:10px;
-    padding:16px 10px; /*【可改】卡片大小 */
     text-align:center;
     cursor:pointer;
+    /* padding:上下内边距(控制格子高度)  左右内边距(控制格子横向宽度) */
+    padding:16px 6px;
+    border-radius:12px; /* 格子圆角大小 */
+    transition: all 0.2s ease;
+    position:relative;
 }
+.api-item:hover{
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* ====================== 2.接口文字大小修改处 ====================== */
 .api-name{
-    font-size:15px; /*【可改】接口文字大小 */
-    margin-bottom:8px;
+    font-size:24px; /* 【接口文字整体大小】数字越大文字越大 */
+    margin-bottom:8px; /* 文字和下方彩色线条垂直距离 */
+    color:#111;
+    transition: color 0.2s ease;
 }
+.api-item:hover .api-name{
+    color:#ffffff;
+}
+
+/* ====================== 3.底部彩色线条修改处 ====================== */
 .api-line{
-    height:4px; /*【可改】彩色条粗细 */
-    border-radius:2px;
+    height:4px;    /* 【线条粗细高度】数字越大线条越粗 */
+    border-radius:99px;
+    display:inline-block;
+    width:65%;     /* 【线条长度宽度】百分比越小线条越短 */
 }
-/* 影视/购物/应用跳转卡片 完全复刻上方icon-card样式 */
+
+/* ====================== 影视购物小图标卡片 尺寸标注 ====================== */
 .link-card{
     text-align:center;
     cursor:pointer;
-    /* 删除原来白色背景大块填充，和顶部图标保持一致无背景 */
 }
 .link-card-img{
-    width:48px;  /*【可改】底部卡片图标尺寸 和顶部统一 */
-    height:48px;
+    width:48px;  /* 图片宽度 */
+    height:48px; /* 图片高度 */
     border-radius:8px;
     object-fit:cover;
-    margin-bottom:8px;
+    margin-bottom:8px; /* 图片与文字垂直间距 */
 }
 .link-card-text{
-    font-size:13px; /* 和顶部文字大小统一 */
+    font-size:13px; /* 文字大小 */
     color:#222;
-    line-height:1.3;
+    line-height:1.3; /* 文字行高（上下高度） */
 }
 </style>
 </head>
@@ -169,7 +196,7 @@ body{
             <div class="icon-text">软件社</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://www.jyshare.com/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/favicon-jyshare.com-1-100x100.png" alt="菜鸟工具">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/菜鸟.png" alt="菜鸟工具">
             <div class="icon-text">菜鸟工具</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://www.32r.com/zt/dgyjzzrj/')">
@@ -354,7 +381,7 @@ const groupData = {
         {name:"摸鱼", copy:"https://xn--ihqu10cn4c.xn--v4q818bf34b.top/", lineColor:"#f1c40f"},
         {name:"王二小", copy:"http://tvbox.xn--4kq62z5rby2qupq9ub.top/", lineColor:"#cddc39"},
         {name:"影视仓", copy:"http://影视仓.com/", lineColor:"#2ecc71"},
-        {name:"点播", copy:"https://xpb.mhfs.eu.org/ZJ/XPB/api.json", lineColor:"#bdc3c7"},
+        {name:"点播", copy:"https://xpb.mhfs.eu.org/ZJ/XPB/api.json", lineColor:"#949494"},
         {name:"宝盒", copy:"http://宝盒接口.top", lineColor:"#bdc3c7"}
     ],
     video: [
@@ -375,9 +402,13 @@ const groupData = {
     ]
 };
 
-// 修复渲染逻辑：用dataset存copy值，不传字符串参数避免undefined
 function renderCat(key){
     const wrap = document.getElementById("categoryWrap");
+    if(key === "tvbox"){
+        wrap.className = "category-icon-box tvbox-mode";
+    }else{
+        wrap.className = "category-icon-box normal-mode";
+    }
     const arr = groupData[key];
     if(arr.length === 0){
         wrap.innerHTML = "<div style='grid-column:1/-1;text-align:center;padding:30px;color:#666'>暂无内容</div>";
@@ -386,11 +417,10 @@ function renderCat(key){
     let html = "";
     if(key === "tvbox"){
         arr.forEach(item=>{
-            // 把copy地址存在data-copy，点击从dataset读取，彻底解决undefined
             html += `
-            <div class="api-item" data-copy="${item.copy}" onclick="copyText(this)">
+            <div class="api-item" data-copy="${item.copy}" data-fill="${item.lineColor}" onclick="copyText(this)" onmouseenter="fillColor(this)" onmouseleave="clearFill(this)">
                 <div class="api-name">${item.name}</div>
-                <div class="api-line" style="background: ${item.lineColor};"></div>
+                <span class="api-line" style="background: ${item.lineColor};"></span>
             </div>
             `;
         })
@@ -406,8 +436,15 @@ function renderCat(key){
     }
     wrap.innerHTML = html;
 }
+// 悬浮填充当前条目对应彩色（不再灰色）
+function fillColor(el){
+    const c = el.dataset.fill;
+    el.style.background = c;
+}
+function clearFill(el){
+    el.style.background = "transparent";
+}
 
-// 复制函数：从dom节点dataset拿地址，不会undefined
 function copyText(el){
     const text = el.dataset.copy;
     navigator.clipboard.writeText(text).then(()=>{
@@ -417,13 +454,11 @@ function copyText(el){
     })
 }
 
-// 新开页面跳转
 function openUrl(url){
     if(!url) return;
     window.open(url,"_blank");
 }
 
-// 切换标签
 const tabs = document.querySelectorAll(".tab-item");
 tabs.forEach(t=>{
     t.onclick = ()=>{
@@ -434,7 +469,6 @@ tabs.forEach(t=>{
 })
 renderCat("tvbox");
 
-// 顶部搜索
 function search(){
     let val = document.getElementById("kw").value.trim();
     if(!val) return alert("请输入关键词");
