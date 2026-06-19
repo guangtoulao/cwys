@@ -57,6 +57,14 @@
       "ext": "./lib/优酷视频.js"
     },
     {
+      "key": "Guazi",
+      "name": "葵花｜视频",
+      "type": 3,
+      "api": "csp_Guazi",
+      "searchable": 1,
+      "jar": "https://tc-new.z.wiki/autoupload/iYHTWVx6T8RrCmqdGD6MOdiO_OyvX7mIgxFBfDMDErs/20260614/Y9Sl/fish06140630.jar"
+    },
+    {
       "key": "瓜子影视",
       "name": "瓜子｜影视",
       "type": 3,
