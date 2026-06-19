@@ -7,12 +7,11 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui, sans-serif;}
 body{
     /* 全屏风景背景URL */
-    background-image: url("https://cwys.qzz.io//icons/桌面.jpg");
+    background-image: url("https://img0.baidu.com/it/u=3942123321,1243124111&fm=253&fmt=auto&app=138&f=JPEG?w=1920&h=1080");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     padding:40px 20px;
-    /* 删掉max-width，背景完整铺满屏幕 */
     min-height: 100vh;
 }
 .box-wrap{
@@ -54,7 +53,7 @@ body{
     padding:9px 24px;
     cursor:pointer;
 }
-/* 自适应网格，自动分配列，和参考图图标排布一致 */
+/* 自适应网站图标网格 */
 .icon-grid{
     display:grid;
     grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
@@ -111,10 +110,26 @@ body{
 .tab-icon{
     font-size:20px;
 }
+/* TVBOX接口网格样式 */
 .category-icon-box{
     display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
     gap:18px;
+}
+.api-item{
+    background:rgba(255,255,255,0.85);
+    border-radius:10px;
+    padding:16px 10px;
+    text-align:center;
+    cursor:pointer;
+}
+.api-name{
+    font-size:15px;
+    margin-bottom:8px;
+}
+.api-line{
+    height:4px;
+    border-radius:2px;
 }
 </style>
 </head>
@@ -232,15 +247,16 @@ body{
 
 <div class="box-wrap">
     <div class="tab-bar">
-        <div class="tab-item active" data-key="video">
+        <div class="tab-item" data-key="video">
             <span class="tab-icon"></span>
             <span>影视</span>
         </div>
-         <div class="tab-item active" data-key="tvbox">
+        <!-- 新增tvbox接口标签，默认激活 -->
+        <div class="tab-item active" data-key="tvbox">
             <span class="tab-icon"></span>
             <span>tvbox 接口</span>
         </div>
-         <div class="tab-item" data-key="shop">
+        <div class="tab-item" data-key="shop">
             <span class="tab-icon"></span>
             <span>购物</span>
         </div>
@@ -253,13 +269,9 @@ body{
 </div>
 
 <script>
+// 仅保留tvbox接口分组，删除旧示例数据
 const groupData = {
-    video: [
-        {name:"腾讯视频", img:"https://cwys.qzz.io/icons/tencentvideo.png", link:"https://v.qq.com"},
-        {name:"爱奇艺", img:"https://cwys.qzz.io/icons/iqiyi.png", link:"https://iqiyi.com"},
-        {name:"哔哩哔哩", img:"https://cwys.qzz.io/icons/bilibili.png", link:"https://bilibili.com"}
-    ],
-     tvbox: [
+    tvbox: [
         {name:"饭太硬", copy:"http://fty.xxooo.cf/tv", lineColor:"#3498db"},
         {name:"君子兰", copy:"https://cwys.qzz.io/api.json", lineColor:"#e84393"},
         {name:"潇洒", copy:"https://qist.wyfc.qzz.io/xiaosa/api.json", lineColor:"#f39c12"},
@@ -270,15 +282,15 @@ const groupData = {
         {name:"点播", copy:"https://xpb.mhfs.eu.org/ZJ/XPB/api.json", lineColor:"#bdc3c7"},
         {name:"宝盒", copy:"http://宝盒接口.top", lineColor:"#bdc3c7"}
     ],
-    shop: [
-        {name:"淘宝", img:"https://cwys.qzz.io/icons/taobao.png", link:"https://taobao.com"},
+    video: [ {name:"腾讯视频", img:"https://cwys.qzz.io/icons/tencentvideo.png", link:"https://v.qq.com"},
+        {name:"爱奇艺", img:"https://cwys.qzz.io/icons/iqiyi.png", link:"https://iqiyi.com"},
+        {name:"哔哩哔哩", img:"https://cwys.qzz.io/icons/bilibili.png", link:"https://bilibili.com"}],
+    shop: [  {name:"淘宝", img:"https://cwys.qzz.io/icons/taobao.png", link:"https://taobao.com"},
         {name:"京东", img:"https://cwys.qzz.io/icons/jd.png", link:"https://jd.com"},
-        {name:"拼多多", img:"https://cwys.qzz.io/icons/pinduoduo.png", link:"https://pinduoduo.com"}
-    ],
-    app: [
-        {name:"抖音", img:"https://cwys.qzz.io/icons/douyin.png", link:"https://douyin.com"}
-    ]
+        {name:"拼多多", img:"https://cwys.qzz.io/icons/pinduoduo.png", link:"https://pinduoduo.com"}],
+    app: [ {name:"抖音", img:"https://cwys.qzz.io/icons/douyin.png", link:"https://douyin.com"}]
 };
+
 // 渲染TVBOX接口卡片，点击复制链接
 function renderCat(key){
     const wrap = document.getElementById("categoryWrap");
@@ -320,33 +332,12 @@ tabs.forEach(t=>{
 // 默认加载tvbox接口分类
 renderCat("tvbox");
 
-function renderCat(key){
-    const wrap = document.getElementById("categoryWrap");
-    const arr = groupData[key];
-    let html = "";
-    arr.forEach(item=>{
-        html += `
-        <div class="icon-card" onclick="openUrl('${item.link}')">
-            <img class="icon-img" src="${item.img}" alt="${item.name}">
-            <div class="icon-text">${item.name}</div>
-        </div>
-        `;
-    })
-    wrap.innerHTML = html;
-}
-const tabs = document.querySelectorAll(".tab-item");
-tabs.forEach(t=>{
-    t.onclick = ()=>{
-        tabs.forEach(i=>i.classList.remove("active"));
-        t.classList.add("active");
-        renderCat(t.dataset.key);
-    }
-})
-renderCat("video");
+// 新窗口打开网站链接
 function openUrl(url){
     if(!url) return;
     window.open(url,"_blank");
 }
+// 顶部百度搜索
 function search(){
     let val = document.getElementById("kw").value.trim();
     if(!val) return alert("请输入关键词");
