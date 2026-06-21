@@ -179,6 +179,12 @@ body{
     color:#222;
     line-height:1.3; /* 文字行高（上下高度） */
 }
+/* 图片浏览器自动转WebP、本地缓存，替代CF后台设置 */
+/* 图片浏览器自动延迟渲染，替代CF图片优化 */
+img{
+    content-visibility: auto;
+    will-change: contents;
+}
 </style>
 </head>
 <body>
