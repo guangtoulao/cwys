@@ -65,11 +65,12 @@ body{
     text-align:center;
     cursor:pointer;
 }
+/* 【修改点1：全局统一顶部图标尺寸，不用每行写style】 */
 .icon-img{
-    width:48px;  /* 【图标图片宽度】 */
-    height:48px; /* 【图标图片高度】宽高一致为正方形 */
+    width:64px;  
+    height:64px; 
     border-radius:8px;
-    object-fit:cover;
+    object-fit:contain; /* 图标不变形、居中适配方框 */
     margin-bottom:8px; /* 图片和下方文字的垂直距离 */
 }
 .icon-text{
@@ -165,11 +166,12 @@ body{
     text-align:center;
     cursor:pointer;
 }
+/* 【修改点2：全局统一下方分类图标尺寸】 */
 .link-card-img{
-    width:48px;  /* 图片宽度 */
-    height:48px; /* 图片高度 */
+    width:64px;  
+    height:64px; 
     border-radius:8px;
-    object-fit:cover;
+    object-fit:contain; /* 图标不变形居中 */
     margin-bottom:8px; /* 图片与文字垂直间距 */
 }
 .link-card-text{
@@ -187,164 +189,165 @@ body{
         <button class="search-btn" onclick="search()">搜索</button>
     </div>
     <div class="icon-grid">
+        <!-- 【修改点3：删除所有img重复style，CSS统一控制，仅保留懒加载】 -->
         <div class="icon-card" onclick="openUrl('http://m.wmsio.cn')">
-            <img class="icon-img" src="https://raw.giteeusercontent.com/lan88888/lan/raw/master/icons/%E7%9B%92%E5%AD%90.png" alt="盒子地窖">
+            <img class="icon-img" src="https://raw.giteeusercontent.com/lan88888/lan/raw/master/icons/%E7%9B%92%E5%AD%90.png" alt="盒子地窖" loading="lazy">
             <div class="icon-text">盒子地窖</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://www.rjshe.com/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/android.png" alt="软件社">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/android.png" alt="软件社" loading="lazy">
             <div class="icon-text">软件社</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://www.jyshare.com/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/菜鸟.png" alt="菜鸟工具">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/菜鸟.png" alt="菜鸟工具" loading="lazy">
             <div class="icon-text">菜鸟工具</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://www.32r.com/zt/dgyjzzrj/')">
-            <img class="icon-img" src="https://raw.giteeusercontent.com/lan88888/lan/raw/master/icons/ps_rounded.png" alt="ps绿色">
+            <img class="icon-img" src="https://raw.giteeusercontent.com/lan88888/lan/raw/master/icons/ps_rounded.png" alt="ps绿色" loading="lazy">
             <div class="icon-text">ps绿色</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://www.msn.cn/zh-cn/gaming/ai')">
-            <img class="icon-img" src="https://raw.giteeusercontent.com/lan88888/lan/raw/master/icons/Ai_rounded.png" alt="Ai大全">
+            <img class="icon-img" src="https://raw.giteeusercontent.com/lan88888/lan/raw/master/icons/Ai_rounded.png" alt="Ai大全" loading="lazy">
             <div class="icon-text">Ai大全</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://kstore.cc')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/凯速.png" alt="凯速 kstore">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/凯速.png" alt="凯速 kstore" loading="lazy">
             <div class="icon-text"> 凯速 kstore</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://dash.cloudflare.com/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/cf.png" alt="域名托管">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/cf.png" alt="域名托管" loading="lazy">
             <div class="icon-text">域名托管</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://dash.domain.digitalplat.org/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/球.png" alt="域名申请">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/球.png" alt="域名申请" loading="lazy">
             <div class="icon-text">域名申请</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://www.lddgo.net/base/class')">
-            <img class="icon-img" src="https://raw.giteeusercontent.com/lan88888/lan/raw/master/icons/%E5%9C%A8%E7%BA%BF_rounded.png" alt="在线工具">
+            <img class="icon-img" src="https://raw.giteeusercontent.com/lan88888/lan/raw/master/icons/%E5%9C%A8%E7%BA%BF_rounded.png" alt="在线工具" loading="lazy">
             <div class="icon-text">在线工具</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://xiaomark.com/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/太短.png" alt="太短">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/太短.png" alt="太短" loading="lazy">
             <div class="icon-text">太短</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://z.qiqiv.cn/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/地球.png" alt="太能编">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/地球.png" alt="太能编" loading="lazy">
             <div class="icon-text">太能编</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://tv.cctv.com/live/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/%E6%92%AD%E6%94%BE%E5%99%A8-%E6%92%AD%E6%94%BE.png" alt="央视直播">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/%E6%92%AD%E6%94%BE%E5%99%A8-%E6%92%AD%E6%94%BE.png" alt="央视直播" loading="lazy">
             <div class="icon-text">央视直播</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://www.qiushui.vip/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/秋水.png" alt="秋水网">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/秋水.png" alt="秋水网" loading="lazy">
             <div class="icon-text">秋水网</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://adzhp.cc/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/爱达.png" alt="爱达杂货铺">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/爱达.png" alt="爱达杂货铺" loading="lazy">
             <div class="icon-text">爱达杂货铺</div>
         </div>
         <div class="icon-card" onclick="openUrl('http://www.foodieguide.com/iptvsearch/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/直播搜索.png" alt="直播源搜索引擎">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/直播搜索.png" alt="直播源搜索引擎" loading="lazy">
             <div class="icon-text">直播源搜索引擎</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://www.iconfont.cn/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/矢量.png" alt="阿里图标">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/矢量.png" alt="阿里图标" loading="lazy">
             <div class="icon-text">阿里图标</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://taobao.com/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/淘宝.png" alt="淘宝">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/淘宝.png" alt="淘宝" loading="lazy">
             <div class="icon-text">淘宝</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://jd.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/京东-01.png" alt="京东商城">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/京东-01.png" alt="京东商城" loading="lazy">
             <div class="icon-text">京东商城</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://ctrip.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/携程.png" alt="携程">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/携程.png" alt="携程" loading="lazy">
             <div class="icon-text">携程</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://weibo.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/微博.png" alt="微博">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/微博.png" alt="微博" loading="lazy">
             <div class="icon-text">微博</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://www.douban.com/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/豆瓣.png" alt="豆瓣">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/豆瓣.png" alt="豆瓣" loading="lazy">
             <div class="icon-text">豆瓣</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://www.kuaidi100.com/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/快递.png" alt="快递100">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/快递.png" alt="快递100" loading="lazy">
             <div class="icon-text">快递100</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://vip.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/唯品会.png" alt="唯品会">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/唯品会.png" alt="唯品会" loading="lazy">
             <div class="icon-text">唯品会</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://bilibili.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/哔哩哔哩.png" alt="哔哩哔哩">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/哔哩哔哩.png" alt="哔哩哔哩" loading="lazy">
             <div class="icon-text">哔哩哔哩</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://youku.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/优酷.png" alt="优酷">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/优酷.png" alt="优酷" loading="lazy">
             <div class="icon-text">优酷</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://douyin.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/抖音.png" alt="抖音">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/抖音.png" alt="抖音" loading="lazy">
             <div class="icon-text">抖音</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://amap.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/高德地图.png" alt="高德地图">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/高德地图.png" alt="高德地图" loading="lazy">
             <div class="icon-text">高德地图</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://qzone.qq.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/qq.png" alt="QQ空间">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/qq.png" alt="QQ空间" loading="lazy">
             <div class="icon-text">QQ空间</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://kugou.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/酷狗.png" alt="酷狗音乐">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/酷狗.png" alt="酷狗音乐" loading="lazy">
             <div class="icon-text">酷狗音乐</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://y.qq.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/QQ音乐.png" alt="QQ音乐">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/QQ音乐.png" alt="QQ音乐" loading="lazy">
             <div class="icon-text">QQ音乐</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://ximalaya.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/喜马拉雅.png" alt="喜马拉雅">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/喜马拉雅.png" alt="喜马拉雅" loading="lazy">
             <div class="icon-text">喜马拉雅</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://xiaohongshu.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/小红书.png" alt="小红书">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/小红书.png" alt="小红书" loading="lazy">
             <div class="icon-text">小红书</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://mail.163.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/163邮箱.png" alt="163邮箱">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/163邮箱.png" alt="163邮箱" loading="lazy">
             <div class="icon-text">163邮箱</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://www.toutiao.com/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/首页优化_热点.png" alt="今日头条">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/首页优化_热点.png" alt="今日头条" loading="lazy">
             <div class="icon-text">今日头条</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://pan.baidu.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/百度网盘.png" alt="百度网盘">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/百度网盘.png" alt="百度网盘" loading="lazy">
             <div class="icon-text">百度网盘</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://www.alipan.com/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/夸克网盘.png" alt="阿里云盘">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/夸克网盘.png" alt="阿里云盘" loading="lazy">
             <div class="icon-text">阿里云盘</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://fanyi.baidu.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/fan.png" alt="百度翻译">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/fan.png" alt="百度翻译" loading="lazy">
             <div class="icon-text">百度翻译</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://dongchedi.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/懂车帝.png" alt="懂车帝">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/懂车帝.png" alt="懂车帝" loading="lazy">
             <div class="icon-text">懂车帝</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://tianyancha.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/天眼查.png" alt="天眼查">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/天眼查.png" alt="天眼查" loading="lazy">
             <div class="icon-text">天眼查</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://4399.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/小游戏.png" alt="4399小游戏">
+            <img class="icon-img" src="https://cwys.qzz.io/icons/小游戏.png" alt="4399小游戏" loading="lazy">
             <div class="icon-text">4399小游戏</div>
         </div>
     </div>
@@ -425,10 +428,11 @@ function renderCat(key){
             `;
         })
     }else{
+        // 【修改点4：JS渲染图片时统一加上 loading="lazy"，所有分类图标开启懒加载】
         arr.forEach(item=>{
             html += `
             <div class="link-card" onclick="openUrl('${item.link}')">
-                <img class="link-card-img" src="${item.img}" alt="${item.name}">
+                <img class="link-card-img" src="${item.img}" alt="${item.name}" loading="lazy">
                 <div class="link-card-text">${item.name}</div>
             </div>
             `;
