@@ -184,6 +184,8 @@ body{
 img{
     content-visibility: auto;
     will-change: contents;
+    image-rendering: crisp-edges; /* 小图标渲染更快，减少模糊卡顿 */
+    max-width: 100%;
 }
 </style>
 </head>
