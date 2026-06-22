@@ -1,489 +1,396 @@
 <!DOCTYPE html>
+<!-- HTML标准文档声明，固定头部，浏览器识别网页文档类型 -->
 <html lang="zh-CN">
+<!-- lang="zh-CN" 页面语言声明为简体中文，适配搜索引擎、输入法、屏幕阅读器 -->
 <head>
 <meta charset="UTF-8">
+<!-- charset="UTF-8" 统一全站字符编码，防止中文、特殊符号乱码 -->
 <title>君子兰主页</title>
+<!-- 浏览器标签页显示标题，可自定义修改文字 -->
+<meta http-equiv="Cache-Control" content="public, max-age=2592000">
+<!-- 页面缓存策略：max-age单位秒，2592000=30天，浏览器30天内复用本地缓存，减少重复加载 -->
+<!-- 阿里SVG图标JS文件引入，仅Symbol模式可用，ttf/woff字体文件无需引入页面 -->
+<script src="https://cwys.qzz.io/icons/iconfont.js"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui, sans-serif;}
+/* ========== 全局通配符样式重置，页面所有元素统一基础规则 ========== */
+*{
+    margin:0; /* 清除全部元素浏览器默认外边距 */
+    padding:0; /* 清除全部元素浏览器默认内边距 */
+    box-sizing:border-box; /* 标准盒模型：内边距、边框不会撑大盒子设定宽度，布局计算统一 */
+    font-family:system-ui, sans-serif; /* 全局无衬线系统字体，Windows/Mac/手机显示风格统一 */
+}
 body{
+    /* 全屏背景图地址，图片失效只需要修改引号内URL */
     background-image: url("https://cwys.qzz.io/icons/桌面.jpg");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    padding:40px 20px; /* 页面整体边距：上下40px，左右20px，数值变大页面留白更大 */
-    min-height: 100vh; /* 页面最小高度，不用改 */
+    background-size: cover; /* 背景图铺满整个可视区域，无留白、不变形拉伸 */
+    background-position: center; /* 背景图片居中对齐 */
+    background-attachment: fixed; /* 页面上下滚动时，背景图固定不动，不跟随滚动偏移 */
+    padding:40px 20px; /* 页面整体外边距：上下40px，左右20px，避免内容贴浏览器边缘 */
+    min-height: 100vh; /* 页面最小高度等于浏览器可视窗口高度，短页面也撑满全屏 */
 }
+/* ========== 页面外层总容器 class="box-wrap" 半透明白色包裹所有内容 ========== */
 .box-wrap{
-    background:rgba(255,255,255,0.6);
-    border-radius:14px;
-    padding:24px; /* 板块内边距：上下左右，数值变大板块内部留白更多 */
-    margin-bottom:32px; /* 板块下方外边距，控制板块之间垂直距离 */
-    max-width:1100px; /* 【改板块最大宽度】数值越大，整体页面越宽 */
-    margin-left:auto;
-    margin-right:auto;
+    background:rgba(255,255,255,0.6); /* 白色半透明底色，最后数值0~1控制透明度，0完全透明，1纯白不透明 */
+    border-radius:14px; /* 整块容器四角圆角大小，数值越大圆角越圆润 */
+    padding:24px 24px 36px 24px; /* 顺序：上 右 下 左，底部36px增大留白 */
+    margin-bottom:32px; /* 容器距离浏览器底部垂直间距 */
+    max-width:900px; /* 容器最大宽度，大屏不会无限拉宽，限制整体页面宽度，视觉协调 */
+    margin-left:auto; /* 左侧自动外边距，配合margin-right:auto实现整块水平居中 */
+    margin-right:auto; /* 右侧自动外边距 */
 }
-
-/* ====================== 搜索框 全部尺寸标注 ====================== */
+/* ========== 顶部搜索框模块 class="search-wrap" ========== */
 .search-wrap{
-    display:flex;
-    align-items:center;
-    padding:12px 20px; /* 【改搜索框高度+左右宽度】上下16px控制高度；左右20px控制横向宽度 */
-    gap:10px; /* 搜索框内文字和按钮之间的横向间距 */
-    margin-bottom:40px; /* 搜索框下方垂直外边距，控制和下方图标区域距离 */
-    background:#f3f5f9;
-    border-radius:12px; /* 圆角大小，数值越大圆角越圆 */
-    max-width:500px; /* 【改搜索框整体宽度】数字越大搜索框越宽 */
-    margin-left:auto;
-    margin-right:auto;
+    display:flex; /* 弹性横向布局，输入框、按钮并排一行 */
+    align-items:center; /* 内部所有元素垂直居中对齐 */
+    justify-content:center; /* 整行内容水平居中 */
+    padding:12px 20px; /* 搜索框容器内边距：上下12px，左右20px，控制搜索框高度 */
+    gap:10px; /* 输入框与搜索按钮之间的水平空隙，数字越大间隔越宽 */
+    /* 关键：加大下边距，拉开和下方标题距离 */
+    margin-bottom:80px;
+    background:#f3f5f9; /* 搜索框浅灰底色色值 */
+    border-radius:12px; /* 搜索框整体圆角大小 */
+    max-width:700px; /* 限制搜索框整体最大宽度，解决原先过宽过长问题 */
+    margin:0 auto; /* 搜索框在容器内水平居中 */
 }
+/* 搜索输入框 class="search-input" */
 .search-input{
-    flex:1;
-    border:none;
-    outline:none;
-    font-size:16px; /* 【改输入文字大小】数字越大文字越大 */
-    padding:8px 10px; /* 输入框内上下高度、左右宽度 */
-    background:transparent;
+    flex:1; /* 自动占满容器剩余可用宽度，自适应拉伸 */
+    max-width:450px; /* 输入框单独最大宽度，缩短输入框长度 */
+    border:none; /* 清除浏览器默认输入框边框 */
+    outline:none; /* 清除点击输入框时蓝色高亮边框 */
+    font-size:16px; /* 输入框内文字字号大小 */
+    padding:10px 14px; /* 输入框文字内边距：上下10px，左右14px */
+    background:transparent; /* 输入框背景透明，继承外层search-wrap浅灰色底色 */
 }
+/* 搜索按钮 class="search-btn" */
 .search-btn{
-    background:#3b6ef7;
-    color:#fff;
-    border:none;
-    border-radius:8px;
-    font-size:16px; /* 【按钮文字大小】 */
-    padding:9px 24px; /* 【按钮高度9px / 按钮宽度24px】 */
-    cursor:pointer;
+    background:#3967FF; /* 按钮蓝色背景色值 */
+    color:#fff; /* 按钮文字纯白色 */
+    border:none; /* 清除按钮默认灰色边框 */
+    border-radius:8px; /* 按钮四角圆角大小 */
+    font-size:16px; /* 按钮文字字号 */
+    padding:10px 26px; /* 按钮内边距：上下10px，左右26px，控制按钮宽高 */
+    cursor:pointer; /* 鼠标悬浮按钮显示手型光标，提示可点击 */
 }
 
-/* ====================== 顶部图标网格 尺寸标注 ====================== */
-.icon-grid{
-    display:grid;
-    /* minmax(单个格子最小宽度, 1fr)：80px 【改每个图标格子宽度】 */
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    gap:18px; /* 图标格子之间 横向+纵向间距，数字变大格子间隙更大 */
+/* ========== TVBOX接口板块外层容器 class="api-box" ========== */
+.api-box{
+    margin-bottom:60px; /* 拉开接口与下方图标网格空隙 */
 }
-.icon-card{
-    text-align:center;
-    cursor:pointer;
+/* 接口板块标题 class="api-title" 居中+彩色字体 */
+.api-title{
+    font-size:20px; /* 标题文字字号放大，突出板块标题 */
+    margin-top:60px; /* 标题向上空出一大段距离，彻底分开搜索框 */
+    margin-bottom:16px; /* 标题文字与下方接口网格垂直间距 */
+    color:#3967FF; /* 标题文字蓝色，彩色效果 */
+    text-align:center; /* 标题文字水平居中对齐 */
 }
-/* 【修改点1：全局统一顶部图标尺寸，不用每行写style】 */
-.icon-img{
-    width:64px;  
-    height:64px; 
-    border-radius:8px;
-    object-fit:contain; /* 图标不变形、居中适配方框 */
-    margin-bottom:8px; /* 图片和下方文字的垂直距离 */
+/* 8个接口方块网格容器 class="api-grid" 强制一行4个，固定布局不错乱 */
+.api-grid{
+    display:grid; /* 网格布局，实现多方块规整排列 */
+    grid-template-columns: repeat(4, 1fr); /* repeat(4,1fr) 固定4列均分宽度，8个方块自动分为两行4+4 */
+    gap:14px 14px; /* gap参数：第一个值行上下垂直间距，第二个值方块左右水平间距 */
+    max-width:820px; /* 限制接口网格整体宽度，缩小板块尺寸，解决原先板块偏大不协调 */
+    margin: 0 auto; /* 接口网格在容器内水平居中，和下方图标网格宽度统一对齐 */
 }
-.icon-text{
-    font-size:13px; /* 【图标下方文字大小】 */
-    color:#222;
-    line-height:1.3; /* 文字行高，控制文字上下高度 */
-}
-
-/* ====================== 分类标签栏 尺寸标注 ====================== */
-.tab-bar{
-    display:flex;
-    gap:36px; /* 标签之间横向间距 */
-    border-bottom:1px solid #eee;
-    padding-bottom:12px; /* 标签底部内边距，控制标签和底线距离 */
-    margin-bottom:24px; /* 标签栏和下方接口区域垂直间距 */
-    overflow-x:auto;
-}
-.tab-item{
-    display:flex;
-    align-items:center;
-    gap:6px; /* 标签图标和文字横向间距 */
-    font-size:18px; /* 【标签文字大小】 */
-    color:#555;
-    padding:8px 0; /* 标签上下内边距，控制标签高度 */
-    cursor:pointer;
-    position:relative;
-    white-space:nowrap;
-}
-.tab-item.active::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:-13px;
-    width:100%; /* 底线宽度铺满标签 */
-    height:3px; /* 【底线粗细高度】数字越大线条越粗 */
-    background:#32c870;
-}
-.tab-item.active{
-    color:#000;
-}
-.tab-icon{
-    font-size:20px; /* 标签图标尺寸 */
-}
-
-/* ====================== 接口容器网格 尺寸标注 ====================== */
-.category-icon-box{
-    display:grid;
-    gap:18px 12px; /* 第一个数字：行与行垂直间距；第二个：列与列横向间距 */
-}
-.category-icon-box.tvbox-mode {
-    grid-template-columns: repeat(3, 1fr); /* 固定3列均分宽度，不用改 */
-}
-.category-icon-box.normal-mode {
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    gap:18px;
-}
-
-/* ====================== 1.接口格子整体宽高修改处 ====================== */
+/* 单个接口方块基础样式 */
 .api-item{
     text-align:center;
     cursor:pointer;
-    /* padding:上下内边距(控制格子高度)  左右内边距(控制格子横向宽度) */
-    padding:16px 6px;
-    border-radius:12px; /* 格子圆角大小 */
-    transition: all 0.2s ease;
-    position:relative;
+    padding:12px 6px;
+    border-radius:12px;
+    background:rgba(255,255,255,0.4);
+    transition: all 0.25s ease;
 }
+/* 悬浮读取JS随机生成的颜色变量，每次移入随机变色 */
 .api-item:hover{
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    background: var(--randColor);
+    transform: scale(1.02);
+    box-shadow: 0 0 12px rgba(0,0,0,0.15);
 }
-
-/* ====================== 2.接口文字大小修改处 ====================== */
-.api-name{
-    font-size:24px; /* 【接口文字整体大小】数字越大文字越大 */
-    margin-bottom:8px; /* 文字和下方彩色线条垂直距离 */
-    color:#111;
-    transition: color 0.2s ease;
-}
+/* 悬浮文字、分割线变白，保证看清文字 */
 .api-item:hover .api-name{
-    color:#ffffff;
+    color:#fff;
 }
-
-/* ====================== 3.底部彩色线条修改处 ====================== */
+.api-item:hover .api-line{
+    background:#fff;
+}
+/* 方块内接口名称文字 class="api-name" */
+.api-name{
+    font-size:16px; /* 缩小文字字号，适配收窄后的小方块 */
+    margin-bottom:6px; /* 文字与底部彩色分割线垂直间距缩小 */
+    color:#111; /* 文字深黑色，清晰醒目 */
+}
+/* 方块底部彩色分割线 class="api-line" */
 .api-line{
-    height:4px;    /* 【线条粗细高度】数字越大线条越粗 */
-    border-radius:99px;
-    display:inline-block;
-    width:65%;     /* 【线条长度宽度】百分比越小线条越短 */
+    height:4px; /* 分割线纵向粗细（高度），数值越大线条越粗 */
+    border-radius:88px; /* 超大圆角数值，实现完全圆角长条线条 */
+    display:inline-block; /* 转换为行内块元素，支持自定义宽度 */
+    width:65%; /* 线条横向长度，占方块总宽度65%，不会铺满整块 */
 }
 
-/* ====================== 影视购物小图标卡片 尺寸标注 ====================== */
-.link-card{
-    text-align:center;
-    cursor:pointer;
+/* ========== 下方APP图标网格容器 class="icon-grid" 宽度与接口板块完全统一 ========== */
+.icon-grid{
+    display:grid; /* 网格布局自动排列图标卡片 */
+    grid-template-columns: repeat(auto-fill, minmax(75px, 1fr)); /* 图标卡片最小宽度75px，自适应均分屏幕 */
+    gap:14px 14px; /* gap第一个值：图标行上下垂直间距；第二个值：图标卡片左右水平间距 */
+    max-width:820px; /* 和上方接口网格宽度完全一致，上下板块视觉比例协调统一 */
+    margin:0 auto; /* 图标网格整体水平居中 */
 }
-/* 【修改点2：全局统一下方分类图标尺寸】 */
-.link-card-img{
-    width:64px;  
-    height:64px; 
-    border-radius:8px;
-    object-fit:contain; /* 图标不变形居中 */
-    margin-bottom:8px; /* 图片与文字垂直间距 */
+/* 单个图标卡片容器 class="icon-card" 点击跳转网页 */
+.icon-card{
+    text-align:center; /* 卡片内图标、文字全部居中对齐 */
+    cursor:pointer; /* 鼠标悬浮手型光标，提示可点击跳转网页 */
+    padding:4px; /* 卡片内部留白，数值越小卡片越紧凑小巧 */
+    border-radius:10px; /* 卡片悬浮时圆角大小 */
+    transition:0.2s; /* 悬浮背景渐变动画时长 */
 }
-.link-card-text{
-    font-size:13px; /* 文字大小 */
-    color:#222;
-    line-height:1.3; /* 文字行高（上下高度） */
+/* 鼠标悬浮图标卡片高亮样式 */
+.icon-card:hover{
+    background:rgba(0,0,0,0.08); /* 悬浮浅灰色底色，轻微高亮区分卡片 */
 }
-/* 图片浏览器自动转WebP、本地缓存，替代CF后台设置 */
-/* 图片浏览器自动延迟渲染，替代CF图片优化 */
-img{
-    content-visibility: auto;
-    will-change: contents;
-    image-rendering: crisp-edges; /* 小图标渲染更快，减少模糊卡顿 */
-    max-width: 100%;
+/* 阿里通用SVG图标样式 修复图标大小不统一 */
+.icon {
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    margin-bottom: 6px;
+}
+.icon use {
+    transform: scale(1);
+    transform-origin: center;
+}
+/* 限制内部图形最大尺寸，不管原图多大，最大只能占容器80% */
+.icon use {
+    max-width: 80%;
+    max-height: 80%;
+}
+/* 图标下方文字 class="icon-text" */
+.icon-text{
+    font-size:12px; /* 图标底部文字缩小字号，适配小尺寸图标卡片 */
+    color:#222; /* 文字深灰色色值，柔和不刺眼 */
+    line-height:1.3; /* 文字行高，控制多行文字上下松紧，数值越大文字上下越松散 */
 }
 </style>
 </head>
 <body>
+<!-- 页面最外层统一半透明包裹容器 class="box-wrap"，所有页面内容全部包裹在此容器内 -->
 <div class="box-wrap">
+    <!-- 1.页面最顶部模块：搜索框区域 class="search-wrap" -->
     <div class="search-wrap">
         <span>🔍</span>
+        <!-- 搜索输入框 class="search-input" id="kw" id用于JS脚本获取输入内容 -->
         <input class="search-input" id="kw" placeholder="百度一下">
+        <!-- 搜索按钮 class="search-btn" onclick="search()" 点击触发search搜索函数 -->
         <button class="search-btn" onclick="search()">搜索</button>
     </div>
+
+    <!-- 2.搜索框下方模块：TVBOX接口板块外层容器 class="api-box" -->
+    <div class="api-box">
+        <!-- 板块标题 class="api-title" -->
+        <div class="api-title">tvbox 接口</div>
+        <!-- 接口方块网格容器 class="api-grid" 存放8个接口方块 -->
+        <div class="api-grid">
+            <!-- 每个方块新增 onmouseover="setRandomColor(this)" 移入触发随机颜色 -->
+            <div class="api-item data-copy="http://fty.xxooo.cf/tv" data-fill="#3498db" onclick="copyText(this)" onmouseover="setRandomColor(this)">
+                <div class="api-name">饭太硬</div>
+                <span class="api-line" style="background: #3498db;"></span>
+            </div>
+            <div class="api-item data-copy="https://cwys.qzz.io/api.json" data-fill="#e84393" onclick="copyText(this)" onmouseover="setRandomColor(this)">
+                <div class="api-name">君子兰</div>
+                <span class="api-line" style="background: #e84393;"></span>
+            </div>
+            <div class="api-item data-copy="https://qist.wyfc.qzz.io/xiaosa/api.json" data-fill="#f39c12" onclick="copyText(this)" onmouseover="setRandomColor(this)">
+                <div class="api-name">潇洒</div>
+                <span class="api-line" style="background: #f39c12;"></span>
+            </div>
+            <div class="api-item data-copy="https://shturl.cc/atj0cccakraApLCQrlsS8E0b7LndD3vrr" data-fill="#f1c40f" onclick="copyText(this)" onmouseover="setRandomColor(this)">
+                <div class="api-name">摸鱼</div>
+                <span class="api-line" style="background: #f1c40f;"></span>
+            </div>
+            <div class="api-item data-copy="http://tvbox.xn--4kq62z5rby2qupq9ub.top/" data-fill="#cddc39" onclick="copyText(this)" onmouseover="setRandomColor(this)">
+                <div class="api-name">王二小</div>
+                <span class="api-line" style="background: #cddc39;"></span>
+            </div>
+            <div class="api-item data-copy="http://影视仓.com/" data-fill="#2ecc71" onclick="copyText(this)" onmouseover="setRandomColor(this)">
+                <div class="api-name">影视仓</div>
+                <span class="api-line" style="background: #2ecc71;"></span>
+            </div>
+            <div class="api-item data-copy="http://点播接口地址" data-fill="#949494" onclick="copyText(this)" onmouseover="setRandomColor(this)">
+                <div class="api-name">点播</div>
+                <span class="api-line" style="background: #949494;"></span>
+            </div>
+            <div class="api-item data-copy="http://宝盒接口地址" data-fill="#bdc3c7" onclick="copyText(this)" onmouseover="setRandomColor(this)">
+                <div class="api-name">宝盒</div>
+                <span class="api-line" style="background: #bdc3c7;"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3.接口板块下方：APP图标网格容器 class="icon-grid" -->
     <div class="icon-grid">
-        <!-- 【修改点3：删除所有img重复style，CSS统一控制，仅保留懒加载】 -->
-        <div class="icon-card" onclick="openUrl('http://m.wmsio.cn')">
-            <img class="icon-img" src="https://raw.giteeusercontent.com/lan88888/lan/raw/master/icons/%E7%9B%92%E5%AD%90.png" alt="盒子地窖" loading="lazy">
-            <div class="icon-text">盒子地窖</div>
+        <div class="icon-card" onclick="openUrl('https://www.ximalaya.com')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-ximalaya"></use></svg>
+            <div class="icon-text">喜马拉雅</div>
         </div>
-        <div class="icon-card" onclick="openUrl('https://www.rjshe.com/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/android.png" alt="软件社" loading="lazy">
-            <div class="icon-text">软件社</div>
+        <div class="icon-card" onclick="openUrl('https://weixin.qq.com/')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-weixin"></use></svg>
+            <div class="icon-text">微信</div>
         </div>
-        <div class="icon-card" onclick="openUrl('https://www.jyshare.com/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/菜鸟.png" alt="菜鸟工具" loading="lazy">
-            <div class="icon-text">菜鸟工具</div>
+        <div class="icon-card" onclick="openUrl('https://www.kugou.com')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-kugou"></use></svg>
+            <div class="icon-text">酷狗</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://www.32r.com/zt/dgyjzzrj/')">
-            <img class="icon-img" src="https://raw.giteeusercontent.com/lan88888/lan/raw/master/icons/ps_rounded.png" alt="ps绿色" loading="lazy">
-            <div class="icon-text">ps绿色</div>
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-ps"></use></svg>
+            <div class="icon-text">PS</div>
         </div>
-        <div class="icon-card" onclick="openUrl('https://www.msn.cn/zh-cn/gaming/ai')">
-            <img class="icon-img" src="https://raw.giteeusercontent.com/lan88888/lan/raw/master/icons/Ai_rounded.png" alt="Ai大全" loading="lazy">
-            <div class="icon-text">Ai大全</div>
+        <div class="icon-card" onclick="openUrl('https://v.qq.com')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-tengxunshipin"></use></svg>
+            <div class="icon-text">腾讯视频</div>
         </div>
-        <div class="icon-card" onclick="openUrl('https://kstore.cc')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/凯速.png" alt="凯速 kstore" loading="lazy">
-            <div class="icon-text"> 凯速 kstore</div>
+        <div class="icon-card" onclick="openUrl('https://iqiyi.com')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-iqiyi"></use></svg>
+            <div class="icon-text">爱奇艺</div>
         </div>
-        <div class="icon-card" onclick="openUrl('https://dash.cloudflare.com/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/cf.png" alt="域名托管" loading="lazy">
-            <div class="icon-text">域名托管</div>
+        <div class="icon-card" onclick="openUrl('https://bilibili.com')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili"></use></svg>
+            <div class="icon-text">哔哩哔哩</div>
         </div>
-        <div class="icon-card" onclick="openUrl('https://dash.domain.digitalplat.org/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/球.png" alt="域名申请" loading="lazy">
-            <div class="icon-text">域名申请</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://www.lddgo.net/base/class')">
-            <img class="icon-img" src="https://raw.giteeusercontent.com/lan88888/lan/raw/master/icons/%E5%9C%A8%E7%BA%BF_rounded.png" alt="在线工具" loading="lazy">
-            <div class="icon-text">在线工具</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://xiaomark.com/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/太短.png" alt="太短" loading="lazy">
-            <div class="icon-text">太短</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://z.qiqiv.cn/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/地球.png" alt="太能编" loading="lazy">
-            <div class="icon-text">太能编</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://tv.cctv.com/live/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/%E6%92%AD%E6%94%BE%E5%99%A8-%E6%92%AD%E6%94%BE.png" alt="央视直播" loading="lazy">
-            <div class="icon-text">央视直播</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://www.qiushui.vip/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/秋水.png" alt="秋水网" loading="lazy">
-            <div class="icon-text">秋水网</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://adzhp.cc/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/爱达.png" alt="爱达杂货铺" loading="lazy">
-            <div class="icon-text">爱达杂货铺</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('http://www.foodieguide.com/iptvsearch/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/直播搜索.png" alt="直播源搜索引擎" loading="lazy">
-            <div class="icon-text">直播源搜索引擎</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://www.iconfont.cn/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/矢量.png" alt="阿里图标" loading="lazy">
-            <div class="icon-text">阿里图标</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://taobao.com/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/淘宝.png" alt="淘宝" loading="lazy">
+        <div class="icon-card" onclick="openUrl('https://taobao.com')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-taobao"></use></svg>
             <div class="icon-text">淘宝</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://jd.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/京东-01.png" alt="京东商城" loading="lazy">
-            <div class="icon-text">京东商城</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://ctrip.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/携程.png" alt="携程" loading="lazy">
-            <div class="icon-text">携程</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://weibo.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/微博.png" alt="微博" loading="lazy">
-            <div class="icon-text">微博</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://www.douban.com/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/豆瓣.png" alt="豆瓣" loading="lazy">
-            <div class="icon-text">豆瓣</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://www.kuaidi100.com/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/快递.png" alt="快递100" loading="lazy">
-            <div class="icon-text">快递100</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://vip.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/唯品会.png" alt="唯品会" loading="lazy">
-            <div class="icon-text">唯品会</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://bilibili.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/哔哩哔哩.png" alt="哔哩哔哩" loading="lazy">
-            <div class="icon-text">哔哩哔哩</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://youku.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/优酷.png" alt="优酷" loading="lazy">
-            <div class="icon-text">优酷</div>
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-jingdong"></use></svg>
+            <div class="icon-text">京东</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://douyin.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/抖音.png" alt="抖音" loading="lazy">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-douyin"></use></svg>
             <div class="icon-text">抖音</div>
         </div>
-        <div class="icon-card" onclick="openUrl('https://amap.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/高德地图.png" alt="高德地图" loading="lazy">
-            <div class="icon-text">高德地图</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://qzone.qq.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/qq.png" alt="QQ空间" loading="lazy">
-            <div class="icon-text">QQ空间</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://kugou.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/酷狗.png" alt="酷狗音乐" loading="lazy">
-            <div class="icon-text">酷狗音乐</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://y.qq.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/QQ音乐.png" alt="QQ音乐" loading="lazy">
-            <div class="icon-text">QQ音乐</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://ximalaya.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/喜马拉雅.png" alt="喜马拉雅" loading="lazy">
-            <div class="icon-text">喜马拉雅</div>
+        <div class="icon-card" onclick="openUrl('https://kuaishou.com')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-kuaishou"></use></svg>
+            <div class="icon-text">快手</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://xiaohongshu.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/小红书.png" alt="小红书" loading="lazy">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-xiaohongshu"></use></svg>
             <div class="icon-text">小红书</div>
         </div>
-        <div class="icon-card" onclick="openUrl('https://mail.163.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/163邮箱.png" alt="163邮箱" loading="lazy">
+        <div class="icon-card" onclick="openUrl('http://m.wmsio.cn')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-box"></use></svg>
+            <div class="icon-text">盒子地窖</div>
+        </div>
+        <div class="icon-card" onclick="openUrl('https://www.rjshe.com/')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-android"></use></svg>
+            <div class="icon-text">软件社</div>
+        </div>
+        <div class="icon-card" onclick="openUrl('https://www.jyshare.com/')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-tool"></use></svg>
+            <div class="icon-text">菜鸟工具</div>
+        </div>
+        <div class="icon-card" onclick="openUrl('https://www.32r.com/zt/dgyjzzrj/')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-ps-green"></use></svg>
+            <div class="icon-text">ps绿色</div>
+        </div>
+        <div class="icon-card" onclick="openUrl('https://www.msn.cn/zh-cn/gaming/ai')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-ai"></use></svg>
+            <div class="icon-text">Ai大全</div>
+        </div>
+        <div class="icon-card" onclick="openUrl('https://kstore.cc')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-kstore"></use></svg>
+            <div class="icon-text">凯速 kstore</div>
+        </div>
+        <div class="icon-card" onclick="openUrl('https://dash.cloudflare.com/')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-cf"></use></svg>
+            <div class="icon-text">域名托管</div>
+        </div>
+        <div class="icon-card" onclick="openUrl('https://dash.domain.digitalplat.org/')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-globe"></use></svg>
+            <div class="icon-text">域名申请</div>
+        </div>
+        <div class="icon-card" onclick="openUrl('https://www.lddgo.net/base/class')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-online-tool"></use></svg>
+            <div class="icon-text">在线工具</div>
+        </div>
+        <div class="icon-card" onclick="openUrl('https://xiaomark.com/')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-shortlink"></use></svg>
+            <div class="icon-text">太短</div>
+        </div>
+        <div class="icon-card" onclick="openUrl('https://z.qiqiv.cn/')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-earth"></use></svg>
+            <div class="icon-text">太能编</div>
+        </div>
+        <div class="icon-card" onclick="openUrl('https://tv.cctv.com/live/')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-tv"></use></svg>
+            <div class="icon-text">央视直播</div>
+        </div>
+        <div class="icon-card" onclick="openUrl('https://www.qiushui.vip/')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-qiushui"></use></svg>
+            <div class="icon-text">秋水网</div>
+        </div>
+        <div class="icon-card" onclick="openUrl('https://adzhp.cc/')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-shop"></use></svg>
+            <div class="icon-text">爱达杂货铺</div>
+        </div>
+        <div class="icon-card" onclick="openUrl('http://www.foodieguide.com/iptvsearch/')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-search"></use></svg>
+            <div class="icon-text">直播源搜索引擎</div>
+        </div>
+        <div class="icon-card" onclick="openUrl('https://www.mgtv.com/')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-mango"></use></svg>
+            <div class="icon-text">芒果TV</div>
+        </div>
+        <div class="icon-card" onclick="openUrl('https://www.youku.com/')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-youku"></use></svg>
+            <div class="icon-text">优酷</div>
+        </div>
+        <div class="icon-card" onclick="openUrl('')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-netease"></use></svg>
+            <div class="icon-text">网易云</div>
+        </div>
+        <div class="icon-card" onclick="openUrl('https://mail.163.com/')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-163"></use></svg>
             <div class="icon-text">163邮箱</div>
         </div>
-        <div class="icon-card" onclick="openUrl('https://www.toutiao.com/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/首页优化_热点.png" alt="今日头条" loading="lazy">
-            <div class="icon-text">今日头条</div>
+        <div class="icon-card" onclick="openUrl('https://www.zhihu.com/')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhihu"></use></svg>
+            <div class="icon-text">知乎</div>
         </div>
-        <div class="icon-card" onclick="openUrl('https://pan.baidu.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/百度网盘.png" alt="百度网盘" loading="lazy">
-            <div class="icon-text">百度网盘</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://www.alipan.com/')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/夸克网盘.png" alt="阿里云盘" loading="lazy">
-            <div class="icon-text">阿里云盘</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://fanyi.baidu.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/fan.png" alt="百度翻译" loading="lazy">
-            <div class="icon-text">百度翻译</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://dongchedi.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/懂车帝.png" alt="懂车帝" loading="lazy">
-            <div class="icon-text">懂车帝</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://tianyancha.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/天眼查.png" alt="天眼查" loading="lazy">
-            <div class="icon-text">天眼查</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://4399.com')">
-            <img class="icon-img" src="https://cwys.qzz.io/icons/小游戏.png" alt="4399小游戏" loading="lazy">
-            <div class="icon-text">4399小游戏</div>
+        <div class="icon-card" onclick="openUrl('https://www.douban.com/')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-douban"></use></svg>
+            <div class="icon-text">豆瓣</div>
         </div>
     </div>
 </div>
 
-<div class="box-wrap">
-    <div class="tab-bar">
-        <div class="tab-item" data-key="video">
-            <span class="tab-icon"></span>
-            <span>影视</span>
-        </div>
-        <div class="tab-item active" data-key="tvbox">
-            <span class="tab-icon"></span>
-            <span>tvbox 接口</span>
-        </div>
-        <div class="tab-item" data-key="shop">
-            <span class="tab-icon"></span>
-            <span>购物</span>
-        </div>
-        <div class="tab-item" data-key="app">
-            <span class="tab-icon"></span>
-            <span>应用</span>
-        </div>
-    </div>
-    <div class="category-icon-box" id="categoryWrap"></div>
-</div>
-
+<!-- JS交互脚本 -->
 <script>
-const groupData = {
-    tvbox: [
-        {name:"饭太硬", copy:"http://fty.xxooo.cf/tv", lineColor:"#3498db"},
-        {name:"君子兰", copy:"https://cwys.qzz.io/api.json", lineColor:"#e84393"},
-        {name:"潇洒", copy:"https://qist.wyfc.qzz.io/xiaosa/api.json", lineColor:"#f39c12"},
-        {name:"摸鱼", copy:"https://xn--ihqu10cn4c.xn--v4q818bf34b.top/", lineColor:"#f1c40f"},
-        {name:"王二小", copy:"http://tvbox.xn--4kq62z5rby2qupq9ub.top/", lineColor:"#cddc39"},
-        {name:"影视仓", copy:"http://影视仓.com/", lineColor:"#2ecc71"},
-        {name:"点播", copy:"https://xpb.mhfs.eu.org/ZJ/XPB/api.json", lineColor:"#949494"},
-        {name:"宝盒", copy:"http://宝盒接口.top", lineColor:"#bdc3c7"}
-    ],
-    video: [
-        {name:"腾讯视频", img:"https://cwys.qzz.io/icons/腾讯.png", link:"https://v.qq.com"},
-        {name:"爱奇艺", img:"https://cwys.qzz.io/icons/爱奇艺.png", link:"https://iqiyi.com"},
-        {name:"哔哩哔哩", img:"https://cwys.qzz.io/icons/哔哩哔哩.png", link:"https://bilibili.com"}
-    ],
-    shop: [
-        {name:"淘宝", img:"https://cwys.qzz.io/icons/淘宝.png", link:"https://taobao.com"},
-        {name:"京东", img:"https://cwys.qzz.io/icons/京东.png", link:"https://jd.com"},
-        {name:"拼多多", img:"https://cwys.qzz.io/icons/唯品会.png", link:"https://www.vip.com/"}
-    ],
-    app: [ 
-        {name:"源获取", img:"https://cwys.qzz.io/icons/捕获.png", link:"https://jiduo.3116598.xyz/XBPQ/"},
-        {name:"瓦特加速", img:"https://cwys.qzz.io/icons/steampp.net-icon.ico", link:"https://steampp.net/"},
-        {name:"接口解密", img:"https://cwys.qzz.io/icons/捕获-copy.png", link:"https://www.qiushui.vip/gj/jiemi/"},
-        {name:"影视仓", img:"https://cwys.qzz.io/icons/影视仓.jpg", link:"https://pan.quark.cn/s/0c47dfe3a371#/list/share/c1ac3b5d9d0440b591e5984af370e593"}
-    ]
-};
-
-function renderCat(key){
-    const wrap = document.getElementById("categoryWrap");
-    if(key === "tvbox"){
-        wrap.className = "category-icon-box tvbox-mode";
-    }else{
-        wrap.className = "category-icon-box normal-mode";
-    }
-    const arr = groupData[key];
-    if(arr.length === 0){
-        wrap.innerHTML = "<div style='grid-column:1/-1;text-align:center;padding:30px;color:#666'>暂无内容</div>";
-        return;
-    }
-    let html = "";
-    if(key === "tvbox"){
-        arr.forEach(item=>{
-            html += `
-            <div class="api-item" data-copy="${item.copy}" data-fill="${item.lineColor}" onclick="copyText(this)" onmouseenter="fillColor(this)" onmouseleave="clearFill(this)">
-                <div class="api-name">${item.name}</div>
-                <span class="api-line" style="background: ${item.lineColor};"></span>
-            </div>
-            `;
-        })
-    }else{
-        // 【修改点4：JS渲染图片时统一加上 loading="lazy"，所有分类图标开启懒加载】
-        arr.forEach(item=>{
-            html += `
-            <div class="link-card" onclick="openUrl('${item.link}')">
-                <img class="link-card-img" src="${item.img}" alt="${item.name}" loading="lazy">
-                <div class="link-card-text">${item.name}</div>
-            </div>
-            `;
-        })
-    }
-    wrap.innerHTML = html;
+// 【新增随机颜色函数：每次移入方块随机生成RGB色彩赋值给--randColor变量】
+function setRandomColor(el){
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
+    el.style.setProperty('--randColor', `rgb(${r},${g},${b})`);
 }
-// 悬浮填充当前条目对应彩色（不再灰色）
-function fillColor(el){
-    const c = el.dataset.fill;
-    el.style.background = c;
-}
-function clearFill(el){
-    el.style.background = "transparent";
-}
-
 function copyText(el){
     const text = el.dataset.copy;
     navigator.clipboard.writeText(text).then(()=>{
-        alert("已复制接口："+text);
+        alert("接口复制成功："+text);
     }).catch(()=>{
         alert("复制失败，请手动复制："+text);
     })
 }
-
 function openUrl(url){
     if(!url) return;
     window.open(url,"_blank");
 }
-
-const tabs = document.querySelectorAll(".tab-item");
-tabs.forEach(t=>{
-    t.onclick = ()=>{
-        tabs.forEach(i=>i.classList.remove("active"));
-        t.classList.add("active");
-        renderCat(t.dataset.key);
-    }
-})
-renderCat("tvbox");
-
 function search(){
     let val = document.getElementById("kw").value.trim();
-    if(!val) return alert("请输入关键词");
+    if(!val) return alert("请输入搜索关键词");
     window.open(`https://www.baidu.com/s?wd=${encodeURIComponent(val)}`,"_blank");
 }
 document.getElementById("kw").addEventListener("keydown",e=>e.key=="Enter"&&search())
