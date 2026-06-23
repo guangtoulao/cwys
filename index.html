@@ -22,7 +22,7 @@
 body{
     background-image: url("./icons/桌面.jpg"); /* 背景图在icons文件夹 */
     background-size: cover; /* 背景铺满窗口，不变形留白 */
-    background-position: center; /* 背景图居中对齐 */
+    background-position: center; /* 背景居中对齐 */
     background-attachment: fixed; /* 滚动页面时背景固定不动 */
     padding:40px 20px; /* 页面整体四周留白：上下40px 左右20px */
     min-height: 100vh; /* 页面最小高度占满浏览器窗口 */
@@ -35,11 +35,11 @@ body{
     margin-bottom:32px; /* 容器底部距离页面底部垂直间距 */
     max-width:900px; /* 容器最大宽度，大屏不会无限拉宽 */
     margin-left:auto;
-    margin-right:auto; /* 左右自动边距，整块页面水平居中 */
+    margin-right:auto; /* 左右自动居中，整块页面水平居中 */
 }
 /* ========== 顶部搜索框区域 ========== */
 .search-wrap{
-    display:flex; /* 弹性横向布局，输入框按钮并排一行 */
+    display:flex; /* 弹性横向布局，输入框按钮一行摆放 */
     align-items:center; /* 内部元素垂直居中 */
     justify-content:center; /* 整行内容水平居中 */
     padding:8px 20px; /* 搜索框容器上下、左右内边距，控制高度 */
@@ -80,12 +80,12 @@ body{
     font-size:20px; /* 标题文字字号，放大突出板块名称 */
     margin-top:60px; /* 标题上方留白，隔开搜索框区域 */
     margin-bottom:32px; /* 标题和下方接口方块网格垂直间距 */
-    color:#3967FF; /* 标题黑灰色文字色值 */
+    color:#3967FF; /* 标题文字色值 */
     text-align:center; /* 标题文字水平居中 */
 }
 /* 接口方块网格容器，固定一行4个方块 */
 .api-grid{
-    display:grid; /* 网格规整排列多个方块 */
+    display:grid; /* 网格布局排列多个方块 */
     grid-template-columns: repeat(4, 1fr); /* 固定4列均分宽度，8个方块自动两行 */
     gap:14px 14px; /* 第一个值：方块上下行间距；第二个：方块左右间距 */
     max-width:820px; /* 接口网格最大宽度，和下方图标网格宽度统一 */
@@ -135,7 +135,7 @@ body{
     grid-template-columns: repeat(auto-fill, minmax(75px, 1fr)); /* 75px=卡片最小宽度 */
     gap:14px 14px; /* 上下、左右卡片间距 */
     max-width:820px; /* 和接口网格宽度统一 */
-    margin:0 auto; /* 图标网格整体水平居中 */
+    margin:0 auto; /* 图标网格整体居中 */
 }
 /* 单个图标卡片容器 */
 .icon-card{
@@ -185,7 +185,7 @@ body{
         <button class="search-btn" onclick="search()">搜索</button>
     </div>
 
-    <!-- 2.TVBOX接口板块 全部onclick前置修正完毕 -->
+    <!-- 2.TVBOX接口板块 全部onclick前置，解决this读取失效 -->
     <div class="api-box">
         <div class="api-title">tvbox 接口</div>
         <div class="api-grid">
@@ -278,7 +278,7 @@ body{
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhaogonghezi"></use></svg>
             <div class="icon-text">盒子地窖</div>
         </div>
-        <div class="icon-card" onclick="openUrl('https://www.rjshe.com/')">
+        <div class="icon-card" onclick="openUrl('https://rjshe.com/')">
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-ruanjian"></use></svg>
             <div class="icon-text">软件社</div>
         </div>
@@ -322,7 +322,7 @@ body{
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-cctv1"></use></svg>
             <div class="icon-text">央视直播</div>
         </div>
-        <div class="icon-card" onclick="openUrl('https://www.qiushui.vip/')">
+        <div class="icon-card" onclick="openUrl('https://qiushui.vip/')">
            <img class="icon-img" src="https://guangtoulao.github.io/cwys/icons/qiushui.png" loading="lazy">
             <div class="icon-text">秋水网</div>
         </div>
@@ -338,7 +338,7 @@ body{
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-mangguoTV"></use></svg>
             <div class="icon-text">芒果TV</div>
         </div>
-        <div class="icon-card" onclick="openUrl('https://www.youku.com/')">
+        <div class="icon-card" onclick="openUrl('https://youku.com/')">
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-youku"></use></svg>
             <div class="icon-text">优酷</div>
         </div>
@@ -358,7 +358,7 @@ body{
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-a-shezhipeizhichilun"></use></svg>
             <div class="icon-text">瓦特加速</div>
         </div>
-        <div class="icon-card" onclick="openUrl('https://www.dongchedi.com/')">
+        <div class="icon-card" onclick="openUrl('https://dongchedi.com/')">
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-dongchedi"></use></svg>
             <div class="icon-text">懂车帝</div>
         </div>
@@ -366,13 +366,14 @@ body{
             <img class="icon-img" src="https://guangtoulao.github.io/cwys/icons/100.png" loading="lazy">
             <div class="icon-text">快递100</div>
         </div>
-        <div class="icon-card" onclick="openUrl('https://www.douban.com/')">
+        <div class="icon-card" onclick="openUrl('https://douban.com/')">
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-doubanwang"></use></svg>
             <div class="icon-text">豆瓣</div>
         </div>
     </div>
 </div>
 
+<!-- JS交互脚本：无语法错误，悬浮变色+点击弹窗同时生效 -->
 <script>
 // 鼠标悬浮生成随机背景色
 function setRandomColor(el){
@@ -382,13 +383,13 @@ function setRandomColor(el){
     el.style.setProperty('--randColor', `rgb(${r},${g},${b})`);
 }
 
-// 点击只弹窗展示接口，无剪贴板拦截
+// 点击弹窗展示接口，稳定读取data-copy，必定弹出提示
 function copyText(el){
-    const text = el.dataset.copy;
+    const text = el.getAttribute("data-copy");
     alert("接口地址：\n" + text);
 }
 
-// 新标签页打开链接
+// 新标签页打开网址
 function openUrl(url){
     if(!url) return;
     window.open(url,"_blank");
@@ -401,10 +402,12 @@ function search(){
     window.open(`https://www.baidu.com/s?wd=${encodeURIComponent(val)}`,"_blank");
 }
 
-// 页面加载完成再绑定回车事件，防止找不到输入框
-window.onload = function(){
-    document.getElementById("kw").addEventListener("keydown",e=>e.key=="Enter"&&search())
-}
+// 搜索框回车触发搜索
+document.getElementById("kw").addEventListener("keydown", function(e){
+    if(e.key === "Enter"){
+        search();
+    }
+})
 </script>
 </body>
 </html>
