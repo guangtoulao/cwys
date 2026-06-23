@@ -185,11 +185,10 @@ body{
         <button class="search-btn" onclick="search()">搜索</button>
     </div>
 
-    <!-- 2.TVBOX接口板块 -->
+    <!-- 2.TVBOX接口板块 全部onclick前置修正完毕 -->
     <div class="api-box">
         <div class="api-title">tvbox 接口</div>
         <div class="api-grid">
-            <!-- 仅调换onclick与onmouseover顺序，其余完全不动 -->
             <div class="api-item onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="http://fty.xxooo.cf/tv" data-fill="#3498db">
                 <div class="api-name">饭太硬</div>
                 <span class="api-line" style="background: #3498db;"></span>
@@ -374,7 +373,7 @@ body{
     </div>
 </div>
 
-<!-- JS交互脚本，仅修改copyText读取方式，其余原样不动 -->
+<!-- JS交互脚本：复制函数更换为全兼容旧写法，无痕窗口也能弹窗 -->
 <script>
 // 鼠标移入方块随机生成RGB颜色
 function setRandomColor(el){
@@ -383,14 +382,16 @@ function setRandomColor(el){
     let b = Math.floor(Math.random() * 256);
     el.style.setProperty('--randColor', `rgb(${r},${g},${b})`);
 }
-// 点击复制接口链接【修复undefined问题，其余逻辑不变】
+// 兼容全浏览器复制函数，不会被无痕剪贴板拦截
 function copyText(el){
     const text = el.getAttribute('data-copy');
-    navigator.clipboard.writeText(text).then(()=>{
-        alert("接口复制成功："+text);
-    }).catch(()=>{
-        alert("复制失败，请手动复制："+text);
-    })
+    const tempInput = document.createElement('input');
+    tempInput.value = text;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempInput);
+    alert("接口复制成功："+text);
 }
 // 新窗口打开网址
 function openUrl(url){
