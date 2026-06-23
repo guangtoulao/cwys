@@ -159,7 +159,6 @@ body{
     <div class="api-box">
         <div class="api-title">tvbox 接口</div>
         <div class="api-grid">
-            <!-- 全部onclick放在最前，固定顺序，无需你手动修改 -->
             <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="http://fty.xxooo.cf/tv" data-fill="#3498db">
                 <div class="api-name">饭太硬</div>
                 <span class="api-line" style="background: #3498db;"></span>
@@ -292,7 +291,7 @@ body{
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-cctv1"></use></svg>
             <div class="icon-text">央视直播</div>
         </div>
-        <div class="icon-card" onclick="openUrl('https://www.qiushui.vip/')">
+        <div class="icon-card" onclick="openUrl('https://qiushui.vip/')">
            <img class="icon-img" src="https://guangtoulao.github.io/cwys/icons/qiushui.png" loading="lazy">
             <div class="icon-text">秋水网</div>
         </div>
@@ -328,7 +327,7 @@ body{
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-a-shezhipeizhichilun"></use></svg>
             <div class="icon-text">瓦特加速</div>
         </div>
-        <div class="icon-card" onclick="openUrl('https://www.dongchedi.com/')">
+        <div class="icon-card" onclick="openUrl('https://dongchedi.com/')">
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-dongchedi"></use></svg>
             <div class="icon-text">懂车帝</div>
         </div>
@@ -351,23 +350,34 @@ function setRandomColor(el){
     let b = Math.floor(Math.random() * 256);
     el.style.setProperty('--randColor', `rgb(${r},${g},${b})`);
 }
-// 点击直接弹窗显示链接，无复制拦截，100%弹出
+
+// 自动复制链接并弹窗提示复制成功
 function copyText(el){
     const text = el.getAttribute("data-copy");
-    alert("接口地址：\n" + text);
+    // textarea兼容长短链接、无痕窗口复制
+    const tempTextarea = document.createElement('textarea');
+    tempTextarea.value = text;
+    document.body.appendChild(tempTextarea);
+    tempTextarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempTextarea);
+    alert("复制成功！\n接口地址：\n" + text);
 }
+
 // 新标签打开网页
 function openUrl(url){
     if(!url) return;
     window.open(url,"_blank");
 }
+
 // 百度搜索
 function search(){
     let val = document.getElementById("kw").value.trim();
     if(!val) return alert("请输入搜索关键词");
     window.open(`https://www.baidu.com/s?wd=${encodeURIComponent(val)}`,"_blank");
 }
-// 回车搜索
+
+// 回车触发搜索
 document.getElementById("kw").addEventListener("keydown", function(e){
     if(e.key === "Enter") search();
 })
