@@ -373,33 +373,38 @@ body{
     </div>
 </div>
 
-<!-- JS交互脚本：复制函数更换为全兼容旧写法，无痕窗口也能弹窗 -->
 <script>
-<script>
+// 鼠标悬浮生成随机背景色
 function setRandomColor(el){
     let r = Math.floor(Math.random() * 256);
     let g = Math.floor(Math.random() * 256);
     let b = Math.floor(Math.random() * 256);
     el.style.setProperty('--randColor', `rgb(${r},${g},${b})`);
 }
-// 兜底：不再执行复制，直接弹窗展示链接，一定有提示
+
+// 点击只弹窗展示接口，无剪贴板拦截
 function copyText(el){
-    const text = el.getAttribute('data-copy');
-    alert("接口地址：\n" + text + "\n手动复制这段链接");
+    const text = el.dataset.copy;
+    alert("接口地址：\n" + text);
 }
+
+// 新标签页打开链接
 function openUrl(url){
     if(!url) return;
     window.open(url,"_blank");
 }
+
+// 百度搜索
 function search(){
     let val = document.getElementById("kw").value.trim();
     if(!val) return alert("请输入搜索关键词");
     window.open(`https://www.baidu.com/s?wd=${encodeURIComponent(val)}`,"_blank");
 }
-document.getElementById("kw").addEventListener("keydown",e=>e.key=="Enter"&&search())
-</script>
-// 搜索框回车触发搜索
-document.getElementById("kw").addEventListener("keydown",e=>e.key=="Enter"&&search())
+
+// 页面加载完成再绑定回车事件，防止找不到输入框
+window.onload = function(){
+    document.getElementById("kw").addEventListener("keydown",e=>e.key=="Enter"&&search())
+}
 </script>
 </body>
 </html>
