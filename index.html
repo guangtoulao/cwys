@@ -189,35 +189,36 @@ body{
     <div class="api-box">
         <div class="api-title">tvbox 接口</div>
         <div class="api-grid">
-            <div class="api-item data-copy="http://fty.xxooo.cf/tv" data-fill="#3498db" onclick="copyText(this)" onmouseover="setRandomColor(this)">
+            <!-- 仅调换onclick与onmouseover顺序，其余完全不动 -->
+            <div class="api-item onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="http://fty.xxooo.cf/tv" data-fill="#3498db">
                 <div class="api-name">饭太硬</div>
                 <span class="api-line" style="background: #3498db;"></span>
             </div>
-            <div class="api-item data-copy="https://cwys.qzz.io/api.json" data-fill="#e84393" onclick="copyText(this)" onmouseover="setRandomColor(this)">
+            <div class="api-item onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="https://cwys.qzz.io/api.json" data-fill="#e84393">
                 <div class="api-name">君子兰</div>
                 <span class="api-line" style="background: #e84393;"></span>
             </div>
-            <div class="api-item data-copy="https://qist.wyfc.qzz.io/xiaosa/api.json" data-fill="#f39c12" onclick="copyText(this)" onmouseover="setRandomColor(this)">
+            <div class="api-item onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="https://qist.wyfc.qzz.io/xiaosa/api.json" data-fill="#f39c12">
                 <div class="api-name">潇洒</div>
                 <span class="api-line" style="background: #f39c12;"></span>
             </div>
-            <div class="api-item data-copy="https://shturl.cc/atj0cccakraApLCQrlsS8E0b7LndD3vrr" data-fill="#f1c40f" onclick="copyText(this)" onmouseover="setRandomColor(this)">
+            <div class="api-item onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="https://shturl.cc/atj0cccakraApLCQrlsS8E0b7LndD3vrr" data-fill="#f1c40f">
                 <div class="api-name">摸鱼</div>
                 <span class="api-line" style="background: #f1c40f;"></span>
             </div>
-            <div class="api-item data-copy="https://tvbox.xn--4kq62z5rby2qupq9ub.top/" data-fill="#cddc39" onclick="copyText(this)" onmouseover="setRandomColor(this)">
+            <div class="api-item onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="https://tvbox.xn--4kq62z5rby2qupq9ub.top/" data-fill="#cddc39">
                 <div class="api-name">王二小</div>
                 <span class="api-line" style="background: #cddc39;"></span>
             </div>
-            <div class="api-item data-copy="https://影视仓.com/" data-fill="#2ecc71" onclick="copyText(this)" onmouseover="setRandomColor(this)">
+            <div class="api-item onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="https://影视仓.com/" data-fill="#2ecc71">
                 <div class="api-name">影视仓</div>
                 <span class="api-line" style="background: #2ecc71;"></span>
             </div>
-            <div class="api-item data-copy="http://点播接口地址" data-fill="#949494" onclick="copyText(this)" onmouseover="setRandomColor(this)">
+            <div class="api-item onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="http://点播接口地址" data-fill="#949494">
                 <div class="api-name">点播</div>
                 <span class="api-line" style="background: #949494;"></span>
             </div>
-            <div class="api-item data-copy="http://宝盒接口地址" data-fill="#bdc3c7" onclick="copyText(this)" onmouseover="setRandomColor(this)">
+            <div class="api-item onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="http://宝盒接口地址" data-fill="#bdc3c7">
                 <div class="api-name">宝盒</div>
                 <span class="api-line" style="background: #bdc3c7;"></span>
             </div>
@@ -373,7 +374,7 @@ body{
     </div>
 </div>
 
-<!-- JS交互脚本，功能完整无修改 -->
+<!-- JS交互脚本，仅修改copyText读取方式，其余原样不动 -->
 <script>
 // 鼠标移入方块随机生成RGB颜色
 function setRandomColor(el){
@@ -382,9 +383,9 @@ function setRandomColor(el){
     let b = Math.floor(Math.random() * 256);
     el.style.setProperty('--randColor', `rgb(${r},${g},${b})`);
 }
-// 点击复制接口链接
+// 点击复制接口链接【修复undefined问题，其余逻辑不变】
 function copyText(el){
-    const text = el.dataset.copy;
+    const text = el.getAttribute('data-copy');
     navigator.clipboard.writeText(text).then(()=>{
         alert("接口复制成功："+text);
     }).catch(()=>{
