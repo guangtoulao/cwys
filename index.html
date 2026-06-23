@@ -1,160 +1,189 @@
 <!DOCTYPE html>
+<!-- HTML标准文档声明，浏览器识别网页文档类型 -->
 <html lang="zh-CN">
+<!-- lang="zh-CN" 页面语言为简体中文，适配搜索引擎与屏幕阅读器 -->
 <head>
 <meta charset="UTF-8">
+<!-- charset="UTF-8" 统一全站字符编码，防止中文乱码 -->
 <title>君子兰主页</title>
+<!-- 浏览器标签页标题，可自定义修改文字 -->
 <meta http-equiv="Cache-Control" content="public, max-age=2592000">
+<!-- 页面缓存30天，减少重复加载资源 -->
+<!-- 阿里SVG图标远程JS，无本地依赖 -->
 <script src="https://cwys.qzz.io/icons/iconfont.js"></script>
 <style>
+/* ========== 全局样式重置 ========== */
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:system-ui, sans-serif;
+    margin:0; /* 清除所有元素默认外边距 */
+    padding:0; /* 清除所有元素默认内边距 */
+    box-sizing:border-box; /* 标准盒模型，内边距不撑大盒子宽度 */
+    font-family:system-ui, sans-serif; /* 系统无衬线字体，全平台统一显示 */
 }
 body{
-    background-image: url("https://cwys.qzz.io/icons/桌面.jpg");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    padding:40px 20px;
-    min-height: 100vh;
+    background-image: url("https://cwys.qzz.io/icons/桌面.jpg"); /* 全屏背景图地址，可替换 */
+    background-size: cover; /* 背景铺满窗口，不变形留白 */
+    background-position: center; /* 背景图居中对齐 */
+    background-attachment: fixed; /* 滚动页面时背景固定不动 */
+    padding:40px 20px; /* 页面整体四周留白：上下40px 左右20px */
+    min-height: 100vh; /* 页面最小高度占满浏览器窗口 */
 }
+/* ========== 页面外层总半透明容器 ========== */
 .box-wrap{
-    background:rgba(255,255,255,0.6);
-    border-radius:14px;
-    padding:24px 24px 36px 24px;
-    margin-bottom:32px;
-    max-width:900px;
+    background:rgba(255,255,255,0.6); /* 白色半透明底色，0完全透明，1纯白 */
+    border-radius:14px; /* 容器整体圆角大小，数值越大越圆润 */
+    padding:24px 24px 36px 24px; /* 内边距顺序：上 右 下 左，底部留白加大 */
+    margin-bottom:32px; /* 容器底部距离页面底部垂直间距 */
+    max-width:900px; /* 容器最大宽度，大屏不会无限拉宽 */
     margin-left:auto;
-    margin-right:auto;
+    margin-right:auto; /* 左右自动边距，整块页面水平居中 */
 }
+/* ========== 顶部搜索框区域 ========== */
 .search-wrap{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:12px 20px;
-    gap:10px;
-    margin-bottom:80px;
-    background:#f3f5f9;
-    border-radius:12px;
-    max-width:700px;
-    margin:0 auto;
+    display:flex; /* 弹性横向布局，输入框按钮并排一行 */
+    align-items:center; /* 内部元素垂直居中 */
+    justify-content:center; /* 整行内容水平居中 */
+    padding:12px 20px; /* 搜索框容器上下、左右内边距，控制高度 */
+    gap:10px; /* 输入框和搜索按钮之间水平空隙大小 */
+    margin-bottom:80px; /* 搜索框下方留白，拉开和下方标题距离 */
+    background:#f3f5f9; /* 搜索框浅灰色底色 */
+    border-radius:12px; /* 搜索框圆角大小 */
+    max-width:700px; /* 搜索框最大宽度，避免过长 */
+    margin:0 auto; /* 搜索框在容器内居中 */
 }
+/* 搜索输入框 */
 .search-input{
-    flex:1;
-    max-width:450px;
-    border:none;
-    outline:none;
-    font-size:16px;
-    padding:10px 14px;
-    background:transparent;
+    flex:1; /* 自动占满剩余宽度自适应拉伸 */
+    max-width:450px; /* 输入框单独最大宽度 */
+    border:none; /* 清除默认边框 */
+    outline:none; /* 清除点击蓝色高亮边框 */
+    font-size:16px; /* 输入框文字字号 */
+    padding:10px 14px; /* 输入框文字上下、左右内边距 */
+    background:transparent; /* 输入框背景透明，继承外层浅灰底色 */
 }
+/* 搜索按钮 */
 .search-btn{
-    background:#3967FF;
-    color:#fff;
-    border:none;
-    border-radius:8px;
-    font-size:16px;
-    padding:10px 26px;
-    cursor:pointer;
+    background:#3967FF; /* 按钮蓝色背景色值 */
+    color:#fff; /* 按钮文字纯白色 */
+    border:none; /* 清除按钮默认灰色边框 */
+    border-radius:8px; /* 按钮圆角大小 */
+    font-size:16px; /* 按钮文字字号 */
+    padding:10px 26px; /* 按钮上下、左右内边距，控制按钮大小 */
+    cursor:pointer; /* 鼠标悬浮显示手型，提示可点击 */
 }
+
+/* ========== TVBOX接口板块外层容器 ========== */
 .api-box{
-    margin-bottom:60px;
+    margin-bottom:60px; /* 接口板块和下方图标网格垂直间距 */
 }
+/* 接口板块标题 */
 .api-title{
-    font-size:20px;
-    margin-top:60px;
-    margin-bottom:16px;
-    color:#3967FF;
-    text-align:center;
+    font-size:20px; /* 标题文字字号，放大突出板块名称 */
+    margin-top:60px; /* 标题上方留白，隔开搜索框区域 */
+    margin-bottom:16px; /* 标题和下方接口方块网格垂直间距 */
+    color:#3967FF; /* 标题蓝色文字色值 */
+    text-align:center; /* 标题文字水平居中 */
 }
+/* 接口方块网格容器，固定一行4个方块 */
 .api-grid{
-    display:grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap:14px 14px;
-    max-width:820px;
-    margin: 0 auto;
+    display:grid; /* 网格规整排列多个方块 */
+    grid-template-columns: repeat(4, 1fr); /* 固定4列均分宽度，8个方块自动两行 */
+    gap:14px 14px; /* 第一个值：方块上下行间距；第二个：方块左右间距 */
+    max-width:820px; /* 接口网格最大宽度，和下方图标网格宽度统一 */
+    margin: 0 auto; /* 接口网格整体居中 */
 }
+/* 单个接口方块样式（已删除position/overflow，消除干扰下方布局的根源） */
 .api-item{
-    text-align:center;
-    cursor:pointer;
-    padding:12px 6px;
-    border-radius:12px;
-    background:rgba(255,255,255,0.4);
-    transition: all 0.25s ease;
+    text-align:center; /* 方块内文字居中 */
+    cursor:pointer; /* 鼠标悬浮手型光标 */
+    padding:12px 6px;        /* 方块内边距：上下12px 左右6px，控制方块高矮宽窄 */
+    border-radius:12px;     /* 方块四角圆角大小，数值越大越圆 */
+    background:rgba(255,255,255,0.4); /* 常态半透明白底色，0.4控制透明度 */
+    transition: all 0.25s ease; /* 悬浮动画过渡时长，数值越大切换越慢 */
 }
+/* 鼠标悬浮方块变色放大 */
 .api-item:hover{
-    background: var(--randColor);
-    transform: scale(1.02);
-    box-shadow: 0 0 12px rgba(0,0,0,0.15);
+    background: var(--randColor); /* JS随机生成彩色底色，无需手动修改色值 */
+    transform: scale(1.02);  /* 悬浮放大倍数，1=无放大，数值越大放大越明显 */
+    box-shadow: 0 0 12px rgba(0,0,0,0.15); /* 悬浮阴影：12px阴影尺寸，0.15阴影透明度 */
 }
+/* 悬浮接口文字变为白色 */
 .api-item:hover .api-name{
-    color:#fff;
+    color:#fff; /* #fff纯白色文字 */
 }
+/* 悬浮隐藏底部分割线，色块完整无多余线条 */
 .api-item:hover .api-line{
     display: none;
 }
+/* 方块内接口名称文字 */
 .api-name{
-    font-size:16px;
-    margin-bottom:6px;
-    color:#111;
+    font-size:16px;         /* 接口文字字号大小 */
+    margin-bottom:6px;      /* 文字和下方横线垂直空隙，数值越大间距越大 */
+    color:#111;             /* 默认文字深黑色色值 */
 }
+/* 方块底部彩色分割线 常态样式 */
 .api-line{
-    height:4px;
-    border-radius:88px;
+    height:4px;             /* 横线粗细高度，数字越大线条越粗 */
+    border-radius:88px;     /* 横线两端超大圆角，实现全圆角长条 */
     display:block;
-    width:65%;
-    margin:6px auto 0;
-    transition: all 0.25s ease;
+    width:65%;              /* 常态短线宽度，占方块总宽度65%，数值越小线条越短 */
+    margin:6px auto 0;      /* 横线顶部外边距6px，auto实现左右居中 */
+    transition: all 0.25s ease; /* 线条动画过渡时长 */
 }
+/* ========== 下方APP图标网格容器（保留你原本自适应逻辑，不强制固定列） ========== */
 .icon-grid{
-    display:grid;
-    grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
-    gap:14px 14px;
-    max-width:820px;
-    margin:0 auto;
+    display:grid; /* 网格自动排列图标卡片 */
+    grid-template-columns: repeat(auto-fill, minmax(75px, 1fr)); /* minmax(75px,1fr) 75px=单张图标卡片最小宽度，修改数值缩放卡片大小 */
+    gap:14px 14px; /* gap第一个值：图标行上下垂直间距；第二个值：图标卡片左右水平间距 */
+    max-width:820px; /* 和上方接口网格宽度完全一致，上下板块视觉协调统一 */
+    margin:0 auto; /* 图标网格整体水平居中 */
 }
+/* 单个图标卡片容器 */
 .icon-card{
-    text-align:center;
-    cursor:pointer;
-    padding:4px;
-    border-radius:10px;
-    transition:0.2s;
+    text-align:center; /* 卡片内图标、文字全部居中对齐 */
+    cursor:pointer; /* 鼠标悬浮手型光标，提示可点击跳转网页 */
+    padding:4px; /* 卡片内部留白，数值越小卡片越紧凑小巧 */
+    border-radius:10px; /* 卡片悬浮圆角大小 */
+    transition:0.2s; /* 悬浮背景渐变动画时长，数值越大切换越慢 */
 }
+/* 鼠标悬浮图标卡片浅灰高亮 */
 .icon-card:hover{
-    background:rgba(0,0,0,0.08);
+    background:rgba(0,0,0,0.08); /* 悬浮浅灰色底色，0.08控制透明度深浅 */
 }
+/* 通用SVG图标尺寸统一样式 */
 .icon {
-    width: 44px;
-    height: 44px;
+    width: 44px;  /* SVG图标宽度尺寸，修改数值放大缩小图标 */
+    height: 44px; /* SVG图标高度尺寸 */
     display: inline-flex;
     align-items: center;
     justify-content: center;
     vertical-align: middle;
-    margin-bottom: 6px;
+    margin-bottom: 6px; /* 图标与下方文字垂直间距 */
 }
 .icon use {
     transform: scale(1);
     transform-origin: center;
     max-width: 80%;
-    max-height: 80%;
+    max-height: 80%; /* 限制图标内部图形最大占比，避免撑满容器 */
 }
+/* 图标下方文字样式 */
 .icon-text{
-    font-size:12px;
-    color:#222;
-    line-height:1.3;
+    font-size:12px; /* 图标底部文字字号大小，适配小尺寸卡片 */
+    color:#222; /* 文字深灰色色值，柔和不刺眼 */
+    line-height:1.3; /* 文字行高，控制多行文字上下松紧，数值越大文字上下越松散 */
 }
 </style>
 </head>
 <body>
+<!-- 页面最外层统一半透明包裹容器，所有页面内容全部包裹在内 -->
 <div class="box-wrap">
+    <!-- 1.顶部搜索框区域 -->
     <div class="search-wrap">
         <span>🔍</span>
         <input class="search-input" id="kw" placeholder="百度一下">
         <button class="search-btn" onclick="search()">搜索</button>
     </div>
 
+    <!-- 2.TVBOX接口板块 -->
     <div class="api-box">
         <div class="api-title">tvbox 接口</div>
         <div class="api-grid">
@@ -193,21 +222,22 @@ body{
         </div>
     </div>
 
+    <!-- 3.下方APP图标网格容器（无多余闭合div，完整包裹全部图标卡片） -->
     <div class="icon-grid">
         <div class="icon-card" onclick="openUrl('https://www.ximalaya.com')">
            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-ximalaya"></use></svg>
             <div class="icon-text">喜马拉雅</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://weixin.qq.com/')">
-           <img src="https://favicon.im/weixin.qq.com?larger=true" alt="微信" loading="lazy" />
+           <img src="https://favicon.im/weixin.qq.com?larger=true" alt="weixin.qq.com favicon (large)" loading="lazy" />
             <div class="icon-text">微信</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://www.kugou.com')">
-           <img src="https://fav.dog/www.kugou.com" width="32" height="32" alt="酷狗">
+           <img src="https://fav.dog/www.kugou.com" width="32" height="32" alt="www.kugou.com">
             <div class="icon-text">酷狗</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://www.32r.com/zt/dgyjzzrj/')">
-            <img src="https://favicon.im/ximalaya.com" alt="PS" loading="lazy" />
+            <img src="https://favicon.im/ximalaya.com" alt="ximalaya.com favicon" loading="lazy" />
             <div class="icon-text">PS</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://v.qq.com')">
@@ -318,6 +348,7 @@ body{
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail163"></use></svg>
             <div class="icon-text">163邮箱</div>
         </div>
+        <!-- 知乎卡片，无多余闭合div，不会截断网格 -->
         <div class="icon-card" onclick="openUrl('https://www.zhihu.com/')">
             <img class="icon" src="./icon/zhihu.png" alt="知乎" style="object-fit: contain;">
             <div class="icon-text">知乎</div>
@@ -329,13 +360,16 @@ body{
     </div>
 </div>
 
+<!-- JS交互脚本，功能完全保留无修改 -->
 <script>
+// 鼠标移入方块随机生成RGB颜色，赋值给--randColor变量
 function setRandomColor(el){
     let r = Math.floor(Math.random() * 256);
     let g = Math.floor(Math.random() * 256);
     let b = Math.floor(Math.random() * 256);
     el.style.setProperty('--randColor', `rgb(${r},${g},${b})`);
 }
+// 点击方块复制接口文本
 function copyText(el){
     const text = el.dataset.copy;
     navigator.clipboard.writeText(text).then(()=>{
@@ -344,15 +378,18 @@ function copyText(el){
         alert("复制失败，请手动复制："+text);
     })
 }
+// 新标签页打开链接
 function openUrl(url){
     if(!url) return;
     window.open(url,"_blank");
 }
+// 百度搜索函数
 function search(){
     let val = document.getElementById("kw").value.trim();
     if(!val) return alert("请输入搜索关键词");
     window.open(`https://www.baidu.com/s?wd=${encodeURIComponent(val)}`,"_blank");
 }
+// 搜索框回车触发搜索
 document.getElementById("kw").addEventListener("keydown",e=>e.key=="Enter"&&search())
 </script>
 </body>
