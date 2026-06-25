@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>君子兰主页</title>
-<link rel="icon" href="https://cwys.qzz.io/icons/宝马.png" type="image/png">
+<link rel="icon" href="图标地址.png" type="image/png">
 <meta http-equiv="Cache-Control" content="public, max-age=2592000">
 <script src="./icon/iconfont.js"></script>
 <style>
@@ -22,24 +22,30 @@ body{
 .search-wrap{
     display:flex;                 /* 开启弹性布局，横向排列内部元素 */
     align-items:center;           /* 内部元素垂直居中对齐 */
-    justify-content:center;       /* 内部元素水平居中对齐 */
-    padding:8px 20px;             /* 搜索框内部上下内边距8px，左右20px */
-    gap:10px;                     /* 输入框与按钮之间的空白距离 */
+    justify-content: space-between;       /* 内部元素两端对齐 */
+    padding:5px 20px;             /* 搜索框内部上下内边距5px，左右20px */
+    gap:0;                        /*————【改动】清除项目之间的间距————*/
     margin-bottom:80px;           /* 搜索框和下方标题之间的垂直距离 */
     background:#f3f5f9;           /* 搜索框背景颜色 */
     border-radius:12px;           /* 搜索框四个角的圆角大小 */
     max-width:700px;              /* 搜索框整体最大宽度 */
     margin:0 auto;                /* 让搜索框整体在页面水平居中 */
 }
-/* 搜索输入框样式 */
+.left-box{                         /*————【新增】包裹放大镜与输入框————*/
+    display:flex;
+    align-items:center;
+    gap:0;                        /*————【改动】图标与输入框无空隙————*/
+    flex:1;
+}
 .search-input{
-    flex:1;                       /* 让输入框自动占满剩余宽度 */
+    flex:1;                       /* 自动填满剩余宽度 */
     max-width:450px;              /* 限制输入框最大宽度 */
-    border:none;                  /* 清除输入框默认边框 */
-    outline:none;                 /* 清除点击后的蓝色高亮边框 */
-    font-size:16px;               /* 输入框内文字字号大小 */
-    padding:10px 14px;            /* 输入框内部上下、左右留白 */
-    background:transparent;       /* 输入框背景透明，和外层底色融为一体 */
+    border:none;                  /* 清除边框 */
+    outline:none;                 /* 取消选中高亮 */
+    font-size:16px;               /* 文字字号 */
+    padding:10px 0;               /*————【改动】左右内边距清零————*/
+    background:transparent;       /* 背景透明 */
+    text-align: left;             /* 文字左对齐 */
 }
 /* 搜索按钮样式 */
 .search-btn{
@@ -53,7 +59,8 @@ body{
 }
 /* 彩条模块和下方图标区的间距 */
 .api-box{
-    margin-bottom:60px;           /* 彩条区域与下方图标区域之间的垂直空白距离 */
+    /*————————改动1：把上下间距写在这里，不破坏网格布局————————*/
+    margin-bottom: 80px;
 }
 /* tvbox标题文字样式 */
 .api-title{
@@ -69,8 +76,9 @@ body{
     grid-template-columns: repeat(3, 1fr);             /* 固定一行显示3个栏目，均分宽度，不要修改 */
     max-width: 1000px;                                 /* 整排按钮整体最大宽度，数值越大整排越长 */
     margin:0 auto;                                     /* 让整排按钮在页面水平居中 */
+    /*————————改动2：已彻底删除justify-items居中代码，还原原生自动换行，解决第三行留白————————*/
     column-gap: 24px;                                  /* ★左右三组按钮之间的横向空隙，数字越大中间空白越宽 */
-    row-gap: 30px;                                     /* ★上下两行按钮的垂直间距，数值越大两行分得越开 */
+    row-gap: 20px;                                     /* ★上下两行按钮的垂直间距，数值越大两行分得越开 */
 }
 .item-text{
     margin-bottom:300px;
@@ -164,54 +172,60 @@ body{
 </style>
 </head>
 <body>
-<div class="box-wrap">
-    <div class="search-wrap">
+<div class="search-wrap">
+    <div class="left-box">
         <span>🔍</span>
         <input class="search-input" id="kw" placeholder="百度一下">
-        <button class="search-btn" onclick="search()">搜索</button>
     </div>
+    <button class="search-btn" onclick="search()">搜索</button>
+</div>
 
-   <div class="api-title" style="text-align:left;max-width:1000px;margin-left:auto;margin-right:auto;padding-top:35px;">
+<div class="api-title" style="text-align:left;max-width:1000px;margin-left:auto;margin-right:auto;padding-top:35px;">
     <span style="color:#3498db;">●</span>
     <span style="color:#e84393;">●</span>
     <span style="color:#f39c12;">●</span>
     <span style="margin-left:6px;color:#ffffff; font-size:26px;">接口</span>
     <span style="color:#ffffff; font-size:26px;">（点击复制）</span>
 </div>
-        <div class="api-grid" style="padding-bottom: 80px;">调整接口和图标之间的间距
-            <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="http://fty.xxooo.cf/tv" data-fill="#3498db">
-                饭太硬
-                <span class="api-line" style="background: #3498db;"></span>
-            </div>
-            <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="https://cwys.qzz.io/api.json" data-fill="#e84393">
-                君子兰
-                <span class="api-line" style="background: #e84393;"></span>
-            </div>
-            <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="https://qist.wyfc.qzz.io/xiaosa/api.json" data-fill="#f39c12">
-                潇洒
-                <span class="api-line" style="background: #f39c12;"></span>
-            </div>
-            <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="https://shturl.cc/atj0cccakraApLCQrlsS8E0b7LndD3vrr" data-fill="#f1c40f">
-              摸鱼
-                <span class="api-line" style="background: #f1c40f;"></span>
-            </div>
-            <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="https://tvbox.xn--4kq62z5rby2qupq9ub.top/" data-fill="#cddc39">
-               王二小
-                <span class="api-line" style="background: #cddc39;"></span>
-            </div>
-            <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="https://影视仓.com/" data-fill="#2ecc71">
-                影视仓
-                <span class="api-line" style="background: #2ecc71;"></span>
-            </div>
-            <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="http://点播接口地址" data-fill="#949494">
-                点播
-                <span class="api-line" style="background: #9932CC;"></span>
-            </div>
-            <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="http://宝盒接口地址" data-fill="#bdc3c7">
-                宝盒
-                <span class="api-line" style="background: #ffbc23;"></span>
-            </div>
+
+<!--————————改动3：删除行内样式padding-bottom，间距交给父级.api-box控制————————-->
+<div class="api-box">
+    <div class="api-grid">
+         <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="https://cwys.qzz.io/api.json" data-fill="#e84393">
+            君子兰
+            <span class="api-line" style="background: #e84393;"></span>
         </div>
+        <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="http://fty.xxooo.cf/tv" data-fill="#3498db">
+            饭太硬
+            <span class="api-line" style="background: #3498db;"></span>
+        </div>
+        <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="https://qist.wyfc.qzz.io/xiaosa/api.json" data-fill="#f39c12">
+            潇洒
+            <span class="api-line" style="background: #f39c12;"></span>
+        </div>
+        <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="https://shturl.cc/atj0cccakraApLCQrlsS8E0b7LndD3vrr" data-fill="#f1c40f">
+            摸鱼
+            <span class="api-line" style="background: #f1c40f;"></span>
+        </div>
+        <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="https://tvbox.xn--4kq62z5rby2qupq9ub.top/" data-fill="#cddc39">
+            王二小
+            <span class="api-line" style="background: #cddc39;"></span>
+        </div>
+        <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="https://影视仓.com/" data-fill="#2ecc71">
+            影视仓
+            <span class="api-line" style="background: #2ecc71;"></span>
+        </div>
+        <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="http://点播接口地址" data-fill="#949494">
+            点播
+            <span class="api-line" style="background: #9932CC;"></span>
+        </div>
+        <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="http://宝盒接口地址" data-fill="#bdc3c7">
+            宝盒
+            <span class="api-line" style="background: #ffbc23;"></span>
+        </div>
+    </div>
+</div>
+
     <div class="icon-grid">
         <div class="icon-card" onclick="openUrl('https://www.ximalaya.com')">
            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-ximalaya"></use></svg>
@@ -306,7 +320,7 @@ body{
             <div class="icon-text">太能编</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://tv.cctv.com/live/')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-cctv"></use></svg>
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-cctv1"></use></svg>
             <div class="icon-text">央视直播</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://qiushui.vip/')">
