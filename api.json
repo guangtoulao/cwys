@@ -57,7 +57,7 @@
       "ext": "./lib/优酷视频.js"
     },
     {
-  "name": "瓜子|秒播",
+  "name": "瓜子｜秒播",
   "key": "Guazi",
   "type": 3,
   "api": "csp_GuaziAmns",
@@ -90,7 +90,7 @@
       }
     },
    {
-  "name": "鲤鱼|秒播",
+  "name": "鲤鱼｜秒播",
   "key": "AppV7Xy",
   "type": 3,
   "api": "csp_AppV7Amns",
@@ -101,7 +101,7 @@
   "jar": "https://zl.wpscdn.cn/2026/06/25/space_img/943e508c-6dd2-4003-9c58-155c25213eaa.png"
 },
     {
-  "name": "金鱼|秒播",
+  "name": "金鱼｜秒播",
   "key": "AppV7Llq",
   "type": 3,
   "api": "csp_AppV7Amns",
@@ -112,7 +112,7 @@
   "jar": "https://zl.wpscdn.cn/2026/06/25/space_img/943e508c-6dd2-4003-9c58-155c25213eaa.png"
 },
     {
-  "name": "青鱼|秒播",
+  "name": "青鱼｜秒播",
   "key": "AppV7Xnm",
   "type": 3,
   "api": "csp_AppV7Amns",
@@ -123,7 +123,7 @@
   "jar": "https://zl.wpscdn.cn/2026/06/25/space_img/943e508c-6dd2-4003-9c58-155c25213eaa.png"
 },
     {
-  "name": "鲇鱼|秒播",
+  "name": "鲇鱼｜秒播",
   "key": "AppV7Xsz",
   "type": 3,
   "api": "csp_AppV7Amns",
@@ -134,7 +134,7 @@
   "jar": "https://zl.wpscdn.cn/2026/06/25/space_img/943e508c-6dd2-4003-9c58-155c25213eaa.png"
 },
     {
-  "name": "鲅鱼|秒播",
+  "name": "鲅鱼｜秒播",
   "key": "AppV7Zjdr",
   "type": 3,
   "api": "csp_AppV7Amns",
@@ -145,7 +145,7 @@
   "jar": "https://zl.wpscdn.cn/2026/06/25/space_img/943e508c-6dd2-4003-9c58-155c25213eaa.png"
 },
   {
-  "name": "草鱼|秒播",
+  "name": "草鱼｜秒播",
   "key": "AppV7Mtq",
   "type": 3,
   "api": "csp_AppV7Amns",
@@ -156,7 +156,7 @@
   "jar": "https://zl.wpscdn.cn/2026/06/25/space_img/943e508c-6dd2-4003-9c58-155c25213eaa.png"
 },
     {
-  "name": "特狗|秒播",
+  "name": "特狗｜秒播",
   "key": "AppV6Tg",
   "type": 3,
   "api": "csp_AppV6Amns",
@@ -167,7 +167,7 @@
   "jar": "https://zl.wpscdn.cn/2026/06/25/space_img/943e508c-6dd2-4003-9c58-155c25213eaa.png"
 },
     {
-  "name": "银鱼|秒播",
+  "name": "银鱼｜秒播",
   "key": "SeedHub",
   "type": 3,
   "api": "csp_SeedHubAmns",
@@ -178,7 +178,7 @@
   "jar": "https://zl.wpscdn.cn/2026/06/25/space_img/943e508c-6dd2-4003-9c58-155c25213eaa.png"
 },
     {
-  "name": "泥鳅|秒播",
+  "name": "泥鳅｜秒播",
   "key": "Dubk",
   "type": 3,
   "api": "csp_DubkAmns",
@@ -189,7 +189,7 @@
   "jar": "https://zl.wpscdn.cn/2026/06/25/space_img/943e508c-6dd2-4003-9c58-155c25213eaa.png"
 },
     {
-  "name": "带鱼|秒播",
+  "name": "带鱼｜秒播",
   "key": "YIys",
   "type": 3,
   "api": "csp_YIysAmns",
