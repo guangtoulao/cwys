@@ -50,6 +50,57 @@
       "ext": "./lib/爱奇艺.js"
     },
     {
+  "key": "iqiyizyapi.com",
+  "name": "🌻爱奇艺🌻",
+  "type": 1,
+  "api": "https://iqiyizyapi.com/api.php/provide/vod/?ac=list",
+  "searchable": 1,
+  "quickSearch": 1,
+  "filterable": 1,
+  "original_api": "https://iqiyizyapi.com/api.php/provide/vod",
+  "header": {
+    "User-Agent": "Mozilla/5.0 (Linux; Android 11; SM-G973F) AppleWebKit/537.36",
+    "Accept": "application/json, */*",
+    "Connection": "close"
+  },
+  "ext": "https://iqiyizyapi.com",
+  "playerType": 1,
+  "playUrl": "",
+  "jar": "https://xpb.mhfs.eu.org/ZJ/XPB/spider20260509.jar"
+},
+    {
+  "key": "腾腾",
+  "name": "🌻腾腾🌻",
+  "type": 3,
+  "api": "http://rihou.cc:88/js/drpy2.min.js",
+  "ext": "http://rihou.cc:88/js/腾腾.js",
+  "jar": "https://xpb.mhfs.eu.org/ZJ/XPB/spider20260509.jar"
+},
+    {
+  "key": "奇奇",
+  "name": "🌻奇奇🌻",
+  "type": 3,
+  "api": "http://rihou.cc:88/js/drpy2.min.js",
+  "ext": "http://rihou.cc:88/js/奇奇.js",
+  "jar": "https://xpb.mhfs.eu.org/ZJ/XPB/spider20260509.jar"
+},
+   {
+  "key": "果果",
+  "name": "🌻果果🌻",
+  "type": 3,
+  "api": "http://rihou.cc:88/js/drpy2.min.js",
+  "ext": "http://rihou.cc:88/js/果果.js",
+  "jar": "https://xpb.mhfs.eu.org/ZJ/XPB/spider20260509.jar"
+},
+    {
+  "key": "酷酷",
+  "name": "🌻酷酷🌻",
+  "type": 3,
+  "api": "http://rihou.cc:88/js/drpy2.min.js",
+  "ext": "http://rihou.cc:88/js/酷酷.js",
+  "jar": "https://xpb.mhfs.eu.org/ZJ/XPB/spider20260509.jar"
+},
+    {
       "key": "优酷视频",
       "name": "优酷｜视频",
       "type": 3,
@@ -198,6 +249,44 @@
   "changeable": 0,
   "jar": "https://zl.wpscdn.cn/2026/06/25/space_img/943e508c-6dd2-4003-9c58-155c25213eaa.png"
 },
+    {
+  "key": "猎手",
+  "name": "火狐|影视",
+  "type": 3,
+  "api": "https://ghfast.top/https://raw.githubusercontent.com/xuge188/TVBOX/main/py/%E7%8C%8E%E6%89%8B.py",
+  "jar": "https://ghfast.top/https://raw.githubusercontent.com/xuge188/TVBOX/main/spider.jar",
+  "searchable": 1,
+  "changeable": 1,
+  "quickSearch": 1,
+  "filterable": 1,
+  "playerType": 2
+},
+    {
+  "key": "浪酷",
+  "name": "浪酷 | 影视",
+  "type": 3,
+  "api": "https://ghfast.top/https://raw.githubusercontent.com/xuge188/TVBOX/main/py/%E6%B5%AA%E9%85%B7.py",
+  "jar": "https://ghfast.top/https://raw.githubusercontent.com/xuge188/TVBOX/main/spider.jar",
+  "ext": "http://43.248.117.123:4680"
+},
+    {
+  "key": "猫眼资源",
+  "name": "猫眼|资源",
+  "type": 1,
+  "api": "https://api.maoyanapi.top/api.php/provide/vod",
+  "searchable": 1,
+  "quickSearch": 1,
+  "jar": "https://xpb.mhfs.eu.org/ZJ/XPB/spider20260509.jar"
+},
+    {
+  "key": "非凡影视",
+  "name": "非凡|影视",
+  "type": 1,
+  "api": "http://ffzy5.tv/api.php/provide/vod",
+  "searchable": 1,
+  "quickSearch": 1,
+  "jar": "https://xpb.mhfs.eu.org/ZJ/XPB/spider20260509.jar"
+}
     {
       "key": "三六零",
       "name": "三六｜视频",
