@@ -4,7 +4,7 @@
   "sites": [
     {
       "key": "豆瓣",
-      "name": "豆瓣首页",
+      "name": "豆瓣 | 首页",
       "type": 3,
       "api": "csp_Douban",
       "searchable": 0
@@ -452,7 +452,7 @@
     },
     {
       "key": "飞飞",
-      "name": "麻雀丨影视",
+      "name": "麻雀影视",
       "type": 3,
       "api": "csp_AppYsV2",
       "searchable": 1,
@@ -499,7 +499,7 @@
     },
     {
       "key": "无极99",
-      "name": "太极丨影视",
+      "name": "太极影视",
       "type": 3,
       "api": "csp_App99",
       "ext": {
@@ -516,7 +516,7 @@
     },
     {
       "key": "剧圈99",
-      "name": "剧圈丨影视",
+      "name": "剧圈影视",
       "type": 3,
       "api": "csp_App99",
       "ext": {
