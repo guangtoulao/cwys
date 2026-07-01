@@ -79,10 +79,18 @@
       "ext": "./lib/优酷视频.js"
     },
     {
-      "key": "瓜子影视",
-      "name": "瓜子影视",
+      "name": "瓜子秒播",
+      "key": "Guazi",
       "type": 3,
-      "api": "csp_Gz360"
+      "api": "csp_GuaziAmns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": {
+      "sites": "",
+      "filters": "https://file.icve.com.cn/file_doc/822/528/CD984013F5776F759DFC815995F87BFB.aowu"
+    },
+      "jar": "https://zl.wpscdn.cn/2026/07/01/space_img/aeb15895-6d2c-4ced-a59b-deaa51366a05.png"
     },
     {
       "key": "茉莉",
