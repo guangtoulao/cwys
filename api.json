@@ -44,6 +44,38 @@
     "play": ""
   }
 },
+ {
+      "key": "腾腾",
+      "name": "腾讯影视",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "ext": "./lib/腾腾.js",
+      "jar": "./lib/柒豪.jar"
+    },
+    {
+      "key": "酷酷",
+      "name": "优酷影视",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "ext": "./lib/酷酷.js",
+      "jar": "./lib/柒豪.jar"
+    },
+    {
+      "key": "奇",
+      "name": "爱奇影视",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "ext": "./lib/奇奇.js",
+      "jar": "./lib/柒豪.jar"
+    },
+    {
+      "key": "果果",
+      "name": "芒果影视",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "ext": "./lib/果果.js",
+      "jar": "./lib/柒豪.jar"
+    },
     {
       "key": "iqiyizyapi.com",
       "name": "爱奇视频",
