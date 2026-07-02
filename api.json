@@ -34,6 +34,7 @@
       "type": 3,
       "api": "./lib/drpy2.min.js",
       "ext": "./lib/gougou.js",
+      "jar": "https://zl.wpscdn.cn/2026/06/25/space_img/943e508c-6dd2-4003-9c58-155c25213eaa.png"
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
