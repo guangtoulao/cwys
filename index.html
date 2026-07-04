@@ -3,23 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <title>君子兰主页</title>
+<!-- 【可修改1】网站小图标，替换href链接更换favicon -->
 <link rel="icon" href="https://pics3.baidu.com/feed/6a63f6246b600c3346d4fd283d6c1a1ed8f9a156.jpeg@f_auto?token=e02ba4b615239c7ee41074a263625dd4">
+<!-- 【可修改2】缓存有效期，单位秒，2592000=30天 -->
 <meta http-equiv="Cache-Control" content="public, max-age=2592000">
-<!-- 图标字体文件路径，图标不显示就核对这个路径 -->
+
+<!-- ======================【关键修复点】======================
+  你仓库icon文件夹内的iconfont.js是阿里Symbol图标核心文件，必须引入
+  引入后页面自动生成隐藏SVG图标库，<use>标签才能匹配到#icon-xxx图标ID
+  路径出错SVG图标直接空白，核对仓库文件目录
+========================================================== -->
 <script src="./icon/icon/iconfont.js"></script>
+
 <style>
 /* 全局通用重置样式 */
 *{
-    margin:0;                     /* 清除所有元素默认外边距 可修改数值 */
-    padding:0;                    /* 清除所有元素默认内边距 可修改数值 */
-    box-sizing:border-box;        /* 内边距不会撑大盒子总宽度 */
-    font-family:system-ui, sans-serif;  /* 全局统一字体 */
-    color:#fff;                   /* 全局默认文字白色 可修改颜色值 */
+    margin:0;                     /* 【可修改3】清除所有元素默认外边距 可修改数值 */
+    padding:0;                    /* 【可修改4】清除所有元素默认内边距 可修改数值 */
+    box-sizing:border-box;        /* 固定属性，不建议修改，内边距不会撑大盒子总宽度 */
+    font-family:system-ui, sans-serif;  /* 【可修改5】全局统一字体，可替换微软雅黑/宋体等 */
+    color:#fff;                   /* 【可修改6】全局默认文字白色 可修改颜色值 */
 }
 /* 页面整体主体容器 */
 body{
-    padding:40px 20px;            /* 页面上下留白40px，左右留白20px 可修改数值 */
-    min-height: 100vh;            /* 页面高度铺满整个浏览器窗口 可修改高度值 */
+    padding:40px 20px;            /* 【可修改7】页面上下留白40px，左右留白20px 可修改数值 */
+    min-height: 100vh;            /* 固定属性，页面高度铺满浏览器窗口 */
+    /* 背景图由JS控制，此处无需写背景 */
 }
 
 /* ==========顶部搜索框区域 开始========== */
@@ -27,63 +36,63 @@ body{
     display:flex;                 
     align-items:center;           
     justify-content: space-between;       
-    padding:5px 20px;              /* 搜索框上下内边距5px，左右20px 可修改数值 */
-    gap:0;                         /* 内部元素间距 可修改数值 */
-    margin-top: 0;                 /* 上边距 可修改数值 */
+    padding:5px 20px;              /* 【可修改8】搜索框上下内边距5px，左右20px 可修改数值 */
+    gap:0;                         /* 【可修改9】内部放大镜与按钮间距 可修改数值 */
+    margin-top: 0;                 /* 【可修改10】搜索框上边距 可修改数值 */
     margin-right: auto;
-    margin-bottom: 80px;           /* 搜索框底部外边距 可修改数值 */
+    margin-bottom: 80px;           /* 【可修改11】搜索框底部外边距 可修改数值 */
     margin-left: auto;
-    background:#f3f5f9;           /* 搜索框背景色 可修改颜色 */
-    border-radius:12px;            /* 圆角大小 可修改数值 */
-    max-width:700px;               /* 搜索框最大宽度 可修改数值 */
+    background:#f3f5f9;           /* 【可修改12】搜索框背景色 可修改颜色 */
+    border-radius:12px;            /* 【可修改13】搜索框圆角大小 可修改数值 */
+    max-width:700px;               /* 【可修改14】搜索框最大宽度 可修改数值 */
 }
 .left-box{
     display:flex;
     align-items:center;
-    gap:0;                         /* 放大镜与输入框间距 可修改数值 */
-    flex:1;                        /* 宽度占比 可修改数值 */
+    gap:0;                         /* 【可修改15】放大镜与输入框间距 可修改数值 */
+    flex:1;                        /* 固定，输入框自动占满剩余宽度 */
 }
 .search-input{
-    flex:1;                        /* 输入框宽度占比 可修改数值 */
-    max-width:450px;               /* 输入框最大宽度 可修改数值 */
+    flex:1;                        /* 固定，输入框自适应宽度 */
+    max-width:450px;               /* 【可修改16】输入框最大宽度 可修改数值 */
     border:none;                  
     outline:none;                 
-    font-size:16px;                /* 输入文字字号 可修改数值 */
-    padding:10px 0;                /* 输入框上下内边距 可修改数值 */
+    font-size:16px;                /* 【可修改17】输入文字字号 可修改数值 */
+    padding:10px 0;                /* 【可修改18】输入框上下内边距 可修改数值 */
     background:transparent;       
     text-align: left;             
-    color:#333;                    /* 输入文字颜色 可修改颜色 */
+    color:#333;                    /* 【可修改19】输入框文字颜色 可修改颜色 */
 }
 .search-btn{
-    background:#3967FF;          /* 按钮背景色 可修改颜色 */
-    color:#fff;                    /* 按钮文字颜色 可修改颜色 */
+    background:#3967FF;          /* 【可修改20】搜索按钮背景色 可修改颜色 */
+    color:#fff;                    /* 【可修改21】按钮文字颜色 可修改颜色 */
     border:none;                  
-    border-radius:8px;             /* 按钮圆角 可修改数值 */
-    font-size:16px;                /* 按钮文字字号 可修改数值 */
-    padding:10px 26px;             /* 按钮上下10px 左右26px 可修改数值 */
+    border-radius:8px;             /* 【可修改22】按钮圆角 可修改数值 */
+    font-size:16px;                /* 【可修改23】按钮文字字号 可修改数值 */
+    padding:10px 26px;             /* 【可修改24】按钮上下10px 左右26px 可修改数值 */
     cursor:pointer;               
 }
 /* ==========顶部搜索框区域 结束========== */
 
 /* ==========中间问候语彩虹闪光文字 开始========== */
 .greet-text{
-    max-width:1000px;              /* 文字区域最大宽度 可修改数值 */
-    margin:0 auto 80px;            /* 底部外边距80px 可修改数值 */
+    max-width:1000px;              /* 【可修改25】文字区域最大宽度 可修改数值 */
+    margin:0 auto 80px;            /* 【可修改26】底部外边距80px 可修改数值 */
     text-align:center;            
-    font-size:50px;                /* 主文字字号 可修改数值 */
+    font-size:50px;                /* 【可修改27】主文字字号 可修改数值 */
     font-weight:bold;              
-    letter-spacing:4px;            /* 文字字间距 可修改数值 */
+    letter-spacing:4px;            /* 【可修改28】文字字间距 可修改数值 */
 }
 .flash-text{
     display:inline-block;
-    margin:0 50px;                 /* 两段文字左右间距 可修改数值 */
+    margin:0 50px;                 /* 【可修改29】两段文字左右间距 可修改数值 */
     background:linear-gradient(90deg, #ff0000, #ff9900, #ffff00, #00ff00, #0099ff, #9900ff, #ff0000);
-    background-size:400% 100%;     /* 渐变拉伸倍数 可修改数值 */
+    background-size:400% 100%;     /* 【可修改30】渐变拉伸倍数 可修改数值 */
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;            
-    animation:rainbowFlash 3s linear infinite; /* 动画时长3秒 可修改数值 */
-    text-shadow:0 0 8px rgba(255,255,255,0.6); /* 发光模糊8px 透明度0.6 可修改数值 */
+    animation:rainbowFlash 3s linear infinite; /* 【可修改31】彩虹动画时长3秒 可修改数值 */
+    text-shadow:0 0 8px rgba(255,255,255,0.6); /* 【可修改32】发光模糊8px 透明度0.6 可修改数值 */
 }
 @keyframes rainbowFlash{
     0%{background-position:0% 50%;}
@@ -94,32 +103,32 @@ body{
 
 /* ==========接口板块按钮区域 开始========== */
 .api-box{
-    margin-bottom: 80px;           /* 接口区域底部外边距 可修改数值 */
+    margin-bottom: 80px;           /* 【可修改33】接口区域底部外边距 可修改数值 */
 }
 .api-title{
-    font-size:20px;                /* 接口标题字号 可修改数值 */
-    margin-top:60px;               /* 标题上边距 可修改数值 */
-    margin-bottom:32px;            /* 标题下边距 可修改数值 */
-    color:#3967FF;                /* 标题文字颜色 可修改颜色 */
+    font-size:20px;                /* 【可修改34】接口标题字号 可修改数值 */
+    margin-top:60px;               /* 【可修改35】标题上边距 可修改数值 */
+    margin-bottom:32px;            /* 【可修改36】标题下边距 可修改数值 */
+    color:#3967FF;                /* 【可修改37】标题文字颜色 可修改颜色 */
     text-align:left;              
 }
 .api-grid{
     display:grid;                                      
-    grid-template-columns: repeat(3, 1fr);              /* 一行显示3个按钮 可修改数字 */
-    max-width: 1000px;              /* 网格最大宽度 可修改数值 */
+    grid-template-columns: repeat(3, 1fr);              /* 【可修改38】一行显示3个按钮，修改数字变更列数 */
+    max-width: 1000px;              /* 【可修改39】网格最大宽度 可修改数值 */
     margin:0 auto;                                     
-    column-gap: 24px;               /* 横向按钮间距 可修改数值 */
-    row-gap: 20px;                  /* 纵向按钮间距 可修改数值 */
+    column-gap: 24px;               /* 【可修改40】横向按钮间距 可修改数值 */
+    row-gap: 20px;                  /* 【可修改41】纵向按钮间距 可修改数值 */
 }
 .api-item{
     text-align:center;            
     cursor:pointer;               
-    padding:30px 0;                /* 按钮上下内边距 可修改数值 */
-    border-radius:6px;              /* 按钮圆角 可修改数值 */
-    transition: all 0.25s ease;    /* hover过渡时长0.25秒 可修改数值 */
+    padding:30px 0;                /* 【可修改42】按钮上下内边距 可修改数值 */
+    border-radius:6px;              /* 【可修改43】按钮圆角 可修改数值 */
+    transition: all 0.25s ease;    /* 【可修改44】hover过渡时长0.25秒 可修改数值 */
     position:relative;            
     color:#ffffff;                
-    font-size:22px;                /* 按钮文字字号 可修改数值 */
+    font-size:22px;                /* 【可修改45】按钮文字字号 可修改数值 */
     width:100%;
     box-sizing:border-box;
 }
@@ -128,11 +137,11 @@ body{
     left:0;
     right:0;
     text-align:center;
-    top:12px;                      /* 文字距离顶部偏移 可修改数值 */
+    top:12px;                      /* 【可修改46】文字距离顶部偏移 可修改数值 */
 }
 .api-item:hover{
     background: var(--randColor); 
-    transform: scale(1.02);        /* hover放大倍数 可修改数值 */
+    transform: scale(1.02);        /* 【可修改47】hover放大倍数 可修改数值 */
 }
 .api-item:hover .api-line{
     display: none;
@@ -142,7 +151,7 @@ body{
     left:0;
     bottom:0;
     width: 100%;
-    height: 2px;                   /* 底部线条粗细 可修改数值 */
+    height: 2px;                   /* 【可修改48】底部线条粗细 可修改数值 */
     border-radius: 0;
     display:block;
 }
@@ -151,12 +160,11 @@ body{
 /* ==========图标导航网格区域 开始========== */
 .icon-grid{
     display: grid;                                        
-    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); /* 卡片最小宽度90px 可修改数值 */
-    gap: 30px 16px;                                        /* 上下间距30px 左右16px 可修改数值 */
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); /* 【可修改49】卡片最小宽度90px 可修改数值 */
+    gap: 30px 16px;                                        /* 【可修改50】上下间距30px 左右16px 可修改数值 */
     max-width: 1000px;                                    
     margin: 0 auto;                                       
 }
-/* 【修改标记1】新增min-height:90px，卡片格子固定高度，空白SVG不会收缩塌陷，文字不再错位漂浮 */
 .icon-card{
     display: flex;
     flex-direction: column;
@@ -164,74 +172,73 @@ body{
     justify-content: flex-start;
     text-align:center;            
     cursor:pointer;               
-    padding:2px; /* 原4px，缩小留白，图标占比更大 */
-    border-radius:10px;            /* 卡片圆角 可修改数值 */
-    transition:0.2s;               /* hover过渡时长 可修改数值 */
+    padding:2px; /* 【可修改51】卡片内边距，原4px，缩小留白，图标占比更大 */
+    border-radius:10px;            /* 【可修改52】卡片圆角 可修改数值 */
+    transition:0.2s;               /* 【可修改53】hover过渡时长 可修改数值 */
     width: 100%;
-    min-height: 90px; /* 卡片最小高度 可修改数值 */
+    min-height: 90px; /* 【可修改54】卡片最小高度 可修改数值，防止空白SVG塌陷 */
 }
 .icon-card:hover{
-    background:rgba(0,0,0,0.08); /* hover背景透明度0.08 可修改数值 */
+    background:rgba(0,0,0,0.08); /* 【可修改55】hover背景透明度0.08 可修改数值 */
 }
-/* SVG矢量图标 完整兜底修复 */
-/* 【修改标记2】新增min-width:44px，锁死图标宽度，SVG/图片图标尺寸视觉完全统一，不会大小不一 */
+/* SVG矢量图标专用样式（修复空白核心样式） */
 .icon {
-    width: 44px;    /* 图标宽度 可修改数值 */
-    height: 44px;   /* 图标高度 可修改数值 */
+    width: 44px;    /* 【可修改56】SVG图标宽度 可修改数值 */
+    height: 44px;   /* 【可修改57】SVG图标高度 可修改数值 */
     min-width: 44px;
     min-height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0; /* 禁止图标区域被压缩 */
-    margin: 0 auto 6px;           /* 图标底部外边距6px 可修改数值 */
+    margin: 0 auto 6px;           /* 【可修改58】图标底部外边距6px 可修改数值 */
+    fill: #ffffff; /* 【可修改59】SVG图标颜色，统一白色，可修改 */
 }
 .icon use {
-    transform: scale(0.85);      /* SVG内部缩放0.85倍 可修改数值 */
+    transform: scale(0.85);      /* 【可修改60】SVG内部缩放0.85倍 可修改数值 */
     transform-origin: center;
 }
-/* 全局图片图标统一样式 */
-/* 全局图片图标统一样式 */
+/* 全局图片图标统一样式（img标签图标，一直正常显示） */
 .icon-img {
-    width: 44px;    /* 统一外框宽度 可修改数值 */
-    height: 44px;   /* 统一外框高度 可修改数值 */
+    width: 44px;    /* 【可修改61】图片图标统一宽度 可修改数值 */
+    height: 44px;   /* 【可修改62】图片图标统一高度 可修改数值 */
     min-width: 44px;
     min-height: 44px;
-    object-fit: contain; /* 原图完整显示，不裁切、不拉伸 */
-    object-position: center; /* 居中显示 */
+    object-fit: contain; /* 原图完整显示，不裁切、不拉伸，固定属性 */
+    object-position: center; /* 居中显示，固定属性 */
     display: block;
     flex-shrink: 0; /* 禁止压缩 */
-    margin: 0 auto 6px;           /* 图标底部间距 可修改数值 */
+    margin: 0 auto 6px;           /* 【可修改63】图标底部间距 可修改数值 */
     border: none;  
 }
 /* 带方形底色APP图标专用（github、百度网盘、秋水网），放大抵消内部留白 */
 .icon-img.app-icon {
-    transform: scale(1.18);
+    transform: scale(1.18); /* 【可修改64】图标放大倍数 可修改数值 */
 }
 /* ==========图标导航网格区域 结束========== */
 
 /* ==========顶部分类标签导航栏 开始========== */
 .tab-nav{
     display:flex;
-    gap:8px;                       /* 标签之间间距 可修改数值 */
-    margin:0 auto 30px;            /* 导航栏底部外边距30px 可修改数值 */
+    gap:8px;                       /* 【可修改65】标签之间间距 可修改数值 */
+    margin:0 auto 30px;            /* 【可修改66】导航栏底部外边距30px 可修改数值 */
     max-width:1000px;
-    padding-bottom:8px;            /* 导航栏底部内边距 可修改数值 */
-    border-bottom:1px solid #333;  /* 分割线粗细、颜色 可修改 */
+    padding-bottom:8px;            /* 【可修改67】导航栏底部内边距 可修改数值 */
+    border-bottom:1px solid #333;  /* 【可修改68】分割线粗细、颜色 可修改 */
 }
 .tab{
-    flex:1;                        /* 标签宽度均分 可修改数值 */
+    flex:1;                        /* 固定，标签宽度均分 */
     text-align:center;
-    font-weight: 800; /* 新增：控制文字粗细 可修改数值 */
-    padding:10px 0;                /* 标签上下内边距 可修改数值 */
-    font-size:36px;                /* 标签文字字号 可修改数值 */
+    font-weight: 800; /* 【可修改69】文字粗细 可修改数值 */
+    padding:10px 0;                /* 【可修改70】标签上下内边距 可修改数值 */
+    font-size:36px;                /* 【可修改71】标签文字字号 可修改数值 */
     cursor:pointer;
     opacity:1;                    
-    color:#f64750;                    /* 标签文字颜色 可修改颜色 */
+    color:#f64750;                    /* 【可修改72】标签文字颜色 可修改颜色 */
 }
 .tab.active{
     opacity:1;
-    border-bottom:3px solid #00aaff; /* 激活下划线粗细3px、颜色 可修改 */
+    border-bottom:3px solid #00aaff; /* 【可修改73】激活下划线粗细3px、颜色 可修改 */
 }
 .tab-content-item{
     display:none;
@@ -245,14 +252,14 @@ body{
 .tip-box{
     position: fixed;
     left: 50%;
-    top: 30%;                      /* 弹窗垂直距离顶部30% 可修改数值 */
+    top: 30%;                      /* 【可修改74】弹窗垂直距离顶部30% 可修改数值 */
     transform: translateX(-50%);
     background: #ffffff; 
     color: #000 !important; 
-    font-size: 16px;               /* 弹窗文字字号 可修改数值 */
-    padding: 12px 24px;            /* 弹窗内边距 上下12px 左右24px 可修改数值 */
-    border-radius: 10px;           /* 弹窗圆角 可修改数值 */
-    z-index: 9999;                 /* 弹窗层级 可修改数值 */
+    font-size: 16px;               /* 【可修改75】弹窗文字字号 可修改数值 */
+    padding: 12px 24px;            /* 【可修改76】弹窗内边距 上下12px 左右24px 可修改数值 */
+    border-radius: 10px;           /* 【可修改77】弹窗圆角 可修改数值 */
+    z-index: 9999;                 /* 固定，弹窗最高层级，不建议修改 */
 }
 /* ==========复制成功弹窗提示框 结束========== */
 </style>
@@ -286,6 +293,7 @@ body{
    <!-- 生活分类：添加active，页面打开默认显示 -->
 <div class="tab-content-item active" data-id="shenghuo">
     <div class="icon-grid">
+        <!-- img图片图标写法（稳定无bug，无需依赖JS图标库） -->
         <div class="icon-card" onclick="openUrl('https://weixin.qq.com/')">
             <img class="icon-img" src="https://s1.aigei.com/prevfiles/ba5506eb484545fe80df4c9841dbca28.png?e=2051020800&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:il9cyl9QdQPE0euS2KoUj9SroT0=" loading="lazy">
             <div class="icon-text">微信</div>
@@ -298,7 +306,7 @@ body{
                 <img class="icon-img" src="https://s1.aigei.com/prevfiles/49087c49767249238e7a83de052ac641.png?e=2051020800&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:t8wsVojdv8zkUygm35E47qzluRQ=" loading="lazy">
                 <div class="icon-text">AI大全</div>
             </div>
-            <div class="icon-card" onclick="openUrl('https://www.xingzuoyun.cc/')">
+            <div class="icon-card" onclick="openUrl('https://xingzuoyun.cc/')">
                <img class="icon-img" src="https://s1.91wei.com/prevfiles/1f394f79ac874dbda056a63c56454438.png?e=2051020800&token=1srnZGLKZ0Aqlz6dk7yF4SkiYf4eP-YrEOdM1sob:aTTpnWy3gelARbaAjLcWUiA0rVo=" loading="lazy">
                 <div class="icon-text">AI工具集</div>
             </div>
@@ -342,7 +350,6 @@ body{
             <img class="icon-img" src="https://s1.aigei.com/prevfiles/7650aa4b31644d209df7b99e16dcf33d.png?e=2051020800&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:gnkcAfOpkOyoowk_KEWKunkKwNk=" loading="lazy">
             <div class="icon-text">163邮箱</div>
         </div>
-        <!-- 合并进来的影视卡片，无外层yule容器 -->
         <div class="icon-card" onclick="openUrl('https://www.ximalaya.com')">
           <img class="icon-img" src="https://s1.aigei.com/prevfiles/b7cfb3c7b89645538a9757beffd55006.png?e=2051020800&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:YtDfMZQlrER6GxRGxR2wKcnksrM=" loading="lazy">
             <div class="icon-text">喜马拉雅</div>
@@ -398,7 +405,7 @@ body{
     </div>
 </div>
 
-    <!-- 办公分类 -->
+    <!-- 办公分类（包含SVG图标写法，已修复空白问题） -->
     <div class="tab-content-item" data-id="bangong">
         <div class="icon-grid">
              <div class="icon-card" onclick="openUrl('https://www.iconfont.cn/')">
@@ -413,6 +420,7 @@ body{
                 <img class="icon-img" src="https://s1.aigei.com/prevfiles/eb6813fbed6f4b8ba71767ce52b8d736.png?e=2051020800&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:o4SUwA22WMg6U9MXPxJ1-rdpRN4=" loading="lazy">
                 <div class="icon-text">直播源搜索引擎</div>
             </div>
+            <!-- SVG图标写法（现在可正常显示，依赖头部iconfont.js + .icon填充色样式） -->
             <div class="icon-card" onclick="openUrl('https://xhztv.pro/jsondiy')">
                 <svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhaogonghezi"></use></svg>
                 <div class="icon-text">小盒子工具箱</div>
@@ -565,8 +573,8 @@ body{
 </div>
 
 <script>
-let bgType = 0; // 0=静态图，1=动态星空
-let onlineBg = "https://img0.baidu.com/it/u=634234653,3364968940&fm=253&app=138&f=JPEG?w=1067&h=800";
+let bgType = 0; // 【可修改78】0=静态背景图，1=动态星空背景
+let onlineBg = "https://img0.baidu.com/it/u=634234653,3364968940&fm=253&app=138&f=JPEG?w=1067&h=800"; /* 【可修改79】静态背景图链接 */
 
 // 先删除残留星空画布，防止重叠
 const oldCanvas = document.querySelector("canvas");
@@ -593,85 +601,10 @@ if(bgType === 0){
     window.onresize = resize;
 
     let dots = [];
-    for(let i = 0; i < 80; i++){
+    for(let i = 0; i < 80; i++){ /* 【可修改80】星空星星数量，数字越大星星越多 */
         dots.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
-            r: Math.random() * 1.5,
-            speedX: (Math.random() - 0.5) * 0.3,
-            speedY: (Math.random() - 0.5) * 0.3
-        })
-    }
-
-    function run(){
-        ctx.fillStyle = "rgba(0,0,0,0.15)";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = "#fff";
-        dots.forEach(p => {
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fill();
-            p.x += p.speedX;
-            p.y += p.speedY;
-            if(p.x < 0) p.x = canvas.width;
-            if(p.x > canvas.width) p.x = 0;
-            if(p.y < 0) p.y = canvas.height;
-            if(p.y > canvas.height) p.y = 0;
-        })
-        requestAnimationFrame(run);
-    }
-    run();
-}
-
-function setRandomColor(el){
-    let r = Math.floor(Math.random() * 256);
-    let g = Math.floor(Math.random() * 256);
-    let b = Math.floor(Math.random() * 256);
-    el.style.setProperty('--randColor', `rgb(${r},${g},${b})`);
-}
-
-function copyText(el) {
-  let txt = el.dataset.copy;
-  const temp = document.createElement('textarea');
-  temp.value = txt;
-  document.body.appendChild(temp);
-  temp.select();
-  document.execCommand('copy');
-  document.body.removeChild(temp);
-
-  const box = document.createElement('div');
-  box.className = "tip-box";
-  box.innerText = "复制成功\n祝您观影愉快！";
-  document.body.appendChild(box);
-  setTimeout(() => box.remove(), 1500); /* 可改数值：弹窗停留毫秒1500 */
-}
-
-function openUrl(url){
-    if(!url) return;
-    window.open(url,"_blank");
-}
-
-function search(){
-    let val = document.getElementById("kw").value.trim();
-    if(!val) return alert("请输入搜索关键词");
-    window.open(`https://www.baidu.com/s?wd=${encodeURIComponent(val)}`,"_blank");
-}
-
-document.getElementById("kw").addEventListener("keydown", function(e){
-    if(e.key === "Enter") search();
-})
-
-const tabs = document.querySelectorAll('.tab');
-const tabItems = document.querySelectorAll('.tab-content-item');
-tabs.forEach(tab=>{
-    tab.onclick = ()=>{
-        const targetId = tab.dataset.target;
-        tabs.forEach(t=>t.classList.remove('active'));
-        tabItems.forEach(item=>item.classList.remove('active'));
-        tab.classList.add('active');
-        document.querySelector(`.tab-content-item[data-id="${targetId}"]`).classList.add('active');
-    }
-})
-</script>
-<!--【HTML错误标记4】原代码重复两份相同cf脚本，删除多余一份，仅保留单个 -->
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b228234959e04346a40515e77a1a092e","r":1,"server_timing":{"name":{"cfCacheStatus":true
+            r: Math.random() * 1.5, /* 【可修改81】星星最大半径 */
+            speedX: (Math.random() - 0.5) * 0.3, /* 【可修改82】星星横向移动速度 */
+            speedY: (Math.random() - 0.5) * 0.3 /* 【可修改83】星星纵向移动速度 */
