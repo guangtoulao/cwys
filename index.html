@@ -9,8 +9,7 @@
 <!-- 【可修改2】页面缓存时长，单位秒 2592000=30天 -->
 <meta http-equiv="Cache-Control" content="public, max-age=2592000">
 <!-- =====================阿里在线图标唯一引入，无本地文件=====================
-【可修改3】阿里在线JS链接，项目新增/删除图标后点更新代码替换此处
-原本地代码 <script src="./icon/icon/iconfont.js"></script> 已彻底删除
+阿里在线JS链接，项目新增/删除图标后点更新代码替换此处
 ================================================================ -->
 <script src="https://at.alicdn.com/t/c/font_5198821_7jla4r4juo3.js" crossorigin></script>
 <script src="https://at.alicdn.com/t/c/font_5204659_5exvj63eqrh.js" crossorigin></script>
@@ -271,7 +270,6 @@ body{
 <!-- 所有分类内容总容器 -->
 <div class="tab-wrap">
 
-   <!-- 生活分类【全部替换为阿里SVG，无任何img图片】 -->
 <div class="tab-content-item active" data-id="shenghuo">
     <div class="icon-grid">
         <div class="icon-card" onclick="openUrl('https://weixin.qq.com/')">
@@ -409,7 +407,7 @@ body{
     </div>
 </div>
 
-    <!-- 办公分类【全部统一阿里SVG，无img图片】 -->
+    <!-- 办公分类 -->
     <div class="tab-content-item" data-id="bangong">
         <div class="icon-grid">
              <div class="icon-card" onclick="openUrl('https://www.iconfont.cn/')">
@@ -505,7 +503,7 @@ body{
         </div>
     </div>
 
-    <!-- 接口分类（无图标，无需修改） -->
+    <!-- 接口分类 -->
    <div class="tab-content-item" data-id="jiekou">
         <div class="api-title" style="text-align:left;max-width:1000px;margin-left:auto;margin-right:auto;padding-top:35px;">
             <span style="color:#3498db;">●</span>
@@ -559,7 +557,7 @@ body{
 
 <script>
 let bgType = 0; // 【可修改75】0=静态背景图，1=动态星空背景
-let onlineBg = "https://img0.baidu.com/it/u=634234653,3364968940&fm=253&app=138&f=JPEG?w=1067&h=800"; /* 【可修改76】静态背景图片链接 */
+let onlineBg = "https://img2.baidu.com/it/u=2956805492,2882898&fm=253&fmt=auto?w=1280&h=800"; /* 【可修改76】静态背景图片链接 */
 
 // 先删除残留星空画布，防止重叠
 const oldCanvas = document.querySelector("canvas");
