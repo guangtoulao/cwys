@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -10,11 +7,13 @@
 <link rel="icon" href="https://pics3.baidu.com/feed/6a63f6246b600c3346d4fd283d6c1a1ed8f9a156.jpeg@f_auto?token=e02ba4b615239c7ee41074a263625dd4">
 <!-- 【可修改2】页面缓存时长，单位秒 2592000=30天 -->
 <meta http-equiv="Cache-Control" content="public, max-age=2592000">
-<!-- =====================阿里在线图标唯一引入，无本地文件=====================
-阿里在线JS链接，项目新增/删除图标后点更新代码替换此处
-================================================================ -->
+
+<!-- =====================阿里在线图标JS（原有，保留）===================== -->
 <script src="https://at.alicdn.com/t/c/font_5198821_7jla4r4juo3.js" crossorigin></script>
 <script src="https://at.alicdn.com/t/c/font_5204659_yf88twz80bq.js" crossorigin></script>
+<!-- =====================新增Font Awesome在线图标（混合使用）===================== -->
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
 <style>
 /* 全局通用重置样式 */
 *{
@@ -159,8 +158,8 @@ body{
 /* ==========图标导航网格区域 开始========== */
 .icon-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); /* 【可修改1】图标格子最小宽度 */
-    gap: 30px 16px; /* 【可修改2】图标纵向间距 | 【可修改3】图标横向间距 */
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); /* 【可修改50】图标格子最小宽度 */
+    gap: 30px 16px; /* 【可修改51】图标纵向间距 | 【可修改52】图标横向间距 */
     margin: 0;
     width: 100%;
 }
@@ -171,29 +170,31 @@ body{
     justify-content: flex-start;
     text-align:center;            
     cursor:pointer;               
-    padding:2px; /* 【可修改4】图标卡片内部留白 */
-    border-radius:10px; /* 【可修改5】卡片圆角数值，越大越圆润 */
-    transition:0.2s; /* 【可修改6】鼠标悬浮动画过渡时长(秒) */
+    padding:2px; /* 【可修改53】图标卡片内部留白 */
+    border-radius:10px; /* 【可修改54】卡片圆角数值，越大越圆润 */
+    transition:0.2s; /* 【可修改55】鼠标悬浮动画过渡时长(秒) */
     width: 100%;
-    min-height: 90px; /* 【可修改7】图标卡片最小高度 */
+    min-height: 90px; /* 【可修改56】图标卡片最小高度 */
 }
 .icon-card:hover{
-    background:rgba(0,0,0,0.08); /* 【可修改8】悬浮背景透明度，0完全透明 1纯黑 */
+    background:rgba(0,0,0,0.08); /* 【可修改57】悬浮背景透明度，0完全透明 1纯黑 */
 }
 .icon {
-    width: 44px; /* 【可修改9】图标宽度 */
-    height: 44px; /* 【可修改10】图标高度，需和宽度同步修改 */
+    width: 44px; /* 【可修改58】图标宽度 */
+    height: 44px; /* 【可修改59】图标高度，需和宽度同步修改 */
     min-width: 44px;
     min-height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    margin: 0 auto 6px; /* 【可修改11】图标与下方文字垂直间距 */
-    fill: #ffffff; /* 【可修改12】图标填充颜色 */
+    margin: 0 auto 6px; /* 【可修改60】图标与下方文字垂直间距 */
+    fill: #ffffff; /* 【可修改61】阿里SVG图标填充颜色 */
+    color: #ffffff;/* 【可修改62】FA字体图标颜色 */
+    font-size: 44px;/* 【可修改63】FA字体图标尺寸 */
 }
 .icon use {
-    transform: scale(0.85); /* 【可修改13】图标缩放倍数，1=原尺寸，小于1缩小 */
+    transform: scale(0.85); /* 【可修改64】阿里SVG图标缩放倍数，1=原尺寸，小于1缩小 */
     transform-origin: center;
 }
 /* ==========图标导航网格区域 结束========== */
@@ -202,40 +203,40 @@ body{
 .tab-nav {
     display: flex;
     justify-content: flex-start;
-    gap: 60px; /* 【可修改14】生活/办公/接口 文字之间横向间隔 */
-    margin: 0 auto 30px; /* 【可修改15】标签栏距离下方图标垂直间距 */
-    max-width: 1000px; /* 【可修改16】标签栏整体最大宽度，和图标容器保持一致 */
-    padding: 10px 0 8px; /* 【可修改17】标签栏上下内边距 */
-    padding-left: 0; /* 【可修改18】标签文字整体左侧内偏移，会同步带动底部黑线 */
-    padding-right: 0; /* 【可修改19】标签文字整体右侧内偏移 */
-    border-bottom: 1px solid #333; /* 【可修改20】底部黑线粗细、颜色 */
-    margin-left: 130px; /* 【可修改21】整块标签栏左右偏移，只移动文字+黑线，不影响下方图标 */
+    gap: 60px; /* 【可修改65】生活/办公/接口 文字之间横向间隔 */
+    margin: 0 auto 30px; /* 【可修改66】标签栏距离下方图标垂直间距 */
+    max-width: 1000px; /* 【可修改67】标签栏整体最大宽度，和图标容器保持一致 */
+    padding: 10px 0 8px; /* 【可修改68】标签栏上下内边距 */
+    padding-left: 0; /* 【可修改69】标签文字整体左侧内偏移，会同步带动底部黑线 */
+    padding-right: 0; /* 【可修改70】标签文字整体右侧内偏移 */
+    border-bottom: 1px solid #333; /* 【可修改71】底部黑线粗细、颜色 */
+    margin-left: 130px; /* 【可修改72】整块标签栏左右偏移，只移动文字+黑线，不影响下方图标 */
 }
 .tab {
     flex: none;
     width: fit-content;
     text-align: left;
-    font-weight: 400; /* 【可修改22】文字字重，400常规 700加粗 */
-    padding: 10px 0; /* 【可修改23】单个文字上下内边距 */
-    font-size: 26px; /* 【可修改24】分类文字字号大小 */
+    font-weight: 400; /* 【可修改73】文字字重，400常规 700加粗 */
+    padding: 10px 0; /* 【可修改74】单个文字上下内边距 */
+    font-size: 26px; /* 【可修改75】分类文字字号大小 */
     cursor: pointer;
-    color: #fff; /* 【可修改25】文字颜色 */
+    color: #fff; /* 【可修改76】文字颜色 */
     position: relative;
 }
 .tab.active::after {
     content: "";
     position: absolute;
     left: 0;
-    bottom: -8px; /* 【可修改26】蓝色下划线距离文字底部距离 */
+    bottom: -8px; /* 【可修改77】蓝色下划线距离文字底部距离 */
     width: 100%;
-    height: 3px; /* 【可修改27】蓝色激活下划线粗细 */
-    background-color: #00aaff; /* 【可修改28】激活下划线颜色 */
+    height: 3px; /* 【可修改78】蓝色激活下划线粗细 */
+    background-color: #00aaff; /* 【可修改79】激活下划线颜色 */
 }
 
 /* 分类内容外层容器 */
 .tab-content-item {
     display: none;
-    width: 1000px; /* 【可修改29】图标区块整体宽度，需和tab-nav max-width统一 */
+    width: 1000px; /* 【可修改80】图标区块整体宽度，需和tab-nav max-width统一 */
     margin: 0 auto;
 }
 .tab-content-item.active {
@@ -245,8 +246,8 @@ body{
 /* 图标网格（重复定义，覆盖上层） */
 .icon-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); /* 【可修改30】图标格子最小宽度 */
-    gap: 30px 16px; /* 【可修改31】图标纵向间距 | 【可修改32】图标横向间距 */
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); /* 【可修改81】图标格子最小宽度 */
+    gap: 30px 16px; /* 【可修改82】图标纵向间距 | 【可修改83】图标横向间距 */
     margin: 0;
     width: 100%;
 }
@@ -256,16 +257,15 @@ body{
 .tip-box{
     position: fixed;
     left: 50%;
-    top: 30%;                      /* 【可修改71】弹窗垂直距离顶部百分比 */
+    top: 30%;                      /* 【可修改84】弹窗垂直距离顶部百分比 */
     transform: translateX(-50%);
     background: #ffffff; 
     color: #000 !important; 
-    font-size: 16px;               /* 【可修改72】弹窗文字字号 */
-    padding: 12px 24px;            /* 【可修改73】弹窗上下、左右内边距 */
-    border-radius: 10px;           /* 【可修改74】弹窗圆角大小 */
+    font-size: 16px;               /* 【可修改85】弹窗文字字号 */
+    padding: 12px 24px;            /* 【可修改86】弹窗上下、左右内边距 */
+    border-radius: 10px;           /* 【可修改87】弹窗圆角大小 */
     z-index: 9999;                 /* 最高层级，不建议修改 */
 }
-
 /* ==========复制成功弹窗提示框 结束========== */
 </style>
 </head>
@@ -296,9 +296,14 @@ body{
 
 <div class="tab-content-item active" data-id="shenghuo">
     <div class="icon-grid">
+        <!-- 原有阿里SVG图标写法 -->
         <div class="icon-card" onclick="openUrl('https://weixin.qq.com/')">
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-weixin"></use></svg>
             <div class="icon-text">微信</div>
+        </div>
+        <div class="icon-card" onclick="openUrl('https://www.baidu.com')">
+            <img class="icon" src="images/baidu.png" alt="百度">
+            <div class="icon-text">百度</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://www.doubao.com/')">
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-doubao"></use></svg>
@@ -340,7 +345,7 @@ body{
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-dongchedi"></use></svg>
             <div class="icon-text">懂车帝</div>
         </div>
-        <div class="icon-card" onclick="openUrl('https://www.ele.me')">
+        <div class="icon-card" onclick="openUrl('https://ele.me')">
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-elemo"></use></svg>
             <div class="icon-text">饿了么</div>
         </div>
@@ -348,7 +353,7 @@ body{
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-miguyinle"></use></svg>
             <div class="icon-text">咪咕音乐</div>
         </div>
-        <div class="icon-card" onclick="openUrl('https://www.ctrip.com')">
+        <div class="icon-card" onclick="openUrl('https://ctrip.com')">
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-xiecheng"></use></svg>
             <div class="icon-text">携程旅行</div>
         </div>
@@ -368,7 +373,7 @@ body{
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-tianmao"></use></svg>
             <div class="icon-text">天猫</div>
         </div>
-        <div class="icon-card" onclick="openUrl('https://tv.cctv.com/)">
+        <div class="icon-card" onclick="openUrl('https://tv.cctv.com/')">
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-cctv"></use></svg>
             <div class="icon-text">CCTV</div>
         </div>
@@ -396,7 +401,7 @@ body{
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-tengxunshipin"></use></svg>
             <div class="icon-text">腾讯视频</div>
         </div>
-        <div class="icon-card" onclick="openUrl('https://www.miguvideo.com/')">
+        <div class="icon-card" onclick="openUrl('https://miguvideo.com/')">
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-migushipin"></use></svg>
             <div class="icon-text">咪咕视频</div>
         </div>
@@ -420,11 +425,11 @@ body{
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-tengxunxinwen"></use></svg>
             <div class="icon-text">腾讯新闻</div>
         </div>
-        <div class="icon-card" onclick="openUrl('https://www.mgtv.com/')">
+        <div class="icon-card" onclick="openUrl('https://mgtv.com/')">
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-mangguoTV"></use></svg>
             <div class="icon-text">芒果TV</div>
         </div>
-        <div class="icon-card" onclick="openUrl('https://www.youku.com/')">
+        <div class="icon-card" onclick="openUrl('https://youku.com/')">
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-youku"></use></svg>
             <div class="icon-text">优酷</div>
         </div>
@@ -458,26 +463,26 @@ body{
                 <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-iptv"></use></svg>
                 <div class="icon-text">直播源搜索引擎</div>
             </div>
-            <div class="icon-card" onclick="openUrl('https://xhztv.pro/jsondiy')">
-                <svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhaogonghezi"></use></svg>
-                <div class="icon-text">小盒子工具箱</div>
-            </div>
+        <div class="icon-card" onclick="openUrl('https://www.jyshare.com/')">
+            <img class="icon" src="icon/jyshare.png" alt="菜鸟工具">
+            <div class="icon-text">菜鸟工具</div>
+        </div>
             <div class="icon-card" onclick="openUrl('https://bjq.catvod.site/')">
                 <svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud_dns"></use></svg>
                 <div class="icon-text">TVBox 接口编辑器</div>
             </div>
-            <div class="icon-card" onclick="openUrl('https://www.jyshare.com/')">
-                <svg class="icon" aria-hidden="true"><use xlink:href="#icon-gongju"></use></svg>
-                <div class="icon-text">菜鸟工具</div>
-            </div>
+        <div class="icon-card" onclick="openUrl('https://www.xhztv.pro/jsondiy')">
+            <img class="icon" src="icon/favicon.png" alt="小盒子工具箱">
+            <div class="icon-text">小盒子工具箱</div>
+        </div>
             <div class="icon-card" onclick="openUrl('https://github.com/')">
                 <svg class="icon" aria-hidden="true"><use xlink:href="#icon-github"></use></svg>
                 <div class="icon-text">github</div>
             </div>
-            <div class="icon-card" onclick="openUrl('https://kstore.cc')">
-                <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-kstore"></use></svg>
-                <div class="icon-text">凯速 kstore</div>
-            </div>
+        <div class="icon-card" onclick="openUrl('https://kstore.cc/')">
+            <img class="icon" src="icon/kstore.png" alt="凯速kstore">
+            <div class="icon-text">凯速kstore</div>
+        </div>
             <div class="icon-card" onclick="openUrl('https://dash.cloudflare.com/')">
                 <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-cloudflare1"></use></svg>
                 <div class="icon-text">域名托管</div>
@@ -491,17 +496,17 @@ body{
                 <div class="icon-text">在线工具</div>
             </div>
             <div class="icon-card" onclick="openUrl('https://www.cloudns.net/')">
-                 <svg class="icon" aria-hidden="true"><use xlink:href="#icon-a-shezhipeizhichilun"></use></svg>
+                 <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-ymsq"></use></svg>
                 <div class="icon-text">DNS</div>
             </div>
             <div class="icon-card" onclick="openUrl('https://www.52pojie.cn/')">
                  <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-pojie"></use></svg>
                 <div class="icon-text">吾爱破解</div>
             </div>
-            <div class="icon-card" onclick="openUrl('https://www.yxzhi.com/)">
-                 <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-yazi"></use></svg>
-                <div class="icon-text">鸭先知</div>
-            </div>
+        <div class="icon-card" onclick="openUrl('https://www.yxzhi.com/')">
+            <img class="icon" src="icon/cloudflare.png" alt="鸭先知">
+            <div class="icon-text">鸭先知</div>
+        </div>
             <div class="icon-card" onclick="openUrl('https://xiaomark.com/')">
                 <svg class="icon" aria-hidden="true"><use xlink:href="#icon-M"></use></svg>
                 <div class="icon-text">太短</div>
@@ -612,8 +617,8 @@ body{
 </div>
 
 <script>
-let bgType = 0; // 【可修改75】0=静态背景图，1=动态星空背景
-let onlineBg = "https://img2.baidu.com/it/u=2956805492,2882898&fm=253&fmt=auto?w=1280&h=800"; /* 【可修改76】静态背景图片链接 */
+let bgType = 0; // 【可修改88】0=静态背景图，1=动态星空背景
+let onlineBg = "https://img2.baidu.com/it/u=2956805492,2882898&fm=253&fmt=auto?w=1280&h=800"; /* 【可修改89】静态背景图片链接 */
 
 // 先删除残留星空画布，防止重叠
 const oldCanvas = document.querySelector("canvas");
@@ -640,18 +645,18 @@ if(bgType === 0){
     window.onresize = resize;
 
     let dots = [];
-    for(let i = 0; i < 80; i++){ /* 【可修改77】星空星星总数量 */
+    for(let i = 0; i < 80; i++){ /* 【可修改90】星空星星总数量 */
         dots.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
-            r: Math.random() * 1.5, /* 【可修改78】星星最大半径 */
-            speedX: (Math.random() - 0.5) * 0.3, /* 【可修改79】星星横向移动速度 */
-            speedY: (Math.random() - 0.5) * 0.3 /* 【可修改80】星星纵向移动速度 */
+            r: Math.random() * 1.5, /* 【可修改91】星星最大半径 */
+            speedX: (Math.random() - 0.5) * 0.3, /* 【可修改92】星星横向移动速度 */
+            speedY: (Math.random() - 0.5) * 0.3 /* 【可修改93】星星纵向移动速度 */
         })
     }
 
     function run(){
-        ctx.fillStyle = "rgba(0,0,0,0.15)"; /* 【可修改81】星空拖尾透明度 */
+        ctx.fillStyle = "rgba(0,0,0,0.15)"; /* 【可修改94】星空拖尾透明度 */
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = "#fff";
         dots.forEach(p => {
@@ -690,7 +695,7 @@ function copyText(el) {
   box.className = "tip-box";
   box.innerText = "复制成功\n祝您观影愉快！";
   document.body.appendChild(box);
-  setTimeout(() => box.remove(), 1500); /* 【可修改82】弹窗停留毫秒数 */
+  setTimeout(() => box.remove(), 1500); /* 【可修改95】弹窗停留毫秒数 */
 }
 
 function openUrl(url){
@@ -720,5 +725,7 @@ tabs.forEach(tab=>{
     }
 })
 </script>
+<!-- 仅保留1条统计脚本，删除重复冗余 -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.1","token":"b228234959e04346a40515e77a1a092e","r":1,"si":1000000,"spa":false}' crossorigin="anonymous"></script>
 </body>
 </html>
