@@ -29,6 +29,47 @@
       "api": "csp_LocalFile"
     },
     {
+  "key": "腾腾",
+  "name": "腾讯视频",
+  "type": 3,
+  "api": "http://rihou.cc:88/js/drpy2.min.js",
+  "ext": "http://rihou.cc:88/js/%E8%85%BE%E8%85%BE.js",
+  "jar": "http://rihou.cc:88/jar/vox.jar"
+    },
+    {
+  "key": "奇奇",
+  "name": "爱奇视频",
+  "type": 3,
+  "api": "http://rihou.cc:88/js/drpy2.min.js",
+  "ext": "http://rihou.cc:88/js/%E5%A5%87%E5%A5%87.js",
+  "jar": "http://rihou.cc:88/jar/vox.jar"
+},
+{
+  "key": "果果",
+  "name": "芒果视频",
+  "type": 3,
+  "api": "http://rihou.cc:88/js/drpy2.min.js",
+  "ext": "http://rihou.cc:88/js/%E6%9E%9C%E6%9E%9C.js",
+  "jar": "http://rihou.cc:88/jar/vox.jar"
+},
+{
+  "key": "酷酷",
+  "name": "优酷视频",
+  "type": 3,
+  "api": "http://rihou.cc:88/js/drpy2.min.js",
+  "ext": "http://rihou.cc:88/js/%E9%85%B7%E9%85%B7.js",
+  "jar": "http://rihou.cc:88/jar/vox.jar"
+},
+{
+  "key": "官采",
+  "name": "网络采集",
+  "type": 1,
+  "api": "https://cj.jusj.top/api.php/provide/vod/?ac=list",
+  "searchable": 1,
+  "changeable": 1,
+  "jar": "http://rihou.cc:88/jar/vox.jar"
+},
+    {
       "name": "瓜子秒播",
       "key": "Guazi",
       "type": 3,
