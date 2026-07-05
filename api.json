@@ -755,6 +755,12 @@
   ],
   "parses": [
     {
+      "name": "测试解析",
+      "type": 1,
+      "url": "http://127.0.0.1:9978/proxy?do=voxjx&url="
+    },
+    
+    {
       "name": "聚合",
       "type": 3,
       "url": "Web"
