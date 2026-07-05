@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -13,7 +14,7 @@
 阿里在线JS链接，项目新增/删除图标后点更新代码替换此处
 ================================================================ -->
 <script src="https://at.alicdn.com/t/c/font_5198821_7jla4r4juo3.js" crossorigin></script>
-<script src="https://at.alicdn.com/t/c/font_5204659_5exvj63eqrh.js" crossorigin></script>
+<script src="https://at.alicdn.com/t/c/font_5204659_yf88twz80bq.js" crossorigin></script>
 <style>
 /* 全局通用重置样式 */
 *{
@@ -75,11 +76,11 @@ body{
 /* ==========中间问候语彩虹闪光文字 开始========== */
 .greet-text{
     max-width:1000px;              /* 【可修改26】文字区块最大宽度 */
-    margin:0 auto 80px;            /* 【可修改27】区块底部外边距 */
+    margin:0 auto 40px;            /* 【可修改27】区块底部外边距 */
     text-align:center;            
-    font-size:50px;                /* 【可修改28】问候文字字号 */
+    font-size:45px;                /* 【可修改28】问候文字字号 */
     font-weight:bold;              
-    letter-spacing:4px;            /* 【可修改29】文字字间距 */
+    letter-spacing:29px;            /* 【可修改29】文字字间距 */
 }
 .flash-text{
     display:inline-block;
@@ -89,7 +90,7 @@ body{
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;            
-    animation:rainbowFlash 3s linear infinite; /* 【可修改32】彩虹动画循环时长 */
+    animation:rainbowFlash 4s linear infinite; /* 【可修改32】彩虹动画循环时长 */
     text-shadow:0 0 8px rgba(255,255,255,0.6); /* 【可修改33】文字发光模糊大小、透明度 */
 }
 @keyframes rainbowFlash{
@@ -216,7 +217,7 @@ body{
     text-align: left;
     font-weight: 400; /* 【可修改22】文字字重，400常规 700加粗 */
     padding: 10px 0; /* 【可修改23】单个文字上下内边距 */
-    font-size: 36px; /* 【可修改24】分类文字字号大小 */
+    font-size: 26px; /* 【可修改24】分类文字字号大小 */
     cursor: pointer;
     color: #fff; /* 【可修改25】文字颜色 */
     position: relative;
@@ -280,7 +281,6 @@ body{
 
 <!-- 中间问候闪光文字区块 -->
 <div class="greet-text">
-    <span class="flash-text">阿弥陀佛</span>
     <span class="flash-text">今日大吉</span>
 </div>
 
@@ -416,13 +416,25 @@ body{
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-kuaishou"></use></svg>
             <div class="icon-text">快手</div>
         </div>
+        <div class="icon-card" onclick="openUrl('https://news.qq.com/')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-tengxunxinwen"></use></svg>
+            <div class="icon-text">腾讯新闻</div>
+        </div>
         <div class="icon-card" onclick="openUrl('https://www.mgtv.com/')">
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-mangguoTV"></use></svg>
             <div class="icon-text">芒果TV</div>
         </div>
-        <div class="icon-card" onclick="openUrl('https://youku.com/')">
+        <div class="icon-card" onclick="openUrl('https://www.youku.com/')">
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-youku"></use></svg>
             <div class="icon-text">优酷</div>
+        </div>
+        <div class="icon-card" onclick="openUrl('https://mail.qq.com/')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-qqyouxiang"></use></svg>
+            <div class="icon-text">QQ邮箱</div>
+        </div>
+        <div class="icon-card" onclick="openUrl('https://www.4399.com/')">
+            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-youxi"></use></svg>
+            <div class="icon-text">4399游戏</div>
         </div>
         <div class="icon-card" onclick="openUrl('https://yingshi.xxsnav.com/')">
             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-kuake"></use></svg>
@@ -478,6 +490,18 @@ body{
                  <svg class="icon" aria-hidden="true"><use xlink:href="#icon-gongju"></use></svg>
                 <div class="icon-text">在线工具</div>
             </div>
+            <div class="icon-card" onclick="openUrl('https://www.cloudns.net/')">
+                 <svg class="icon" aria-hidden="true"><use xlink:href="#icon-a-shezhipeizhichilun"></use></svg>
+                <div class="icon-text">DNS</div>
+            </div>
+            <div class="icon-card" onclick="openUrl('https://www.52pojie.cn/')">
+                 <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-pojie"></use></svg>
+                <div class="icon-text">吾爱破解</div>
+            </div>
+            <div class="icon-card" onclick="openUrl('https://www.yxzhi.com/)">
+                 <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-yazi"></use></svg>
+                <div class="icon-text">鸭先知</div>
+            </div>
             <div class="icon-card" onclick="openUrl('https://xiaomark.com/')">
                 <svg class="icon" aria-hidden="true"><use xlink:href="#icon-M"></use></svg>
                 <div class="icon-text">太短</div>
@@ -515,6 +539,14 @@ body{
             <div class="icon-card" onclick="openUrl('https://pan.baidu.com/')">
                 <svg class="icon" aria-hidden="true"><use xlink:href="#icon-logo"></use></svg>
                 <div class="icon-text">百度网盘</div>
+            </div>
+            <div class="icon-card" onclick="openUrl('https://www.drivergenius.com/')">
+                <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-qudongjingling"></use></svg>
+                <div class="icon-text">驱动精灵</div>
+            </div>
+            <div class="icon-card" onclick="openUrl('https://www.huorong.cn/')">
+                <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-huorong"></use></svg>
+                <div class="icon-text">火绒安全</div>
             </div>
             <div class="icon-card" onclick="openUrl('http://m.wmsio.cn')">
                 <svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhaogonghezi"></use></svg>
@@ -690,6 +722,7 @@ tabs.forEach(tab=>{
 </script>
 <!-- 统计脚本保留 -->
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.1","token":"b228234959e04346a40515e77a1a092e","r":1,"si":1000000,"spa":false}' crossorigin="anonymous"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b228234959e04346a40515e77a1a092e","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b228234959e04346a40515e77a1a092e","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
