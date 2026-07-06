@@ -1,5 +1,16 @@
 {
   "sites": [
+   {
+      "name": "豆瓣 | 首页",
+      "key": "Douban",
+      "type": 3,
+      "api": "csp_DoubanAmns",
+      "indexs": 1,
+      "searchable": 0,
+      "quickSearch": 0,
+      "changeable": 0,
+      "ext": "https://file.icve.com.cn/file_doc/803/892/C8FDF0894D61FA21A937E21135CB9125.aowu"
+    },
     {
   "key": "tenteng",
   "name": "腾讯视频",
