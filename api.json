@@ -476,11 +476,23 @@
     }
   ],
   "lives": [
+     {
+      "name": "XPB源",
+      "type": 0,
+      "url": "https://xpb.mhfs.eu.org/HZ.txt",
+      "epg": "https://epg.112114.eu.org/?ch={name}&date={date}"
+    },
     {
-      "key": "KafLive",
-      "type": 3,
-      "api": "csp_KafLiveAmns",
-      "playerType": 2
+      "name": "速度源",
+      "type": 0,
+      "url": "https://ghfast.top/raw.githubusercontent.com/Supprise0901/TVBox_live/main/live.txt",
+      "epg": "https://epg.112114.eu.org/?ch={name}&date={date}"
+    },
+    {
+      "name": "日更",
+      "type": 0,
+      "url": "https://ghfast.top/https://raw.githubusercontent.com/kimwang1978/collect-txt/main/bbxx.txt",
+      "epg": "https://epg.112114.eu.org/?ch={name}&date={date}"
     }
   ],
   "doh": [
