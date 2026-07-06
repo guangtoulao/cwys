@@ -9,8 +9,8 @@
 <meta http-equiv="Cache-Control" content="public, max-age=2592000">
 
 <!-- =====================阿里在线图标JS（原有，保留）===================== -->
-<script src="https://at.alicdn.com/t/c/font_5198821_7jla4r4juo3.js" crossorigin></script>
-<script src="https://at.alicdn.com/t/c/font_5204659_yf88twz80bq.js" crossorigin></script>
+<script src="https://at.alicdn.com/t/c/font_5198821_s46djdpo66.js" crossorigin></script>
+<script src="https://at.alicdn.com/t/c/font_5204659_iy2l3493r5i.js" crossorigin></script>
 <!-- =====================新增Font Awesome在线图标（混合使用）===================== -->
 <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
@@ -179,24 +179,49 @@ body{
 .icon-card:hover{
     background:rgba(0,0,0,0.08); /* 【可修改57】悬浮背景透明度，0完全透明 1纯黑 */
 }
-.icon {
-    width: 44px; /* 【可修改58】图标宽度 */
-    height: 44px; /* 【可修改59】图标高度，需和宽度同步修改 */
+
+/* 【修改完成】新增独立图标容器，图标与文字完全分层隔离，对标AItab规范 */
+.icon-card .img {
+    width: 44px; /* 基准固定宽高，统一所有图标外框尺寸 */
+    height: 44px;
     min-width: 44px;
     min-height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    margin: 0 auto 6px; /* 【可修改60】图标与下方文字垂直间距 */
+    margin: 0 auto 6px; /* 图标与下方文字垂直间距 */
+    border-radius: 8px;
+    overflow: hidden; /* 裁切超出容器的图标边缘，保证外框规整 */
+    background: rgba(255,255,255,0.12);
+}
+
+/* 【修改完成】阿里矢量SVG图标统一填充规则，取消缩小留白 */
+.icon-card .img .icon {
+    width: 100%;
+    height: 100%;
     fill: #ffffff; /* 【可修改61】阿里SVG图标填充颜色 */
     color: #ffffff;/* 【可修改62】FA字体图标颜色 */
     font-size: 44px;/* 【可修改63】FA字体图标尺寸 */
 }
-.icon use {
-    transform: scale(0.85); /* 【可修改64】阿里SVG图标缩放倍数，1=原尺寸，小于1缩小 */
+.icon-card .img .icon use {
+    transform: scale(1); /* 取消原有0.85缩小，原生尺寸填满容器 */
     transform-origin: center;
 }
+
+/* 【修改完成】外部图片PNG/JPG专属缩放，抵消图片自带透明留白，和SVG视觉等大 */
+.icon-card .img img {
+    width: 110%;
+    height: 110%;
+    object-fit: contain; /* 不变形完整展示，仅放大填充空白 */
+}
+
+/* 【修改完成】独立文字容器，只控制文字样式，与图标容器完全分离 */
+.icon-card .icon-text {
+    font-size: 14px;
+    text-align: center;
+}
+
 /* ==========图标导航网格区域 结束========== */
 
 /* ==========顶部分类导航栏 开始========== */
@@ -294,330 +319,70 @@ body{
 <!-- 所有分类内容总容器 -->
 <div class="tab-wrap">
 
+<!-- 生活分类：仅空容器，JS自动生成卡片 -->
 <div class="tab-content-item active" data-id="shenghuo">
-    <div class="icon-grid">
-        <!-- 原有阿里SVG图标写法 -->
-        <div class="icon-card" onclick="openUrl('https://weixin.qq.com/')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-weixin"></use></svg>
-            <div class="icon-text">微信</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://www.baidu.com')">
-            <img class="icon" src="images/baidu.png" alt="百度">
-            <div class="icon-text">百度</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://www.doubao.com/')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-doubao"></use></svg>
-            <div class="icon-text">豆包</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('http://www.qmcc.cc/')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-Ai"></use></svg>
-            <div class="icon-text">AI大全</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://xingzuoyun.cc/')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-Ai"></use></svg>
-            <div class="icon-text">AI工具集</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://www.coze.cn/')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-kouzi"></use></svg>
-            <div class="icon-text">扣子AI</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://taobao.com')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-taobao"></use></svg>
-            <div class="icon-text">淘宝</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://jd.com')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-jingdong"></use></svg>
-            <div class="icon-text">京东</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://douban.com/')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-doubanwang"></use></svg>
-            <div class="icon-text">豆瓣</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://xiaohongshu.com')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-xiaohongshu"></use></svg>
-            <div class="icon-text">小红书</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://kuaidi100.com/')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-a-100"></use></svg>
-            <div class="icon-text">快递100</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://dongchedi.com/')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-dongchedi"></use></svg>
-            <div class="icon-text">懂车帝</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://ele.me')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-elemo"></use></svg>
-            <div class="icon-text">饿了么</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://music.migu.cn/')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-miguyinle"></use></svg>
-            <div class="icon-text">咪咕音乐</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://ctrip.com')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-xiecheng"></use></svg>
-            <div class="icon-text">携程旅行</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://fanyi.baidu.com/')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-baidufanyi"></use></svg>
-            <div class="icon-text">百度翻译</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://fanyi.baidu.com/')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-weipinhui"></use></svg>
-            <div class="icon-text">唯品会</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://mail.163.com/')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail163"></use></svg>
-            <div class="icon-text">163邮箱</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://www.tmall.com/')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-tianmao"></use></svg>
-            <div class="icon-text">天猫</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://tv.cctv.com/')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-cctv"></use></svg>
-            <div class="icon-text">CCTV</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://www.ximalaya.com')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-ximalaya"></use></svg>
-            <div class="icon-text">喜马拉雅</div>
-        </div>
-         <div class="icon-card" onclick="openUrl('https://www.zhihu.com/')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-zhihu"></use></svg>
-            <div class="icon-text">知乎</div>
-        </div>
-         <div class="icon-card" onclick="openUrl('https://www.12306.cn/')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-Appicns_12306"></use></svg>
-            <div class="icon-text">12306</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://kugou.com')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-kugou"></use></svg>
-            <div class="icon-text">酷狗</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://y.qq.com/')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-qqyinyue"></use></svg>
-            <div class="icon-text">QQ音乐</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://v.qq.com')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-tengxunshipin"></use></svg>
-            <div class="icon-text">腾讯视频</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://miguvideo.com/')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-migushipin"></use></svg>
-            <div class="icon-text">咪咕视频</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://iqiyi.com')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-iqiyi"></use></svg>
-            <div class="icon-text">爱奇艺</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://bilibili.com')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili"></use></svg>
-            <div class="icon-text">哔哩哔哩</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://douyin.com')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-douyin"></use></svg>
-            <div class="icon-text">抖音</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://kuaishou.com')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-kuaishou"></use></svg>
-            <div class="icon-text">快手</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://news.qq.com/')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-tengxunxinwen"></use></svg>
-            <div class="icon-text">腾讯新闻</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://mgtv.com/')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-mangguoTV"></use></svg>
-            <div class="icon-text">芒果TV</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://youku.com/')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-youku"></use></svg>
-            <div class="icon-text">优酷</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://mail.qq.com/')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-qqyouxiang"></use></svg>
-            <div class="icon-text">QQ邮箱</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://www.4399.com/')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-youxi"></use></svg>
-            <div class="icon-text">4399游戏</div>
-        </div>
-        <div class="icon-card" onclick="openUrl('https://yingshi.xxsnav.com/')">
-            <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-kuake"></use></svg>
-            <div class="icon-text">影视导航</div>
+    <div class="icon-grid" id="gridShengHuo"></div>
+</div>
+
+<!-- 办公分类：仅空容器，JS自动生成卡片 -->
+<div class="tab-content-item" data-id="bangong">
+    <div class="icon-grid" id="gridBanGong"></div>
+</div>
+
+<!-- 接口板块-->
+<div class="tab-content-item" data-id="jiekou">
+    <div class="api-title" style="text-align:left;max-width:1000px;margin-left:auto;margin-right:auto;padding-top:35px;">
+        <span style="color:#3498db;">●</span>
+        <span style="color:#e84393;">●</span>
+        <span style="color:#f39c12;">●</span>
+        <span style="margin-left:6px;color:#ffffff; font-size:26px;">接口</span>
+        <span style="color:#ffffff; font-size:26px;">（点击复制）</span>
+    </div>
+    <div class="api-box">
+        <div class="api-grid">
+             <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="https://cwys.qzz.io/api.json" data-fill="#e84393">
+                君子兰
+                <span class="api-line" style="background: #e84393;"></span>
+            </div>
+            <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="http://fty.xxooo.cf/tv" data-fill="#3498db">
+                饭太硬
+                <span class="api-line" style="background: #3498db;"></span>
+            </div>
+            <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="https://qist.wyfc.qzz.io/xiaosa/api.json" data-fill="#f39c12">
+                潇洒
+                <span class="api-line" style="background: #f39c12;"></span>
+            </div>
+            <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="http://我不是.摸鱼儿.top" data-fill="#f1c40f">
+                摸鱼
+                <span class="api-line" style="background: #f1c40f;"></span>
+            </div>
+            <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="http://tvbox.王二小放牛娃.top" data-fill="#cddc39">
+                王二小
+                <span class="api-line" style="background: #cddc39;"></span>
+            </div>
+            <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="https://gitee.com/cpu-iy/iy/raw/master/%E5%A4%A9%E7%A5%9EIY.json" data-fill="#2ecc71">
+                天神
+                <span class="api-line" style="background: #2ecc71;"></span>
+            </div>
+            <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="https://xpb.mhfs.eu.org/ZJ/XPB/api.json" data-fill="#949494">
+                点播
+                <span class="api-line" style="background: #9932CC;"></span>
+            </div>
+            <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="https://www.iyouhun.com/tv/duo" data-fill="#e84393">
+                多多
+                <span class="api-line" style="background: #e84393;"></span>
+            </div>
+            <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="https://9763.kstore.space/aowu.json" data-fill="#bdc3c7">
+                嗷呜
+                <span class="api-line" style="background: #ffbc23;"></span>
+            </div>
         </div>
     </div>
 </div>
-
-    <!-- 办公分类 -->
-    <div class="tab-content-item" data-id="bangong">
-        <div class="icon-grid">
-             <div class="icon-card" onclick="openUrl('https://www.iconfont.cn/')">
-             <svg class="icon" aria-hidden="true"><use xlink:href="#icon-a-yemian11"></use></svg>
-                <div class="icon-text">阿里矢量图库</div>
-            </div>
-             <div class="icon-card" onclick="openUrl('https://steampp.net/')">
-                <svg class="icon" aria-hidden="true"><use xlink:href="#icon-wate"></use></svg>
-                <div class="icon-text">瓦特加速</div>
-            </div>
-            <div class="icon-card" onclick="openUrl('http://www.foodieguide.com/iptvsearch/')">
-                <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-iptv"></use></svg>
-                <div class="icon-text">直播源搜索引擎</div>
-            </div>
-        <div class="icon-card" onclick="openUrl('https://www.jyshare.com/')">
-            <img class="icon" src="icon/jyshare.png" alt="菜鸟工具">
-            <div class="icon-text">菜鸟工具</div>
-        </div>
-            <div class="icon-card" onclick="openUrl('https://bjq.catvod.site/')">
-                <svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud_dns"></use></svg>
-                <div class="icon-text">TVBox 接口编辑器</div>
-            </div>
-        <div class="icon-card" onclick="openUrl('https://www.xhztv.pro/jsondiy')">
-            <img class="icon" src="icon/favicon.png" alt="小盒子工具箱">
-            <div class="icon-text">小盒子工具箱</div>
-        </div>
-            <div class="icon-card" onclick="openUrl('https://github.com/')">
-                <svg class="icon" aria-hidden="true"><use xlink:href="#icon-github"></use></svg>
-                <div class="icon-text">github</div>
-            </div>
-        <div class="icon-card" onclick="openUrl('https://kstore.cc/')">
-            <img class="icon" src="icon/kstore.png" alt="凯速kstore">
-            <div class="icon-text">凯速kstore</div>
-        </div>
-            <div class="icon-card" onclick="openUrl('https://dash.cloudflare.com/')">
-                <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-cloudflare1"></use></svg>
-                <div class="icon-text">域名托管</div>
-            </div>
-            <div class="icon-card" onclick="openUrl('https://dash.domain.digitalplat.org/')">
-                <svg class="icon" aria-hidden="true"><use xlink:href="#icon-dns-hei"></use></svg>
-                <div class="icon-text">域名申请</div>
-            </div>
-            <div class="icon-card" onclick="openUrl('https://lddgo.net/base/class')">
-                 <svg class="icon" aria-hidden="true"><use xlink:href="#icon-gongju"></use></svg>
-                <div class="icon-text">在线工具</div>
-            </div>
-            <div class="icon-card" onclick="openUrl('https://www.cloudns.net/')">
-                 <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-ymsq"></use></svg>
-                <div class="icon-text">DNS</div>
-            </div>
-            <div class="icon-card" onclick="openUrl('https://www.52pojie.cn/')">
-                 <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-pojie"></use></svg>
-                <div class="icon-text">吾爱破解</div>
-            </div>
-        <div class="icon-card" onclick="openUrl('https://www.yxzhi.com/')">
-            <img class="icon" src="icon/cloudflare.png" alt="鸭先知">
-            <div class="icon-text">鸭先知</div>
-        </div>
-            <div class="icon-card" onclick="openUrl('https://xiaomark.com/')">
-                <svg class="icon" aria-hidden="true"><use xlink:href="#icon-M"></use></svg>
-                <div class="icon-text">太短</div>
-            </div>
-            <div class="icon-card" onclick="openUrl('https://z.qiqiv.cn/')">
-                <svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud_dns"></use></svg>
-                <div class="icon-text">太能编</div>
-            </div>
-                <div class="icon-card" onclick="openUrl('https://www.logo.dev/dashboard/playground/logo')">
-                <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-logo1"></use></svg>
-                <div class="icon-text">logo图标</div>
-            </div>
-            <div class="icon-card" onclick="openUrl('https://favicon.im/zh/generator')">
-                <svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud_dns"></use></svg>
-                <div class="icon-text">图标修改</div>
-            </div>
-            <div class="icon-card" onclick="openUrl('https://phototool.cn/')">
-               <svg class="icon" aria-hidden="true"><use xlink:href="#icon-ruanjian"></use></svg>
-                <div class="icon-text">在线修图</div>
-            </div>
-            <div class="icon-card" onclick="openUrl('https://www.tugaigai.com/online_ps/')">
-                <svg class="icon" aria-hidden="true">
-                    <use xlink:href="#icon-AdobePs"></use>
-                </svg>
-                <div class="icon-text">PS</div>
-            </div>
-            <div class="icon-card" onclick="openUrl('https://qiushui.vip/')">
-               <svg class="icon" aria-hidden="true"><use xlink:href="#icon-qiushui"></use></svg>
-                <div class="icon-text">秋水网</div>
-            </div>
-            <div class="icon-card" onclick="openUrl('https://adzhp.cc/')">
-                <svg class="icon" aria-hidden="true"><use xlink:href="#icon-A"></use></svg>
-                <div class="icon-text">爱达杂货铺</div>
-            </div>
-            <div class="icon-card" onclick="openUrl('https://pan.baidu.com/')">
-                <svg class="icon" aria-hidden="true"><use xlink:href="#icon-logo"></use></svg>
-                <div class="icon-text">百度网盘</div>
-            </div>
-            <div class="icon-card" onclick="openUrl('https://www.drivergenius.com/')">
-                <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-qudongjingling"></use></svg>
-                <div class="icon-text">驱动精灵</div>
-            </div>
-            <div class="icon-card" onclick="openUrl('https://www.huorong.cn/')">
-                <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-huorong"></use></svg>
-                <div class="icon-text">火绒安全</div>
-            </div>
-            <div class="icon-card" onclick="openUrl('http://m.wmsio.cn')">
-                <svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhaogonghezi"></use></svg>
-                <div class="icon-text">盒子地窖</div>
-            </div>
-            <div class="icon-card" onclick="openUrl('https://www.rjshe.com/')">
-                 <svg class="icon" aria-hidden="true"><use xlink:href="#icon-b-anzhuo"></use></svg>
-                <div class="icon-text">软件社</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 接口分类 -->
-   <div class="tab-content-item" data-id="jiekou">
-        <div class="api-title" style="text-align:left;max-width:1000px;margin-left:auto;margin-right:auto;padding-top:35px;">
-            <span style="color:#3498db;">●</span>
-            <span style="color:#e84393;">●</span>
-            <span style="color:#f39c12;">●</span>
-            <span style="margin-left:6px;color:#ffffff; font-size:26px;">接口</span>
-            <span style="color:#ffffff; font-size:26px;">（点击复制）</span>
-        </div>
-        <div class="api-box">
-            <div class="api-grid">
-                 <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="https://cwys.qzz.io/api.json" data-fill="#e84393">
-                    君子兰
-                    <span class="api-line" style="background: #e84393;"></span>
-                </div>
-                <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="http://fty.xxooo.cf/tv" data-fill="#3498db">
-                    饭太硬
-                    <span class="api-line" style="background: #3498db;"></span>
-                </div>
-                <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="https://qist.wyfc.qzz.io/xiaosa/api.json" data-fill="#f39c12">
-                    潇洒
-                    <span class="api-line" style="background: #f39c12;"></span>
-                </div>
-                <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="http://我不是.摸鱼儿.top" data-fill="#f1c40f">
-                    摸鱼
-                    <span class="api-line" style="background: #f1c40f;"></span>
-                </div>
-                <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="http://tvbox.王二小放牛娃.top" data-fill="#cddc39">
-                    王二小
-                    <span class="api-line" style="background: #cddc39;"></span>
-                </div>
-                <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="https://gitee.com/cpu-iy/iy/raw/master/%E5%A4%A9%E7%A5%9EIY.json" data-fill="#2ecc71">
-                    天神
-                    <span class="api-line" style="background: #2ecc71;"></span>
-                </div>
-                <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="https://xpb.mhfs.eu.org/ZJ/XPB/api.json" data-fill="#949494">
-                    点播
-                    <span class="api-line" style="background: #9932CC;"></span>
-                </div>
-                <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="https://www.iyouhun.com/tv/duo" data-fill="#e84393">
-                    多多
-                    <span class="api-line" style="background: #e84393;"></span>
-                </div>
-                <div class="api-item" onclick="copyText(this)" onmouseover="setRandomColor(this)" data-copy="https://9763.kstore.space/aowu.json" data-fill="#bdc3c7">
-                    嗷呜
-                    <span class="api-line" style="background: #ffbc23;"></span>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 
 <script>
-let bgType = 0; // 【可修改88】0=静态背景图，1=动态星空背景
+let bgType = 1; // 【可修改88】0=静态背景图，1=动态星空背景
 let onlineBg = "https://img2.baidu.com/it/u=2956805492,2882898&fm=253&fmt=auto?w=1280&h=800"; /* 【可修改89】静态背景图片链接 */
 
 // 先删除残留星空画布，防止重叠
@@ -645,7 +410,7 @@ if(bgType === 0){
     window.onresize = resize;
 
     let dots = [];
-    for(let i = 0; i < 80; i++){ /* 【可修改90】星空星星总数量 */
+    for(let i = 0; i < 200; i++){ /* 【可修改90】星空星星总数量 */
         dots.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
@@ -713,6 +478,7 @@ document.getElementById("kw").addEventListener("keydown", function(e){
     if(e.key === "Enter") search();
 })
 
+// ========== 分类切换逻辑（保留不变） ==========
 const tabs = document.querySelectorAll('.tab');
 const tabItems = document.querySelectorAll('.tab-content-item');
 tabs.forEach(tab=>{
@@ -724,6 +490,114 @@ tabs.forEach(tab=>{
         document.querySelector(`.tab-content-item[data-id="${targetId}"]`).classList.add('active');
     }
 })
+
+// ========== JS循环渲染图标卡片核心代码 ==========
+/**
+ * 数组字段说明
+ * url: 跳转链接
+ * iconId: 阿里svg图标id，无则填空
+ * imgSrc: 本地图片路径，无则填空
+ * name: 底部显示文字
+ */
+// 生活板块数据
+const listShengHuo = [
+    { url: "https://weixin.qq.com/", iconId: "icon-weixin", imgSrc: "", name: "微信" },
+    { url: "https://www.doubao.com/", iconId: "icon-b-doubao", imgSrc: "", name: "豆包" },
+    { url: "http://www.qmcc.cc/", iconId: "icon-Ai", imgSrc: "", name: "AI大全" },
+    { url: "https://xingzuoyun.cc/", iconId: "icon-b-Ai", imgSrc: "", name: "AI工具集" },
+    { url: "https://www.coze.cn/", iconId: "icon-kouzi1", imgSrc: "", name: "扣子AI" },
+    { url: "https://taobao.com", iconId: "icon-taobao", imgSrc: "", name: "淘宝" },
+    { url: "https://jd.com", iconId: "icon-a-100", imgSrc: "", name: "京东" },
+    { url: "https://douban.com/", iconId: "icon-doubanwang", imgSrc: "", name: "豆瓣" },
+    { url: "https://xiaohongshu.com", iconId: "icon-xiaohongshu", imgSrc: "", name: "小红书" },
+    { url: "https://kuaidi100.com/", iconId: "icon-a-100", imgSrc: "", name: "快递100" },
+    { url: "https://dongchedi.com/", iconId: "icon-dongchedi", imgSrc: "", name: "懂车帝" },
+    { url: "https://ele.me", iconId: "icon-b-elemo", imgSrc: "", name: "饿了么" },
+    { url: "https://music.migu.cn/", iconId: "icon-b-miguyinle", imgSrc: "", name: "咪咕音乐" },
+    { url: "https://ctrip.com", iconId: "icon-xiecheng", imgSrc: "", name: "携程旅行" },
+    { url: "https://pngtree.cn/", iconId: "icon-b-koutuzhinengzidongkoutu", imgSrc: "", name: "在线抠图" },
+    { url: "https://fanyi.baidu.com/", iconId: "icon-weipinhui", imgSrc: "", name: "唯品会" },
+    { url: "https://mail.163.com/", iconId: "icon-mail163", imgSrc: "", name: "163邮箱" },
+    { url: "https://www.tmall.com/", iconId: "icon-b-tianmao", imgSrc: "", name: "天猫" },
+    { url: "https://tv.cctv.com/", iconId: "icon-yangshipinchaotuoyuan", imgSrc: "", name: "CCTV" },
+    { url: "https://www.ximalaya.com", iconId: "icon-ximalaya", imgSrc: "", name: "喜马拉雅" },
+    { url: "https://www.zhihu.com/", iconId: "icon-b-zhihu", imgSrc: "", name: "知乎" },
+    { url: "https://www.12306.cn/", iconId: "icon-Appicns_12306", imgSrc: "", name: "12306" },
+    { url: "https://kugou.com", iconId: "icon-kugou", imgSrc: "", name: "酷狗" },
+    { url: "https://y.qq.com/", iconId: "icon-b-qqyinyue", imgSrc: "", name: "QQ音乐" },
+    { url: "https://v.qq.com", iconId: "icon-tengxunshipin", imgSrc: "", name: "腾讯视频" },
+    { url: "https://miguvideo.com/", iconId: "icon-b-migushipin", imgSrc: "", name: "咪咕视频" },
+    { url: "https://iqiyi.com", iconId: "icon-iqiyi", imgSrc: "", name: "爱奇艺" },
+    { url: "https://bilibili.com", iconId: "icon-bilibili", imgSrc: "", name: "哔哩哔哩" },
+    { url: "https://douyin.com", iconId: "icon-douyin", imgSrc: "", name: "抖音" },
+    { url: "https://kuaishou.com", iconId: "icon-kuaishou", imgSrc: "", name: "快手" },
+    { url: "https://news.qq.com/", iconId: "icon-b-tengxunxinwen", imgSrc: "", name: "腾讯新闻" },
+    { url: "https://mgtv.com/", iconId: "icon-mangguoTV", imgSrc: "", name: "芒果TV" },
+    { url: "https://youku.com/", iconId: "icon-youku", imgSrc: "", name: "优酷" },
+    { url: "https://mail.qq.com/", iconId: "icon-b-xiang", imgSrc: "", name: "QQ邮箱" },
+    { url: "https://www.4399.com/", iconId: "icon-b-youxi", imgSrc: "", name: "4399游戏" },
+    { url: "https://yingshi.xxsnav.com/", iconId: "icon-b-kuake", imgSrc: "", name: "影视导航" },
+];
+
+// 办公板块数据
+const listBanGong = [
+    { url: "https://www.iconfont.cn/", iconId: "icon-a-yemian11", imgSrc: "", name: "阿里图库" },
+    { url: "https://steampp.net/", iconId: "icon-wate", imgSrc: "", name: "瓦特加速" },
+    { url: "https://kstore.cc/", iconId: "icon-b-xingqiu", imgSrc: "", name: "凯速网" },
+    { url: "http://www.foodieguide.com/iptvsearch/", iconId: "icon-sousuo", imgSrc: "", name: "直播源搜索" },
+    { url: "https://bjq.catvod.site/", iconId: "icon-b-red", imgSrc: "", name: "TB接口编辑" },
+    { url: "https://www.jyshare.com/", iconId: "icon-b-gaojibianjiqi", imgSrc:"", name: "菜鸟工具" },
+    { url: "https://www.xhztv.pro/jsondiy", iconId: "icon-a-shezhipeizhichilun", imgSrc: "", name: "盒子工具" },
+    { url: "https://github.com/", iconId: "icon-github", imgSrc: "", name: "github" },
+    { url: "https://dash.cloudflare.com/", iconId: "icon-b-cloudflare1", imgSrc: "", name: "域名托管" },
+    { url: "https://dash.domain.digitalplat.org/", iconId: "icon-dns-hei", imgSrc: "", name: "域名申请" },
+    { url: "https://lddgo.net/base/class", iconId: "icon-gongju", imgSrc: "", name: "在线工具" },
+    { url: "https://www.cloudns.net/", iconId: "icon-b-ymsq", imgSrc: "", name: "DNS" },
+    { url: "https://www.52pojie.cn/", iconId: "icon-b-pojie", imgSrc: "", name: "吾爱破解" },
+    { url: "https://www.yxzhi.com/",  iconId: "icon-b-yazi", imgSrc: "", name: "鸭先知" },
+    { url: "https://xiaomark.com/", iconId: "icon-M", imgSrc: "", name: "太短" },
+    { url: "https://z.qiqiv.cn/", iconId: "icon-cloud_dns", imgSrc: "", name: "太能编" },
+    { url: "https://www.logo.dev/dashboard/playground/logo", iconId: "icon-b-logo1", imgSrc: "", name: "logo图标" },
+    { url: "https://favicon.im/zh/generator", iconId: "icon-b-xiugai", imgSrc: "", name: "图标修改" },
+    { url: "https://phototool.cn/", iconId: "icon-b-tupian", imgSrc: "", name: "在线修图" },
+    { url: "https://tugaigai.com/online_ps/", iconId: "icon-AdobePs", imgSrc: "", name: "PS修图" },
+    { url: "https://qiushui.vip/", iconId: "icon-qiushui", imgSrc: "", name: "秋水网" },
+    { url: "https://adzhp.cc/", iconId: "icon-A", imgSrc: "", name: "爱达杂货铺" },
+    { url: "https://pan.baidu.com/", iconId: "icon-baiduwangpan", imgSrc: "", name: "百度网盘" },
+    { url: "https://drivergenius.com/", iconId: "icon-b-qudongjingling", imgSrc: "", name: "驱动精灵" },
+    { url: "https://huorong.cn/", iconId: "icon-b-huorong", imgSrc: "", name: "火绒安全" },
+    { url: "http://m.wmsio.cn", iconId: "icon-zhaogonghezi", imgSrc: "", name: "盒子地窖" },
+    { url: "https://www.rjshe.com/", iconId: "icon-b-anzhuo", imgSrc: "", name: "软件社" },
+];
+
+// 渲染函数：传入容器ID、数组自动生成卡片
+function renderGrid(boxId, dataList){
+    const box = document.getElementById(boxId);
+    let htmlStr = "";
+    dataList.forEach(item=>{
+        // 判断使用svg还是img
+        let iconHtml = "";
+        if(item.iconId){
+            iconHtml = `<svg class="icon" aria-hidden="true"><use xlink:href="#${item.iconId}"></use></svg>`;
+        }else if(item.imgSrc){
+            iconHtml = `<img class="icon" src="${item.imgSrc}" alt="${item.name}">`;
+        }
+        // 拼接单张卡片完整代码
+        htmlStr += `
+            <div class="icon-card" onclick="openUrl('${item.url}')">
+                <div class="img">
+                    ${iconHtml}
+                </div>
+                <div class="icon-text">${item.name}</div>
+            </div>
+        `;
+    })
+    box.innerHTML = htmlStr;
+}
+
+// 页面加载完成后自动渲染两组图标
+renderGrid("gridShengHuo", listShengHuo);
+renderGrid("gridBanGong", listBanGong);
 </script>
 <!-- 仅保留1条统计脚本，删除重复冗余 -->
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.1","token":"b228234959e04346a40515e77a1a092e","r":1,"si":1000000,"spa":false}' crossorigin="anonymous"></script>
