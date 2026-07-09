@@ -23,10 +23,9 @@ canvas{position:fixed;top:0;left:0;z-index:-1;}
 .search-input{flex:1;max-width:450px;border:none;outline:none;font-size:16px;padding:10px 0;background:transparent;color:#333;}
 .search-btn{background:#3967FF;color:#fff;border:none;border-radius:8px;font-size:16px;padding:10px 26px;cursor:pointer;}
 .tab-nav{display:flex;gap:60px;margin:0 auto 30px;max-width:1000px;width:1000px;padding:10px 0 8px;padding-left:10px;}
-.tab-content-item{display:none;width:1000px;max-width:95vw;margin:0 auto;padding-left:0;}
 .tab{font-weight:400;padding:10px 0;font-size:26px;cursor:pointer;position:relative;}
 .tab.active::after{content:"";position:absolute;left:0;bottom:-8px;width:100%;height:3px;background-color:#00aaff;}
-.tab-content-item{display:none;width:1000px;max-width:95vw;margin:0 auto;}
+.tab-content-item{display:none;width:1000px;max-width:95vw;margin:0 auto;padding-left:0;}
 .tab-content-item.active{display:block;}
 .icon-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(60px,1fr));gap:var(--row-gap,30px) var(--col-gap,16px);width:100%;}
 .icon-card{display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;padding:2px;border-radius:10px;transition:0.2s;min-height:90px;width:auto;max-width:100px;}
@@ -85,12 +84,12 @@ canvas{position:fixed;top:0;left:0;z-index:-1;}
 .cat-block{margin-bottom:16px;border:1px solid #444;border-radius:8px;overflow:hidden;}
 .cat-block-header{display:flex;align-items:center;padding:10px 14px;background:#2a2a2a;gap:10px;border-bottom:1px solid #444;}
 .cat-block-header .cat-title{font-size:15px;font-weight:600;flex:1;cursor:pointer;}
-.cat-block-body{display:flex;flex-wrap:wrap;padding:10px;gap:6px;min-height:50px;}
-.site-tag{display:flex;align-items:center;padding:10px 16px;border:1px solid #555;border-radius:8px;background:#2a2a2a;gap:10px;font-size:15px;cursor:grab;user-select:none;}
-.site-tag img{width:32px;height:32px;border-radius:6px;object-fit:contain;overflow:visible!important;display:inline-block;}f
+.cat-block-body{display:flex;flex-wrap:wrap;padding:10px;gap:6px;min-height:50px;align-items:flex-start;}
+.site-tag{display:flex;flex-direction:row;align-items:center;padding:6px 10px;border:1px solid #555;border-radius:8px;background:#2a2a2a;gap:6px;font-size:13px;cursor:grab;user-select:none;white-space:nowrap;}
+.site-tag img{width:24px;height:24px;border-radius:4px;object-fit:contain;flex-shrink:0;}
 .site-tag .tag-actions{display:flex;gap:4px;opacity:0;transition:opacity 0.2s;}
 .site-tag:hover .tag-actions{opacity:1;}
-.tag-btn{background:none;border:none;cursor:pointer;font-size:24px;color:#999;padding:8px 12px;}
+.tag-btn{background:none;border:none;cursor:pointer;font-size:15px;color:#999;padding:4px 6px;}
 .tag-btn.edit:hover{color:#3967FF;}
 .tag-btn.del:hover{color:#e74c3c;}
 .add-site-placeholder,.add-cat-placeholder{display:flex;align-items:center;justify-content:center;padding:8px 14px;border:1.5px dashed #555;border-radius:8px;cursor:pointer;font-size:14px;color:#999;}
@@ -112,10 +111,12 @@ canvas{position:fixed;top:0;left:0;z-index:-1;}
 .layout-rounded .icon-card .img{border-radius:14px;}
 .layout-rounded .icon-card .img img{border-radius:14px;}
 .layout-icon .icon-card .img{border-radius:8px;}
-.layout-text .icon-card .img{display:none;}
-.layout-text .icon-card{min-height:auto;padding:10px 14px;}
-.layout-text .icon-card .icon-text{font-size:var(--text-font-size,18px);font-weight:500;}
-.layout-text .icon-grid{grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:12px 10px;}
+.layout-text .icon-card{display:flex;flex-direction:row;align-items:center;gap:6px;min-height:auto;padding:8px 14px;width:auto;max-width:none;border-radius:8px;}
+.layout-text .icon-card .img{display:flex;width:32px;height:32px;min-width:22px;margin:0;border-radius:4px;}
+.layout-text .icon-card .img .icon{font-size:32px;}
+.layout-text .icon-card .img img{width:100%;height:100%;border-radius:16px;}
+.layout-text .icon-card .icon-text{font-size:13px;font-weight:400;white-space:nowrap;}
+.layout-text .icon-grid{display:flex;flex-wrap:wrap;gap:8px 10px;}
 </style>
 </head>
 
@@ -293,13 +294,13 @@ canvas{position:fixed;top:0;left:0;z-index:-1;}
 
 
 
-        <!-- 网址管理面板 -->
+             <!-- 网址管理面板 -->
         <div class="modal-overlay" v-if="showSiteMgr" @click.self="showSiteMgr=false">
             <div class="modal-panel sitemgr-panel">
                 <div class="sitemgr-top"><h2>🌐 网址管理</h2><button @click="showSiteMgr=false" style="background:none;border:none;font-size:22px;cursor:pointer;color:#999;">✕</button></div>
                 <div class="sitemgr-scroll">
                     <div class="cat-block" v-for="(cat, catIdx) in editCategories" :key="catIdx">
-                                           <div class="cat-block-header">
+                        <div class="cat-block-header">
                             <span class="cat-title" @click="editCategory(catIdx)" title="点击编辑栏目名">{{ cat.name }}</span>
                             <span style="font-size:11px;padding:2px 8px;border-radius:10px;" :style="{color:cat.hidden?'#e67e22':'#3967FF',background:cat.hidden?'#3a2e1e':'#1e2a3a'}">{{ cat.hidden ? '前台隐藏' : '前台显示' }}</span>
                             <label class="switch-wrap"><input type="checkbox" v-model="cat.hidden"><span class="slider"></span></label>
@@ -309,7 +310,8 @@ canvas{position:fixed;top:0;left:0;z-index:-1;}
                             <div v-for="(site, siteIdx) in cat.sites" :key="siteIdx" class="site-tag" draggable="true"
                                 @dragstart="dragItem={catIdx:catIdx, siteIdx:siteIdx}" @dragend="dragItem=null"
                                 @dragover.prevent @drop="handleDrop(catIdx, siteIdx)">
-                                <img :src="site.logo || getDefaultIcon(site.name)" :alt="site.name">
+                                <span v-if="!site.logo" style="width:28px;height:28px;border-radius:6px;background:#3967FF;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:bold;flex-shrink:0;">{{ site.name.charAt(0) }}</span>
+                                <img v-if="site.logo" :src="site.logo" :alt="site.name" style="width:28px;height:28px;border-radius:6px;object-fit:contain;flex-shrink:0;">
                                 <span>{{ site.name }}</span>
                                 <span class="tag-actions">
                                     <button class="tag-btn edit" @click="editSiteItem(catIdx, siteIdx)">✎</button>
@@ -517,7 +519,7 @@ canvas{position:fixed;top:0;left:0;z-index:-1;}
                 exportData: function() { var d = { editCategories: this.editCategories }; var b = new Blob([JSON.stringify(d,null,2)],{type:'application/json'}); var u = URL.createObjectURL(b); var a = document.createElement('a'); a.href = u; a.download = 'backup_'+new Date().toISOString().slice(0,10)+'.json'; a.click(); URL.revokeObjectURL(u); this.showToast('数据已导出'); },
                 handleFileImport: function(e) { var f = e.target.files[0]; if (!f) return; var s = this; var r = new FileReader(); r.onload = function(ev) { try { s.importData = JSON.parse(ev.target.result); s.importStatus = '文件已读取，点击导入'; s.importStatusColor = '#3967FF'; } catch(err) { s.importStatus = '格式错误'; s.importStatusColor = '#e74c3c'; s.importData = null; } }; r.readAsText(f); },
                 doImport: function() { if (!this.importData) return; if (this.importData.editCategories) { this.editCategories = this.importData.editCategories; localStorage.setItem('nav_categories', JSON.stringify(this.editCategories)); } this.importData = null; this.importStatus = '导入成功！'; this.importStatusColor = '#27ae60'; this.showToast('数据已导入'); var self = this; setTimeout(function() { self.importStatus = ''; }, 3000); },
-                openSiteMgr: function() { var saved = localStorage.getItem("nav_categories"); if (saved) { try { this.editCategories = JSON.parse(saved); } catch(e) { this.editCategories = []; } } if (!this.editCategories || this.editCategories.length === 0) { var self = this; var shengHuoSites = this.listShengHuo.map(function(item) { var logo = item.imgSrc; if (!logo) { logo = self.getDefaultIcon(item.name); } return { name: item.name, url: item.url, logo: logo }; }); var banGongSites = this.listBanGong.map(function(item) { var logo = item.imgSrc; if (!logo) { logo = self.getDefaultIcon(item.name); } return { name: item.name, url: item.url, logo: logo }; }); this.editCategories = [ { name: "生活", sites: shengHuoSites, hidden: false }, { name: "办公", sites: banGongSites, hidden: false }, { name: "常用", sites: [], hidden: false }, { name: "工具", sites: [], hidden: false } ]; } },
+                                openSiteMgr: function() { var saved = localStorage.getItem("nav_categories"); if (saved) { try { this.editCategories = JSON.parse(saved); } catch(e) { this.editCategories = []; } } if (!this.editCategories || this.editCategories.length === 0) { var self = this; var shengHuoSites = this.listShengHuo.map(function(item) { var logo = item.imgSrc || ''; return { name: item.name, url: item.url, logo: logo }; }); var banGongSites = this.listBanGong.map(function(item) { var logo = item.imgSrc || ''; return { name: item.name, url: item.url, logo: logo }; }); this.editCategories = [ { name: "生活", sites: shengHuoSites, hidden: false }, { name: "办公", sites: banGongSites, hidden: false }, { name: "常用", sites: [], hidden: false }, { name: "工具", sites: [], hidden: false } ]; } },
                                 saveSiteMgr: function() { localStorage.setItem('nav_categories', JSON.stringify(this.editCategories)); var self = this; this.editCategories.forEach(function(cat) { var targetList = null; if (cat.name === '生活') targetList = self.listShengHuo; if (cat.name === '办公') targetList = self.listBanGong; if (targetList) { cat.sites.forEach(function(s) { var exist = targetList.find(function(x) { return x.url === s.url; }); if (!exist) { targetList.push({ name: s.name, url: s.url, iconId: '', imgSrc: s.logo || '' }); } }); } }); localStorage.setItem('listShengHuo', JSON.stringify(this.listShengHuo)); localStorage.setItem('listBanGong', JSON.stringify(this.listBanGong)); this.showSiteMgr = false; this.showToast('网址已保存'); },
                 openAddCategory: function() { this.editingCat = { isNew: true, name: '', firstUrl: '', firstName: '', firstLogo: '', iconType: 'auto' }; this.showEditCatModal = true; },
                 editCategory: function(catIdx) { this.editingCat = { isNew: false, catIdx: catIdx, name: this.editCategories[catIdx].name, firstUrl: '', firstName: '', firstLogo: '', iconType: 'url' }; this.showEditCatModal = true; },
