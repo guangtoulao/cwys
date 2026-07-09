@@ -44,13 +44,6 @@
       "jar": "http://211.101.247.245:25252/仅供测试/custom_spider.jar"
     },
     {
-      "key": "旺旺",
-      "name": "旺旺弹幕",
-      "type": 3,
-      "api": "csp_HBwwgg",
-      "jar": "http://211.101.247.245:25252/仅供测试/custom_spider.jar"
-    },
-    {
       "name": "三六官网",
       "key": "Y360",
       "type": 3,
@@ -168,20 +161,6 @@
         "海外动漫"
       ],
       "jar": "https://xpb.mhfs.eu.org/ZJ/XPB/jars/Yoursmile.jar"
-    },
-    {
-      "key": "茉莉",
-      "name": "茉莉弹幕",
-      "type": 3,
-      "searchable": 1,
-      "changeable": 1,
-      "api": "csp_HBgetapp",
-      "ext": {
-        "host": "https://gitee.com/wmmoliill/wimg/raw/master/img/bk/9.txt",
-        "appkey": "88689667dce61725",
-        "appiv": "88689667dce61725"
-      },
-      "jar": "http://211.101.247.245:25252/仅供测试/custom_spider.jar"
     },
     {
       "name": "飞狐外传",
