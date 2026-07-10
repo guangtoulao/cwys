@@ -526,7 +526,38 @@ canvas{position:fixed;top:0;left:0;z-index:-1;}
                 handleFileImport: function(e) { var f = e.target.files[0]; if (!f) return; var s = this; var r = new FileReader(); r.onload = function(ev) { try { s.importData = JSON.parse(ev.target.result); s.importStatus = '文件已读取，点击导入'; s.importStatusColor = '#3967FF'; } catch(err) { s.importStatus = '格式错误'; s.importStatusColor = '#e74c3c'; s.importData = null; } }; r.readAsText(f); },
                 doImport: function() { if (!this.importData) return; var d = this.importData; if (d.editCategories) { this.editCategories = d.editCategories; localStorage.setItem('nav_categories', JSON.stringify(d.editCategories)); } if (d.tabList) { this.tabList = d.tabList; localStorage.setItem('tabList', JSON.stringify(d.tabList)); } if (d.listShengHuo) { this.listShengHuo = d.listShengHuo; localStorage.setItem('listShengHuo', JSON.stringify(d.listShengHuo)); } if (d.listBanGong) { this.listBanGong = d.listBanGong; localStorage.setItem('listBanGong', JSON.stringify(d.listBanGong)); } if (d.bg_settings) { localStorage.setItem('bg_settings', d.bg_settings); this.loadData(); } this.importData = null; this.importStatus = '导入成功！'; this.importStatusColor = '#27ae60'; this.showToast('数据已导入'); var self = this; setTimeout(function() { self.importStatus = ''; }, 3000); },
                 openSiteMgr: function() { var saved = localStorage.getItem("nav_categories"); if (saved) { try { this.editCategories = JSON.parse(saved); } catch(e) { this.editCategories = []; } } if (!this.editCategories || this.editCategories.length === 0) { var self = this; var shengHuoSites = this.listShengHuo.map(function(item) { var logo = item.imgSrc || ''; return { name: item.name, url: item.url, logo: logo }; }); var banGongSites = this.listBanGong.map(function(item) { var logo = item.imgSrc || ''; return { name: item.name, url: item.url, logo: logo }; }); this.editCategories = [ { name: "生活", sites: shengHuoSites, hidden: false }, { name: "办公", sites: banGongSites, hidden: false }, { name: "常用", sites: [], hidden: false }, { name: "工具", sites: [], hidden: false } ]; } },
-                saveSiteMgr: function() { localStorage.setItem('nav_categories', JSON.stringify(this.editCategories)); var self = this; this.editCategories.forEach(function(cat) { var targetList = null; if (cat.name === '生活') targetList = self.listShengHuo; if (cat.name === '办公') targetList = self.listBanGong; if (targetList) { cat.sites.forEach(function(s) { var exist = targetList.find(function(x) { return x.url === s.url; }); if (!exist) { targetList.push({ name: s.name, url: s.url, iconId: '', imgSrc: s.logo || '' }); } }); } }); localStorage.setItem('listShengHuo', JSON.stringify(this.listShengHuo)); localStorage.setItem('listBanGong', JSON.stringify(this.listBanGong)); this.showSiteMgr = false; this.showToast('网址已保存'); this.pushToCloud(); },
+               saveSiteMgr: function() {
+    localStorage.setItem('nav_categories', JSON.stringify(this.editCategories));
+    let newShengHuo = [];
+    let newBanGong = [];
+    // 遍历栏目收集网址，自动按url去重
+    this.editCategories.forEach(cat => {
+        cat.sites.forEach(s => {
+            const item = {
+                name: s.name,
+                url: s.url,
+                iconId: '',
+                imgSrc: s.logo || ''
+            };
+            if (cat.name === '生活') {
+                const has = newShengHuo.find(x => x.url === s.url);
+                if (!has) newShengHuo.push(item);
+            }
+            if (cat.name === '办公') {
+                const has = newBanGong.find(x => x.url === s.url);
+                if (!has) newBanGong.push(item);
+            }
+        });
+    });
+    // 直接覆盖全新无重复数组
+    this.listShengHuo = newShengHuo;
+    this.listBanGong = newBanGong;
+    localStorage.setItem('listShengHuo', JSON.stringify(this.listShengHuo));
+    localStorage.setItem('listBanGong', JSON.stringify(this.listBanGong));
+    this.showSiteMgr = false;
+    this.showToast('网址已保存');
+    this.pushToCloud();
+},
                 removeCategory: function(catIdx) { var name = this.editCategories[catIdx].name; if (confirm('确定删除栏目「' + name + '」及其所有网址吗？')) { this.editCategories.splice(catIdx, 1); var tabIdx = -1; for (var i = 0; i < this.tabList.length; i++) { if (this.tabList[i].name === name) { tabIdx = i; break; } } if (tabIdx >= 0) { this.tabList.splice(tabIdx, 1); localStorage.setItem('tabList', JSON.stringify(this.tabList)); } localStorage.setItem('nav_categories', JSON.stringify(this.editCategories)); this.showToast('栏目已删除'); this.pushToCloud(); } },
                 openAddCategory: function() { this.editingCat = { isNew: true, name: '', firstUrl: '', firstName: '', firstLogo: '', iconType: 'auto' }; this.showEditCatModal = true; },
                 editCategory: function(catIdx) { this.editingCat = { isNew: false, catIdx: catIdx, name: this.editCategories[catIdx].name, firstUrl: '', firstName: '', firstLogo: '', iconType: 'url' }; this.showEditCatModal = true; },
