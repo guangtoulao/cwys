@@ -117,7 +117,6 @@ canvas{position:fixed;top:0;left:0;z-index:-1;}
 .layout-text .icon-grid{display:flex;flex-wrap:wrap;gap:8px 10px;}
 </style>
 </head>
-</div>
 
 
 
@@ -385,9 +384,8 @@ canvas{position:fixed;top:0;left:0;z-index:-1;}
         })();
 
         // ========== GitHub Gist 云端同步配置 ==========
-     GIST_ID = ''; localStorage.removeItem('gist_id');
-GIST_TOKEN = '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';
-document.querySelector('#app').__vue__.pushToCloud();
+            var GIST_TOKEN = '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';
+        var GIST_ID = localStorage.getItem('gist_id') || '';
 
         function syncToGist(data) {
             var payload = {
