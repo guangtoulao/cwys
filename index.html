@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -385,7 +386,6 @@ canvas{position:fixed;top:0;left:0;z-index:-1;}
 
         // ========== GitHub Gist 云端同步配置 ==========
            
-        var GIST_TOKEN = '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';
         var GIST_ID = localStorage.getItem('gist_id') || '';
         function syncToGist(data) {
             var payload = {
@@ -393,10 +393,10 @@ canvas{position:fixed;top:0;left:0;z-index:-1;}
                 public: false,
                 files: { 'nav_data.json': { content: JSON.stringify(data) } }
             };
-            var url = 'https://api.github.com/gists';
+            var url = 'https://little-sound-1057.417700427.workers.dev/gists';
             var method = 'POST';
             if (GIST_ID) {
-                url = 'https://api.github.com/gists/' + GIST_ID;
+                url = 'https://little-sound-1057.417700427.workers.dev/gists/' + GIST_ID;
                 method = 'PATCH';
                 delete payload.description;
             }
@@ -421,7 +421,7 @@ canvas{position:fixed;top:0;left:0;z-index:-1;}
 
         function loadFromGist(callback) {
             if (!GIST_ID) { if (callback) callback(null); return; }
-            fetch('https://api.github.com/gists/' + GIST_ID, {
+            fetch('https://little-sound-1057.417700427.workers.dev/gists/' + GIST_ID, {
                 headers: { 'Authorization': 'token ' + GIST_TOKEN }
             }).then(function(r) { return r.json(); })
             .then(function(res) {
@@ -533,10 +533,10 @@ canvas{position:fixed;top:0;left:0;z-index:-1;}
                 editCategory: function(catIdx) { this.editingCat = { isNew: false, catIdx: catIdx, name: this.editCategories[catIdx].name, firstUrl: '', firstName: '', firstLogo: '', iconType: 'url' }; this.showEditCatModal = true; },
                 handleLocalIcon: function(e) { var file = e.target.files[0]; if (!file) return; var self = this; var reader = new FileReader(); reader.onload = function(ev) { self.editingCat.firstLogo = ev.target.result; }; reader.readAsDataURL(file); },
                 handleSiteLocalIcon: function(e) { var file = e.target.files[0]; if (!file) return; var self = this; var reader = new FileReader(); reader.onload = function(ev) { self.editingSite.logo = ev.target.result; }; reader.readAsDataURL(file); },
-                saveEditCat: function() { if (!this.editingCat.name.trim()) { this.showToast('请输入栏目名称'); return; } if (this.editingCat.isNew) { var newCat = { name: this.editingCat.name.trim(), sites: [], hidden: false }; if (this.editingCat.firstName.trim() && this.editingCat.firstUrl.trim()) { var url = this.editingCat.firstUrl.trim(); if (!url.startsWith('http')) url = 'https://' + url; var logo = this.editingCat.firstLogo || ''; if (!logo && this.editingCat.iconType === 'auto') { try { logo = 'https://' + new URL(url).hostname + '/favicon.ico'; } catch(e) { logo = ''; } } newCat.sites.push({ name: this.editingCat.firstName.trim(), url: url, logo: logo }); } this.editCategories.push(newCat); localStorage.setItem('nav_categories', JSON.stringify(this.editCategories)); this.tabList.push({key:'cat_'+Date.now(),name:this.editingCat.name.trim()}); localStorage.setItem('tabList', JSON.stringify(this.tabList)); } else { this.editCategories[this.editingCat.catIdx].name = this.editingCat.name.trim(); } this.showEditCatModal = false; this.showToast(this.editingCat.isNew ? '栏目已添加' : '栏目已更新'); this.pushToCloud(); },
+                saveEditCat: function() { if (!this.editingCat.name.trim()) { this.showToast('请输入栏目名称'); return; } if (this.editingCat.isNew) { var newCat = { name: this.editingCat.name.trim(), sites: [], hidden: false }; if (this.editingCat.firstName.trim() && this.editingCat.firstUrl.trim()) { var url = this.editingCat.firstUrl.trim(); if (!url.startsWith('http')) url = 'https://' + url; var logo = this.editingCat.firstLogo || ''; if (!logo && this.editingCat.iconType === 'auto') { try { logo = 'https://' + new URL(url).hostname + '/favicon.ico'; } catch(e) { logo = ''; } } newCat.sites.push({ name: this.editingCat.firstName.trim(), url: url, logo: logo }); } this.editCategories.push(newCat); localStorage.setItem('nav_categories', JSON.stringify(this.editCategories)); this.tabList.push({key:'cat_'+Date.now(),name:this.editingCat.name.trim()}); localStorage.setItem('tabList', JSON.stringify(this.tabList)); } else { this.editCategories[this.editingCat.catIdx].name = this.editingCat.name.trim(); } this.showEdi                tCatModal = false; this.showToast(this.editingCat.isNew ? '栏目已添加' : '栏目已更新'); this.pushToCloud(); },
                 handleDrop: function(toCatIdx, toSiteIdx) { if (!this.dragItem) return; var f = this.dragItem; if (f.catIdx === toCatIdx && f.siteIdx === toSiteIdx) return; var site = this.editCategories[f.catIdx].sites[f.siteIdx]; this.editCategories[f.catIdx].sites.splice(f.siteIdx, 1); if (toSiteIdx >= this.editCategories[toCatIdx].sites.length) { this.editCategories[toCatIdx].sites.push(site); } else { this.editCategories[toCatIdx].sites.splice(toSiteIdx, 0, site); } this.dragItem = null; },
                 editSiteItem: function(catIdx, siteIdx) { var site = this.editCategories[catIdx].sites[siteIdx]; this.editingSite = { isNew: false, catIdx: catIdx, siteIdx: siteIdx, name: site.name, url: site.url, logo: site.logo || '', iconType: 'url' }; this.showEditSiteModal = true; },
-                removeSiteItem: function(catIdx, siteIdx) { var catName = this.editCategories[catIdx].name; var siteUrl = this.editCategories[catIdx].sites[siteIdx].url; if (confirm('确定删除「' + this.editCategories[catIdx].sites[siteIdx].name + '」吗？')) { this.editCategories[catIdx].sites.splice(siteIdx, 1); var targetList = null; if (catName === '生活') targetList = this.listShengHuo; if (catName === '办公') targetList = this.listBanGong; if (targetList) { var idx = targetList.findIndex(function(x) { return x.url === siteUrl; }); if (idx >= 0) { targetList.splice(idx, 1); localStorage.setItem('listShengHuo', JSON.stringify(this.listShengHuo)); localStorage.setItem('listBanGong', JSON.stringify(this.listBanGong)); } } this.showToast('已删除'); this.pushToCloud(); } },
+                               removeSiteItem: function(catIdx, siteIdx) { var catName = this.editCategories[catIdx].name; var siteUrl = this.editCategories[catIdx].sites[siteIdx].url; if (confirm('确定删除「' + this.editCategories[catIdx].sites[siteIdx].name + '」吗？')) { this.editCategories[catIdx].sites.splice(siteIdx, 1); var targetList = null; if (catName === '生活') targetList = this.listShengHuo; if (catName === '办公') targetList = this.listBanGong; if (targetList) { var idx = targetList.findIndex(function(x) { return x.url === siteUrl; }); if (idx >= 0) { targetList.splice(idx, 1); localStorage.setItem('listShengHuo', JSON.stringify(this.listShengHuo)); localStorage.setItem('listBanGong', JSON.stringify(this.listBanGong)); } } this.showToast('已删除'); this.pushToCloud(); } },
                 openAddSite: function(catIdx) { this.editingSite = { isNew: true, catIdx: catIdx, siteIdx: -1, name: '', url: '', logo: '', iconType: 'auto' }; this.showEditSiteModal = true; },
                 saveEditSite: function() { var s = this.editingSite; if (!s.name.trim() || !s.url.trim()) { this.showToast('请填写网站名称和网址'); return; } var url = s.url.trim(); if (!url.startsWith('http')) url = 'https://' + url; var logo = s.logo || ''; if (!logo && s.iconType === 'auto') { try { logo = 'https://' + new URL(url).hostname + '/favicon.ico'; } catch(e) { logo = ''; } } var siteData = { name: s.name.trim(), url: url, logo: logo }; if (s.isNew) { this.editCategories[s.catIdx].sites.push(siteData); } else { this.editCategories[s.catIdx].sites[s.siteIdx] = siteData; } this.showEditSiteModal = false; this.showToast(s.isNew ? '添加成功' : '保存成功'); },
                 getDefaultIcon: function(name) { var c = (name || '?').charAt(0); return 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><rect width="48" height="48" rx="8" fill="#3967FF"/><text x="24" y="32" text-anchor="middle" fill="white" font-size="20">' + c + '</text></svg>'); },
@@ -561,5 +561,6 @@ canvas{position:fixed;top:0;left:0;z-index:-1;}
             }
         });
     </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b228234959e04346a40515e77a1a092e","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
