@@ -1,4 +1,7 @@
 {
+  "spider": "https://zl.wpscdn.cn/2026/07/10/space_img/ca147206-8a81-40c2-bf47-efa7beb080ae.png;md5;e4b537ab2e9087336a144d5b1355df40",
+  "danmaku": "http://127.0.0.1:2525/danmu?name={name}&epid={episode}",
+  "wallpaper": "http://127.0.0.1:9978/proxy?do=AowuWapper&mode=2",
   "sites": [
     {
       "name": "豆瓣 | 首页",
