@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>君子兰主页</title>
 <link rel="icon" href="https://pics3.baidu.com/feed/6a63f6246b600c3346d4fd283d6c1a1ed8f9a156.jpeg@f_auto?token=e02ba4b615239c7ee41074a263625dd4">
-<meta http-equiv="Cache-Control" content="public, max-age=2592000"> <!-- // 可修改：缓存时长，单位秒 -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 
 <!-- 第三方图标CDN -->
 <script src="https://at.alicdn.com/t/c/font_5198821_zvqmcojflkj.js" crossorigin></script>
@@ -495,7 +495,6 @@ canvas{position:fixed;top:0;left:0;z-index:-1;}
         <!-- 顶部提示弹窗 -->
         <div class="toast-msg" v-if="toastMsg">{{ toastMsg }}</div>
     </div>
-</div>
 <script>
 // ===================== 模块1：星空背景Canvas =====================
 (function() {
@@ -898,11 +897,11 @@ new Vue({
                 var self = this;
                 var shengHuoSites = this.listShengHuo.map(function (item) {
                     var logo = item.imgSrc || '';
-                    return { name: item.name, url: item.url, logo: logo };
+                    return { name: item.name, url: item.url, logo: logo, iconId: item.iconId || '' };
                 });
                 var banGongSites = this.listBanGong.map(function (item) {
                     var logo = item.imgSrc || '';
-                    return { name: item.name, url: item.url, logo: logo };
+                    return { name: item.name, url: item.url, logo: logo, iconId: item.iconId || '' };
                 });
                 this.editCategories = [
                     { name: "生活", sites: shengHuoSites, hidden: false },
@@ -916,7 +915,7 @@ new Vue({
          saveSiteMgr: function() { localStorage.setItem('nav_categories',
         JSON.stringify(this.editCategories)); var self = this; var newShengHuo = [];
         var newBanGong = [];
-        this.editCategories.forEach(function(cat) { cat.sites.forEach(function(s) { var item = { name: s.name, url: s.url, iconId: '', imgSrc: s.logo || '' };
+        this.editCategories.forEach(function(cat) { cat.sites.forEach(function(s) { var item = { name: s.name, url: s.url, iconId: s.iconId || '', imgSrc: s.logo || '' };
         if (cat.name === '生活') { var has = false; for (var i = 0;
         i < newShengHuo.length; i++) { if (newShengHuo[i].url === s.url) { has = true; break; } } if (!has) newShengHuo.push(item); } if (cat.name === '办公') { var hasB = false; for (var j = 0; 
         j < newBanGong.length; j++) { if (newBanGong[j].url === s.url) { hasB = true; break; } } if (!hasB) newBanGong.push(item); } }); }); 
@@ -940,7 +939,7 @@ new Vue({
                 }
                 localStorage.setItem('nav_categories', JSON.stringify(this.editCategories));
                 this.showToast('栏目已删除');
-        
+            }
         },
         // 新增栏目弹窗
         openAddCategory: function () {
@@ -1008,7 +1007,17 @@ new Vue({
                 this.tabList.push({ key: 'cat_' + Date.now(), name: this.editingCat.name.trim() });
                 localStorage.setItem('tabList', JSON.stringify(this.tabList));
             } else {
+                var oldName = this.editCategories[this.editingCat.catIdx].name;
                 this.editCategories[this.editingCat.catIdx].name = this.editingCat.name.trim();
+                // 同步更新tabList中对应的栏目名称
+                for (var i = 0; i < this.tabList.length; i++) {
+                    if (this.tabList[i].name === oldName) {
+                        this.tabList[i].name = this.editingCat.name.trim();
+                        break;
+                    }
+                }
+                localStorage.setItem('tabList', JSON.stringify(this.tabList));
+                localStorage.setItem('nav_categories', JSON.stringify(this.editCategories));
             }
             this.showEditCatModal = false;
             this.showToast(this.editingCat.isNew ? '栏目已添加' : '栏目已更新');
@@ -1059,6 +1068,7 @@ new Vue({
                     }
                 }
                 this.showToast('已删除');
+            }
         },
         // 打开新增网址弹窗
         openAddSite: function (catIdx) {
@@ -1090,12 +1100,27 @@ new Vue({
                     logo = '';
                 }
             }
-            var siteData = { name: s.name.trim(), url: url, logo: logo };
+            var siteData = { name: s.name.trim(), url: url, logo: logo, iconId: s.iconId || '' };
             if (s.isNew) {
                 this.editCategories[s.catIdx].sites.push(siteData);
             } else {
+                siteData.iconId = this.editCategories[s.catIdx].sites[s.siteIdx].iconId || '';
                 this.editCategories[s.catIdx].sites[s.siteIdx] = siteData;
             }
+            // 同步更新前台列表和localStorage
+            var catName = this.editCategories[s.catIdx].name;
+            if (catName === '生活') {
+                this.listShengHuo = this.editCategories[s.catIdx].sites.map(function(item) {
+                    return { name: item.name, url: item.url, iconId: item.iconId || '', imgSrc: item.logo || '' };
+                });
+                localStorage.setItem('listShengHuo', JSON.stringify(this.listShengHuo));
+            } else if (catName === '办公') {
+                this.listBanGong = this.editCategories[s.catIdx].sites.map(function(item) {
+                    return { name: item.name, url: item.url, iconId: item.iconId || '', imgSrc: item.logo || '' };
+                });
+                localStorage.setItem('listBanGong', JSON.stringify(this.listBanGong));
+            }
+            localStorage.setItem('nav_categories', JSON.stringify(this.editCategories));
             this.showEditSiteModal = false;
             this.showToast(s.isNew ? '添加成功' : '保存成功');
         },
@@ -1161,9 +1186,5 @@ new Vue({
             },
            });
 </script>
-
-<!-- 统计埋点脚本 -->
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b228234959e04346a40515e77a1a092e","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a194b9aa6aea97c4',t:'MTc4Mzc0MDU4MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b228234959e04346a40515e77a1a092e","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
