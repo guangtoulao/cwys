@@ -420,7 +420,7 @@ canvas{position:fixed;top:0;left:0;z-index:-1;}
                             <p style="font-size:12px;color:#888;margin-top:8px;">Token 获取方式：GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token，勾选 "repo" 权限。</p>
                             <div style="margin-top:16px;display:flex;gap:8px;">
                                 <button class="btn btn-primary" @click="saveToken">保存 Token</button>
-                                <button class="btn btn-default" @click="syncFromCloud()">立即同步</button>
+                                <button class="btn btn-primary" @click="syncFromCloud()">立即同步</button>
                             </div>
                             <p v-if="cloudMsg" :style="{color:cloudMsgColor,fontSize:'13px',marginTop:'10px'}">{{ cloudMsg }}</p>
                         </div>
