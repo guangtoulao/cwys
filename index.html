@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!-- 项目：君子兰导航 cwys.qzz.io -->
 <!-- 技术：Vue2 + Canvas星空 + localStorage本地存储 + Cloudflare Worker云端同步 -->
@@ -545,67 +546,6 @@ canvas{position:fixed;top:0;left:0;z-index:-1;}
     run();
 })();
 
-// ===================== 模块2：云端Gist同步配置 =====================
-var GIST_ID = localStorage.getItem('gist_id') || '';
-//【可修改】云端中转Worker地址，自建后端可替换
-var WORKER_URL = 'https://little-sound-1057.417700427.workers.dev/gists';
-
-/**
- * 推送本地全部数据到云端Gist
- * @param {Object} data 本地存储完整数据
- */
-function syncToGist(data) {
-    var payload = {
-        description: '君子兰导航数据', //【可修改】Gist文件备注名
-        public: false,                 //【可修改】是否公开Gist
-        files: { 'nav_data.json': { content: JSON.stringify(data) } }
-    };
-    var url = WORKER_URL;
-    var method = 'POST';
-    if (GIST_ID) {
-        url = WORKER_URL + '/' + GIST_ID;
-        method = 'PATCH';
-        delete payload.description;
-    }
-    fetch(url, {
-        method: method,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-    }).then(function(r) { return r.json(); })
-    .then(function(res) {
-        if (res.id) {
-            GIST_ID = res.id;
-            localStorage.setItem('gist_id', res.id);
-            console.log('✅ 云端同步成功');
-        }
-    }).catch(function(e) {
-        console.log('❌ 云端同步失败:', e);
-    });
-}
-
-/**
- * 从云端拉取存储数据
- * @param {Function} callback 加载完成回调
- */
-function loadFromGist(callback) {
-    if (!GIST_ID) {
-        if (callback) callback(null);
-        return;
-    }
-    fetch(WORKER_URL + '/' + GIST_ID, { headers: {} })
-    .then(function(r) { return r.json(); })
-    .then(function(res) {
-        if (res.files && res.files['nav_data.json']) {
-            var data = JSON.parse(res.files['nav_data.json'].content);
-            if (callback) callback(data);
-            console.log('✅ 云端数据加载成功');
-        }
-    }).catch(function(e) {
-        console.log('❌ 云端加载失败:', e);
-        if (callback) callback(null);
-    });
-}
-
 // ===================== 模块3：Vue根实例 全部可修改数据标注 =====================
 new Vue({
     el: '#app',
@@ -973,40 +913,15 @@ new Vue({
             }
         },
         // 保存网址管理修改，同步到首页列表+本地存储+云端
-        saveSiteMgr: function () {
-            let self = this;
-            clearTimeout(self.saveTimer);
-            self.saveTimer = setTimeout(() => {
-                localStorage.setItem('nav_categories', JSON.stringify(self.editCategories));
-                let newShengHuo = [];
-                let newBanGong = [];
-                self.editCategories.forEach(cat => {
-                    cat.sites.forEach(s => {
-                        const item = {
-                            name: s.name,
-                            url: s.url,
-                            iconId: '',
-                            imgSrc: s.logo || ''
-                        };
-                        if (cat.name === '生活') {
-                            const has = newShengHuo.find(x => x.url === s.url);
-                            if (!has) newShengHuo.push(item);
-                        }
-                        if (cat.name === '办公') {
-                            const has = newBanGong.find(x => x.url === s.url);
-                            if (!has) newBanGong.push(item);
-                        }
-                    });
-                });
-                self.listShengHuo = newShengHuo;
-                self.listBanGong = newBanGong;
-                localStorage.setItem('listShengHuo', JSON.stringify(self.listShengHuo));
-                localStorage.setItem('listBanGong', JSON.stringify(self.listBanGong));
-                self.showSiteMgr = false;
-                self.showToast('网址已保存');
-                self.pushToCloud();
-            }, 300);
-        },
+         saveSiteMgr: function() { localStorage.setItem('nav_categories',
+        JSON.stringify(this.editCategories)); var self = this; var newShengHuo = [];
+        var newBanGong = [];
+        this.editCategories.forEach(function(cat) { cat.sites.forEach(function(s) { var item = { name: s.name, url: s.url, iconId: '', imgSrc: s.logo || '' };
+        if (cat.name === '生活') { var has = false; for (var i = 0;
+        i < newShengHuo.length; i++) { if (newShengHuo[i].url === s.url) { has = true; break; } } if (!has) newShengHuo.push(item); } if (cat.name === '办公') { var hasB = false; for (var j = 0; 
+        j < newBanGong.length; j++) { if (newBanGong[j].url === s.url) { hasB = true; break; } } if (!hasB) newBanGong.push(item); } }); }); 
+       this.listShengHuo = newShengHuo; this.listBanGong = newBanGong; localStorage.setItem('listShengHuo', JSON.stringify(newShengHuo)); 
+       localStorage.setItem('listBanGong', JSON.stringify(newBanGong)); this.showSiteMgr = false; this.showToast('网址已保存'); },
         // 删除栏目
         removeCategory: function (catIdx) {
             var name = this.editCategories[catIdx].name;
@@ -1025,8 +940,7 @@ new Vue({
                 }
                 localStorage.setItem('nav_categories', JSON.stringify(this.editCategories));
                 this.showToast('栏目已删除');
-                this.pushToCloud();
-            }
+        
         },
         // 新增栏目弹窗
         openAddCategory: function () {
@@ -1098,7 +1012,6 @@ new Vue({
             }
             this.showEditCatModal = false;
             this.showToast(this.editingCat.isNew ? '栏目已添加' : '栏目已更新');
-            this.pushToCloud();
         },
         // 拖拽排序网址
         handleDrop: function (toCatIdx, toSiteIdx) {
@@ -1146,8 +1059,6 @@ new Vue({
                     }
                 }
                 this.showToast('已删除');
-                this.pushToCloud();
-            }
         },
         // 打开新增网址弹窗
         openAddSite: function (catIdx) {
@@ -1200,34 +1111,7 @@ new Vue({
             if (this.toastTimer) clearTimeout(this.toastTimer);
             this.toastTimer = setTimeout(function () { self.toastMsg = ''; }, 2000);
         },
-        // 推送本地全部数据到云端Gist
-        pushToCloud: function () {
-            var data = {
-                bg_settings: localStorage.getItem('bg_settings'),
-                nav_categories: localStorage.getItem('nav_categories'),
-                tabList: localStorage.getItem('tabList'),
-                listShengHuo: localStorage.getItem('listShengHuo'),
-                listBanGong: localStorage.getItem('listBanGong')
-            };
-            syncToGist(data);
-        },
-        // 页面加载拉取云端数据
-        pullFromCloud: function () {
-            var self = this;
-            loadFromGist(function (data) {
-                if (data) {
-                    if (data.bg_settings) {
-                        localStorage.setItem('bg_settings', data.bg_settings);
-                        self.loadData();
-                    }
-                    if (data.nav_categories) localStorage.setItem('nav_categories', data.nav_categories);
-                    if (data.tabList) localStorage.setItem('tabList', data.tabList);
-                    if (data.listShengHuo) localStorage.setItem('listShengHuo', data.listShengHuo);
-                    if (data.listBanGong) localStorage.setItem('listBanGong', data.listBanGong);
-                    location.reload();
-                }
-            });
-        },
+
         // 保存背景设置到本地存储
         saveData: function () {
             if (this.bgSource === 'net' && this.netBgUrl.trim()) {
@@ -1243,7 +1127,7 @@ new Vue({
                 maskOpacity: this.maskOpacity,
                 blurVal: this.blurVal
             }));
-            this.pushToCloud();
+
         },
         // 页面初始化读取本地背景配置
         loadData: function () {
@@ -1263,54 +1147,23 @@ new Vue({
             this.applyCustomBg();
         }
     },
-    mounted: function () {
-        // 页面挂载加载本地配置
-        this.loadData();
-        var self = this;
-        // 自动拉取云端同步数据
-        this.pullFromCloud();
-        // 读取本地分类标签
-        var savedTab = localStorage.getItem('tabList');
-        if (savedTab) {
-            try {
-                var tb = JSON.parse(savedTab);
-                if (tb.length > this.tabList.length) {
-                    this.tabList = tb;
-                }
-            } catch (e) { }
-        }
-        // 读取生活网站列表
-        var savedSH = localStorage.getItem('listShengHuo');
-        if (savedSH) {
-            try {
-                var sh = JSON.parse(savedSH);
-                if (sh.length > this.listShengHuo.length) {
-                    this.listShengHuo = sh;
-                }
-            } catch (e) { }
-        }
-        // 读取办公网站列表
-        var savedBG = localStorage.getItem('listBanGong');
-        if (savedBG) {
-            try {
-                var bg = JSON.parse(savedBG);
-                if (bg.length > this.listBanGong.length) {
-                    this.listBanGong = bg;
-                }
-            } catch (e) { }
-        }
-        // 启动时间更新定时器
-        this.updateTime();
-        this.timeInterval = setInterval(function () { self.updateTime(); }, 1000);
-    },
-    beforeDestroy: function () {
-        // 销毁前清除定时器，防止内存泄漏 【可修改】如需多定时器在这里追加clearInterval
-        if (this.timeInterval) clearInterval(this.timeInterval);
-    }
-});
+            mounted: function() {
+                this.loadData();
+                var savedTab = localStorage.getItem('tabList');
+                if (savedTab) { try { var tb = JSON.parse(savedTab); if (tb.length >= 3) { this.tabList = tb; } } catch(e) {} }
+                var savedSH = localStorage.getItem('listShengHuo');
+                if (savedSH) { try { this.listShengHuo = JSON.parse(savedSH); } catch(e) {} }
+                var savedBG = localStorage.getItem('listBanGong');
+                if (savedBG) { try { this.listBanGong = JSON.parse(savedBG); } catch(e) {} }
+                this.updateTime();
+                var self = this;
+                this.timeInterval = setInterval(function() { self.updateTime(); }, 1000);
+            },
+           });
 </script>
 
 <!-- 统计埋点脚本 -->
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b228234959e04346a40515e77a1a092e","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a194b9aa6aea97c4',t:'MTc4Mzc0MDU4MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b228234959e04346a40515e77a1a092e","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
