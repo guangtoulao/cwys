@@ -1211,18 +1211,30 @@ new Vue({
         }
     },
         // ========== 云端同步（GitHub 仓库作为免费后端）==========
-        syncFromCloud: function(cb) {
+        // isInit=true 表示首次初始化（本地无数据时才用云端覆盖）
+        syncFromCloud: function(cb, isInit) {
             var self = this;
             fetch('https://raw.githubusercontent.com/guangtoulao/cwys/main/data.json?t=' + Date.now())
                 .then(function(r) { if(!r.ok) throw new Error('no cloud data'); return r.json(); })
                 .then(function(d) {
-                    if(d.listShengHuo) { self.listShengHuo = d.listShengHuo; localStorage.setItem('listShengHuo', JSON.stringify(d.listShengHuo)); }
-                    if(d.listBanGong) { self.listBanGong = d.listBanGong; localStorage.setItem('listBanGong', JSON.stringify(d.listBanGong)); }
-                    if(d.tabList) { self.tabList = d.tabList; localStorage.setItem('tabList', JSON.stringify(d.tabList)); }
-                    if(d.nav_categories) { localStorage.setItem('nav_categories', JSON.stringify(d.nav_categories)); }
-                    self.showToast('已从云端同步');
+                    if(isInit) {
+                        // 首次初始化：本地无数据时才用云端
+                        if(!localStorage.getItem('listShengHuo') && d.listShengHuo) {
+                            self.listShengHuo = d.listShengHuo; localStorage.setItem('listShengHuo', JSON.stringify(d.listShengHuo));
+                        }
+                        if(!localStorage.getItem('listBanGong') && d.listBanGong) {
+                            self.listBanGong = d.listBanGong; localStorage.setItem('listBanGong', JSON.stringify(d.listBanGong));
+                        }
+                    } else {
+                        // 手动点击"立即同步"：云端数据覆盖本地
+                        if(d.listShengHuo) { self.listShengHuo = d.listShengHuo; localStorage.setItem('listShengHuo', JSON.stringify(d.listShengHuo)); }
+                        if(d.listBanGong) { self.listBanGong = d.listBanGong; localStorage.setItem('listBanGong', JSON.stringify(d.listBanGong)); }
+                        if(d.tabList) { self.tabList = d.tabList; localStorage.setItem('tabList', JSON.stringify(d.tabList)); }
+                        if(d.nav_categories) { localStorage.setItem('nav_categories', JSON.stringify(d.nav_categories)); }
+                        self.showToast('已从云端同步');
+                    }
                 })
-                .catch(function() { /* 无云端数据则用本地 */ })
+                .catch(function() { /* 无云端数据则跳过 */ })
                 .finally(function() { if(cb) cb(); });
         },
         syncToCloud: function() {
@@ -1257,17 +1269,17 @@ new Vue({
                 this.loadData();
                 var t = localStorage.getItem('github_token');
                 if(t) this.githubToken = t;
-                // 从 GitHub 云端同步数据（跨设备）
-                this.syncFromCloud(function() {
-                    var savedTab = localStorage.getItem('tabList');
-                    if (savedTab) { try { var tb = JSON.parse(savedTab); if (tb.length >= 3) { self.tabList = tb; } } catch(e) {} }
-                    var savedSH = localStorage.getItem('listShengHuo');
-                    if (savedSH) { try { self.listShengHuo = JSON.parse(savedSH); } catch(e) {} }
-                    var savedBG = localStorage.getItem('listBanGong');
-                    if (savedBG) { try { self.listBanGong = JSON.parse(savedBG); } catch(e) {} }
-                    self.updateTime();
-                    self.timeInterval = setInterval(function() { self.updateTime(); }, 1000);
-                });
+                // 先读本地 localStorage
+                var savedTab = localStorage.getItem('tabList');
+                if (savedTab) { try { var tb = JSON.parse(savedTab); if (tb.length >= 3) { this.tabList = tb; } } catch(e) {} }
+                var savedSH = localStorage.getItem('listShengHuo');
+                if (savedSH) { try { this.listShengHuo = JSON.parse(savedSH); } catch(e) {} }
+                var savedBG = localStorage.getItem('listBanGong');
+                if (savedBG) { try { this.listBanGong = JSON.parse(savedBG); } catch(e) {} }
+                this.updateTime();
+                this.timeInterval = setInterval(function() { self.updateTime(); }, 1000);
+                // 异步从云端同步（仅本地无数据时才用云端数据）
+                this.syncFromCloud(null, true);
             },
            });
 </script>
