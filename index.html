@@ -1,1285 +1,1658 @@
 <!DOCTYPE html>
-<!-- 项目：君子兰导航 cwys.qzz.io -->
-<!-- 技术：Vue2 + Canvas星空 + localStorage本地存储 + Cloudflare Worker云端同步 -->
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>君子兰主页</title>
-<link rel="icon" href="https://pics3.baidu.com/feed/6a63f6246b600c3346d4fd283d6c1a1ed8f9a156.jpeg@f_auto?token=e02ba4b615239c7ee41074a263625dd4">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-
-<!-- 第三方图标CDN -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
 <script src="https://at.alicdn.com/t/c/font_5198821_zvqmcojflkj.js" crossorigin></script>
 <script src="https://at.alicdn.com/t/c/font_5204659_yfw5wsjyg2.js" crossorigin></script>
-<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.6.0/css/all.min.css"> <!-- // 可修改：font-awesome版本 -->
-<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script> <!-- // 可修改：Vue版本 -->
-
 <style>
-/* 全局重置 */
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,sans-serif;color:#fff;}
-body{
-    padding:40px 20px; /* // 可修改：页面上下左右内边距 */
-    min-height:100vh;
-    position:relative;
-}
-canvas{position:fixed;top:0;left:0;z-index:-1;}
+*{margin:0;padding:0;box-sizing:border-box}
+[v-cloak]{display:none}
+body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;overflow-x:hidden;overflow-y:auto;min-height:100vh;background:#111}
 
-/* 顶部时间栏 */
-.info-bar{
-    text-align:center;
-    margin-bottom:20px; /* // 可修改：距离下方搜索框间距 */
-    font-size:20px; /* // 可修改：时间文字大小 */
-    opacity:0.9; /* // 可修改：文字透明度 0~1 */
-}
-.greet-text-inline{font-size:20px;color:#fff;}
-.info-bar span{margin:0 10px; /* // 可修改：时间文字间隔 */}
+/* ===== 背景层 ===== */
+.bg-layer{position:fixed;top:0;left:0;width:100%;height:100%;background-size:cover;background-position:center;z-index:0;transition:background-image .6s ease}
+.bg-mask{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;transition:background .3s}
 
-/* 搜索框区域 */
-.search-wrap{
-    display:flex;align-items:center;justify-content:space-between;padding:5px 20px;
-    margin:0 auto 50px; /* // 可修改：搜索框底部外边距 */
-    background:#f3f5f9;border-radius:12px; /* // 可修改：圆角大小 */
-    max-width:700px; /* // 可修改：搜索框最大宽度 */
-}
-.left-box{display:flex;align-items:center;gap:0;flex:1;}
-.search-input{
-    flex:1;max-width:450px; /* // 可修改：输入框最大宽度 */
-    border:none;outline:none;font-size:16px; /* // 可修改：输入文字大小 */
-    padding:10px 0;background:transparent;color:#333;
-}
-.search-btn{
-    background:#3967FF;color:#fff;border:none;border-radius:8px; /* // 可修改：按钮圆角 */
-    font-size:16px;padding:10px 26px; /* // 可修改：按钮上下/左右内边距 */
-    cursor:pointer;
-}
+/* ===== 左侧导航栏 ===== */
+.sidebar{position:fixed;left:0;top:0;width:72px;height:100vh;background:rgba(0,0,0,.3);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);z-index:100;display:flex;flex-direction:column;align-items:center;padding:14px 0;gap:8px;border-right:1px solid rgba(255,255,255,.06)}
+.sb-btn{width:40px;height:40px;border-radius:50%;border:none;background:transparent;color:rgba(255,255,255,.55);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s;position:relative}
+.sb-btn:hover{background:rgba(255,255,255,.12);color:#fff;transform:scale(1.08)}
+.sb-btn.active{background:rgba(93,111,251,.85);color:#fff;box-shadow:0 4px 16px rgba(93,111,251,.4)}
+.sb-spacer{flex:1}
+.sb-divider{width:28px;height:1px;background:rgba(255,255,255,.08);margin:4px 0}
+.sb-tooltip{position:absolute;left:56px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.75);color:#fff;padding:5px 10px;border-radius:8px;font-size:12px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;z-index:200}
+.sb-btn:hover .sb-tooltip,.sb-cat:hover .sb-tooltip{opacity:1}
+.sb-cat{width:40px;height:40px;border-radius:50%;border:none;background:transparent;color:rgba(255,255,255,.55);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s;position:relative}
+.sb-cat:hover{background:rgba(255,255,255,.12);color:#fff;transform:scale(1.08)}
+.sb-cat.active{background:rgba(93,111,251,.85);color:#fff;box-shadow:0 4px 16px rgba(93,111,251,.4)}
+.sb-add{width:40px;height:40px;border-radius:50%;border:1px dashed rgba(255,255,255,.2);background:transparent;color:rgba(255,255,255,.35);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s}
+.sb-add:hover{border-color:rgba(255,255,255,.5);color:rgba(255,255,255,.7);background:rgba(255,255,255,.08)}
 
-/* 分类标签导航 */
-.tab-nav{
-    display:flex;gap:60px; /* // 可修改：标签之间间距 */
-    margin:0 auto 30px; /* // 可修改：导航底部外边距 */
-    max-width:1000px;width:1000px;padding:10px 0 8px;padding-left:10px;
+/* ===== 主区域 ===== */
+.main-wrap{position:relative;z-index:10;margin-left:72px;padding:40px 40px 160px;min-height:100vh}
+
+/* ===== 大时钟 ===== */
+.clock-area{text-align:center;margin-bottom:28px;user-select:none;display:flex;align-items:center;justify-content:center;gap:24px}
+.clock-time{font-size:72px;font-weight:200;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,.3);letter-spacing:2px;line-height:1.1}
+.clock-inline-date{font-size:16px;color:rgba(255,255,255,.6);text-shadow:0 1px 8px rgba(0,0,0,.2);align-self:flex-end;margin-bottom:12px}
+.clock-lucky{font-size:16px;color:rgba(255,215,0,.8);text-shadow:0 1px 8px rgba(0,0,0,.2);align-self:flex-end;margin-bottom:12px}
+
+/* ===== 搜索框 ===== */
+.search-area{display:flex;flex-direction:column;align-items:center;margin-bottom:32px}
+.search-wrapper{position:relative;width:580px;max-width:90vw}
+.search-box{width:100%;height:52px;background:rgba(255,255,255,.15);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:26px;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;padding:0 20px;box-shadow:0 4px 24px rgba(0,0,0,.12);transition:all .3s}
+.search-box:focus-within{background:rgba(255,255,255,.22);border-color:rgba(93,111,251,.4);box-shadow:0 4px 32px rgba(93,111,251,.2)}
+.search-icon{color:rgba(255,255,255,.45);font-size:18px;flex-shrink:0}
+.search-box input{flex:1;background:none;border:none;outline:none;color:#fff;font-size:15px;margin:0 12px}
+.search-box input::placeholder{color:rgba(255,255,255,.4)}
+.eng-btn{color:rgba(255,255,255,.7);font-size:13px;cursor:pointer;padding:6px 14px;border-radius:14px;border:none;background:rgba(255,255,255,.12);transition:all .2s;white-space:nowrap}
+.eng-btn:hover{background:rgba(255,255,255,.22)}
+.eng-menu{position:absolute;top:58px;right:0;background:rgba(30,30,50,.92);backdrop-filter:blur(20px);border-radius:14px;padding:6px;box-shadow:0 8px 32px rgba(0,0,0,.3);min-width:110px;z-index:50}
+.eng-item{padding:8px 16px;color:rgba(255,255,255,.8);cursor:pointer;border-radius:10px;font-size:13px;transition:all .15s}
+.eng-item:hover{background:rgba(93,111,251,.5);color:#fff}
+.search-suggestions{position:absolute;top:58px;left:0;right:0;background:rgba(30,30,50,.92);backdrop-filter:blur(20px);border-radius:18px;padding:8px;box-shadow:0 8px 32px rgba(0,0,0,.3);z-index:49}
+.sug-item{padding:10px 18px;color:rgba(255,255,255,.8);cursor:pointer;border-radius:12px;font-size:14px;transition:all .15s;display:flex;align-items:center;gap:8px}
+.sug-item:hover{background:rgba(93,111,251,.4);color:#fff}
+.sug-idx{font-size:12px;color:rgba(255,255,255,.3);min-width:20px}
+
+/* ===== 小组件区域 ===== */
+.widgets-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;max-width:880px;margin:0 auto 32px}
+.widget{background:rgba(255,255,255,.1);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:22px;padding:18px;border:1px solid rgba(255,255,255,.08);box-shadow:0 4px 24px rgba(0,0,0,.08);transition:all .3s;min-height:180px;display:flex;flex-direction:column;overflow:hidden}
+.widget:hover{background:rgba(255,255,255,.14);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.12)}
+.widget-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.widget-title{font-size:13px;color:rgba(255,255,255,.55);font-weight:500;display:flex;align-items:center;gap:6px}
+.widget-icon{font-size:15px}
+.widget-body{flex:1;overflow:hidden}
+.fish-svg{transition:transform .08s}
+.fish-svg.tapping{transform:scale(.92)}
+.fish-float{position:absolute;font-size:12px;color:#FFD700;font-weight:700;pointer-events:none;animation:fishFloatUp .8s ease-out forwards}
+@keyframes fishFloatUp{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-30px)}}
+
+/* 笔记 */
+.widget-note textarea{width:100%;height:120px;background:none;border:none;outline:none;resize:none;color:rgba(255,255,255,.85);font-size:13px;font-family:inherit;line-height:1.5}
+.widget-note textarea::placeholder{color:rgba(255,255,255,.25)}
+
+/* 待办 */
+.todo-list{overflow-y:auto;max-height:110px}
+.todo-item{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:12px;color:rgba(255,255,255,.85)}
+.todo-check{width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,.3);cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s;font-size:9px;color:transparent}
+.todo-check.done{background:rgba(93,111,251,.8);border-color:rgba(93,111,251,.8);color:#fff}
+.todo-text{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.todo-text.done{text-decoration:line-through;color:rgba(255,255,255,.3)}
+.todo-del{color:rgba(255,80,80,.6);cursor:pointer;font-size:14px;opacity:0;transition:opacity .2s;flex-shrink:0}
+.todo-item:hover .todo-del{opacity:1}
+.todo-add{display:flex;gap:6px;margin-top:8px}
+.todo-add input{flex:1;background:rgba(255,255,255,.1);border:none;border-radius:10px;padding:6px 10px;color:#fff;font-size:12px;outline:none}
+.todo-add input::placeholder{color:rgba(255,255,255,.25)}
+.todo-add button{background:rgba(93,111,251,.8);color:#fff;border:none;border-radius:10px;padding:0 12px;cursor:pointer;font-size:14px;transition:all .2s}
+.todo-add button:hover{background:rgba(93,111,251,1)}
+
+/* 倒计时 */
+.countdown-display{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1}
+.countdown-title-text{font-size:13px;color:rgba(255,255,255,.6);margin-bottom:4px}
+.countdown-num{font-size:42px;font-weight:700;color:#fff;text-shadow:0 2px 12px rgba(93,111,251,.3)}
+.countdown-unit{font-size:13px;color:rgba(255,255,255,.5)}
+.countdown-date{font-size:11px;color:rgba(255,255,255,.3);margin-top:4px}
+
+/* 日历 */
+.cal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.cal-month{font-size:14px;font-weight:600;color:#fff}
+.cal-nav{cursor:pointer;color:rgba(255,255,255,.5);font-size:16px;padding:2px 6px;border-radius:6px;transition:all .2s}
+.cal-nav:hover{color:#fff;background:rgba(255,255,255,.1)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.cal-week{text-align:center;font-size:10px;color:rgba(255,255,255,.3);padding:2px 0}
+.cal-day{text-align:center;font-size:11px;color:rgba(255,255,255,.65);padding:4px 0;border-radius:8px;transition:all .15s}
+.cal-day.today{background:rgba(93,111,251,.8);color:#fff;font-weight:600}
+.cal-day.other{opacity:.25}
+
+/* 天气 */
+.weather-display{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1}
+.weather-icon{font-size:40px;margin-bottom:4px}
+.weather-temp{font-size:32px;font-weight:300;color:#fff}
+.weather-desc{font-size:12px;color:rgba(255,255,255,.5);margin-top:2px}
+.weather-city{font-size:11px;color:rgba(255,255,255,.35);margin-top:4px}
+
+/* 热搜 */
+.hot-list{overflow-y:auto;max-height:120px}
+.hot-item{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:12px;color:rgba(255,255,255,.75);cursor:pointer;transition:color .15s}
+.hot-item:hover{color:#fff}
+.hot-rank{font-size:11px;font-weight:700;min-width:16px;text-align:center}
+.hot-rank.r1{color:#ff4757}
+.hot-rank.r2{color:#ff6b81}
+.hot-rank.r3{color:#ffa502}
+.hot-rank.r4,.hot-rank.r5,.hot-rank.r6,.hot-rank.r7,.hot-rank.r8{color:rgba(255,255,255,.3)}
+.hot-text{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ===== 网址图标网格 ===== */
+.sites-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--icon-gap,22px);max-width:900px;margin:0 auto;padding-bottom:20px}
+.site-card{width:calc(var(--icon-size,56px) + 24px);display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;transition:all .3s;position:relative}
+.site-card:hover{transform:translateY(-4px) scale(1.05)}
+.site-icon-wrap{width:var(--icon-size,56px);height:var(--icon-size,56px);border-radius:calc(var(--icon-size,56px) * 0.22);display:flex;align-items:center;justify-content:center;overflow:visible;box-shadow:0 4px 12px rgba(0,0,0,.1);transition:all .3s;position:relative;flex-shrink:0}
+.site-card:hover .site-icon-wrap{transform:scale(1.08);box-shadow:0 6px 20px rgba(0,0,0,.18)}
+.site-icon-wrap>img{width:100%;height:100%;object-fit:cover;border-radius:inherit}
+.site-icon-wrap>svg{width:100%;height:100%;border-radius:inherit;overflow:hidden}
+.site-icon-text{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:calc(var(--icon-size,56px) * 0.4);font-weight:600;color:#fff;border-radius:inherit;overflow:hidden}
+.site-name{font-size:11px;color:rgba(255,255,255,.85);text-align:center;max-width:calc(var(--icon-size,56px) + 24px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-shadow:0 1px 4px rgba(0,0,0,.3)}
+
+/* ===== Mac 风格 Dock ===== */
+.dock{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;align-items:flex-end;gap:6px;background:rgba(255,255,255,.1);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-radius:24px;padding:10px 14px;z-index:100;border:1px solid rgba(255,255,255,.12);box-shadow:0 8px 40px rgba(0,0,0,.2)}
+.dock-item{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .25s cubic-bezier(.34,1.56,.64,1);overflow:hidden;position:relative}
+.dock-item:hover{transform:translateY(-10px) scale(1.3);z-index:10}
+.dock-item img{width:100%;height:100%;object-fit:cover;border-radius:inherit}
+.dock-item svg{width:100%;height:100%}
+.dock-item .site-icon-text{width:100%;height:100%;font-size:18px;border-radius:inherit}
+.dock-item .dock-tooltip{position:absolute;bottom:62px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.7);color:#fff;padding:4px 10px;border-radius:8px;font-size:11px;white-space:nowrap;opacity:0;transition:opacity .2s;pointer-events:none}
+.dock-item:hover .dock-tooltip{opacity:1}
+.dock-add{width:50px;height:50px;border-radius:14px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(255,255,255,.4);font-size:24px;transition:all .25s;border:1px dashed rgba(255,255,255,.15)}
+.dock-add:hover{color:rgba(255,255,255,.8);background:rgba(255,255,255,.12);transform:translateY(-4px)}
+.dock-divider{width:1px;height:40px;background:rgba(255,255,255,.1);margin:0 4px;align-self:center}
+.dock-time{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 16px;color:rgba(255,255,255,.6);font-size:12px;align-self:center;height:50px}
+.dock-time .t{font-size:20px;font-weight:500;color:#fff;line-height:1.2}
+.dock-time .d{font-size:11px;color:rgba(255,255,255,.4)}
+
+/* ===== 右键菜单（原生DOM） ===== */
+.native-ctx-menu{position:fixed;z-index:500;min-width:180px;background:rgba(30,30,50,.95);backdrop-filter:blur(24px);border-radius:16px;padding:6px;box-shadow:0 8px 32px rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.1);animation:ctxFade .15s ease}
+@keyframes ctxFade{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+.ctx-item{padding:10px 16px;color:rgba(255,255,255,.85);cursor:pointer;font-size:13px;transition:all .15s;display:flex;align-items:center;gap:8px;border-radius:12px}
+.ctx-item:hover{background:rgba(93,111,251,.5);color:#fff}
+.ctx-item.danger:hover{background:rgba(255,60,60,.5)}
+.ctx-divider{height:1px;background:rgba(255,255,255,.08);margin:4px 8px}
+
+/* ===== 弹窗 ===== */
+.overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.4);z-index:200;backdrop-filter:blur(2px)}
+.modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(24,24,42,.96);backdrop-filter:blur(24px);border-radius:24px;padding:28px;max-height:85vh;overflow-y:auto;width:720px;max-width:95vw;box-shadow:0 16px 48px rgba(0,0,0,.4);z-index:201;border:1px solid rgba(255,255,255,.08);animation:modalIn .25s ease}
+@keyframes modalIn{from{opacity:0;transform:translate(-50%,-46%) scale(.95)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+.modal-title{font-size:18px;font-weight:600;color:#fff;margin-bottom:20px}
+.modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .2s;border:none}
+.modal-close:hover{background:rgba(255,255,255,.2);color:#fff}
+
+/* 网址管理 */
+.cat-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.cat-tab{padding:6px 18px;border-radius:16px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);font-size:13px;cursor:pointer;transition:all .2s;border:none}
+.cat-tab.active{background:rgba(93,111,251,.8);color:#fff}
+.cat-tab:hover:not(.active){background:rgba(255,255,255,.15)}
+.mgr-list{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:16px}
+.mgr-item{width:84px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;position:relative}
+.mgr-item .site-icon-wrap{width:40px;height:40px;border-radius:9px}
+.mgr-item .site-icon-wrap img{width:100%;height:100%;object-fit:cover;border-radius:inherit}
+.mgr-item .site-icon-wrap svg{width:100%;height:100%}
+.mgr-item .site-icon-text{width:100%;height:100%;font-size:16px;border-radius:inherit}
+.mgr-item .site-name{font-size:11px}
+.mgr-item .edit-btn{position:absolute;top:-4px;left:10px;width:18px;height:18px;border-radius:50%;background:rgba(93,111,251,.85);color:#fff;font-size:9px;display:none;align-items:center;justify-content:center;cursor:pointer;z-index:5}
+.mgr-item .del-btn{position:absolute;top:-4px;right:10px;width:18px;height:18px;border-radius:50%;background:rgba(255,60,60,.8);color:#fff;font-size:11px;display:none;align-items:center;justify-content:center;cursor:pointer;z-index:5}
+.mgr-item:hover .edit-btn,.mgr-item:hover .del-btn{display:flex}
+
+/* 表单 */
+.form-row{display:flex;gap:12px;margin-bottom:12px}
+.form-input{flex:1;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:10px 16px;color:#fff;font-size:14px;outline:none;transition:all .2s}
+.form-input:focus{border-color:rgba(93,111,251,.5);background:rgba(255,255,255,.15)}
+.form-input::placeholder{color:rgba(255,255,255,.3)}
+.form-input option{background:#1a1a2e}
+.form-btn{padding:10px 24px;border-radius:12px;border:none;cursor:pointer;font-size:14px;transition:all .2s}
+.btn-primary{background:rgba(93,111,251,.85);color:#fff}
+.btn-primary:hover{background:rgba(93,111,251,1)}
+.btn-ghost{background:rgba(255,255,255,.1);color:rgba(255,255,255,.7)}
+.btn-ghost:hover{background:rgba(255,255,255,.2)}
+
+/* ===== 设置面板 ===== */
+.settings-panel{position:fixed;top:0;right:0;width:400px;height:100vh;background:rgba(20,20,40,.96);backdrop-filter:blur(24px);z-index:201;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);overflow-y:auto;padding:28px;border-left:1px solid rgba(255,255,255,.06)}
+.settings-panel.open{transform:translateX(0)}
+.set-title{font-size:20px;font-weight:600;color:#fff;margin-bottom:24px}
+.set-section{margin-bottom:28px}
+.set-label{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px}
+.bg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.bg-thumb{width:100%;height:70px;border-radius:12px;cursor:pointer;transition:all .2s;border:2px solid transparent;background-size:cover;background-position:center}
+.bg-thumb.active{border-color:rgba(93,111,251,.8);box-shadow:0 0 12px rgba(93,111,251,.3)}
+.bg-thumb:hover{transform:scale(1.05)}
+.slider-row{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.slider-row label{font-size:13px;color:rgba(255,255,255,.6);min-width:80px}
+.slider-row input[type=range]{flex:1;accent-color:#5D6FFB;cursor:pointer}
+.slider-row .val{font-size:13px;color:rgba(255,255,255,.4);min-width:40px;text-align:right}
+
+/* ===== API 接口区 ===== */
+.api-title{font-size:18px;color:rgba(255,255,255,.7);text-align:center;margin-bottom:24px}
+.api-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:720px;margin:0 auto}
+.api-item{background:rgba(255,255,255,.03);padding:18px 20px;cursor:pointer;transition:all .3s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border-bottom:3px solid var(--api-color,#5D6FFB);position:relative;overflow:hidden}
+.api-item::before{content:'';position:absolute;inset:0;background:var(--api-color,#5D6FFB);opacity:0;transition:opacity .3s;z-index:0}
+.api-item:hover::before{opacity:0.15}
+.api-item>*{position:relative;z-index:1}
+.api-line{display:none}
+.api-name{font-size:15px;color:rgba(255,255,255,.85);font-weight:400;transition:color .3s}
+.api-item:hover .api-name{color:#fff}
+.api-url{display:none}
+
+/* ===== Toast ===== */
+.toast-msg{position:fixed;top:32px;left:50%;transform:translateX(-50%);background:rgba(93,111,251,.92);color:#fff;padding:10px 28px;border-radius:24px;font-size:13px;z-index:9999;animation:toastInOut 2.2s ease;pointer-events:none;backdrop-filter:blur(12px);box-shadow:0 4px 20px rgba(93,111,251,.3)}
+@keyframes toastInOut{0%{opacity:0;transform:translateX(-50%) translateY(-16px)}12%{opacity:1;transform:translateX(-50%) translateY(0)}88%{opacity:1}100%{opacity:0;transform:translateX(-50%) translateY(-16px)}}
+
+/* ===== 拖拽 ===== */
+.dragging{opacity:.4}
+.drag-over{transform:scale(1.1);filter:brightness(1.3)}
+.hidden{display:none!important}
+
+/* ===== 滚动条 ===== */
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.25)}
+
+/* ===== 响应式 ===== */
+@media(max-width:768px){
+  .clock-time{font-size:48px}
+  .clock-inline-date,.clock-lucky{font-size:12px;bottom:auto;margin-bottom:8px}
+  .clock-area{flex-direction:column;gap:4px}
+  .search-wrapper{width:95vw}
+  .widgets-grid{grid-template-columns:1fr 1fr;padding:0 8px}
+  .main-wrap{padding:30px 12px 160px}
+  .modal{width:95vw;padding:20px}
+  .settings-panel{width:100vw}
+  .api-grid{grid-template-columns:1fr}
+  .dock{gap:4px;padding:8px 10px}
+  .dock-item,.dock-add{width:42px;height:42px}
+  .dock-item img,.dock-item .site-icon-text{width:26px;height:26px}
+  .dock-time{padding:0 8px}
 }
-.tab{
-    font-weight:400;padding:10px 0;font-size:26px; /* // 可修改：标签文字大小 */
-    cursor:pointer;position:relative;
-}
-.tab.active::after{
-    content:"";position:absolute;left:0;bottom:-8px; /* // 可修改：下划线距离文字距离 */
-    width:100%;height:3px; /* // 可修改：下划线粗细 */
-    background-color:#00aaff; /* // 可修改：下划线颜色 */
-}
-
-/* 标签内容容器 */
-.tab-content-item{display:none;width:1000px;max-width:95vw;margin:0 auto;padding-left:0;}
-.tab-content-item.active{display:block;}
-
-/* 图标网格布局 -- 变量全部可在Vue面板调节 */
-.icon-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(60px,1fr)); /* // 可修改：图标最小宽度 */
-    gap:var(--row-gap,30px) var(--col-gap,16px); /* // 可修改默认行列间距，面板可覆盖 */
-    width:100%;
-}
-.icon-card{
-    display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;padding:2px;
-    border-radius:10px;transition:0.2s;min-height:90px; /* // 可修改：卡片最小高度 */
-    width:auto;max-width:100px; /* // 可修改：卡片最大宽度 */
-}
-.icon-card:hover{background:rgba(0,0,0,0.08); /* // 可修改：hover遮罩透明度 */}
-.icon-card .img{
-    width:var(--icon-size,44px);height:var(--icon-size,44px); /* // 可修改默认图标尺寸，面板可覆盖 */
-    display:flex;align-items:center;justify-content:center;margin:0 auto 6px; /* // 可修改图标与文字间距 */
-    border-radius:8px;overflow:hidden;background:rgba(255,255,255,0.12); /* // 可修改图标背景透明度 */
-}
-.icon-card .img .icon{width:100%;height:100%;fill:#fff;color:#fff;font-size:44px;}
-.icon-card .img img{width:110%;height:110%;object-fit:contain;}
-.icon-card .icon-text{font-size:14px; /* // 可修改网站名称文字大小 */}
-
-/* 接口板块 */
-.api-title{
-    font-size:20px;margin:35px 0 32px; /* // 可修改上下外边距 */
-    color:#3967FF;text-align:left;max-width:1000px;margin-left:auto;margin-right:auto;
-}
-.api-grid{
-    display:grid;grid-template-columns:repeat(3,1fr); /* // 可修改接口列数 2/3/4 */
-    max-width:1000px;margin:0 auto;column-gap:24px;row-gap:20px; /* // 可修改接口卡片间距 */
-}
-.api-item{
-    text-align:center;cursor:pointer;padding:30px 0; /* // 可修改接口上下内边距 */
-    border-radius:6px;transition:all 0.25s ease;position:relative;font-size:22px; /* // 可修改接口文字大小 */
-}
-.api-item:hover{background:var(--randColor);transform:scale(1.02); /* // 可修改hover放大比例 */}
-.api-item:hover .api-line{display:none;}
-.api-line{position:absolute;left:0;bottom:0;width:100%;height:2px; /* // 可修改分割线粗细 */}
-
-/* 底部功能按钮栏 */
-.footer-bar{display:flex;justify-content:center;gap:20px;margin-top:50px;flex-wrap:wrap; /* // 可修改按钮间距、顶部外边距 */}
-.footer-btn{
-    padding:12px 24px;background:rgba(255,255,255,0.15); /* // 可修改按钮背景透明度 */
-    border:none;border-radius:25px;cursor:pointer;font-size:16px;color:#fff;
-    backdrop-filter:blur(8px); /* // 可修改按钮模糊强度 */
-    display:flex;align-items:center;gap:8px;transition:all 0.25s;
-}
-.footer-btn:hover{background:rgba(255,255,255,0.3);transform:translateY(-2px); /* // 可修改上浮距离 */}
-
-/* 弹窗通用遮罩 */
-.modal-overlay{
-    position:fixed;top:0;left:0;width:100%;height:100%;
-    background:rgba(0,0,0,0.6); /* // 可修改弹窗背景遮罩透明度 */
-    z-index:200;display:flex;justify-content:center;align-items:center;
-}
-.modal-panel{background:#1e1e1e;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.5);color:#ccc; /* // 可修改弹窗圆角、阴影大小 */}
-.modal-panel h2{font-size:17px;color:#fff;margin:0;}
-.btn{padding:9px 20px;border:none;border-radius:6px;font-size:14px;cursor:pointer; /* // 可修改弹窗按钮尺寸、圆角 */}
-.btn-primary{background:#3967FF;color:#fff;}
-.btn-default{background:#444;color:#ccc;}
-
-/* 设置面板容器 */
-.setting-panel-all{display:flex;width:780px;max-width:95vw;height:520px;max-height:85vh;overflow:hidden; /* // 可修改设置弹窗宽高 */}
-.setting-left{width:140px;background:#252525;padding:16px 0;border-right:1px solid #333;flex-shrink:0; /* // 可修改左侧菜单宽度 */}
-.setting-left .menu-title{padding:8px 18px 16px;font-size:14px;color:#999;}
-.setting-left ul{list-style:none;}
-.setting-left li{padding:12px 18px;cursor:pointer;font-size:14px;color:#aaa;border-left:3px solid transparent;transition:all 0.2s; /* // 可修改菜单项内边距、侧边条宽度 */}
-.setting-left li:hover{color:#fff;}
-.setting-left li.active{color:#3967FF;border-left-color:#3967FF;background:#1e1e1e;}
-.setting-right{flex:1;display:flex;flex-direction:column;overflow:hidden;}
-.setting-right .content-header{display:flex;justify-content:space-between;padding:14px 20px;border-bottom:1px solid #333;flex-shrink:0; /* // 可修改头部内边距 */}
-.setting-right .content-body{flex:1;overflow-y:auto;padding:16px 20px; /* // 可修改内容区内边距 */}
-.setting-right .content-footer{padding:12px 20px;border-top:1px solid #333;text-align:right;flex-shrink:0;}
-.conf-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #333;min-height:44px; /* // 可修改配置行高度、上下内边距 */}
-.conf-row .conf-label{font-size:14px;color:#aaa;}
-.conf-row .conf-value{display:flex;align-items:center;gap:8px; /* // 可修改按钮组间距 */}
-
-/* 开关组件 */
-.switch-wrap{position:relative;width:42px;height:24px;display:inline-block; /* // 可修改开关整体宽高 */}
-.switch-wrap input{opacity:0;width:0;height:0;}
-.switch-wrap .slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:#555;border-radius:24px;transition:0.3s; /* // 可修改开关圆角 */}
-.switch-wrap .slider:before{content:"";position:absolute;height:18px;width:18px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:0.3s; /* // 可修改开关圆点大小 */}
-.switch-wrap input:checked+.slider{background:#3967FF;}
-.switch-wrap input:checked+.slider:before{transform:translateX(18px); /* // 可修改圆点滑动距离 */}
-
-/* 背景缩略图库 */
-.bg-thumb-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px; /* // 可修改每行缩略图数量、间距 */}
-.bg-thumb-item{position:relative;cursor:pointer;border-radius:8px;overflow:hidden;border:2px solid transparent;aspect-ratio:16/11;transition:all 0.2s; /* // 可修改缩略图圆角、边框粗细、比例 */}
-.bg-thumb-item:hover{border-color:#999;}
-.bg-thumb-item.active{border-color:#3967FF;}
-.bg-thumb-item img{width:100%;height:100%;object-fit:cover;display:block;}
-.bg-thumb-item .bg-name{position:absolute;bottom:0;left:0;right:0;padding:4px 6px;background:rgba(0,0,0,0.55);font-size:11px;text-align:center; /* // 可修改底部文字透明度、字号 */}
-.bg-thumb-item .check-icon{position:absolute;top:6px;right:6px;color:#3967FF;font-size:18px;background:#fff;border-radius:50%;display:none; /* // 可修改勾选图标大小 */}
-.bg-thumb-item.active .check-icon{display:block;}
-
-/* 网址管理弹窗 */
-.sitemgr-panel{width:960px;max-width:95vw;height:580px;max-height:88vh;display:flex;flex-direction:column; /* // 可修改网址管理弹窗尺寸 */}
-.sitemgr-top{display:flex;justify-content:space-between;padding:14px 20px;border-bottom:1px solid #333;}
-.sitemgr-scroll{flex:1;overflow-y:auto;padding:16px 20px;}
-.sitemgr-bottom{padding:14px 20px;border-top:1px solid #333;text-align:right;}
-.cat-block{margin-bottom:16px;border:1px solid #444;border-radius:8px;overflow:hidden; /* // 可修改栏目块外边距、圆角 */}
-.cat-block-header{display:flex;align-items:center;padding:10px 14px;background:#2a2a2a;gap:10px;border-bottom:1px solid #444; /* // 可修改栏目头部内边距 */}
-.cat-block-header .cat-title{font-size:15px;font-weight:600;flex:1;cursor:pointer;}
-.cat-block-body{display:flex;flex-wrap:wrap;padding:10px;gap:6px;min-height:50px;align-items:flex-start; /* // 可修改网址标签间距 */}
-.site-tag{display:flex;flex-direction:row;align-items:center;padding:6px 10px;border:1px solid #555;border-radius:8px;background:#2a2a2a;gap:6px;font-size:13px;cursor:grab;user-select:none;white-space:nowrap; /* // 可修改网址标签内边距、圆角 */}
-.site-tag img{width:24px;height:24px;border-radius:4px;object-fit:contain;flex-shrink:0; /* // 可修改标签图标尺寸 */}
-.site-tag .tag-actions{display:flex;gap:4px;opacity:0;transition:opacity 0.2s;}
-.site-tag:hover .tag-actions{opacity:1;}
-.tag-btn{background:none;border:none;cursor:pointer;font-size:15px;color:#999;padding:4px 6px; /* // 可修改编辑删除按钮大小 */}
-.tag-btn.edit:hover{color:#3967FF;}
-.tag-btn.del:hover{color:#e74c3c;}
-.add-site-placeholder,.add-cat-placeholder{display:flex;align-items:center;justify-content:center;padding:8px 14px;border:1.5px dashed #555;border-radius:8px;cursor:pointer;font-size:14px;color:#999; /* // 可修改添加框虚线粗细、内边距 */}
-.add-cat-placeholder{margin-top:8px;width:100%;}
-.add-site-placeholder:hover,.add-cat-placeholder:hover{border-color:#3967FF;color:#3967FF;}
-
-/* 编辑网址/栏目弹窗 */
-.edit-modal{width:460px;max-width:92vw;background:#1e1e1e;border-radius:12px;padding:24px;color:#ccc; /* // 可修改编辑弹窗宽度、圆角、内边距 */}
-.edit-modal h3{font-size:17px;color:#fff;display:flex;justify-content:space-between;margin-bottom:16px;}
-.edit-modal h3 button{background:none;border:none;font-size:20px;cursor:pointer;color:#999;}
-.edit-modal label{display:block;font-size:13px;color:#aaa;margin:10px 0 4px; /* // 可修改标签上下间距 */}
-.edit-modal input{width:100%;padding:9px 12px;border:1px solid #555;border-radius:6px;font-size:14px;background:#2a2a2a;color:#fff;outline:none;box-sizing:border-box; /* // 可修改输入框圆角、内边距 */}
-.edit-modal input:focus{border-color:#3967FF;}
-.edit-modal .hint-text{font-size:12px;color:#888;margin-top:2px;}
-.edit-modal .btn-row{display:flex;gap:10px;margin-top:16px;justify-content:flex-end; /* // 可修改按钮组间距、顶部外边距 */}
-
-/* 顶部提示Toast */
-.toast-msg{position:fixed;top:24px;left:50%;transform:translateX(-50%);background:#3967FF;color:#fff;padding:10px 24px;border-radius:20px;font-size:14px;z-index:500;animation:toastInOut 2s ease;pointer-events:none; /* // 可修改toast上下距离、圆角、显示时长 */}
-@keyframes toastInOut{0%{opacity:0;top:0}15%{opacity:1;top:24px}80%{opacity:1;top:24px}100%{opacity:0;top:0}}
-[v-cloak]{display:none;}
-
-/* 四种图标布局样式 */
-.layout-circle .icon-card .img{border-radius:50%;}
-.layout-circle .icon-card .img img{border-radius:50%;}
-.layout-rounded .icon-card .img{border-radius:14px;}
-.layout-rounded .icon-card .img img{border-radius:14px;}
-.layout-icon .icon-card .img{border-radius:8px;}
-.layout-text .icon-card{display:flex;flex-direction:row;align-items:center;gap:6px;min-height:auto;padding:8px 14px;width:auto;max-width:none;border-radius:8px;}
-.layout-text .icon-card .img{display:flex;width:32px;height:32px;min-width:22px;margin:0;border-radius:4px;}
-.layout-text .icon-card .img .icon{font-size:32px;}
-.layout-text .icon-card .img img{border-radius:16px;}
-.layout-text .icon-card .icon-text{font-size:13px;font-weight:400;white-space:nowrap;}
-.layout-text .icon-grid{display:flex;flex-wrap:wrap;gap:8px 10px;}
 </style>
 </head>
 <body>
-    <!-- 星空画布DOM，数量/尺寸在JS内可修改 -->
-    <canvas id="starCanvas"></canvas>
+<div id="app" v-cloak @click="globalClick">
+  <!-- 背景 -->
+  <div class="bg-layer" :style="{backgroundImage:'url('+currentBgUrl+')',filter:blurVal?'blur('+blurVal+'px)':''}"></div>
+  <div class="bg-mask" :style="{background:'rgba(0,0,0,'+(maskOpacity/100)+')'}"></div>
 
-    <!-- Vue根容器，CSS变量全部由面板调节 -->
-    <div id="app" v-cloak :style="{'--icon-size':iconSize+'px','--col-gap':colGap+'px','--row-gap':rowGap+'px','--text-font-size':(iconSize+10)+'px'}">
-        <!-- 顶部时间问候栏 -->
-        <div class="info-bar">
-            <span>{{ currentTime }}</span>
-            <span>{{ currentDate }}</span>
-            <span class="greet-text-inline">今日大吉</span> <!-- // 可修改：问候文字 -->
-        </div>
+  <!-- 左侧导航 -->
+  <div class="sidebar">
+    <button class="sb-btn" :class="{active:currentView==='home'}" @click="switchView('home')">
+      <span style="position:relative">🏠<span class="sb-tooltip">首页</span></span>
+    </button>
+    <button class="sb-btn" :class="{active:currentView==='api'}" @click="switchView('api')">
+      <span style="position:relative">📋<span class="sb-tooltip">影视接口</span></span>
+    </button>
+    <div class="sb-divider"></div>
+    <button class="sb-cat" v-for="cat in allCategories" :key="cat.id"
+      :class="{active:currentView==='home'&&activeTab===cat.id}"
+      :data-cat-id="cat.id"
+      @click="switchView('home');activeTab=cat.id">
+      <span style="position:relative">{{cat.icon}}<span class="sb-tooltip">{{cat.name}}</span></span>
+    </button>
+    <button class="sb-add" @click="openCategoryMgr">+</button>
+    <div class="sb-spacer"></div>
+    <button class="sb-btn" :class="{active:showSettings}" @click="showSettings=!showSettings">
+      <span style="position:relative">⚙️<span class="sb-tooltip">设置</span></span>
+    </button>
+  </div>
 
-        <!-- 搜索框模块 -->
-        <div class="search-wrap" v-show="!hideSearch">
-            <div class="left-box">
-                <span>🔍</span> <!-- // 可修改搜索图标 -->
-                <input class="search-input" v-model="searchText" @keyup.enter="doSearch" placeholder="百度一下"> <!-- // 可修改placeholder文字 -->
+  <!-- 主内容 -->
+  <div class="main-wrap">
+    <!-- 首页视图 -->
+    <div v-if="currentView==='home'">
+      <!-- 大时钟 -->
+      <div class="clock-area">
+        <div class="clock-time">{{currentTime}}<span class="clock-inline-date">{{currentDateFull}}</span><span class="clock-lucky">{{dailyBlessing}}</span></div>
+      </div>
+
+      <!-- 搜索框 -->
+      <div class="search-area">
+        <div class="search-wrapper">
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input :placeholder="'使用'+searchEngineName+'搜索，或输入网址'" v-model="searchText" @keyup.enter="doSearch" @focus="showSug=true" @input="onSearchInput">
+            <button class="eng-btn" @click.stop="showEngineMenu=!showEngineMenu">{{searchEngineName}} ▾</button>
+          </div>
+          <div class="eng-menu" v-if="showEngineMenu" @click.stop>
+            <div class="eng-item" v-for="eng in searchEngines" :key="eng.key" @click="currentSearchEngine=eng.key;showEngineMenu=false">{{eng.name}}</div>
+          </div>
+          <div class="search-suggestions" v-if="showSug&&suggestions.length&&searchText" @click.stop>
+            <div class="sug-item" v-for="(sug,si) in suggestions" :key="si" @click="searchText=sug.text;doSearch()">
+              <span class="sug-idx">{{si+1}}</span>
+              <span>{{sug.text}}</span>
             </div>
-            <button class="search-btn" @click="doSearch">搜索</button> <!-- // 可修改按钮文字 -->
+          </div>
         </div>
+      </div>
 
-        <!-- 分类标签导航栏（tabList数组可新增/删除栏目 // 可修改） -->
-        <div class="tab-nav">
-            <div class="tab" v-for="(cat, idx) in tabList" :key="'tab'+idx" :class="{active:activeTab===cat.key}" @click="activeTab=cat.key">{{ cat.name }}</div>
+      <!-- 小组件 -->
+      <div class="widgets-grid">
+        <!-- 笔记 -->
+        <div class="widget widget-note" v-show="widgetVisible.note">
+          <div class="widget-head">
+            <span class="widget-title"><span class="widget-icon">📝</span>笔记</span>
+          </div>
+          <div class="widget-body">
+            <textarea v-model="noteText" @input="saveNote" placeholder="快速记录想法..."></textarea>
+          </div>
         </div>
-
-        <!-- 【生活分类】快捷网站数组 listShengHuo // 可修改增删网站、图标、链接 -->
-        <div class="tab-content-item" :class="{active:activeTab==='shenghuo'}">
-            <div class="icon-grid" :class="'layout-' + layoutType">
-                <div class="icon-card" v-for="(item,idx) in listShengHuo" :key="'sh'+idx" @click="openUrl(item.url)">
-                    <div class="img">
-                        <svg v-if="item.iconId" class="icon"><use :xlink:href="'#'+item.iconId"></use></svg>
-                        <img v-else-if="item.imgSrc" :src="item.imgSrc" :alt="item.name" loading="lazy">
-                    </div>
-                    <div class="icon-text">{{ item.name }}</div>
-                </div>
+        <!-- 待办 -->
+        <div class="widget" v-show="widgetVisible.todo">
+          <div class="widget-head">
+            <span class="widget-title"><span class="widget-icon">✅</span>待办事项</span>
+            <span style="font-size:11px;color:rgba(255,255,255,.3)">{{todoList.filter(function(t){return !t.done}).length}}项</span>
+          </div>
+          <div class="widget-body">
+            <div class="todo-list">
+              <div class="todo-item" v-for="(td,ti) in todoList" :key="ti">
+                <div class="todo-check" :class="{done:td.done}" @click="toggleTodo(ti)">✓</div>
+                <span class="todo-text" :class="{done:td.done}">{{td.text}}</span>
+                <span class="todo-del" @click="todoList.splice(ti,1);saveTodo()">✕</span>
+              </div>
             </div>
-        </div>
-
-        <!-- 【办公分类】快捷网站数组 listBanGong // 可修改增删网站、图标、链接 -->
-        <div class="tab-content-item" :class="{active:activeTab==='bangong'}">
-            <div class="icon-grid" :class="'layout-' + layoutType">
-                <div class="icon-card" v-for="(item,idx) in listBanGong" :key="'bg'+idx" @click="openUrl(item.url)">
-                    <div class="img">
-                        <svg v-if="item.iconId" class="icon"><use :xlink:href="'#'+item.iconId"></use></svg>
-                        <img v-else-if="item.imgSrc" :src="item.imgSrc" :alt="item.name">
-                    </div>
-                    <div class="icon-text">{{ item.name }}</div>
-                </div>
+            <div class="todo-add">
+              <input v-model="newTodo" placeholder="添加待办..." @keyup.enter="addTodo">
+              <button @click="addTodo">+</button>
             </div>
+          </div>
         </div>
-
-        <!-- 【接口分类】接口数组 apiList // 可修改增删接口名称、链接、线条颜色 -->
-        <div class="tab-content-item" :class="{active:activeTab==='jiekou'}">
-            <div class="api-title">
-                <span style="color:#3498db;">●</span><span style="color:#e84393;">●</span><span style="color:#f39c12;">●</span>
-                <span style="margin-left:6px;font-size:26px;">接口（点击复制）</span> <!-- // 可修改板块标题 -->
+        <!-- 倒计时 -->
+        <div class="widget" v-show="widgetVisible.countdown">
+          <div class="widget-head">
+            <span class="widget-title"><span class="widget-icon">⏰</span>倒计时</span>
+          </div>
+          <div class="widget-body">
+            <div class="countdown-display">
+              <div class="countdown-title-text">{{countdownTitle||'未设置'}}</div>
+              <div class="countdown-num">{{countdownDays}}</div>
+              <div class="countdown-unit">天</div>
+              <div class="countdown-date">{{countdownDate}}</div>
             </div>
-            <div class="api-grid">
-                <div class="api-item" v-for="(item,idx) in apiList" :key="'api'+idx" @click="copyApi(item.url)" @mouseover="setRandomColor($event)">
-                    {{ item.name }}
-                    <span class="api-line" :style="{background:item.lineColor}"></span>
-                </div>
+          </div>
+        </div>
+        <!-- 日历 -->
+        <div class="widget" v-show="widgetVisible.calendar">
+          <div class="widget-head">
+            <span class="widget-title"><span class="widget-icon">📅</span>日历</span>
+          </div>
+          <div class="widget-body">
+            <div class="cal-header">
+              <span class="cal-nav" @click="calPrev">‹</span>
+              <span class="cal-month">{{calYear}}年{{calMonth+1}}月</span>
+              <span class="cal-nav" @click="calNext">›</span>
             </div>
-        </div>
-
-        <!-- 底部功能按钮文字 // 可修改 -->
-        <div class="footer-bar">
-            <button class="footer-btn" @click="showSettings=true;settingsTab='base'">⚙️ 设置</button>
-            <button class="footer-btn" @click="showSettings=true;settingsTab='bg'">🖼️ 背景</button>
-            <button class="footer-btn" @click="showSiteMgr=true;openSiteMgr()">🌐 新增</button>
-        </div>
-
-        <!-- ========== 弹窗区域 ========== -->
-        <!-- 全局设置弹窗 -->
-        <div class="modal-overlay" v-if="showSettings" @click.self="showSettings=false">
-            <div class="modal-panel setting-panel-all">
-                <div class="setting-left">
-                    <div class="menu-title">设置</div> <!-- // 可修改菜单标题 -->
-                    <ul>
-                        <li :class="{active:settingsTab==='base'}" @click="settingsTab='base'">基础</li> <!-- // 可修改菜单文字 -->
-                        <li :class="{active:settingsTab==='layout'}" @click="settingsTab='layout'">布局</li>
-                        <li :class="{active:settingsTab==='bg'}" @click="settingsTab='bg'">背景</li>
-                        <li :class="{active:settingsTab==='backup'}" @click="settingsTab='backup'">备份</li>
-                        <li :class="{active:settingsTab==='restore'}" @click="settingsTab='restore'">恢复</li>
-                        <li :class="{active:settingsTab==='cloud'}" @click="settingsTab='cloud'">云端</li>
-                    </ul>
-                </div>
-                <div class="setting-right">
-                    <div class="content-header">
-                        <h2>{{ settingsTitle }}</h2>
-                        <button @click="showSettings=false" style="background:none;border:none;font-size:20px;cursor:pointer;color:#999;">✕</button>
-                    </div>
-                    <div class="content-body">
-                        <!-- 基础设置 -->
-                        <div v-if="settingsTab==='base'">
-                            <div class="conf-row">
-                                <span class="conf-label">图标形状</span> <!-- // 可修改配置项文字 -->
-                                <div class="conf-value" style="display:flex;gap:4px;">
-                                    <button v-for="opt in shapeOptions" class="btn" :class="layoutType===opt.value?'btn-primary':'btn-default'" @click="layoutType=opt.value" style="padding:6px 12px;font-size:13px;">{{ opt.label }}</button>
-                                </div>
-                            </div>
-                            <div class="conf-row">
-                                <span class="conf-label">Logo设置</span>
-                                <div class="conf-value" style="display:flex;gap:4px;">
-                                    <button class="btn" :class="logoType==='logo'?'btn-primary':'btn-default'" @click="logoType='logo'" style="padding:6px 12px;font-size:13px;">默认</button>
-                                    <button class="btn" :class="logoType==='none'?'btn-primary':'btn-default'" @click="logoType='none'" style="padding:6px 12px;font-size:13px;">隐藏</button>
-                                    <button class="btn" :class="logoType==='time'?'btn-primary':'btn-default'" @click="logoType='time'" style="padding:6px 12px;font-size:13px;">时间</button>
-                                    <button class="btn" :class="logoType==='datetime'?'btn-primary':'btn-default'" @click="logoType='datetime'" style="padding:6px 12px;font-size:13px;">日期</button>
-                                </div>
-                            </div>
-                            <div class="conf-row">
-                                <span class="conf-label">新标签页打开</span>
-                                <div class="conf-value"><label class="switch-wrap"><input type="checkbox" v-model="openInNewTab"><span class="slider"></span></label></div>
-                            </div>
-                        </div>
-
-                        <!-- 布局设置（滑块数值范围在JS data内 // 可修改） -->
-                        <div v-if="settingsTab==='layout'">
-                            <div class="conf-row">
-                                <span class="conf-label">图标形状</span>
-                                <div class="conf-value" style="display:flex;gap:4px;">
-                                    <button v-for="opt in shapeOptions" class="btn" :class="layoutType===opt.value?'btn-primary':'btn-default'" @click="layoutType=opt.value" style="padding:6px 12px;font-size:13px;">{{ opt.label }}</button>
-                                </div>
-                            </div>
-                            <div class="conf-row"><span class="conf-label">隐藏搜索框</span><div class="conf-value"><label class="switch-wrap"><input type="checkbox" v-model="hideSearch"><span class="slider"></span></label></div></div>
-                            <div class="conf-row"><span class="conf-label">隐藏问候语</span><div class="conf-value"><label class="switch-wrap"><input type="checkbox" v-model="hideGreet"><span class="slider"></span></label></div></div>
-                            <div class="conf-row">
-                                <span class="conf-label">图标大小</span>
-                                <div class="conf-value"><input type="range" min="24" max="72" v-model.number="iconSize" style="width:140px;"><span style="font-size:13px;color:#aaa;">{{ iconSize }}px</span></div>
-                                <!-- // 可修改滑块 min最小尺寸 max最大尺寸 -->
-                            </div>
-                            <div class="conf-row">
-                                <span class="conf-label">列间距</span>
-                                <div class="conf-value"><input type="range" min="4" max="40" v-model.number="colGap" style="width:140px;"><span style="font-size:13px;color:#aaa;">{{ colGap }}px</span></div>
-                                <!-- // 可修改滑块 min/max间距范围 -->
-                            </div>
-                            <div class="conf-row">
-                                <span class="conf-label">行间距</span>
-                                <div class="conf-value"><input type="range" min="4" max="50" v-model.number="rowGap" style="width:140px;"><span style="font-size:13px;color:#aaa;">{{ rowGap }}px</span></div>
-                                <!-- // 可修改滑块 min/max间距范围 -->
-                            </div>
-                        </div>
-
-                        <!-- 背景设置 -->
-                        <div v-if="settingsTab==='bg'">
-                            <p style="font-size:14px;color:#aaa;margin-bottom:12px;">选择背景</p> <!-- // 可修改提示文字 -->
-                            <div class="bg-thumb-grid">
-                                <div v-for="(bg, idx) in bgLibrary" :key="idx" class="bg-thumb-item" :class="{active:currentBgIdx===idx && bgSource==='library'}" @click="selectLibraryBg(idx)">
-                                    <img :src="bg.thumb" :alt="bg.name"><div class="bg-name">{{ bg.name }}</div><div class="check-icon">✓</div>
-                                </div>
-                            </div>
-                            <p style="font-size:14px;color:#aaa;margin:16px 0 8px;">网络背景</p> <!-- // 可修改提示文字 -->
-                            <div class="bg-thumb-grid">
-                                <div class="bg-thumb-item" :class="{active:bgSource==='net'}" @click="bgSource='net'" style="background:#333;display:flex;align-items:center;justify-content:center;"><span style="font-size:24px;">🌐</span></div>
-                            </div>
-                            <div v-if="bgSource==='net'" style="display:flex;align-items:center;gap:10px;margin-top:12px;">
-                                <input type="text" v-model="netBgUrl" placeholder="输入网络图片URL" @keyup.enter="applyNetBg" style="flex:1;padding:8px 12px;background:#2a2a2a;border:1px solid #555;border-radius:6px;color:#fff;">
-                                <!-- // 可修改placeholder文字 -->
-                            </div>
-                            <div class="conf-row"><span class="conf-label">遮罩颜色</span><div class="conf-value" style="display:flex;gap:4px;"><button class="btn" :class="maskType==='white'?'btn-primary':'btn-default'" @click="maskType='white'" style="padding:6px 12px;font-size:13px;">白色</button><button class="btn" :class="maskType==='black'?'btn-primary':'btn-default'" @click="maskType='black'" style="padding:6px 12px;font-size:13px;">黑色</button></div></div>
-                            <div class="conf-row">
-                                <span class="conf-label">遮罩透明度</span>
-                                <div class="conf-value"><input type="range" min="0" max="1" step="0.05" v-model.number="maskOpacity" style="width:140px;"><span style="font-size:13px;color:#aaa;">{{ Math.round(maskOpacity*100) }}%</span></div>
-                                <!-- // 可修改透明度步长、最大最小值 -->
-                            </div>
-                            <div class="conf-row">
-                                <span class="conf-label">模糊度</span>
-                                <div class="conf-value"><input type="range" min="0" max="20" step="1" v-model.number="blurVal" style="width:140px;"><span style="font-size:13px;color:#aaa;">{{ blurVal }}px</span></div>
-                                <!-- // 可修改模糊最大数值 -->
-                            </div>
-                        </div>
-
-                        <!-- 备份设置 -->
-                        <div v-if="settingsTab==='backup'">
-                            <p style="font-size:14px;color:#aaa;margin-bottom:12px;">导出当前网址数据为JSON文件。</p> <!-- // 可修改提示文字 -->
-                            <button class="btn btn-primary" @click="exportData">📥 导出数据</button> <!-- // 可修改按钮文字 -->
-                        </div>
-
-                        <!-- 恢复设置 -->
-                        <div v-if="settingsTab==='restore'">
-                            <p style="font-size:14px;color:#e67e22;margin-bottom:12px;">⚠️ 导入前请先备份！</p> <!-- // 可修改警告文字 -->
-                            <input type="file" accept=".json" @change="handleFileImport" style="margin-bottom:10px;color:#aaa;">
-                            <p v-if="importStatus" :style="{color:importStatusColor,fontSize:'13px'}">{{ importStatus }}</p>
-                            <button class="btn btn-primary" @click="doImport" :disabled="!importData" :style="{opacity:importData?1:0.5}">📥 导入数据</button> <!-- // 可修改按钮文字 -->
-                        </div>
-
-                        <!-- 云端同步 -->
-                        <div v-if="settingsTab==='cloud'">
-                            <p style="font-size:14px;color:#aaa;margin-bottom:12px;">使用 GitHub 仓库作为免费云端存储，换电脑也能同步数据。</p>
-                            <div class="conf-row">
-                                <span class="conf-label">GitHub Token</span>
-                                <div class="conf-value">
-                                    <input type="password" v-model="githubToken" placeholder="ghp_xxxxxxxxxxxx" style="width:260px;padding:6px 10px;border-radius:4px;border:1px solid #444;background:#2a2a2a;color:#fff;">
-                                </div>
-                            </div>
-                            <p style="font-size:12px;color:#888;margin-top:8px;">Token 获取方式：GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token，勾选 "repo" 权限。</p>
-                            <div style="margin-top:16px;display:flex;gap:8px;">
-                                <button class="btn btn-primary" @click="saveToken">保存 Token</button>
-                                <button class="btn btn-primary" @click="syncFromCloud()">立即同步</button>
-                            </div>
-                            <p v-if="cloudMsg" :style="{color:cloudMsgColor,fontSize:'13px',marginTop:'10px'}">{{ cloudMsg }}</p>
-                        </div>
-
-                    </div>
-                    <div class="content-footer">
-                        <button class="btn btn-default" @click="showSettings=false">关闭</button> <!-- // 可修改按钮文字 -->
-                        <button class="btn btn-primary" @click="showSettings=false;saveData()" style="margin-left:8px;">保存</button> <!-- // 可修改按钮文字 -->
-                    </div>
-                </div>
+            <div class="cal-grid">
+              <div class="cal-week" v-for="d in ['日','一','二','三','四','五','六']" :key="d">{{d}}</div>
+              <div class="cal-day" v-for="day in calDays" :key="day.key" :class="{today:day.isToday,other:!day.curMonth}">{{day.num}}</div>
             </div>
+          </div>
         </div>
-
-        <!-- 网址管理弹窗 -->
-        <div class="modal-overlay" v-if="showSiteMgr" @click.self="showSiteMgr=false">
-            <div class="modal-panel sitemgr-panel">
-                <div class="sitemgr-top"><h2>🌐 网址管理</h2><button @click="showSiteMgr=false" style="background:none;border:none;font-size:22px;cursor:pointer;color:#999;">✕</button></div>
-                <div class="sitemgr-scroll">
-                    <div class="cat-block" v-for="(cat, catIdx) in editCategories" :key="catIdx">
-                        <div class="cat-block-header">
-                            <span class="cat-title" @click="editCategory(catIdx)" title="点击编辑栏目名">{{ cat.name }}</span>
-                            <span style="font-size:11px;padding:2px 8px;border-radius:10px;" :style="{color:cat.hidden?'#e67e22':'#3967FF',background:cat.hidden?'#3a2e1e':'#1e2a3a'}">{{ cat.hidden ? '前台隐藏' : '前台显示' }}</span> <!-- // 可修改状态文字 -->
-                            <label class="switch-wrap"><input type="checkbox" v-model="cat.hidden"><span class="slider"></span></label>
-                            <button @click="removeCategory(catIdx)" style="background:none;border:none;color:#e74c3c;cursor:pointer;font-size:28px;margin-left:14px;" title="删除栏目">🗑</button>
-                        </div>
-                        <div class="cat-block-body">
-                            <div v-for="(site, siteIdx) in cat.sites" :key="siteIdx" class="site-tag" draggable="true" @dragstart="dragItem={catIdx:catIdx, siteIdx:siteIdx}" @dragend="dragItem=null" @dragover.prevent @drop="handleDrop(catIdx, siteIdx)">
-                                <span v-if="!site.logo" style="width:28px;height:28px;border-radius:6px;background:#3967FF;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:bold;flex-shrink:0;">{{ site.name.charAt(0) }}</span>
-                                <img v-if="site.logo" :src="site.logo" :alt="site.name" style="width:28px;height:28px;border-radius:6px;object-fit:contain;flex-shrink:0;">
-                                <span>{{ site.name }}</span>
-                                <span class="tag-actions">
-                                    <button class="tag-btn edit" @click="editSiteItem(catIdx, siteIdx)">✎</button> <!-- // 可修改编辑图标 -->
-                                    <button class="tag-btn del" @click="removeSiteItem(catIdx, siteIdx)">✕</button> <!-- // 可修改删除图标 -->
-                                </span>
-                            </div>
-                            <div class="add-site-placeholder" @click="openAddSite(catIdx)">＋ 添加</div> <!-- // 可修改添加文字 -->
-                        </div>
-                    </div>
-                    <div class="add-cat-placeholder" @click="openAddCategory">＋ 添加新栏目</div> <!-- // 可修改添加文字 -->
-                </div>
-                <div class="sitemgr-bottom">
-                    <button class="btn btn-default" @click="showSiteMgr=false">取消</button> <!-- // 可修改按钮文字 -->
-                    <button class="btn btn-primary" @click="saveSiteMgr" style="margin-left:8px;">💾 保存并关闭</button> <!-- // 可修改按钮文字 -->
-                </div>
+        <!-- 天气 -->
+        <div class="widget" v-show="widgetVisible.weather">
+          <div class="widget-head">
+            <span class="widget-title"><span class="widget-icon">🌤</span>天气</span>
+          </div>
+          <div class="widget-body">
+            <div class="weather-display">
+              <div class="weather-icon">{{weatherIcon}}</div>
+              <div class="weather-temp">{{weatherTemp}}°</div>
+              <div class="weather-desc">{{weatherDesc}}</div>
+              <div class="weather-city">{{weatherCity}}</div>
             </div>
+          </div>
         </div>
-
-        <!-- 栏目编辑弹窗 -->
-        <div class="modal-overlay" v-if="showEditCatModal" @click.self="showEditCatModal=false">
-            <div class="edit-modal">
-                <h3>{{ editingCat.isNew ? '添加新栏目' : '编辑栏目' }}<button @click="showEditCatModal=false">✕</button></h3> <!-- // 可修改标题文字 -->
-                <label>栏目名称</label><input type="text" v-model="editingCat.name" placeholder="请输入栏目名称" maxlength="10"><p class="hint-text">名称长度最多10个字符</p> <!-- // 可修改提示文字、最大字符 -->
-                <div style="margin-top:14px;padding-top:12px;border-top:1px solid #333;">
-                    <label>网址（可选）</label><input type="text" v-model="editingCat.firstUrl" placeholder="https://..."><p class="hint-text">网址开头为 http:// 或 https://</p>
-                    <label>名称</label><input type="text" v-model="editingCat.firstName" placeholder="网站名称" maxlength="20"> <!-- // 可修改最大字符 -->
-                    <label style="margin-top:10px;">图标</label>
-                    <div style="display:flex;gap:8px;margin-bottom:8px;">
-                        <button class="btn" :class="editingCat.iconType==='auto'?'btn-primary':'btn-default'" @click="editingCat.iconType='auto'">🔄 自动获取</button>
-                        <button class="btn" :class="editingCat.iconType==='local'?'btn-primary':'btn-default'" @click="editingCat.iconType='local'">📁 上传本地</button>
-                        <button class="btn" :class="editingCat.iconType==='url'?'btn-primary':'btn-default'" @click="editingCat.iconType='url'">🔗 图床地址</button>
-                    </div>
-                    <input v-if="editingCat.iconType==='local'" type="file" accept="image/*" @change="handleLocalIcon">
-                    <input v-if="editingCat.iconType==='url'" type="text" v-model="editingCat.firstLogo" placeholder="输入图标URL">
-                    <p v-if="editingCat.iconType==='auto'" class="hint-text">保存时自动获取网站favicon</p>
-                    <img v-if="editingCat.firstLogo" :src="editingCat.firstLogo" style="width:48px;height:48px;border-radius:6px;object-fit:contain;margin-top:8px;display:block;border:1px solid #555;">
-                </div>
-                <div class="btn-row"><button class="btn btn-default" @click="showEditCatModal=false">取消</button><button class="btn btn-primary" @click="saveEditCat">{{ editingCat.isNew ? '添加栏目' : '保存' }}</button></div>
+        <!-- 热搜 -->
+        <div class="widget" v-show="widgetVisible.hot">
+          <div class="widget-head">
+            <span class="widget-title"><span class="widget-icon">🔥</span>热搜榜</span>
+          </div>
+          <div class="widget-body">
+            <div class="hot-list">
+              <div class="hot-item" v-for="(hot,hi) in hotList" :key="hi" @click="searchText=hot.text;doSearch()">
+                <span class="hot-rank" :class="'r'+(hi+1)">{{hi+1}}</span>
+                <span class="hot-text">{{hot.text}}</span>
+              </div>
             </div>
+          </div>
         </div>
-
-        <!-- 网址编辑弹窗 -->
-        <div class="modal-overlay" v-if="showEditSiteModal" @click.self="showEditSiteModal=false">
-            <div class="edit-modal">
-                <h3>{{ editingSite.isNew ? '添加网址' : '编辑网址' }}<button @click="showEditSiteModal=false">✕</button></h3> <!-- // 可修改标题文字 -->
-                <label>网址</label><input type="text" v-model="editingSite.url" placeholder="https://..."><p class="hint-text">网址开头为 http:// 或 https://</p>
-                <label>名称</label><input type="text" v-model="editingSite.name" placeholder="网站名称" maxlength="20"> <!-- // 可修改最大字符 -->
-                <label style="margin-top:10px;">图标</label>
-                <div style="display:flex;gap:8px;margin-bottom:8px;">
-                    <button class="btn" :class="editingSite.iconType==='auto'?'btn-primary':'btn-default'" @click="editingSite.iconType='auto'" style="padding:6px 12px;font-size:13px;">🔄 自动获取</button>
-                    <button class="btn" :class="editingSite.iconType==='local'?'btn-primary':'btn-default'" @click="editingSite.iconType='local'" style="padding:6px 12px;font-size:13px;">📁 上传本地</button>
-                    <button class="btn" :class="editingSite.iconType==='url'?'btn-primary':'btn-default'" @click="editingSite.iconType='url'" style="padding:6px 12px;font-size:13px;">🔗 图床地址</button>
-                </div>
-                <input v-if="editingSite.iconType==='local'" type="file" accept="image/*" @change="handleSiteLocalIcon">
-                <input v-if="editingSite.iconType==='url'" type="text" v-model="editingSite.logo" placeholder="输入图标URL">
-                <p v-if="editingSite.iconType==='auto'" class="hint-text">保存时自动获取网站favicon</p>
-                <img v-if="editingSite.logo" :src="editingSite.logo" style="width:48px;height:48px;border-radius:6px;object-fit:contain;margin-top:8px;display:block;border:1px solid #555;">
-                <div class="btn-row"><button class="btn btn-default" @click="showEditSiteModal=false">取消</button><button class="btn btn-primary" @click="saveEditSite">{{ editingSite.isNew ? '添加' : '保存' }}</button></div>
-            </div>
+        <!-- 电子木鱼 -->
+        <div class="widget" v-show="widgetVisible.fish">
+          <div class="widget-head">
+            <span class="widget-title"><span class="widget-icon">🥁</span>电子木鱼</span>
+            <span style="font-size:11px;color:rgba(255,255,255,.3);cursor:pointer" @click="fishSoundEnabled=!fishSoundEnabled">{{fishSoundEnabled?'🔊':'🔇'}}</span>
+          </div>
+          <div class="widget-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;user-select:none" @click="tapFish">
+            <div style="font-size:13px;color:rgba(255,255,255,.6)">已敲 <span style="font-size:22px;color:#5D6FFB;font-weight:700">{{fishCount}}</span> 次</div>
+            <svg class="fish-svg" :class="{tapping:fishTapping}" viewBox="0 0 100 80" style="width:80px;height:64px">
+              <ellipse cx="50" cy="48" rx="38" ry="28" fill="#C8956C" stroke="#8B6914" stroke-width="1.5"/>
+              <ellipse cx="50" cy="44" rx="30" ry="20" fill="#D4A76A"/>
+              <path d="M24 40 Q50 58 76 40" fill="none" stroke="#8B6914" stroke-width="2" stroke-linecap="round"/>
+              <ellipse cx="82" cy="44" rx="8" ry="10" fill="#C8956C" stroke="#8B6914" stroke-width="1.5"/>
+              <circle cx="85" cy="40" r="2" fill="#5a3a1a"/>
+            </svg>
+            <div v-if="fishFloating" class="fish-float" :style="{left:fishFloatX+'px',top:fishFloatY+'px'}">功德 +1</div>
+          </div>
         </div>
+      </div>
 
-        <!-- 顶部提示弹窗 -->
-        <div class="toast-msg" v-if="toastMsg">{{ toastMsg }}</div>
+      <!-- 网址图标网格 -->
+      <div class="sites-grid" :style="{'--icon-size':iconSize+'px','--icon-gap':iconGap+'px'}">
+        <div class="site-card" v-for="(item,idx) in activeCategoryList" :key="activeTab+'_'+idx"
+             :data-idx="idx"
+             @click="openUrl(item.url)"
+             draggable="true" @dragstart="onDragStart($event,idx)" @dragend="onDragEnd"
+             @dragover.prevent="onDragOver($event,idx)" @drop.prevent="onDrop($event,idx)"
+             :class="{dragging:dragIdx===idx}">
+          <div class="site-icon-wrap" :style="{borderRadius:iconShape==='circle'?'50%':iconShape==='square'?'10px':'22%',opacity:iconOpacity/100,background:item.imgSrc||(!item.iconId&&item.faviconUrl&&!item.iconErr)?'rgba(255,255,255,.12)':'transparent'}">
+            <img v-if="item.imgSrc" :src="item.imgSrc" @error="onIconErr(item)">
+            <svg v-else-if="item.iconId" class="icon" aria-hidden="true"><use :xlink:href="'#'+item.iconId"></use></svg>
+            <img v-else-if="item.faviconUrl&&!item.iconErr" :src="item.faviconUrl" @error="onIconErr(item)">
+            <span v-else class="site-icon-text" :style="{background:getIconColor(idx)}">{{item.name.charAt(0)}}</span>
+          </div>
+          <div class="site-name">{{item.name}}</div>
+        </div>
+      </div>
     </div>
+
+    <!-- 影视接口视图 -->
+    <div v-if="currentView==='api'">
+      <div class="api-title">●●● 影视接口（点击复制）</div>
+      <div class="api-grid">
+        <div class="api-item" v-for="(item,idx) in apiList" :key="'api'+idx" @click="copyText(item.url)" :style="{'--api-color':item.lineColor}">
+          <span class="api-line" :style="{background:item.lineColor}"></span>
+          <div>
+            <div class="api-name">{{item.name}}</div>
+            <div class="api-url">{{item.url}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mac Dock -->
+  <div class="dock" v-if="currentView==='home'">
+    <div class="dock-item" v-for="(item,idx) in dockItems" :key="'dock'+idx"
+         :data-idx="idx"
+         :style="{background:item.imgSrc||(!item.iconId&&item.faviconUrl&&!item.iconErr)?'rgba(255,255,255,.1)':'transparent'}"
+         @click="openUrl(item.url)">
+      <img v-if="item.imgSrc" :src="item.imgSrc" @error="onIconErr(item)">
+      <svg v-else-if="item.iconId" class="icon" aria-hidden="true"><use :xlink:href="'#'+item.iconId"></use></svg>
+      <img v-else-if="item.faviconUrl&&!item.iconErr" :src="item.faviconUrl" @error="onIconErr(item)">
+      <span v-else class="site-icon-text" :style="{background:getIconColor(idx)}">{{item.name.charAt(0)}}</span>
+      <span class="dock-tooltip">{{item.name}}</span>
+    </div>
+    <div class="dock-add" @click="openSiteMgr">+</div>
+    <div class="dock-divider"></div>
+    <div class="dock-time">
+      <span class="t">{{currentTime}}</span>
+      <span class="d">{{currentDateShort}}</span>
+    </div>
+  </div>
+
+  <!-- 网址管理弹窗 -->
+  <div class="overlay" v-if="showSiteMgr" @click="closeSiteMgr"></div>
+  <div class="modal" v-if="showSiteMgr" @click.stop>
+    <button class="modal-close" @click="closeSiteMgr">✕</button>
+    <div class="modal-title">网址管理</div>
+    <div class="cat-tabs">
+      <button class="cat-tab" v-for="cat in allCategories" :key="cat.id"
+        :class="{active:editTab===cat.id}"
+        @click="editTab=cat.id">{{cat.name}}</button>
+    </div>
+    <div class="mgr-list">
+      <div class="mgr-item" v-for="(item,idx) in editCategoryList" :key="'mgr'+editTab+idx">
+        <div class="edit-btn" @click.stop="editSiteInMgr(idx)">✏</div>
+        <div class="del-btn" @click="deleteFromMgr(idx)">✕</div>
+        <div class="site-icon-wrap">
+          <img v-if="item.imgSrc" :src="item.imgSrc">
+          <svg v-else-if="item.iconId" class="icon" aria-hidden="true"><use :xlink:href="'#'+item.iconId"></use></svg>
+          <img v-else-if="item.faviconUrl&&!item.iconErr" :src="item.faviconUrl" @error="onIconErr(item)">
+          <span v-else class="site-icon-text" :style="{background:getIconColor(idx)}">{{item.name.charAt(0)}}</span>
+        </div>
+        <div class="site-name">{{item.name}}</div>
+      </div>
+    </div>
+    <div class="form-row">
+      <button class="form-btn btn-primary" @click="addSiteInMgr">+ 添加网址</button>
+      <button class="form-btn btn-ghost" @click="closeSiteMgr">完成</button>
+    </div>
+    <div v-if="showEditForm" style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.06)">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+        <div style="width:48px;height:48px;border-radius:12px;overflow:hidden;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <img v-if="editForm.imgSrc" :src="editForm.imgSrc" style="width:100%;height:100%;object-fit:contain">
+          <svg v-else-if="editForm.iconId" class="icon" aria-hidden="true" style="width:100%;height:100%"><use :xlink:href="'#'+editForm.iconId"></use></svg>
+          <span v-else style="color:rgba(255,255,255,.2);font-size:20px">📷</span>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <button :class="editIconMode==='remove'?'form-btn btn-primary':'form-btn btn-ghost'" @click="editForm.imgSrc='';editForm.iconUrl='';editForm.iconId='';editIconMode='remove'" style="padding:4px 10px;font-size:11px">移除</button>
+          <button :class="editIconMode==='auto'?'form-btn btn-primary':'form-btn btn-ghost'" @click="autoFetchIcon;editIconMode='auto'" style="padding:4px 10px;font-size:11px">🔄自动获取</button>
+          <button :class="editIconMode==='upload'?'form-btn btn-primary':'form-btn btn-ghost'" @click="$refs.iconFile.click();editIconMode='upload'" style="padding:4px 10px;font-size:11px">📁本地上传</button>
+          <button :class="editIconMode==='library'?'form-btn btn-primary':'form-btn btn-ghost'" @click="showIconPicker=!showIconPicker;editIconMode='library'" style="padding:4px 10px;font-size:11px">🔎图标库</button>
+        </div>
+      </div>
+      <input type="file" ref="iconFile" class="hidden" accept="image/*" @change="handleIconUpload">
+      <!-- 阿里图标搜索选择 -->
+      <div v-if="showIconPicker" style="margin-bottom:12px">
+        <div style="display:flex;gap:6px;margin-bottom:8px">
+          <input class="form-input" v-model="iconSearchKey" placeholder="搜索图标（如：微信、购物、视频）" style="flex:1;font-size:12px" @input="searchIconfont">
+        </div>
+        <div style="max-height:140px;overflow-y:auto;display:flex;flex-wrap:wrap;gap:6px;padding:8px;background:rgba(255,255,255,.04);border-radius:10px">
+          <div v-for="sym in iconSearchResults" :key="sym" @click="pickIconfont(sym)"
+               style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:8px;cursor:pointer;transition:all .15s;background:rgba(255,255,255,.06)"
+               @mouseover="$event.currentTarget.style.background='rgba(93,111,251,.2)'" @mouseout="$event.currentTarget.style.background='rgba(255,255,255,.06)'">
+            <svg class="icon" aria-hidden="true" style="width:22px;height:22px;fill:rgba(255,255,255,.8)"><use :xlink:href="'#'+sym"></use></svg>
+          </div>
+          <div v-if="iconSearchResults.length===0" style="color:rgba(255,255,255,.3);font-size:12px;padding:8px">输入关键词搜索图标</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <input class="form-input" v-model="editForm.iconUrl" placeholder="或输入图标URL" @blur="applyIconUrl">
+      </div>
+      <div class="form-row">
+        <input class="form-input" v-model="editForm.name" placeholder="网站名称">
+        <input class="form-input" v-model="editForm.url" placeholder="网址URL">
+      </div>
+      <div class="form-row">
+        <button class="form-btn btn-primary" @click="saveEditForm">保存</button>
+        <button class="form-btn btn-ghost" @click="showEditForm=false">取消</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 分类管理弹窗 -->
+  <div class="overlay" v-if="showCategoryMgr" @click="showCategoryMgr=false"></div>
+  <div class="modal" v-if="showCategoryMgr" @click.stop style="width:420px">
+    <button class="modal-close" @click="showCategoryMgr=false">✕</button>
+    <div class="modal-title">📁 添加分类</div>
+    <div style="margin-bottom:12px">
+      <input class="form-input" v-model="newCategoryName" placeholder="分类名称" style="margin-bottom:12px">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+        <span v-for="ic in ['📁','📚','🎮','🎵','🎬','🍔','🛒','💻','🔧','🎨','🏠','✈️','💰','🏥','🚗','📰']" :key="ic"
+          @click="newCategoryIcon=ic"
+          style="width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;transition:all .2s"
+          :style="newCategoryIcon===ic?{background:'rgba(93,111,251,.5)',transform:'scale(1.15)'}:{background:'rgba(255,255,255,.08)'}">
+          {{ic}}
+        </span>
+      </div>
+    </div>
+    <div class="form-row">
+      <button class="form-btn btn-primary" @click="addCategory">添加</button>
+      <button class="form-btn btn-ghost" @click="showCategoryMgr=false">取消</button>
+    </div>
+  </div>
+
+  <!-- 设置面板 -->
+  <div class="overlay" v-if="showSettings" @click="showSettings=false"></div>
+  <div class="settings-panel" :class="{open:showSettings}" @click.stop>
+    <div class="set-title">⚙️ 设置</div>
+    <div class="set-section">
+      <div class="set-label">基础设置</div>
+      <div class="slider-row">
+        <label>图标形状</label>
+        <select v-model="iconShape" class="form-input" style="flex:1" @change="saveSettings">
+          <option value="rounded">圆角</option>
+          <option value="circle">圆形</option>
+          <option value="square">方形</option>
+        </select>
+      </div>
+      <div class="slider-row">
+        <label>图标透明度</label>
+        <input type="range" min="30" max="100" v-model.number="iconOpacity" @change="saveSettings">
+        <span class="val">{{iconOpacity}}%</span>
+      </div>
+      <div class="slider-row">
+        <label>图标大小</label>
+        <input type="range" min="36" max="80" v-model.number="iconSize" @change="saveSettings">
+        <span class="val">{{iconSize}}px</span>
+      </div>
+      <div class="slider-row">
+        <label>图标间距</label>
+        <input type="range" min="8" max="40" v-model.number="iconGap" @change="saveSettings">
+        <span class="val">{{iconGap}}px</span>
+      </div>
+      <div class="slider-row">
+        <label>新标签打开</label>
+        <input type="checkbox" v-model="openInNewTab" @change="saveSettings" style="width:18px;height:18px;cursor:pointer">
+      </div>
+    </div>
+    <div class="set-section">
+      <div class="set-label">背景设置</div>
+      <div class="bg-grid">
+        <div class="bg-thumb" v-for="(bg,bi) in bgLibrary" :key="bi" :class="{active:currentBgIdx===bi}"
+             :style="{backgroundImage:'url('+bg.url+')'}" @click="selectBg(bi)" :title="bg.name"></div>
+      </div>
+      <div class="form-row">
+        <input class="form-input" v-model="customBgUrl" placeholder="自定义背景图URL">
+        <button class="form-btn btn-primary" @click="applyCustomBg">应用</button>
+      </div>
+      <div class="slider-row">
+        <label>遮罩透明度</label>
+        <input type="range" min="0" max="80" v-model.number="maskOpacity" @change="saveSettings">
+        <span class="val">{{maskOpacity}}%</span>
+      </div>
+      <div class="slider-row">
+        <label>背景模糊</label>
+        <input type="range" min="0" max="20" v-model.number="blurVal" @change="saveSettings">
+        <span class="val">{{blurVal}}px</span>
+      </div>
+    </div>
+    <div class="set-section">
+      <div class="set-label">数据管理</div>
+      <div class="form-row">
+        <button class="form-btn btn-ghost" @click="exportData" style="flex:1">📦 导出数据</button>
+        <input class="form-input" ref="importFile" type="file" accept=".json" @change="handleImport" style="display:none">
+        <button class="form-btn btn-ghost" @click="$refs.importFile.click()" style="flex:1">📥 导入数据</button>
+      </div>
+    </div>
+    <div class="set-section">
+      <div class="set-label">云端同步 (GitHub)</div>
+      <div class="form-row">
+        <input class="form-input" v-model="githubToken" placeholder="填写一次后自动保存，无需重复输入">
+      </div>
+      <div class="form-row">
+        <button class="form-btn btn-primary" @click="syncToCloud" style="flex:1">☁️ 上传到云端</button>
+        <button class="form-btn btn-ghost" @click="syncFromCloud" style="flex:1">☁️ 从云端恢复</button>
+      </div>
+      <div v-if="cloudMsg" style="font-size:12px;margin-top:8px" :style="{color:cloudMsgColor}">{{cloudMsg}}</div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast-msg" v-if="toastMsg" :key="toastKey">{{toastMsg}}</div>
+</div>
+
 <script>
-// ===================== 模块1：星空背景Canvas =====================
-(function() {
-    var canvas = document.getElementById('starCanvas');
-    var ctx = canvas.getContext('2d');
-    canvas.style.position = 'fixed';
-    canvas.style.top = '0';
-    canvas.style.left = '0';
-    canvas.style.zIndex = '-1';
+/* ===== 原始数据（不可修改） ===== */
+var defaultListShengHuo = [
+      {"url":"https://weixin.qq.com/","iconId":"icon-weixin","imgSrc":"","name":"微信"},
+      {"url":"https://www.doubao.com/","iconId":"icon-doubaoai","imgSrc":"","name":"豆包"},
+      {"url":"http://www.qmcc.cc/","iconId":"icon-Ai","imgSrc":"","name":"AI大全"},
+      {"url":"https://jiankang.baidu.com/widescreen/home","iconId":"icon-b-yaoxiang","imgSrc":"","name":"百度健康"},
+      {"url":"https://www.qishui.com/","iconId":"icon-qishuiyinle","imgSrc":"","name":"汽水音乐"},
+      {"url":"https://taobao.com","iconId":"icon-taobao","imgSrc":"","name":"淘宝"},
+      {"url":"https://jd.com","iconId":"icon-jingdong1","imgSrc":"","name":"京东"},
+      {"url":"https://douban.com/","iconId":"icon-doubanwang","imgSrc":"","name":"豆瓣"},
+      {"url":"https://hz.58.com/","iconId":"icon-b-58tongcheng","imgSrc":"","name":"58同城"},
+      {"url":"https://xiaohongshu.com","iconId":"icon-xiaohongshu","imgSrc":"","name":"小红书"},
+      {"url":"https://kuaidi100.com/","iconId":"icon-a-100","imgSrc":"","name":"快递100"},
+      {"url":"https://dongchedi.com/","iconId":"icon-dongchedi","imgSrc":"","name":"懂车帝"},
+      {"url":"https://www.goofish.com/","iconId":"icon-xianyu","imgSrc":"","name":"闲鱼"},
+      {"url":"https://music.migu.cn/","iconId":"icon-b-miguyinle","imgSrc":"","name":"咪咕音乐"},
+      {"url":"https://ctrip.com","iconId":"icon-xiecheng","imgSrc":"","name":"携程旅行"},
+      {"url":"https://vip.com/","iconId":"icon-weipinhui","imgSrc":"","name":"唯品会"},
+      {"url":"https://mail.163.com/","iconId":"icon-mail163","imgSrc":"","name":"163邮箱"},
+      {"url":"https://www.tmall.com/","iconId":"icon-b-tianmao","imgSrc":"","name":"天猫"},
+      {"url":"https://tv.cctv.com/","iconId":"icon-yangshipinchaotuoyuan","imgSrc":"","name":"CCTV"},
+      {"url":"https://ximalaya.com","iconId":"icon-ximalaya","imgSrc":"","name":"喜马拉雅"},
+      {"url":"https://www.zhihu.com/","iconId":"icon-b-zhihu","imgSrc":"","name":"知乎"},
+      {"url":"https://www.12306.cn/","iconId":"icon-Appicns_12306","imgSrc":"","name":"12306"},
+      {"url":"https://kugou.com","iconId":"icon-kugou","imgSrc":"","name":"酷狗"},
+      {"url":"https://y.qq.com/","iconId":"icon-b-qqyinyue","imgSrc":"","name":"QQ音乐"},
+      {"url":"https://v.qq.com","iconId":"icon-tengxunshipin","imgSrc":"","name":"腾讯视频"},
+      {"url":"https://miguvideo.com/","iconId":"icon-b-migushipin","imgSrc":"","name":"咪咕视频"},
+      {"url":"https://iqiyi.com","iconId":"icon-iqiyi","imgSrc":"","name":"爱奇艺"},
+      {"url":"https://bilibili.com","iconId":"icon-bilibili","imgSrc":"","name":"哔哩哔哩"},
+      {"url":"https://Douyin.com","iconId":"icon-douyin","imgSrc":"","name":"抖音"},
+      {"url":"https://kuaishou.com/","iconId":"icon-kuaishou","imgSrc":"","name":"快手"},
+      {"url":"https://news.qq.com/","iconId":"icon-b-tengxunxinwen","imgSrc":"","name":"腾讯新闻"},
+      {"url":"https://mgtv.com","iconId":"icon-mangguoTV","imgSrc":"","name":"芒果TV"},
+      {"url":"https://youku.com","iconId":"icon-youku","imgSrc":"","name":"优酷"},
+      {"url":"https://mail.qq.com/","iconId":"icon-b-xiang","imgSrc":"","name":"QQ邮箱"},
+      {"url":"https://4399.com/","iconId":"icon-b-youxi","imgSrc":"","name":"4399游戏"},
+      {"url":"https://yingshi.xxsnav.com/","iconId":"icon-b-kuake","imgSrc":"","name":"影视导航"}
+    ];
+var defaultListBanGong = [
+      {"url":"http://m.wmsio.cn","iconId":"icon-zhaogonghezi","imgSrc":"","name":"盒子地窖"},
+      {"url":"https://bjq.catvod.site/","iconId":"icon-b-tv","imgSrc":"","name":"TB接口编辑"},
+      {"url":"https://www.iconfont.cn/","iconId":"icon-a-yemian11","imgSrc":"","name":"阿里图库"},
+      {"url":"https://steampp.net/","iconId":"icon-b-watte","imgSrc":"","name":"瓦特加速"},
+      {"url":"https://kstore.cc/","iconId":"icon-b-kaisu","imgSrc":"","name":"凯速网"},
+      {"url":"https://mt2.cn/download/","iconId":"icon-b-eadec","imgSrc":"","name":"MT管理器"},
+      {"url":"https://www.jyshare.com/","iconId":"","imgSrc":"https://mms2.baidu.com/it/u=1814376071,2209937689&fm=253&app=138&f=PNG?w=128&h=128","name":"菜鸟工具"},
+      {"url":"https://www.aigei.com/","iconId":"icon-b-aigei","imgSrc":"","name":"爱给图标"},
+      {"url":"https://github.com/","iconId":"icon-github","imgSrc":"","name":"github"},
+      {"url":"https://pngtree.cn/","iconId":"","imgSrc":"https://mms2.baidu.com/it/u=299640676,309864315&fm=253&app=138&f=PNG?w=243&h=243","name":"NDM下载器"},
+      {"url":"https://dash.cloudflare.com/","iconId":"icon-b-cloudflare","imgSrc":"","name":"域名托管"},
+      {"url":"https://dash.domain.digitalplat.org/","iconId":"icon-dns-hei","imgSrc":"","name":"域名申请"},
+      {"url":"https://lddgo.net/base/class","iconId":"icon-b-zaixian","imgSrc":"","name":"在线工具"},
+      {"url":"https://cloudns.net/","iconId":"icon-b-ymsq","imgSrc":"","name":"DNS"},
+      {"url":"https://www.52pojie.cn/","iconId":"icon-b-pojie","imgSrc":"","name":"吾爱破解"},
+      {"url":"https://www.yxzhi.com/","iconId":"icon-b-yazi","imgSrc":"","name":"鸭先知"},
+      {"url":"https://xiaomark.com/","iconId":"icon-M","imgSrc":"","name":"太短"},
+      {"url":"https://www.logo.dev/dashboard/playground/logo","iconId":"icon-b-logo1","imgSrc":"","name":"logo图标"},
+      {"url":"https://webicon.cc/zh-cn","iconId":"icon-b-wz","imgSrc":"","name":"网址搜图标"},
+      {"url":"https://phototool.cn/","iconId":"icon-b-tupian","imgSrc":"","name":"在线修图"},
+      {"url":"https://tugaigai.com/online_ps/","iconId":"icon-AdobePs","imgSrc":"","name":"PS修图"},
+      {"url":"https://qiushui.vip/","iconId":"icon-qiushui","imgSrc":"","name":"秋水网"},
+      {"url":"https://adzhp.cc/","iconId":"icon-A","imgSrc":"","name":"爱达杂货铺"},
+      {"url":"https://pan.baidu.com/","iconId":"icon-baiduwangpan","imgSrc":"","name":"百度网盘"},
+      {"url":"https://drivergenius.com/","iconId":"icon-b-qudongjingling","imgSrc":"","name":"驱动精灵"},
+      {"url":"https://huorong.cn/","iconId":"icon-b-huorong","imgSrc":"","name":"火绒安全"},
+      {"url":"https://www.rjshe.com/","iconId":"icon-b-anzhuo","imgSrc":"","name":"软件社"}
+    ];
+var defaultApiList = [
+    {name:'君子兰',url:'https://cwys.qzz.io/api.json'},
+    {name:'饭太硬',url:'http://fty.xxooo.cf/tv'},
+    {name:'潇洒',url:'https://qist.wyfc.qzz.io/xiaosa/api.json'},
+    {name:'摸鱼',url:'http://我不是.摸鱼儿.top'},
+    {name:'王二小',url:'http://tvbox.王二小放牛娃.top'},
+    {name:'天神',url:'https://gitee.com/cpu-iy/iy/raw/master/%E5%A4%A9%E7%A5%9EIY.json'},
+    {name:'点播',url:'https://xpb.mhfs.eu.org/ZJ/XPB/api.json'},
+    {name:'多多',url:'https://www.iyouhun.com/tv/duo'},
+    {name:'嗷呜',url:'https://9763.kstore.space/aowu.json'}
+  ];
+var defaultBgLibrary = [
+    {name:'梦幻海边',url:'https://picsum.photos/seed/ocean1/1920/1080'},
+    {name:'璀璨星河',url:'https://picsum.photos/seed/galaxy2/1920/1080'},
+    {name:'碧海沙滩',url:'https://picsum.photos/seed/beach3/1920/1080'},
+    {name:'星空夜景',url:'https://picsum.photos/seed/night4/1920/1080'},
+    {name:'水墨山峰',url:'https://picsum.photos/seed/mountain5/1920/1080'},
+    {name:'梦幻绿洲',url:'https://picsum.photos/seed/green6/1920/1080'},
+    {name:'多彩闪电',url:'https://picsum.photos/seed/light7/1920/1080'},
+    {name:'湖边静桥',url:'https://picsum.photos/seed/lake8/1920/1080'},
+    {name:'紫红相间',url:'https://picsum.photos/seed/purple9/1920/1080'}
+];
+var iconColors=['#5D6FFB','#e84393','#00b894','#fdcb6e','#6c5ce7','#00cec9','#e17055','#0984e3','#d63031','#2d3436','#a29bfe','#fd79a8','#6ab04c','#fab1a0','#74b9ff','#ff7675'];
+var defaultHotList=[
+  {text:'AI人工智能最新进展'},{text:'今日热搜排行榜'},{text:'天气预报实时查询'},
+  {text:'热门电影推荐'},{text:'在线工具大全'},{text:'GitHub开源项目'},
+  {text:'科技数码资讯'},{text:'生活小妙招'}
+];
 
-    function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+/* ===== 原生DOM右键菜单工具函数 ===== */
+function removeCtxMenu() {
+  var el = document.querySelector('.native-ctx-menu');
+  if (el) el.remove();
+}
+function removeWidgetPicker() {
+  document.querySelectorAll('.widget-picker,.widget-picker-overlay').forEach(function(el) { el.remove(); });
+}
+function createWidgetPicker() {
+  removeWidgetPicker();
+  var app = document.querySelector('#app').__vue__;
+  var wv = app.widgetVisible;
+  var widgets = [
+    {key:'note', icon:'📝', name:'笔记'},
+    {key:'todo', icon:'✅', name:'待办事项'},
+    {key:'countdown', icon:'⏰', name:'倒计时'},
+    {key:'calendar', icon:'📅', name:'日历'},
+    {key:'weather', icon:'🌤', name:'天气'},
+    {key:'hot', icon:'🔥', name:'热搜榜'},
+    {key:'fish', icon:'🥁', name:'电子木鱼'}
+  ];
+  var overlay = document.createElement('div');
+  overlay.className = 'widget-picker-overlay';
+  overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.4);z-index:1000';
+  overlay.onclick = function(e) { if (e.target === overlay) removeWidgetPicker(); };
+  document.body.appendChild(overlay);
+
+  var panel = document.createElement('div');
+  panel.className = 'widget-picker';
+  panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(24,24,42,.96);backdrop-filter:blur(24px);border-radius:20px;padding:24px;z-index:1001;border:1px solid rgba(255,255,255,.08);min-width:280px';
+  var title = document.createElement('div');
+  title.style.cssText = 'font-size:16px;color:#fff;margin-bottom:16px;font-weight:600';
+  title.textContent = '🧩 管理小组件';
+  panel.appendChild(title);
+
+  widgets.forEach(function(w) {
+    var label = document.createElement('label');
+    label.style.cssText = 'display:flex;align-items:center;gap:10px;padding:10px 8px;border-radius:10px;cursor:pointer;transition:background .15s;font-size:14px;color:rgba(255,255,255,.85)';
+    label.onmouseover = function() { this.style.background = 'rgba(255,255,255,.08)'; };
+    label.onmouseout = function() { this.style.background = 'transparent'; };
+    var cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.dataset.wkey = w.key;
+    cb.checked = !!wv[w.key];
+    cb.style.cssText = 'width:18px;height:18px;cursor:pointer;accent-color:#5D6FFB';
+    var span = document.createElement('span');
+    span.textContent = w.icon + ' ' + w.name;
+    label.appendChild(cb);
+    label.appendChild(span);
+    panel.appendChild(label);
+  });
+
+  var btnWrap = document.createElement('div');
+  btnWrap.style.cssText = 'margin-top:16px;text-align:right';
+  var closeBtn = document.createElement('button');
+  closeBtn.style.cssText = 'padding:8px 24px;border-radius:12px;border:none;background:rgba(93,111,251,.85);color:#fff;cursor:pointer;font-size:13px';
+  closeBtn.textContent = '完成';
+  closeBtn.onclick = function() {
+    var checks = panel.querySelectorAll('input[type=checkbox]');
+    checks.forEach(function(c) { app.$set(app.widgetVisible, c.dataset.wkey, c.checked); });
+    localStorage.setItem('wetab_widgets', JSON.stringify(app.widgetVisible));
+    removeWidgetPicker();
+  };
+  btnWrap.appendChild(closeBtn);
+  panel.appendChild(btnWrap);
+  document.body.appendChild(panel);
+}
+
+function createCtxMenu(x, y, items) {
+  removeCtxMenu();
+  var menu = document.createElement('div');
+  menu.className = 'native-ctx-menu';
+  menu.style.left = x + 'px';
+  menu.style.top = y + 'px';
+  items.forEach(function(item) {
+    if (item.divider) {
+      var d = document.createElement('div');
+      d.className = 'ctx-divider';
+      menu.appendChild(d);
+    } else {
+      var d = document.createElement('div');
+      d.className = 'ctx-item' + (item.danger ? ' danger' : '');
+      d.textContent = item.label;
+      (function(action) {
+        d.onclick = function(ev) {
+          ev.stopPropagation();
+          removeCtxMenu();
+          if (action) action();
+        };
+      })(item.action);
+      menu.appendChild(d);
     }
-    resize();
-    window.addEventListener('resize', resize);
+  });
+  document.body.appendChild(menu);
+  var rect = menu.getBoundingClientRect();
+  if (rect.right > window.innerWidth - 10) {
+    menu.style.left = (window.innerWidth - rect.width - 10) + 'px';
+  }
+  if (rect.bottom > window.innerHeight - 10) {
+    menu.style.top = (window.innerHeight - rect.height - 10) + 'px';
+  }
+}
 
-    var dots = [];
-    // 【可修改】星星总数量
-    for (var i = 0; i < 200; i++) {
-        dots.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            r: Math.random() * 1.5,       //【可修改】星星最大半径
-            speedX: (Math.random() - 0.5) * 0.3, //【可修改】X移动速度
-            speedY: (Math.random() - 0.5) * 0.3  //【可修改】Y移动速度
-        });
-    }
+/* ===== Vue 应用 ===== */
+var vm = new Vue({
+  el: '#app',
+  data: {
+    currentView: 'home',
+    activeTab: 'shenghuo',
+    searchText: '',
+    currentSearchEngine: 'baidu',
+    showEngineMenu: false,
+    showSug: false,
+    suggestions: [],
+    customCategories: [],
+    customLists: {},
+    showCategoryMgr: false,
+    newCategoryName: '',
+    newCategoryIcon: '📁',
+    searchEngines: [
+      {key:'baidu',name:'百度',url:'https://www.baidu.com/s?wd='},
+      {key:'google',name:'Google',url:'https://www.google.com/search?q='},
+      {key:'bing',name:'必应',url:'https://www.bing.com/search?q='}
+    ],
+    listShengHuo: JSON.parse(JSON.stringify(defaultListShengHuo)),
+    listBanGong: JSON.parse(JSON.stringify(defaultListBanGong)),
+    apiList: JSON.parse(JSON.stringify(defaultApiList)),
+    apiColors: ['#FF6B6B','#4ECDC4','#45B7D1','#96CEB4','#FFEAA7','#DDA0DD','#98D8C8','#F7DC6F','#BB8FCE','#F8B500','#7FDBDA','#E8A0BF','#A8E6CF','#FFD93D','#6C5CE7','#00CEC9','#FD79A8','#E17055','#00B894','#FDCB6E'],
+    noteText: '',
+    todoList: [],
+    newTodo: '',
+    countdownTitle: '元旦',
+    countdownDate: '2027-01-01',
+    calYear: new Date().getFullYear(),
+    calMonth: new Date().getMonth(),
+    currentBgUrl: 'https://picsum.photos/seed/ocean1/1920/1080',
+    currentBgIdx: 0,
+    customBgUrl: '',
+    maskOpacity: 25,
+    blurVal: 0,
+    bgLibrary: JSON.parse(JSON.stringify(defaultBgLibrary)),
+    openInNewTab: true,
+    iconShape: 'rounded',
+    iconOpacity: 100,
+    iconSize: 56,
+    iconGap: 22,
+    showSettings: false,
+    showSiteMgr: false,
+    showEditForm: false,
+    editTab: 'shenghuo',
+    editForm: {name:'', url:'', imgSrc:'', iconUrl:'', iconId:'', idx:-1},
+    showIconPicker: false,
+    editIconMode: '',
+    iconSearchKey: '',
+    iconSearchResults: [],
+    dockItems: [],
+    githubToken: '',
+    widgetVisible: {note:true, todo:true, countdown:true, calendar:true, weather:true, hot:true, fish:true},
+    cloudMsg: '',
+    cloudMsgColor: '#aaa',
+    currentTime: '',
+    currentDateFull: '',
+    currentDateShort: '',
+    currentLunar: '',
+    dailyBlessing: '',
+    weatherIcon: '☀️',
+    weatherTemp: '--',
+    weatherDesc: '晴',
+    weatherCity: '北京',
+    hotList: JSON.parse(JSON.stringify(defaultHotList)),
+    fishCount: 0,
+    fishSoundEnabled: true,
+    fishTapping: false,
+    fishFloating: false,
+    fishFloatX: 0,
+    fishFloatY: 0,
+    toastMsg: '',
+    toastKey: 0,
+    dragIdx: -1,
+    timeInt: null
+  },
 
-    function run() {
-        ctx.fillStyle = 'rgba(0,0,0,0.15)'; //【可修改】拖尾残影透明度
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = '#fff';
-        dots.forEach(function(p) {
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fill();
-            p.x += p.speedX;
-            p.y += p.speedY;
-            // 边界循环
-            if (p.x < 0) p.x = canvas.width;
-            if (p.x > canvas.width) p.x = 0;
-            if (p.y < 0) p.y = canvas.height;
-            if (p.y > canvas.height) p.y = 0;
-        });
-        requestAnimationFrame(run);
-    }
-    run();
-})();
-
-// ===================== 模块3：Vue根实例 全部可修改数据标注 =====================
-new Vue({
-    el: '#app',
-    data: {
-        searchText: '',
-        activeTab: 'shenghuo',
-        //【可修改】顶部分类标签数组，新增/删除栏目直接改这里
-        tabList: [
-            { key: 'shenghuo', name: '生活' },
-            { key: 'bangong', name: '办公' },
-            { key: 'jiekou', name: '接口' }
-        ],
-        currentTime: '',
-        currentDate: '',
-        timeInterval: null,
-
-        // 基础开关
-        hideSearch: false,
-        hideGreet: false,
-        openInNewTab: true,
-
-        // 图标布局配置
-        layoutType: 'icon',
-        //【可修改】布局切换按钮选项
-        shapeOptions: [
-            { value: 'text', label: '文字' },
-            { value: 'circle', label: '圆形' },
-            { value: 'rounded', label: '圆角矩形' },
-            { value: 'icon', label: '图标' }
-        ],
-        logoType: 'none',
-
-        //【可修改】布局滑块默认值，滑块区间在HTML input标签内修改 min/max
-        iconSize: 44,
-        colGap: 16,
-        rowGap: 30,
-
-        // 背景配置
-        currentBgUrl: '',
-        currentBgIdx: -1,
-        bgSource: 'library',
-        netBgUrl: '',
-        maskType: 'black',
-        maskOpacity: 0,
-        blurVal: 0,
-
-        //【可修改】内置背景图库，新增/删除背景直接修改数组
-        bgLibrary: [
-            {
-                name: '默认',
-                url: '',
-                thumb: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="160" height="100"%3E%3Crect width="160" height="100" fill="%23333"/%3E%3Ctext x="80" y="55" text-anchor="middle" fill="%23999" font-size="14"%3E默认%3C/text%3E%3C/svg%3E'
-            },
-            {
-                name: '梦幻海边',
-                url: 'https://pics0.baidu.com/feed/bf096b63f6246b603966a3e862867c42500fa24a.jpeg?token=586489fea4a731c315a8f437784542ba',
-                thumb: ''
-            },
-            {
-                name: '璀璨星河',
-                url: 'https://img-pre.ivsky.com/img/tupian/pre/202108/04/caise_beijing_sucai-010.jpg',
-                thumb: ''
-            },
-            {
-                name: '碧海沙滩',
-                url: 'https://cdn.miguyu.com/imgs/bg/aco43639Bea3471Sky.jpg',
-                thumb: 'https://cdn.miguyu.com/imgs/bg/thumb46.jpg'
-            },
-            {
-                name: '星空夜景',
-                url: 'https://cdn.miguyu.com/imgs/bg/aco7003Axz11094c.jpg',
-                thumb: 'https://cdn.miguyu.com/imgs/bg/thumb35.jpg'
-            },
-            {
-                name: '水墨山峰',
-                url: 'https://cdn.miguyu.com/imgs/bg/aco164360SM2171.jpg',
-                thumb: 'https://cdn.miguyu.com/imgs/bg/thumb22.jpg'
-            },
-            {
-                name: '梦幻绿洲',
-                url: 'https://cdn.miguyu.com/imgs/bg/custMh998lvz998zz12.jpg',
-                thumb: 'https://cdn.miguyu.com/imgs/bg/thumblvz.jpg'
-            },
-            {
-                name: '多彩闪电',
-                url: 'https://cdn.miguyu.com/imgs/bg/aco29139dd0287.jpg',
-                thumb: 'https://cdn.miguyu.com/imgs/bg/thumb23.jpg'
-            },
-            {
-                name: '湖边静桥',
-                url: 'https://cdn.miguyu.com/imgs/bg/aco8388op3436.jpg',
-                thumb: 'https://cdn.miguyu.com/imgs/bg/thumb26.jpg'
-            },
-            {
-                name: '紫红相间',
-                url: 'https://cdn.miguyu.com/imgs/bg/Tux2239PikA261012vBG.jpg',
-                thumb: 'https://cdn.miguyu.com/imgs/bg/thumb95.jpg'
-            }
-        ],
-
-        saveTimer: null,
-        showSettings: false,
-        settingsTab: 'base',
-
-        importData: null,
-        importStatus: '',
-        importStatusColor: '#aaa',
-
-        githubToken: '',
-        cloudMsg: '',
-        cloudMsgColor: '#aaa',
-
-        showSiteMgr: false,
-        editCategories: [],
-        dragItem: null,
-
-        showEditCatModal: false,
-        editingCat: { isNew: true, name: '', firstUrl: '', firstName: '', firstLogo: '', iconType: 'auto' },
-
-        showEditSiteModal: false,
-        editingSite: { isNew: false, catIdx: 0, siteIdx: 0, name: '', url: '', logo: '', iconType: 'auto' },
-
-        toastMsg: '',
-        toastTimer: null,
-
-        //【可修改】生活分类快捷网站数组，增删改链接/名称/图标
-        listShengHuo: [
-            { url: "https://weixin.qq.com/", iconId: "icon-weixin", imgSrc: "", name: "微信" },
-            { url: "https://www.doubao.com/", iconId: "icon-doubaoai", imgSrc: "", name: "豆包" },
-            { url: "http://www.qmcc.cc/", iconId: "icon-Ai", imgSrc: "", name: "AI大全" },
-            { url: "https://jiankang.baidu.com/widescreen/home", iconId: "icon-b-yaoxiang", imgSrc: "", name: "百度健康" },
-            { url: "https://www.qishui.com/", iconId: "icon-qishuiyinle", imgSrc: "", name: "汽水音乐" },
-            { url: "https://taobao.com", iconId: "icon-taobao", imgSrc: "", name: "淘宝" },
-            { url: "https://jd.com", iconId: "icon-jingdong1", imgSrc: "", name: "京东" },
-            { url: "https://douban.com/", iconId: "icon-doubanwang", imgSrc: "", name: "豆瓣" },
-            { url: "https://hz.58.com/", iconId: "icon-b-58tongcheng", imgSrc: "", name: "58同城" },
-            { url: "https://xiaohongshu.com", iconId: "icon-xiaohongshu", imgSrc: "", name: "小红书" },
-            { url: "https://kuaidi100.com/", iconId: "icon-a-100", imgSrc: "", name: "快递100" },
-            { url: "https://dongchedi.com/", iconId: "icon-dongchedi", imgSrc: "", name: "懂车帝" },
-            { url: "https://www.goofish.com/", iconId: "icon-xianyu", imgSrc: "", name: "闲鱼" },
-            { url: "https://music.migu.cn/", iconId: "icon-b-miguyinle", imgSrc: "", name: "咪咕音乐" },
-            { url: "https://ctrip.com", iconId: "icon-xiecheng", imgSrc: "", name: "携程旅行" },
-            { url: "https://vip.com/", iconId: "icon-weipinhui", imgSrc: "", name: "唯品会" },
-            { url: "https://mail.163.com/", iconId: "icon-mail163", imgSrc: "", name: "163邮箱" },
-            { url: "https://www.tmall.com/", iconId: "icon-b-tianmao", imgSrc: "", name: "天猫" },
-            { url: "https://tv.cctv.com/", iconId: "icon-yangshipinchaotuoyuan", imgSrc: "", name: "CCTV" },
-            { url: "https://ximalaya.com", iconId: "icon-ximalaya", imgSrc: "", name: "喜马拉雅" },
-            { url: "https://www.zhihu.com/", iconId: "icon-b-zhihu", imgSrc: "", name: "知乎" },
-            { url: "https://www.12306.cn/", iconId: "icon-Appicns_12306", imgSrc: "", name: "12306" },
-            { url: "https://kugou.com", iconId: "icon-kugou", imgSrc: "", name: "酷狗" },
-            { url: "https://y.qq.com/", iconId: "icon-b-qqyinyue", imgSrc: "", name: "QQ音乐" },
-            { url: "https://v.qq.com", iconId: "icon-tengxunshipin", imgSrc: "", name: "腾讯视频" },
-            { url: "https://miguvideo.com/", iconId: "icon-b-migushipin", imgSrc: "", name: "咪咕视频" },
-            { url: "https://iqiyi.com", iconId: "icon-iqiyi", imgSrc: "", name: "爱奇艺" },
-            { url: "https://bilibili.com", iconId: "icon-bilibili", imgSrc: "", name: "哔哩哔哩" },
-            { url: "https://Douyin.com", iconId: "icon-douyin", imgSrc: "", name: "抖音" },
-            { url: "https://kuaishou.com/", iconId: "icon-kuaishou", imgSrc: "", name: "快手" },
-            { url: "https://news.qq.com/", iconId: "icon-b-tengxunxinwen", imgSrc: "", name: "腾讯新闻" },
-            { url: "https://mgtv.com/", iconId: "icon-mangguoTV", imgSrc: "", name: "芒果TV" },
-            { url: "https://youku.com/", iconId: "icon-youku", imgSrc: "", name: "优酷" },
-            { url: "https://mail.qq.com/", iconId: "icon-b-xiang", imgSrc: "", name: "QQ邮箱" },
-            { url: "https://4399.com/", iconId: "icon-b-youxi", imgSrc: "", name: "4399游戏" },
-            { url: "https://yingshi.xxsnav.com/", iconId: "icon-b-kuake", imgSrc: "", name: "影视导航" },
-        ],
-        //【可修改】办公分类快捷网站数组
-        listBanGong: [
-            { url: "http://m.wmsio.cn", iconId: "icon-zhaogonghezi", imgSrc: "", name: "盒子地窖" },
-            { url: "https://bjq.catvod.site/", iconId: "icon-b-tv", imgSrc: "", name: "TB接口编辑" },
-            { url: "https://www.iconfont.cn/", iconId: "icon-a-yemian11", imgSrc: "", name: "阿里图库" },
-            { url: "https://steampp.net/", iconId: "icon-b-watte", imgSrc: "", name: "瓦特加速" },
-            { url: "https://kstore.cc/", iconId: "icon-b-kaisu", imgSrc: "", name: "凯速网" },
-            { url: "https://mt2.cn/download/", iconId: "icon-b-eadec", imgSrc: "", name: "MT管理器" },
-            { url: "https://www.jyshare.com/", iconId: "", imgSrc: "https://mms2.baidu.com/it/u=1814376071,2209937689&fm=253&app=138&f=PNG?w=128&h=128", name: "菜鸟工具" },
-            { url: "https://www.aigei.com/", iconId: "icon-b-aigei", imgSrc: "", name: "爱给图标" },
-            { url: "https://github.com/", iconId: "icon-github", imgSrc: "", name: "github" },
-            { url: "https://pngtree.cn/", iconId: "", imgSrc: "https://mms2.baidu.com/it/u=299640676,309864315&fm=253&app=138&f=PNG?w=243&h=243", name: "NDM下载器" },
-            { url: "https://dash.cloudflare.com/", iconId: "icon-b-cloudflare", imgSrc: "", name: "域名托管" },
-            { url: "https://dash.domain.digitalplat.org/", iconId: "icon-dns-hei", imgSrc: "", name: "域名申请" },
-            { url: "https://lddgo.net/base/class", iconId: "icon-b-zaixian", imgSrc: "", name: "在线工具" },
-            { url: "https://cloudns.net/", iconId: "icon-b-ymsq", imgSrc: "", name: "DNS" },
-            { url: "https://www.52pojie.cn/", iconId: "icon-b-pojie", imgSrc: "", name: "吾爱破解" },
-            { url: "https://www.yxzhi.com/", iconId: "icon-b-yazi", imgSrc: "", name: "鸭先知" },
-            { url: "https://xiaomark.com/", iconId: "icon-M", imgSrc: "", name: "太短" },
-            { url: "https://www.logo.dev/dashboard/playground/logo", iconId: "icon-b-logo1", imgSrc: "", name: "logo图标" },
-            { url: "https://webicon.cc/zh-cn", iconId: "icon-b-wz", imgSrc: "", name: "网址搜图标" },
-            { url: "https://phototool.cn/", iconId: "icon-b-tupian", imgSrc: "", name: "在线修图" },
-            { url: "https://tugaigai.com/online_ps/", iconId: "icon-AdobePs", imgSrc: "", name: "PS修图" },
-            { url: "https://qiushui.vip/", iconId: "icon-qiushui", imgSrc: "", name: "秋水网" },
-            { url: "https://adzhp.cc/", iconId: "icon-A", imgSrc: "", name: "爱达杂货铺" },
-            { url: "https://pan.baidu.com/", iconId: "icon-baiduwangpan", imgSrc: "", name: "百度网盘" },
-            { url: "https://drivergenius.com/", iconId: "icon-b-qudongjingling", imgSrc: "", name: "驱动精灵" },
-            { url: "https://huorong.cn/", iconId: "icon-b-huorong", imgSrc: "", name: "火绒安全" },
-            { url: "https://www.rjshe.com/", iconId: "icon-b-anzhuo", imgSrc: "", name: "软件社" },
-        ],
-        //【可修改】TV接口列表，增删名称、链接、线条颜色
-        apiList: [
-            { name: '君子兰', url: 'https://cwys.qzz.io/api.json', lineColor: '#e84393' },
-            { name: '饭太硬', url: 'http://fty.xxooo.cf/tv', lineColor: '#3498db' },
-            { name: '潇洒', url: 'https://qist.wyfc.qzz.io/xiaosa/api.json', lineColor: '#f39c12' },
-            { name: '摸鱼', url: 'http://我不是.摸鱼儿.top', lineColor: '#f1c40f' },
-            { name: '王二小', url: 'http://tvbox.王二小放牛娃.top', lineColor: '#cddc39' },
-            { name: '天神', url: 'https://gitee.com/cpu-iy/iy/raw/master/%E5%A4%A9%E7%A5%9EIY.json', lineColor: '#2ecc71' },
-            { name: '点播', url: 'https://xpb.mhfs.eu.org/ZJ/XPB/api.json', lineColor: '#9932CC' },
-            { name: '多多', url: 'https://www.iyouhun.com/tv/duo', lineColor: '#e84393' },
-            { name: '嗷呜', url: 'https://9763.kstore.space/aowu.json', lineColor: '#ffbc23' }
-        ]
+  computed: {
+    searchEngineName: function() {
+      var self = this;
+      var e = this.searchEngines.find(function(s) { return s.key === self.currentSearchEngine; });
+      return e ? e.name : '百度';
     },
-    computed: {
-        settingsTitle: function () {
-            var titles = { 'base': '基础设置', 'layout': '布局设置', 'bg': '背景设置', 'backup': '备份数据', 'restore': '恢复数据', 'cloud': '云端同步' };
-            return titles[this.settingsTab] || '设置';
+    allCategories: function() {
+      var builtIn = [{id:'shenghuo',name:'生活',icon:'🌟'},{id:'bangong',name:'办公',icon:'💼'}];
+      return builtIn.concat(this.customCategories);
+    },
+    activeCategoryList: function() {
+      if (this.activeTab === 'shenghuo') return this.listShengHuo;
+      if (this.activeTab === 'bangong') return this.listBanGong;
+      return this.customLists[this.activeTab] || [];
+    },
+    editCategoryList: function() {
+      if (this.editTab === 'shenghuo') return this.listShengHuo;
+      if (this.editTab === 'bangong') return this.listBanGong;
+      return this.customLists[this.editTab] || [];
+    },
+    countdownDays: function() {
+      if (!this.countdownDate) return 0;
+      var d = new Date(this.countdownDate) - new Date();
+      return Math.max(0, Math.ceil(d / 86400000));
+    },
+    calDays: function() {
+      var y = this.calYear, m = this.calMonth;
+      var first = new Date(y, m, 1).getDay();
+      var daysInMonth = new Date(y, m + 1, 0).getDate();
+      var prevDays = new Date(y, m, 0).getDate();
+      var arr = [];
+      for (var i = first - 1; i >= 0; i--) {
+        arr.push({num: prevDays - i, key: 'p' + i, curMonth: false, isToday: false});
+      }
+      var today = new Date();
+      for (var i = 1; i <= daysInMonth; i++) {
+        arr.push({num: i, key: 'c' + i, curMonth: true, isToday: i === today.getDate() && m === today.getMonth() && y === today.getFullYear()});
+      }
+      var next = 42 - arr.length;
+      for (var i = 1; i <= next; i++) {
+        arr.push({num: i, key: 'n' + i, curMonth: false, isToday: false});
+      }
+      return arr;
+    }
+  },
+
+  methods: {
+    /* ===== 工具方法 ===== */
+    showToast: function(msg) { var self=this; this.toastMsg = msg; this.toastKey++; clearTimeout(this._toastTimer); this._toastTimer=setTimeout(function(){self.toastMsg=''},2000) },
+    globalClick: function() { this.showEngineMenu = false; this.showSug = false; },
+    getFaviconUrl: function(url) {
+      try {
+        var u = new URL(url);
+        var host = u.hostname;
+        /* 使用favicon.im获取高清图标（128px），失败时onerror会降级为字母图标 */
+        return 'https://favicon.im/' + host + '?defaulticon=lightpng&size=128';
+      } catch (e) { return ''; }
+    },
+    addFavicons: function(list) {
+      var self = this;
+      list.forEach(function(item) {
+        /* 有自定义图片或阿里图标的，不需要自动获取favicon */
+        if (!item.imgSrc && !item.iconId && !item.faviconUrl) {
+          self.$set(item, 'faviconUrl', self.getFaviconUrl(item.url));
         }
+        if (!item.iconErr) item.iconErr = false;
+      });
     },
-    methods: {
-        // 百度搜索
-        doSearch: function () {
-            var val = this.searchText.trim();
-            if (!val) return;
-            window.open('https://www.baidu.com/s?wd=' + encodeURIComponent(val), '_blank');
-        },
-        // 新标签打开网址
-        openUrl: function (url) {
-            if (url) window.open(url, '_blank');
-        },
-        // 复制接口地址
-        copyApi: function (url) {
-            var t = document.createElement('textarea');
-            t.value = url;
-            document.body.appendChild(t);
-            t.select();
-            document.execCommand('copy');
-            document.body.removeChild(t);
-            this.showToast('复制成功！');
-        },
-        // 鼠标移入生成随机背景色
-        setRandomColor: function (e) {
-            var r = Math.floor(Math.random() * 256), g = Math.floor(Math.random() * 256), b = Math.floor(Math.random() * 256);
-            e.target.style.setProperty('--randColor', 'rgb(' + r + ',' + g + ',' + b + ')');
-        },
-        // 更新顶部时间日期
-        updateTime: function () {
-            var n = new Date();
-            this.currentTime = String(n.getHours()).padStart(2, '0') + ':' + String(n.getMinutes()).padStart(2, '0');
-            var w = ['日', '一', '二', '三', '四', '五', '六'];
-            this.currentDate = n.getFullYear() + '年' + (n.getMonth() + 1) + '月' + n.getDate() + '日 星期' + w[n.getDay()];
-        },
-        // 选择内置图库背景
-        selectLibraryBg: function (idx) {
-            this.currentBgIdx = idx;
-            this.bgSource = 'library';
-            this.currentBgUrl = this.bgLibrary[idx].url;
-            this.applyCustomBg();
-            this.saveData();
-        },
-        // 应用网络自定义背景
-        applyNetBg: function () {
-            if (this.netBgUrl.trim()) {
-                this.currentBgUrl = this.netBgUrl.trim();
-                this.bgSource = 'net';
-                this.currentBgIdx = -1;
-                this.applyCustomBg();
-                this.saveData();
-            }
-        },
-        // 切换页面背景、星空显隐
-        applyCustomBg: function () {
-            if (this.currentBgUrl) {
-                document.body.style.background = 'url(' + this.currentBgUrl + ') center/cover fixed';
-                document.getElementById('starCanvas').style.display = 'none';
-            } else {
-                document.body.style.background = '';
-                document.getElementById('starCanvas').style.display = 'block';
-            }
-        },
-        // 导出本地数据JSON文件
-        exportData: function () {
-            var d = {
-                editCategories: this.editCategories,
-                tabList: this.tabList,
-                listShengHuo: this.listShengHuo,
-                listBanGong: this.listBanGong,
-                bg_settings: localStorage.getItem('bg_settings')
-            };
-            var b = new Blob([JSON.stringify(d, null, 2)], { type: 'application/json' });
-            var u = URL.createObjectURL(b);
-            var a = document.createElement('a');
-            a.href = u;
-            a.download = 'backup_' + new Date().toISOString().slice(0, 10) + '.json';
-            a.click();
-            URL.revokeObjectURL(u);
-            this.showToast('数据已导出');
-        },
-        // 读取导入文件
-        handleFileImport: function (e) {
-            var f = e.target.files[0];
-            if (!f) return;
-            var s = this;
-            var r = new FileReader();
-            r.onload = function (ev) {
-                try {
-                    s.importData = JSON.parse(ev.target.result);
-                    s.importStatus = '文件已读取，点击导入';
-                    s.importStatusColor = '#3967FF';
-                } catch (err) {
-                    s.importStatus = '格式错误';
-                    s.importStatusColor = '#e74c3c';
-                    s.importData = null;
-                }
-            };
-            r.readAsText(f);
-        },
-        // 执行数据导入覆盖
-        doImport: function () {
-            if (!this.importData) return;
-            var d = this.importData;
-            if (d.editCategories) {
-                this.editCategories = d.editCategories;
-                localStorage.setItem('nav_categories', JSON.stringify(d.editCategories));
-            }
-            if (d.tabList) {
-                this.tabList = d.tabList;
-                localStorage.setItem('tabList', JSON.stringify(d.tabList));
-            }
-            if (d.listShengHuo) {
-                this.listShengHuo = d.listShengHuo;
-                localStorage.setItem('listShengHuo', JSON.stringify(this.listShengHuo));
-            }
-            if (d.listBanGong) {
-                this.listBanGong = d.listBanGong;
-                localStorage.setItem('listBanGong', JSON.stringify(this.listBanGong));
-            }
-            if (d.bg_settings) {
-                localStorage.setItem('bg_settings', d.bg_settings);
-                this.loadData();
-            }
-            this.importData = null;
-            this.importStatus = '导入成功！';
-            this.importStatusColor = '#27ae60';
-            this.showToast('数据已导入');
-            var self = this;
-            setTimeout(function () { self.importStatus = ''; }, 3000);
-        },
-        // 打开网址管理面板，初始化栏目数据
-        openSiteMgr: function () {
-            var saved = localStorage.getItem("nav_categories");
-            if (saved) {
-                try {
-                    this.editCategories = JSON.parse(saved);
-                } catch (e) {
-                    this.editCategories = [];
-                }
-            }
-            if (!this.editCategories || this.editCategories.length === 0) {
-                var self = this;
-                var shengHuoSites = this.listShengHuo.map(function (item) {
-                    var logo = item.imgSrc || '';
-                    return { name: item.name, url: item.url, logo: logo, iconId: item.iconId || '' };
-                });
-                var banGongSites = this.listBanGong.map(function (item) {
-                    var logo = item.imgSrc || '';
-                    return { name: item.name, url: item.url, logo: logo, iconId: item.iconId || '' };
-                });
-                this.editCategories = [
-                    { name: "生活", sites: shengHuoSites, hidden: false },
-                    { name: "办公", sites: banGongSites, hidden: false },
-                    { name: "常用", sites: [], hidden: false },
-                    { name: "工具", sites: [], hidden: false }
-                ];
-            }
-        },
-        // 保存网址管理修改，同步到首页列表+本地存储+云端
-         saveSiteMgr: function() { localStorage.setItem('nav_categories',
-        JSON.stringify(this.editCategories)); var self = this; var newShengHuo = [];
-        var newBanGong = [];
-        this.editCategories.forEach(function(cat) { cat.sites.forEach(function(s) { var item = { name: s.name, url: s.url, iconId: s.iconId || '', imgSrc: s.logo || '' };
-        if (cat.name === '生活') { var has = false; for (var i = 0;
-        i < newShengHuo.length; i++) { if (newShengHuo[i].url === s.url) { has = true; break; } } if (!has) newShengHuo.push(item); } if (cat.name === '办公') { var hasB = false; for (var j = 0; 
-        j < newBanGong.length; j++) { if (newBanGong[j].url === s.url) { hasB = true; break; } } if (!hasB) newBanGong.push(item); } }); }); 
-       this.listShengHuo = newShengHuo; this.listBanGong = newBanGong; localStorage.setItem('listShengHuo', JSON.stringify(newShengHuo)); 
-       localStorage.setItem('listBanGong', JSON.stringify(newBanGong)); this.showSiteMgr = false; this.showToast('网址已保存'); this.syncToCloud(); },
-        // 删除栏目
-        removeCategory: function (catIdx) {
-            var name = this.editCategories[catIdx].name;
-            if (confirm('确定删除栏目「' + name + '」及其所有网址吗？')) {
-                this.editCategories.splice(catIdx, 1);
-                var tabIdx = -1;
-                for (var i = 0; i < this.tabList.length; i++) {
-                    if (this.tabList[i].name === name) {
-                        tabIdx = i;
-                        break;
-                    }
-                }
-                if (tabIdx >= 0) {
-                    this.tabList.splice(tabIdx, 1);
-                    localStorage.setItem('tabList', JSON.stringify(this.tabList));
-                }
-                localStorage.setItem('nav_categories', JSON.stringify(this.editCategories));
-                this.showToast('栏目已删除');
-                this.syncToCloud();
-            }
-        },
-        // 新增栏目弹窗
-        openAddCategory: function () {
-            this.editingCat = { isNew: true, name: '', firstUrl: '', firstName: '', firstLogo: '', iconType: 'auto' };
-            this.showEditCatModal = true;
-        },
-        // 编辑已有栏目
-        editCategory: function (catIdx) {
-            this.editingCat = {
-                isNew: false,
-                catIdx: catIdx,
-                name: this.editCategories[catIdx].name,
-                firstUrl: '',
-                firstName: '',
-                firstLogo: '',
-                iconType: 'url'
-            };
-            this.showEditCatModal = true;
-        },
-        // 读取本地图标文件
-        handleLocalIcon: function (e) {
-            var file = e.target.files[0];
-            if (!file) return;
-            var self = this;
-            var reader = new FileReader();
-            reader.onload = function (ev) {
-                self.editingCat.firstLogo = ev.target.result;
-            };
-            reader.readAsDataURL(file);
-        },
-        // 编辑网址本地图标读取
-        handleSiteLocalIcon: function (e) {
-            var file = e.target.files[0];
-            if (!file) return;
-            var self = this;
-            var reader = new FileReader();
-            reader.onload = function (ev) {
-                self.editingSite.logo = ev.target.result;
-            };
-            reader.readAsDataURL(file);
-        },
-        // 保存新增/编辑栏目
-        saveEditCat: function () {
-            if (!this.editingCat.name.trim()) {
-                this.showToast('请输入栏目名称');
-                return;
-            }
-            if (this.editingCat.isNew) {
-                var newCat = { name: this.editingCat.name.trim(), sites: [], hidden: false };
-                if (this.editingCat.firstName.trim() && this.editingCat.firstUrl.trim()) {
-                    var url = this.editingCat.firstUrl.trim();
-                    if (!url.startsWith('http')) url = 'https://' + url;
-                    var logo = this.editingCat.firstLogo || '';
-                    if (!logo && this.editingCat.iconType === 'auto') {
-                        try {
-                            logo = 'https://' + new URL(url).hostname + '/favicon.ico';
-                        } catch (e) {
-                            logo = '';
-                        }
-                    }
-                    newCat.sites.push({ name: this.editingCat.firstName.trim(), url: url, logo: logo });
-                }
-                this.editCategories.push(newCat);
-                localStorage.setItem('nav_categories', JSON.stringify(this.editCategories));
-                this.tabList.push({ key: 'cat_' + Date.now(), name: this.editingCat.name.trim() });
-                localStorage.setItem('tabList', JSON.stringify(this.tabList));
-            } else {
-                var oldName = this.editCategories[this.editingCat.catIdx].name;
-                this.editCategories[this.editingCat.catIdx].name = this.editingCat.name.trim();
-                // 同步更新tabList中对应的栏目名称
-                for (var i = 0; i < this.tabList.length; i++) {
-                    if (this.tabList[i].name === oldName) {
-                        this.tabList[i].name = this.editingCat.name.trim();
-                        break;
-                    }
-                }
-                localStorage.setItem('tabList', JSON.stringify(this.tabList));
-                localStorage.setItem('nav_categories', JSON.stringify(this.editCategories));
-            }
-            this.showEditCatModal = false;
-            this.showToast(this.editingCat.isNew ? '栏目已添加' : '栏目已更新');
-            this.syncToCloud();
-        },
-        // 拖拽排序网址
-        handleDrop: function (toCatIdx, toSiteIdx) {
-            if (!this.dragItem) return;
-            var f = this.dragItem;
-            if (f.catIdx === toCatIdx && f.siteIdx === toSiteIdx) return;
-            var site = this.editCategories[f.catIdx].sites[f.siteIdx];
-            this.editCategories[f.catIdx].sites.splice(f.siteIdx, 1);
-            if (toSiteIdx >= this.editCategories[toCatIdx].sites.length) {
-                this.editCategories[toCatIdx].sites.push(site);
-            } else {
-                this.editCategories[toCatIdx].sites.splice(toSiteIdx, 0, site);
-            }
-            this.dragItem = null;
-        },
-        // 打开编辑网址弹窗
-        editSiteItem: function (catIdx, siteIdx) {
-            var site = this.editCategories[catIdx].sites[siteIdx];
-            this.editingSite = {
-                isNew: false,
-                catIdx: catIdx,
-                siteIdx: siteIdx,
-                name: site.name,
-                url: site.url,
-                logo: site.logo || '',
-                iconType: 'url'
-            };
-            this.showEditSiteModal = true;
-        },
-        // 删除单个网址
-        removeSiteItem: function (catIdx, siteIdx) {
-            var catName = this.editCategories[catIdx].name;
-            var siteUrl = this.editCategories[catIdx].sites[siteIdx].url;
-            if (confirm('确定删除「' + this.editCategories[catIdx].sites[siteIdx].name + '」吗？')) {
-                this.editCategories[catIdx].sites.splice(siteIdx, 1);
-                var targetList = null;
-                if (catName === '生活') targetList = this.listShengHuo;
-                if (catName === '办公') targetList = this.listBanGong;
-                if (targetList) {
-                    var idx = targetList.findIndex(function (x) { return x.url === siteUrl; });
-                    if (idx >= 0) {
-                        targetList.splice(idx, 1);
-                        localStorage.setItem('listShengHuo', JSON.stringify(this.listShengHuo));
-                        localStorage.setItem('listBanGong', JSON.stringify(this.listBanGong));
-                    }
-                }
-                this.showToast('已删除');
-                this.syncToCloud();
-            }
-        },
-        // 编辑网址弹窗打开新增网址弹窗
-        openAddSite: function (catIdx) {
-            this.editingSite = {
-                isNew: true,
-                catIdx: catIdx,
-                siteIdx: -1,
-                name: '',
-                url: '',
-                logo: '',
-                iconType: 'auto'
-            };
-            this.showEditSiteModal = true;
-        },
-        // 保存新增/编辑网址
-        saveEditSite: function () {
-            var s = this.editingSite;
-            if (!s.name.trim() || !s.url.trim()) {
-                this.showToast('请填写网站名称和网址');
-                return;
-            }
-            var url = s.url.trim();
-            if (!url.startsWith('http')) url = 'https://' + url;
-            var logo = s.logo || '';
-            if (!logo && s.iconType === 'auto') {
-                try {
-                    logo = 'https://' + new URL(url).hostname + '/favicon.ico';
-                } catch (e) {
-                    logo = '';
-                }
-            }
-            var siteData = { name: s.name.trim(), url: url, logo: logo, iconId: s.iconId || '' };
-            if (s.isNew) {
-                this.editCategories[s.catIdx].sites.push(siteData);
-            } else {
-                siteData.iconId = this.editCategories[s.catIdx].sites[s.siteIdx].iconId || '';
-                this.editCategories[s.catIdx].sites[s.siteIdx] = siteData;
-            }
-            // 同步更新前台列表和localStorage
-            var catName = this.editCategories[s.catIdx].name;
-            if (catName === '生活') {
-                this.listShengHuo = this.editCategories[s.catIdx].sites.map(function(item) {
-                    return { name: item.name, url: item.url, iconId: item.iconId || '', imgSrc: item.logo || '' };
-                });
-                localStorage.setItem('listShengHuo', JSON.stringify(this.listShengHuo));
-            } else if (catName === '办公') {
-                this.listBanGong = this.editCategories[s.catIdx].sites.map(function(item) {
-                    return { name: item.name, url: item.url, iconId: item.iconId || '', imgSrc: item.logo || '' };
-                });
-                localStorage.setItem('listBanGong', JSON.stringify(this.listBanGong));
-            }
-            localStorage.setItem('nav_categories', JSON.stringify(this.editCategories));
-            this.showEditSiteModal = false;
-            this.showToast(s.isNew ? '添加成功' : '保存成功');
-            this.syncToCloud();
-        },
-        // 获取网站默认文字图标
-        getDefaultIcon: function (name) {
-            var c = (name || '?').charAt(0);
-            return 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><rect width="48" height="48" rx="8" fill="#3967FF"/><text x="24" y="32" text-anchor="middle" fill="white" font-size="20">' + c + '</text></svg>');
-        },
-        // 顶部轻提示弹窗
-        showToast: function (msg) {
-            this.toastMsg = msg;
-            var self = this;
-            if (this.toastTimer) clearTimeout(this.toastTimer);
-            this.toastTimer = setTimeout(function () { self.toastMsg = ''; }, 2000);
-        },
+    onIconErr: function(item) {
+      /* 第一次失败：尝试favicon.cc备用源 */
+      if (!item._faviconTried) {
+        item._faviconTried = true;
+        try {
+          var u = new URL(item.url);
+          this.$set(item, 'faviconUrl', 'https://favicon.cc/' + u.hostname);
+          this.$set(item, 'iconErr', false);
+        } catch(e) { this.$set(item,'iconErr',true); }
+      } else {
+        /* 第二次也失败：标记错误，降级显示字母图标 */
+        this.$set(item, 'iconErr', true);
+      }
+    },
+    getIconColor: function(idx) { return iconColors[idx % iconColors.length]; },
 
-        // 保存背景设置到本地存储
-        saveData: function () {
-            if (this.bgSource === 'net' && this.netBgUrl.trim()) {
-                this.currentBgUrl = this.netBgUrl.trim();
-            }
-            this.applyCustomBg();
-            localStorage.setItem('bg_settings', JSON.stringify({
-                currentBgUrl: this.currentBgUrl,
-                currentBgIdx: this.currentBgIdx,
-                bgSource: this.bgSource,
-                netBgUrl: this.netBgUrl,
-                maskType: this.maskType,
-                maskOpacity: this.maskOpacity,
-                blurVal: this.blurVal
-            }));
+    /* ===== 视图切换 ===== */
+    switchView: function(view) { this.currentView = view; },
 
-        },
-        saveToken: function () {
-            if (this.githubToken.trim()) {
-                localStorage.setItem('github_token', this.githubToken.trim());
-                this.cloudMsg = 'Token 已保存';
-                this.cloudMsgColor = '#2ecc71';
-            } else {
-                localStorage.removeItem('github_token');
-                this.cloudMsg = 'Token 已清除';
-                this.cloudMsgColor = '#e67e22';
-            }
-        },
-        // 页面初始化读取本地背景配置
-        loadData: function () {
-            var saved = localStorage.getItem('bg_settings');
-            if (saved) {
-                try {
-                    var d = JSON.parse(saved);
-                    if (d.currentBgUrl !== undefined) this.currentBgUrl = d.currentBgUrl;
-                    if (d.currentBgIdx !== undefined) this.currentBgIdx = d.currentBgIdx;
-                    if (d.bgSource) this.bgSource = d.bgSource;
-                    if (d.netBgUrl !== undefined) this.netBgUrl = d.netBgUrl;
-                    if (d.maskType) this.maskType = d.maskType;
-                    if (d.maskOpacity !== undefined) this.maskOpacity = d.maskOpacity;
-                    if (d.blurVal !== undefined) this.blurVal = d.blurVal;
-                } catch (e) { }
-            }
-            this.applyCustomBg();
+    /* ===== 搜索 ===== */
+    doSearch: function() {
+      if (!this.searchText.trim()) return;
+      var self = this;
+      var eng = this.searchEngines.find(function(s) { return s.key === self.currentSearchEngine; });
+      this.showSug = false;
+      var text = this.searchText.trim();
+      if (/^(https?:\/\/|www\.)/.test(text)) {
+        var url = text.indexOf('://') === -1 ? 'https://' + text : text;
+        this.openUrl(url);
+        return;
+      }
+      window.open(eng.url + encodeURIComponent(text), '_self');
+    },
+    onSearchInput: function() {
+      var self = this;
+      if (this.searchText.trim().length > 0) {
+        this.suggestions = defaultHotList.slice(0, 6).filter(function(h) {
+          return h.text.indexOf(self.searchText) >= 0 || self.searchText.length < 2;
+        });
+      } else {
+        this.suggestions = [];
+      }
+    },
+
+    /* ===== 打开网址 ===== */
+    openUrl: function(url) {
+      if (!url) return;
+      if (this.openInNewTab) window.open(url, '_blank');
+      else window.location.href = url;
+    },
+
+    /* ===== 时钟 ===== */
+    updateTime: function() {
+      var d = new Date();
+      var h = String(d.getHours()).padStart(2, '0');
+      var m = String(d.getMinutes()).padStart(2, '0');
+      this.currentTime = h + ':' + m;
+      var days = ['日', '一', '二', '三', '四', '五', '六'];
+      this.currentDateFull = d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日 星期' + days[d.getDay()];
+      this.currentDateShort = (d.getMonth() + 1) + '/' + d.getDate();
+      this.currentLunar = this.getLunar(d);
+      var blessings = ['今日大吉','万事如意','心想事成','诸事顺遂','好运连连','平安喜乐','吉祥如意','福星高照'];
+      this.dailyBlessing = blessings[d.getDate() % blessings.length];
+    },
+    getLunar: function(d) {
+      var months = ['正', '二', '三', '四', '五', '六', '七', '八', '九', '十', '冬', '腊'];
+      return months[d.getMonth()] + '月' + d.getDate() + '日';
+    },
+
+    /* ===== 笔记/待办 ===== */
+    saveNote: function() { localStorage.setItem('wetab_note', this.noteText); },
+    tapFish: function(e) {
+      this.fishCount++;
+      localStorage.setItem('wetab_fish', this.fishCount);
+      this.fishTapping = true;
+      var self = this;
+      setTimeout(function() { self.fishTapping = false; }, 120);
+      /* 飘字 */
+      var rect = e.currentTarget.getBoundingClientRect();
+      this.fishFloatX = e.clientX - rect.left - 20;
+      this.fishFloatY = e.clientY - rect.top - 20;
+      this.fishFloating = true;
+      setTimeout(function() { self.fishFloating = false; }, 800);
+      /* 声音 */
+      if (this.fishSoundEnabled) {
+        try {
+          var ctx = new (window.AudioContext || window.webkitAudioContext)();
+          var osc = ctx.createOscillator();
+          var gain = ctx.createGain();
+          osc.frequency.setValueAtTime(280, ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(120, ctx.currentTime + 0.12);
+          gain.gain.setValueAtTime(0.25, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.2);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(ctx.currentTime);
+          osc.stop(ctx.currentTime + 0.22);
+        } catch(err) {}
+      }
+    },
+    addTodo: function() {
+      if (!this.newTodo.trim()) return;
+      this.todoList.push({text: this.newTodo.trim(), done: false});
+      this.newTodo = '';
+      this.saveTodo();
+    },
+    toggleTodo: function(idx) {
+      this.todoList[idx].done = !this.todoList[idx].done;
+      this.saveTodo();
+    },
+    saveTodo: function() { localStorage.setItem('wetab_todo', JSON.stringify(this.todoList)); },
+
+    /* ===== 日历 ===== */
+    calPrev: function() {
+      if (this.calMonth === 0) { this.calMonth = 11; this.calYear--; }
+      else { this.calMonth--; }
+    },
+    calNext: function() {
+      if (this.calMonth === 11) { this.calMonth = 0; this.calYear++; }
+      else { this.calMonth++; }
+    },
+
+    /* ===== 背景 ===== */
+    selectBg: function(idx) { this.currentBgIdx = idx; this.currentBgUrl = this.bgLibrary[idx].url; this.saveSettings(); },
+    applyCustomBg: function() {
+      if (!this.customBgUrl.trim()) return;
+      this.currentBgUrl = this.customBgUrl.trim();
+      this.currentBgIdx = -1;
+      this.saveSettings();
+    },
+
+    /* ===== 设置 ===== */
+    saveSettings: function() {
+      var s = {
+        bgUrl: this.currentBgUrl, bgIdx: this.currentBgIdx, mask: this.maskOpacity, blur: this.blurVal,
+        iconShape: this.iconShape, iconOpacity: this.iconOpacity, iconSize: this.iconSize, iconGap: this.iconGap, openInNewTab: this.openInNewTab
+      };
+      localStorage.setItem('wetab_settings', JSON.stringify(s));
+    },
+    loadSettings: function() {
+      var s = localStorage.getItem('wetab_settings');
+      if (s) {
+        try {
+          var j = JSON.parse(s);
+          if (j.bgUrl) this.currentBgUrl = j.bgUrl;
+          if (j.bgIdx !== undefined) this.currentBgIdx = j.bgIdx;
+          if (j.mask !== undefined) this.maskOpacity = j.mask;
+          if (j.blur !== undefined) this.blurVal = j.blur;
+          if (j.iconShape) this.iconShape = j.iconShape;
+          if (j.iconOpacity) this.iconOpacity = j.iconOpacity;
+          if (j.openInNewTab !== undefined) this.openInNewTab = j.openInNewTab;
+        } catch (e) {}
+      }
+    },
+
+    /* ===== 分类管理 ===== */
+    openCategoryMgr: function() { this.showCategoryMgr = true; this.newCategoryName = ''; this.newCategoryIcon = '📁'; },
+    addCategory: function() {
+      if (!this.newCategoryName.trim()) { this.showToast('请输入分类名称'); return; }
+      var id = 'custom_' + Date.now();
+      this.customCategories.push({id: id, name: this.newCategoryName.trim(), icon: this.newCategoryIcon});
+      this.$set(this.customLists, id, []);
+      this.showCategoryMgr = false;
+      this.saveSites();
+      this.showToast('分类已添加');
+    },
+    deleteCategory: function(catId) {
+      this.customCategories = this.customCategories.filter(function(c) { return c.id !== catId; });
+      delete this.customLists[catId];
+      if (this.activeTab === catId) this.activeTab = 'shenghuo';
+      if (this.editTab === catId) this.editTab = 'shenghuo';
+      this.saveSites();
+      this.showToast('分类已删除');
+    },
+
+    /* ===== Dock ===== */
+    addToDock: function(item) {
+      var exists = this.dockItems.find(function(d) { return d.url === item.url; });
+      if (exists) { this.showToast('已在Dock中'); return; }
+      if (this.dockItems.length >= 8) this.dockItems.shift();
+      var copy = JSON.parse(JSON.stringify(item));
+      this.$set(copy, 'faviconUrl', this.getFaviconUrl(item.url));
+      this.$set(copy, 'iconErr', false);
+      this.dockItems.push(copy);
+      this.saveDock();
+      this.showToast('已添加到Dock');
+    },
+    removeFromDock: function(idx) {
+      this.dockItems.splice(idx, 1);
+      this.saveDock();
+      this.showToast('已从Dock移除');
+    },
+    saveDock: function() { localStorage.setItem('wetab_dock', JSON.stringify(this.dockItems)); },
+
+    /* ===== 网址管理 ===== */
+    openSiteMgr: function() {
+      this.currentView = 'home';
+      this.showSiteMgr = true;
+      this.editTab = this.activeTab;
+      this.showEditForm = false;
+    },
+    closeSiteMgr: function() { this.saveSites(); this.showSiteMgr = false; },
+    addSiteInMgr: function() {
+      this.showEditForm = true;
+      this.editForm = {name:'', url:'', imgSrc:'', iconUrl:'', iconId:'', idx:-1};
+    },
+    editSiteInMgr: function(idx) {
+      this.showEditForm = true;
+      var item = this.editCategoryList[idx];
+      this.editForm = {name: item.name, url: item.url, imgSrc: item.imgSrc || '', iconUrl: item.imgSrc || '', iconId: item.iconId || '', idx: idx};
+    },
+    editSiteFromCtx: function(idx) {
+      this.openSiteMgr();
+      this.editTab = this.activeTab;
+      var self = this;
+      this.$nextTick(function() { self.editSiteInMgr(idx); });
+    },
+    deleteSiteFromCtx: function(idx) {
+      this.activeCategoryList.splice(idx, 1);
+      this.saveSites();
+      this.showToast('已删除');
+    },
+    deleteFromMgr: function(idx) {
+      this.editCategoryList.splice(idx, 1);
+      this.saveSites();
+      this.showToast('已删除');
+    },
+    saveEditForm: function() {
+      if (!this.editForm.name.trim() || !this.editForm.url.trim()) { this.showToast('请填写名称和URL'); return; }
+      var site = {name: this.editForm.name.trim(), url: this.editForm.url.trim(), iconId: this.editForm.iconId || '', imgSrc: this.editForm.imgSrc || ''};
+      this.$set(site, 'faviconUrl', this.getFaviconUrl(site.url));
+      this.$set(site, 'iconErr', false);
+      var list = this.editCategoryList;
+      if (this.editForm.idx >= 0) {
+        this.$set(list, this.editForm.idx, site);
+      } else {
+        list.push(site);
+      }
+      this.saveSites();
+      this.showEditForm = false;
+      this.showIconPicker = false;
+      this.showToast('已保存');
+    },
+    saveSites: function() {
+      localStorage.setItem('listShengHuo', JSON.stringify(this.listShengHuo));
+      localStorage.setItem('listBanGong', JSON.stringify(this.listBanGong));
+      localStorage.setItem('wetab_custom_categories', JSON.stringify(this.customCategories));
+      localStorage.setItem('wetab_custom_lists', JSON.stringify(this.customLists));
+    },
+
+    /* ===== 图标上传 ===== */
+    handleIconUpload: function(e) {
+      var file = e.target.files[0];
+      if (!file) return;
+      var self = this;
+      var r = new FileReader();
+      r.onload = function(ev) { self.editForm.imgSrc = ev.target.result; self.$forceUpdate(); };
+      r.readAsDataURL(file);
+      e.target.value = '';
+    },
+    applyIconUrl: function() {
+      if (this.editForm.iconUrl && this.editForm.iconUrl.trim()) {
+        this.editForm.imgSrc = this.editForm.iconUrl.trim();
+        this.editForm.iconId = '';
+        this.$forceUpdate();
+      }
+    },
+    searchIconfont: function() {
+      var key = this.iconSearchKey.trim().toLowerCase();
+      if (!key) { this.iconSearchResults = []; return; }
+      var symbols = document.querySelectorAll('svg.symbol');
+      if (!symbols.length) symbols = document.querySelectorAll('symbol');
+      var ids = [];
+      symbols.forEach(function(s) { if (s.id && s.id.toLowerCase().indexOf(key) !== -1) ids.push(s.id); });
+      this.iconSearchResults = ids;
+    },
+    pickIconfont: function(iconId) {
+      this.editForm.iconId = iconId;
+      this.editForm.imgSrc = '';
+      this.editForm.iconUrl = '';
+      this.showIconPicker = false;
+      this.$forceUpdate();
+    },
+    autoFetchIcon: function() {
+      if (!this.editForm.url.trim()) { this.showToast('请先输入网址URL'); return; }
+      var url = this.editForm.url.trim();
+      try {
+        var u = new URL(url);
+        this.editForm.imgSrc = 'https://favicon.im/' + u.hostname + '?defaulticon=lightpng&size=128';
+        this.editForm.iconUrl = this.editForm.imgSrc;
+        this.editForm.iconId = '';
+        this.$forceUpdate();
+        this.showToast('已自动获取图标');
+      } catch (e) { this.showToast('URL格式不正确'); }
+    },
+
+    /* ===== 右键菜单动作 ===== */
+    ctxAddSite: function() {
+      this.currentView = 'home';
+      this.showSiteMgr = true;
+      this.editTab = this.activeTab;
+      this.showEditForm = true;
+      this.editForm = {name:'', url:'', imgSrc:'', iconUrl:'', iconId:'', idx:-1};
+    },
+    ctxRandomBg: function() {
+      var seed = 'rand' + Date.now();
+      this.currentBgUrl = 'https://picsum.photos/seed/' + seed + '/1920/1080';
+      this.currentBgIdx = -1;
+      this.saveSettings();
+      this.showToast('已更换壁纸');
+    },
+    ctxDownloadBg: function() {
+      var a = document.createElement('a');
+      a.href = this.currentBgUrl;
+      a.download = 'wallpaper_' + Date.now() + '.jpg';
+      a.target = '_blank';
+      a.click();
+      this.showToast('正在下载壁纸');
+    },
+    ctxEditHome: function() {
+      this.currentView = 'home';
+      this.showSiteMgr = true;
+      this.editTab = this.activeTab;
+      this.showEditForm = false;
+    },
+    ctxSearchIcon: function() {
+      this.searchText = '';
+      var self = this;
+      this.$nextTick(function() {
+        var input = document.querySelector('.search-box input');
+        if (input) input.focus();
+        self.showSug = false;
+      });
+    },
+
+    /* ===== 拖拽排序 ===== */
+    onDragStart: function(e, idx) { this.dragIdx = idx; e.dataTransfer.effectAllowed = 'move'; },
+    onDragEnd: function() {
+      this.dragIdx = -1;
+      document.querySelectorAll('.drag-over').forEach(function(el) { el.classList.remove('drag-over'); });
+    },
+    onDragOver: function(e, idx) {
+      var card = e.target.closest('.site-card');
+      if (card) card.classList.add('drag-over');
+    },
+    onDrop: function(e, idx) {
+      document.querySelectorAll('.drag-over').forEach(function(el) { el.classList.remove('drag-over'); });
+      if (this.dragIdx < 0 || this.dragIdx === idx) return;
+      var list = this.activeCategoryList;
+      var tmp = list[this.dragIdx];
+      list.splice(this.dragIdx, 1);
+      list.splice(idx, 0, tmp);
+      this.dragIdx = -1;
+      this.saveSites();
+    },
+
+    /* ===== 复制 ===== */
+    copyText: function(text) {
+      var self = this;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(function() { self.showToast('已复制到剪贴板'); }).catch(function() { self.fallbackCopy(text); });
+      } else {
+        this.fallbackCopy(text);
+      }
+    },
+    fallbackCopy: function(text) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      this.showToast('已复制');
+    },
+
+    /* ===== 导出/导入 ===== */
+    exportData: function() {
+      var data = {
+        listShengHuo: this.listShengHuo, listBanGong: this.listBanGong, apiList: this.apiList,
+        note: this.noteText, todo: this.todoList, dock: this.dockItems,
+        customCategories: this.customCategories, customLists: this.customLists,
+        settings: {bgUrl: this.currentBgUrl, bgIdx: this.currentBgIdx, mask: this.maskOpacity,
+                   blur: this.blurVal, iconShape: this.iconShape, iconOpacity: this.iconOpacity, iconSize: this.iconSize, iconGap: this.iconGap, openInNewTab: this.openInNewTab}
+      };
+      var blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'wetab_backup_' + new Date().toISOString().slice(0, 10) + '.json';
+      a.click();
+      this.showToast('已导出数据');
+    },
+    handleImport: function(e) {
+      var file = e.target.files[0];
+      if (!file) return;
+      var self = this;
+      var r = new FileReader();
+      r.onload = function(ev) {
+        try {
+          var d = JSON.parse(ev.target.result);
+          if (d.listShengHuo) self.listShengHuo = d.listShengHuo;
+          if (d.listBanGong) self.listBanGong = d.listBanGong;
+          if (d.note) self.noteText = d.note;
+          if (d.todo) self.todoList = d.todo;
+          if (d.dock) self.dockItems = d.dock;
+          if (d.customCategories) self.customCategories = d.customCategories;
+          if (d.customLists) self.customLists = d.customLists;
+          if (d.settings) {
+            var s = d.settings;
+            if (s.bgUrl) self.currentBgUrl = s.bgUrl;
+            if (s.mask !== undefined) self.maskOpacity = s.mask;
+            if (s.blur !== undefined) self.blurVal = s.blur;
+            if (s.iconShape) self.iconShape = s.iconShape;
+            if (s.iconOpacity) self.iconOpacity = s.iconOpacity;
+          if (s.iconSize) self.iconSize = s.iconSize;
+          if (s.iconGap) self.iconGap = s.iconGap;
+          }
+          self.addFavicons(self.listShengHuo);
+          self.addFavicons(self.listBanGong);
+          self.saveSites(); self.saveNote(); self.saveTodo(); self.saveDock(); self.saveSettings();
+          self.showToast('导入成功');
+        } catch (err) {
+          self.showToast('导入失败：' + err.message);
         }
+      };
+      r.readAsText(file);
+      e.target.value = '';
     },
-        // ========== 云端同步（GitHub 仓库作为免费后端）==========
-        // isInit=true 表示首次初始化（本地无数据时才用云端覆盖）
-        syncFromCloud: function(cb, isInit) {
-            var self = this;
-            fetch('https://raw.githubusercontent.com/guangtoulao/cwys/main/data.json?t=' + Date.now())
-                .then(function(r) { if(!r.ok) throw new Error('no cloud data'); return r.json(); })
-                .then(function(d) {
-                    if(isInit) {
-                        // 首次初始化：本地无数据时才用云端
-                        if(!localStorage.getItem('listShengHuo') && d.listShengHuo) {
-                            self.listShengHuo = d.listShengHuo; localStorage.setItem('listShengHuo', JSON.stringify(d.listShengHuo));
-                        }
-                        if(!localStorage.getItem('listBanGong') && d.listBanGong) {
-                            self.listBanGong = d.listBanGong; localStorage.setItem('listBanGong', JSON.stringify(d.listBanGong));
-                        }
-                    } else {
-                        // 手动点击"立即同步"：云端数据覆盖本地
-                        if(d.listShengHuo) { self.listShengHuo = d.listShengHuo; localStorage.setItem('listShengHuo', JSON.stringify(d.listShengHuo)); }
-                        if(d.listBanGong) { self.listBanGong = d.listBanGong; localStorage.setItem('listBanGong', JSON.stringify(d.listBanGong)); }
-                        if(d.tabList) { self.tabList = d.tabList; localStorage.setItem('tabList', JSON.stringify(d.tabList)); }
-                        if(d.nav_categories) { localStorage.setItem('nav_categories', JSON.stringify(d.nav_categories)); }
-                        self.showToast('已从云端同步');
-                    }
-                })
-                .catch(function() { /* 无云端数据则跳过 */ })
-                .finally(function() { if(cb) cb(); });
-        },
-        syncToCloud: function() {
-            var token = localStorage.getItem('github_token');
-            if(!token) return;
-            var data = {
-                listShengHuo: this.listShengHuo,
-                listBanGong: this.listBanGong,
-                tabList: this.tabList,
-                nav_categories: JSON.parse(localStorage.getItem('nav_categories') || '[]')
-            };
-            var content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
-            var self = this;
-            fetch('https://api.github.com/repos/guangtoulao/cwys/contents/data.json', {
-                headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
-            }).then(function(r) { return r.json(); }).then(function(file) {
-                fetch('https://api.github.com/repos/guangtoulao/cwys/contents/data.json', {
-                    method: 'PUT',
-                    headers: { 'Authorization': 'token ' + token, 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: 'sync data', content: content, sha: file.sha })
-                });
-            }).catch(function() {
-                fetch('https://api.github.com/repos/guangtoulao/cwys/contents/data.json', {
-                    method: 'PUT',
-                    headers: { 'Authorization': 'token ' + token, 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: 'sync data', content: content })
-                });
-            });
-        },
-            mounted: function() {
-                var self = this;
-                this.loadData();
-                var t = localStorage.getItem('github_token');
-                if(t) this.githubToken = t;
-                // 先读本地 localStorage
-                var savedTab = localStorage.getItem('tabList');
-                if (savedTab) { try { var tb = JSON.parse(savedTab); if (tb.length >= 3) { this.tabList = tb; } } catch(e) {} }
-                var savedSH = localStorage.getItem('listShengHuo');
-                if (savedSH) { try { this.listShengHuo = JSON.parse(savedSH); } catch(e) {} }
-                var savedBG = localStorage.getItem('listBanGong');
-                if (savedBG) { try { this.listBanGong = JSON.parse(savedBG); } catch(e) {} }
-                this.updateTime();
-                this.timeInterval = setInterval(function() { self.updateTime(); }, 1000);
-                // 异步从云端同步（仅本地无数据时才用云端数据）
-                this.syncFromCloud(null, true);
-            },
-           });
+
+    /* ===== 云端同步 ===== */
+    syncToCloud: function() {
+      var self = this;
+      if (!this.githubToken) { this.cloudMsg = '请先填写Token'; this.cloudMsgColor = '#ff6b6b'; return; }
+      this.cloudMsg = '上传中...'; this.cloudMsgColor = '#5D6FFB';
+      var data = {listShengHuo: this.listShengHuo, listBanGong: this.listBanGong,
+                  note: this.noteText, todo: this.todoList, dock: this.dockItems,
+                  customCategories: this.customCategories, customLists: this.customLists};
+      var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(data))));
+      var apiUrl = 'https://api.github.com/repos/guangtoulao/cwys/contents/wetab_data.json';
+      fetch(apiUrl, {
+        method: 'PUT',
+        headers: {Authorization: 'token ' + this.githubToken, 'Content-Type': 'application/json'},
+        body: JSON.stringify({message: 'sync wetab data', content: b64})
+      })
+      .then(function(r) { return r.json(); })
+      .then(function() {
+        self.cloudMsg = '上传成功'; self.cloudMsgColor = '#2ecc71';
+        localStorage.setItem('github_token', self.githubToken);
+        self.showToast('已同步到云端');
+      })
+      .catch(function(e) { self.cloudMsg = '上传失败：' + e.message; self.cloudMsgColor = '#ff6b6b'; });
+    },
+    syncFromCloud: function() {
+      var self = this;
+      if (!this.githubToken) { this.cloudMsg = '请先填写Token'; this.cloudMsgColor = '#ff6b6b'; return; }
+      this.cloudMsg = '下载中...'; this.cloudMsgColor = '#5D6FFB';
+      fetch('https://api.github.com/repos/guangtoulao/cwys/contents/wetab_data.json', {
+        headers: {Authorization: 'token ' + this.githubToken}
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        var data = JSON.parse(decodeURIComponent(escape(atob(d.content))));
+        if (data.listShengHuo) self.listShengHuo = data.listShengHuo;
+        if (data.listBanGong) self.listBanGong = data.listBanGong;
+        if (data.note) self.noteText = data.note;
+        if (data.todo) self.todoList = data.todo;
+        if (data.dock) self.dockItems = data.dock;
+        if (data.customCategories) self.customCategories = data.customCategories;
+        if (data.customLists) self.customLists = data.customLists;
+        self.addFavicons(self.listShengHuo);
+        self.addFavicons(self.listBanGong);
+        self.saveSites(); self.saveNote(); self.saveTodo(); self.saveDock();
+        self.cloudMsg = '恢复成功'; self.cloudMsgColor = '#2ecc71';
+        self.showToast('已从云端恢复');
+      })
+      .catch(function(e) { self.cloudMsg = '下载失败：' + e.message; self.cloudMsgColor = '#ff6b6b'; });
+    },
+
+    /* ===== 天气 ===== */
+    loadWeather: function() {
+      var self = this;
+      fetch('https://wttr.in/?format=j1')
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        var cur = d.current_condition[0];
+        self.weatherTemp = cur.temp_C;
+        self.weatherDesc = cur.weatherDesc[0].value;
+        self.weatherCity = d.nearest_area[0].areaName[0].value;
+        var code = cur.weatherCode;
+        if (code.startsWith('113')) self.weatherIcon = '☀️';
+        else if (code.startsWith('116')) self.weatherIcon = '⛅';
+        else if (code.startsWith('119') || code.startsWith('122')) self.weatherIcon = '☁️';
+        else if (code.startsWith('143') || code.startsWith('248') || code.startsWith('260')) self.weatherIcon = '🌫️';
+        else if (code.startsWith('176') || code.startsWith('263') || code.startsWith('266') || code.startsWith('281') || code.startsWith('284') || code.startsWith('293') || code.startsWith('296') || code.startsWith('299') || code.startsWith('302') || code.startsWith('305') || code.startsWith('308')) self.weatherIcon = '🌧️';
+        else if (code.startsWith('179') || code.startsWith('182') || code.startsWith('185') || code.startsWith('227') || code.startsWith('230') || code.startsWith('320') || code.startsWith('323') || code.startsWith('326') || code.startsWith('329') || code.startsWith('332') || code.startsWith('335') || code.startsWith('338') || code.startsWith('350') || code.startsWith('353') || code.startsWith('356') || code.startsWith('359') || code.startsWith('362') || code.startsWith('365') || code.startsWith('368') || code.startsWith('371')) self.weatherIcon = '❄️';
+        else if (code.startsWith('200') || code.startsWith('386') || code.startsWith('389') || code.startsWith('392') || code.startsWith('395')) self.weatherIcon = '⛈️';
+        else self.weatherIcon = '🌤️';
+      })
+      .catch(function() {
+        self.weatherIcon = '🌤️'; self.weatherTemp = '22'; self.weatherDesc = '晴'; self.weatherCity = '本地';
+      });
+    }
+  },
+
+  mounted: function() {
+    var self = this;
+
+    /* 加载设置 */
+    this.loadSettings();
+
+    /* 加载本地存储 */
+    var sh = localStorage.getItem('listShengHuo');
+    if (sh) { try { this.listShengHuo = JSON.parse(sh); } catch (e) {} }
+    var bg = localStorage.getItem('listBanGong');
+    if (bg) { try { this.listBanGong = JSON.parse(bg); } catch (e) {} }
+    var nt = localStorage.getItem('wetab_note');
+    if (nt) this.noteText = nt;
+    var td = localStorage.getItem('wetab_todo');
+    if (td) { try { this.todoList = JSON.parse(td); } catch (e) {} }
+    var dk = localStorage.getItem('wetab_dock');
+    if (dk) { try { this.dockItems = JSON.parse(dk); } catch (e) {} }
+    var tk = localStorage.getItem('github_token');
+    if (tk) this.githubToken = tk;
+    var wv = localStorage.getItem('wetab_widgets');
+    if (wv) { try { this.widgetVisible = JSON.parse(wv); } catch (e) {} }
+    var fc = localStorage.getItem('wetab_fish');
+    if (fc) { try { this.fishCount = parseInt(fc,10)||0; } catch (e) {} }
+    var cc = localStorage.getItem('wetab_custom_categories');
+    if (cc) { try { this.customCategories = JSON.parse(cc); } catch (e) {} }
+    var cl = localStorage.getItem('wetab_custom_lists');
+    if (cl) { try { this.customLists = JSON.parse(cl); } catch (e) {} }
+
+    /* 给API分配随机颜色 */
+    var shuffled = this.apiColors.slice().sort(function() { return Math.random() - 0.5; });
+    this.apiList.forEach(function(item, i) {
+      item.lineColor = shuffled[i % shuffled.length];
+    });
+
+    /* 给所有网站添加 favicon */
+    this.addFavicons(this.listShengHuo);
+    this.addFavicons(this.listBanGong);
+    for (var key in this.customLists) { this.addFavicons(this.customLists[key]); }
+
+    /* 默认 Dock */
+    if (this.dockItems.length === 0) {
+      this.dockItems = [
+        {name:'微信', url:'https://weixin.qq.com/', imgSrc:''},
+        {name:'淘宝', url:'https://taobao.com', imgSrc:''},
+        {name:'京东', url:'https://jd.com', imgSrc:''},
+        {name:'哔哩哔哩', url:'https://bilibili.com', imgSrc:''},
+        {name:'抖音', url:'https://Douyin.com', imgSrc:''}
+      ];
+      this.addFavicons(this.dockItems);
+    }
+
+    /* 时钟更新 */
+    this.updateTime();
+    this.timeInt = setInterval(function() { self.updateTime(); }, 1000);
+
+    /* 天气加载 */
+    this.loadWeather();
+    setInterval(function() { self.loadWeather(); }, 600000);
+
+    /* ===== 原生右键菜单 ===== */
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.native-ctx-menu')) { removeCtxMenu(); }
+    }, true);
+
+    function handleCtx(e) {
+      removeCtxMenu();
+
+      /* 弹窗/设置面板内不拦截 */
+      if (e.target.closest('.modal') || e.target.closest('.settings-panel')) return;
+      /* 搜索框内不拦截 */
+      if (e.target.closest('.search-box') || e.target.closest('.eng-menu') || e.target.closest('.search-suggestions')) return;
+
+      /* 网址图标右键 */
+      var card = e.target.closest('.site-card');
+      if (card) {
+        e.preventDefault();
+        var idx = parseInt(card.dataset.idx);
+        var item = self.activeCategoryList[idx];
+        if (!item) return;
+        createCtxMenu(e.clientX, e.clientY, [
+          {label: '🔗 打开网站', action: function() { self.openUrl(item.url); }},
+          {label: '📋 复制链接', action: function() { self.copyText(item.url); }},
+          {label: '📌 添加到Dock', action: function() { self.addToDock(item); }},
+          {divider: true},
+          {label: '✏️ 编辑', action: function() { self.editSiteFromCtx(idx); }},
+          {label: '🗑 删除', danger: true, action: function() { self.deleteSiteFromCtx(idx); }}
+        ]);
+        return;
+      }
+
+      /* Dock 图标右键 */
+      var dockEl = e.target.closest('.dock-item');
+      if (dockEl) {
+        e.preventDefault();
+        var dIdx = parseInt(dockEl.dataset.idx);
+        createCtxMenu(e.clientX, e.clientY, [
+          {label: '🗑 从Dock移除', danger: true, action: function() { self.removeFromDock(dIdx); }}
+        ]);
+        return;
+      }
+
+      /* Dock 背景右键：阻止默认，不显示菜单 */
+      if (e.target.closest('.dock')) {
+        e.preventDefault();
+        return;
+      }
+
+      /* 自定义分类右键 */
+      var catBtn = e.target.closest('.sb-cat');
+      if (catBtn) {
+        var catId = catBtn.dataset.catId;
+        e.preventDefault();
+        if (catId === 'shenghuo' || catId === 'bangong') return;
+        createCtxMenu(e.clientX, e.clientY, [
+          {label: '🗑 删除分类', danger: true, action: function() { self.deleteCategory(catId); }}
+        ]);
+        return;
+      }
+
+      /* 空白区域右键（首页视图，排除侧边栏/小组件/Dock） */
+      if (self.currentView === 'home'
+          && !e.target.closest('.sidebar')
+          && !e.target.closest('.widget')
+          && !e.target.closest('.api-item')) {
+        e.preventDefault();
+        createCtxMenu(e.clientX, e.clientY, [
+          {label: '➕ 添加图标', action: function() { self.ctxAddSite(); }},
+          {label: '🧩 添加组件', action: function() { createWidgetPicker(); }},
+          {divider: true},
+          {label: '🖼️ 随机壁纸', action: function() { self.ctxRandomBg(); }},
+          {label: '💾 下载壁纸', action: function() { self.ctxDownloadBg(); }},
+          {divider: true},
+          {label: '✏️ 编辑主页', action: function() { self.ctxEditHome(); }},
+          {label: '🔍 搜索图标', action: function() { self.ctxSearchIcon(); }}
+        ]);
+        return;
+      }
+
+      /* 侧边栏区域：阻止默认浏览器菜单，不显示自定义菜单 */
+      if (e.target.closest('.sidebar')) {
+        e.preventDefault();
+        return;
+      }
+    }
+
+    /* 同时用 addEventListener + capture 和 oncontextmenu 双重注册，兼容所有浏览器 */
+    document.addEventListener('contextmenu', handleCtx, true);
+    document.addEventListener('contextmenu', handleCtx, false);
+  }
+});
 </script>
 </body>
 </html>
