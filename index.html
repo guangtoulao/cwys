@@ -623,18 +623,7 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
       </div>
     </div>
     <div class="set-section">
-      <div class="set-label">云端同步 (GitHub)</div>
-      <div class="form-row" style="position:relative">
-        <input class="form-input" :type="showToken?'text':'password'" v-model="githubToken" placeholder="填写GitHub Token（自动保存）" style="flex:1;padding-right:36px">
-        <span style="position:absolute;right:10px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:14px;color:rgba(255,255,255,.4)" @click="showToken=!showToken">{{showToken?'🙈':'👁'}}</span>
-      </div>
-      <div style="font-size:11px;color:rgba(255,255,255,.3);margin:-6px 0 10px 4px">
-        同步到仓库：{{githubRepo||'未设置'}}
-        <span style="color:rgba(93,111,251,.7);cursor:pointer;margin-left:6px" @click="showRepoEdit=!showRepoEdit">{{showRepoEdit?'收起':'修改'}}</span>
-      </div>
-      <div class="form-row" v-if="showRepoEdit">
-        <input class="form-input" v-model="githubRepo" placeholder="用户名/仓库名（如 guangtoulao/cwys）" style="flex:1;font-size:12px">
-      </div>
+      <div class="set-label">云端同步</div>
       <div class="form-row">
         <button class="form-btn btn-primary" @click="syncToCloud" style="flex:1">☁️ 上传到云端</button>
         <button class="form-btn btn-ghost" @click="syncFromCloud" style="flex:1">☁️ 从云端恢复</button>
