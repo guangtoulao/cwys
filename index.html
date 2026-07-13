@@ -35,10 +35,10 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
 .main-wrap{position:relative;z-index:10;margin-left:72px;padding:40px 40px 160px;min-height:100vh}
 
 /* ===== 大时钟 ===== */
-.clock-area{text-align:center;margin-bottom:28px;user-select:none;display:flex;align-items:center;justify-content:center;gap:20px}
-.clock-time{font-size:20px;font-weight:300;color:rgba(255,255,255,.85);text-shadow:0 1px 8px rgba(0,0,0,.2);letter-spacing:1px;line-height:1.4}
-.clock-inline-date{font-size:16px;color:rgba(255,255,255,.55);text-shadow:0 1px 8px rgba(0,0,0,.2)}
-.clock-lucky{font-size:16px;color:rgba(255,255,255,.55);text-shadow:0 1px 8px rgba(0,0,0,.2)}
+.clock-area{text-align:center;margin-bottom:28px;user-select:none;display:flex;align-items:center;justify-content:center;gap:24px}
+.clock-time{font-size:72px;font-weight:200;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,.3);letter-spacing:2px;line-height:1.1}
+.clock-inline-date{font-size:16px;color:rgba(255,255,255,.6);text-shadow:0 1px 8px rgba(0,0,0,.2);align-self:flex-end;margin-bottom:12px}
+.clock-lucky{font-size:16px;color:rgba(255,215,0,.8);text-shadow:0 1px 8px rgba(0,0,0,.2);align-self:flex-end;margin-bottom:12px}
 
 /* ===== 搜索框 ===== */
 .search-area{display:flex;flex-direction:column;align-items:center;margin-bottom:32px}
@@ -213,13 +213,22 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
 .slider-row .val{font-size:13px;color:rgba(255,255,255,.4);min-width:40px;text-align:right}
 
 /* ===== API 接口区 ===== */
-.api-title{font-size:18px;color:rgba(255,255,255,.7);text-align:center;margin-bottom:24px}
-.api-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:720px;margin:0 auto}
-.api-item{background:rgba(255,255,255,.03);padding:18px 20px;cursor:pointer;transition:all .3s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border-bottom:3px solid var(--api-color,#5D6FFB);position:relative;overflow:hidden}
-.api-item::before{content:'';position:absolute;inset:0;background:var(--api-color,#5D6FFB);opacity:0;transition:opacity .3s;z-index:0}
-.api-item:hover::before{opacity:0.15}
-.api-item>*{position:relative;z-index:1}
-.api-line{display:none}
+.api-title{
+    font-size:20px;margin:35px 0 32px;
+    color:#3967FF;text-align:left;max-width:1000px;margin-left:auto;margin-right:auto;
+}
+.api-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    max-width:1000px;margin:0 auto;column-gap:24px;row-gap:20px;
+}
+.api-item{
+    text-align:center;cursor:pointer;padding:30px 0;
+    border-radius:6px;transition:all 0.25s ease;position:relative;font-size:22px;
+    background:rgba(255,255,255,0.04);
+}
+.api-item:hover{background:var(--randColor);transform:scale(1.02);}
+.api-item:hover .api-line{display:none;}
+.api-line{position:absolute;left:0;bottom:0;width:100%;height:2px;}
 .api-name{font-size:15px;color:rgba(255,255,255,.85);font-weight:400;transition:color .3s}
 .api-item:hover .api-name{color:#fff}
 .api-url{display:none}
@@ -241,18 +250,15 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
 
 /* ===== 响应式 ===== */
 @media(max-width:768px){
+  .clock-time{font-size:48px}
+  .clock-inline-date,.clock-lucky{font-size:12px;bottom:auto;margin-bottom:8px}
   .clock-area{flex-direction:column;gap:4px}
-  .clock-inline-date,.clock-lucky{font-size:13px}
   .search-wrapper{width:95vw}
   .widgets-grid{grid-template-columns:1fr 1fr;padding:0 8px}
   .main-wrap{padding:30px 12px 160px}
   .modal{width:95vw;padding:20px}
   .settings-panel{width:100vw}
   .api-grid{grid-template-columns:1fr}
-  .dock{gap:4px;padding:8px 10px}
-  .dock-item,.dock-add{width:42px;height:42px}
-  .dock-item img,.dock-item .site-icon-text{width:26px;height:26px}
-  .dock-time{padding:0 8px}
 }
 </style>
 </head>
@@ -279,6 +285,9 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
     </button>
     <button class="sb-add" @click="openCategoryMgr">+</button>
     <div class="sb-spacer"></div>
+    <button class="sb-btn" @click="openSiteMgr">
+      <span style="position:relative">➕<span class="sb-tooltip">添加网址</span></span>
+    </button>
     <button class="sb-btn" :class="{active:showSettings}" @click="showSettings=!showSettings">
       <span style="position:relative">⚙️<span class="sb-tooltip">设置</span></span>
     </button>
@@ -442,41 +451,22 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
       </div>
     </div>
 
-    <!-- 影视接口视图 -->
-    <div v-if="currentView==='api'">
-      <div class="api-title">●●● 影视接口（点击复制）</div>
-      <div class="api-grid">
-        <div class="api-item" v-for="(item,idx) in apiList" :key="'api'+idx" @click="copyText(item.url)" :style="{'--api-color':item.lineColor}">
-          <span class="api-line" :style="{background:item.lineColor}"></span>
-          <div>
-            <div class="api-name">{{item.name}}</div>
-            <div class="api-url">{{item.url}}</div>
-          </div>
-        </div>
-      </div>
+   <!-- 影视接口视图 -->
+<div v-if="currentView==='api'">
+  <div class="api-title">
+    <span style="color:#3498db;">●</span><span style="color:#e84393;">●</span><span style="color:#f39c12;">●</span>
+    <span style="margin-left:6px;font-size:26px;color:#fff;">接口（点击复制）</span>
+  </div>
+  <div class="api-grid">
+    <div class="api-item" v-for="(item,idx) in apiList" :key="'api'+idx" @click="copyText(item.url)" @mouseover="setRandomColor($event,item)" style="color:#fff;">
+      {{item.name}}
+      <span class="api-line" :style="{background:item.lineColor}"></span>
     </div>
   </div>
+</div>
+</div>
 
   <!-- Mac Dock -->
-  <div class="dock" v-if="currentView==='home'">
-    <div class="dock-item" v-for="(item,idx) in dockItems" :key="'dock'+idx"
-         :data-idx="idx"
-         :style="{background:item.imgSrc||(!item.iconId&&item.faviconUrl&&!item.iconErr)?'rgba(255,255,255,.1)':'transparent'}"
-         @click="openUrl(item.url)">
-      <img v-if="item.imgSrc" :src="item.imgSrc" @error="onIconErr(item)">
-      <svg v-else-if="item.iconId" class="icon" aria-hidden="true"><use :xlink:href="'#'+item.iconId"></use></svg>
-      <img v-else-if="item.faviconUrl&&!item.iconErr" :src="item.faviconUrl" @error="onIconErr(item)">
-      <span v-else class="site-icon-text" :style="{background:getIconColor(idx)}">{{item.name.charAt(0)}}</span>
-      <span class="dock-tooltip">{{item.name}}</span>
-    </div>
-    <div class="dock-add" @click="openSiteMgr">+</div>
-    <div class="dock-divider"></div>
-    <div class="dock-time">
-      <span class="t">{{currentTime}}</span>
-      <span class="d">{{currentDateShort}}</span>
-    </div>
-  </div>
-
   <!-- 网址管理弹窗 -->
   <div class="overlay" v-if="showSiteMgr" @click="closeSiteMgr"></div>
   <div class="modal" v-if="showSiteMgr" @click.stop>
@@ -604,15 +594,6 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
       </div>
     </div>
     <div class="set-section">
-      <div class="set-label">组件管理</div>
-      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px">
-        <label v-for="w in widgetOptions" :key="w.key" style="display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:8px;cursor:pointer;font-size:13px;color:rgba(255,255,255,.7);background:rgba(255,255,255,.04);transition:all .2s" :style="{background:widgetVisible[w.key]?'rgba(93,111,251,.15)':'rgba(255,255,255,.04)'}">
-          <input type="checkbox" v-model="widgetVisible[w.key]" @change="saveWidgetVisible" style="width:16px;height:16px;cursor:pointer">
-          <span>{{w.icon}} {{w.name}}</span>
-        </label>
-      </div>
-    </div>
-    <div class="set-section">
       <div class="set-label">背景设置</div>
       <div class="bg-grid">
         <div class="bg-thumb" v-for="(bg,bi) in bgLibrary" :key="bi" :class="{active:currentBgIdx===bi}"
@@ -644,8 +625,15 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
     <div class="set-section">
       <div class="set-label">云端同步 (GitHub)</div>
       <div class="form-row" style="position:relative">
-        <input class="form-input" :type="showToken?'text':'password'" v-model="githubToken" placeholder="填写一次后自动保存，无需重复输入" style="flex:1;padding-right:36px">
+        <input class="form-input" :type="showToken?'text':'password'" v-model="githubToken" placeholder="填写GitHub Token（自动保存）" style="flex:1;padding-right:36px">
         <span style="position:absolute;right:10px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:14px;color:rgba(255,255,255,.4)" @click="showToken=!showToken">{{showToken?'🙈':'👁'}}</span>
+      </div>
+      <div style="font-size:11px;color:rgba(255,255,255,.3);margin:-6px 0 10px 4px">
+        同步到仓库：{{githubRepo||'未设置'}}
+        <span style="color:rgba(93,111,251,.7);cursor:pointer;margin-left:6px" @click="showRepoEdit=!showRepoEdit">{{showRepoEdit?'收起':'修改'}}</span>
+      </div>
+      <div class="form-row" v-if="showRepoEdit">
+        <input class="form-input" v-model="githubRepo" placeholder="用户名/仓库名（如 guangtoulao/cwys）" style="flex:1;font-size:12px">
       </div>
       <div class="form-row">
         <button class="form-btn btn-primary" @click="syncToCloud" style="flex:1">☁️ 上传到云端</button>
@@ -729,16 +717,17 @@ var defaultListBanGong = [
       {"url":"https://www.rjshe.com/","iconId":"icon-b-anzhuo","imgSrc":"","name":"软件社"}
     ];
 var defaultApiList = [
-    {name:'君子兰',url:'https://cwys.qzz.io/api.json'},
-    {name:'饭太硬',url:'http://fty.xxooo.cf/tv'},
-    {name:'潇洒',url:'https://qist.wyfc.qzz.io/xiaosa/api.json'},
-    {name:'摸鱼',url:'http://我不是.摸鱼儿.top'},
-    {name:'王二小',url:'http://tvbox.王二小放牛娃.top'},
-    {name:'天神',url:'https://gitee.com/cpu-iy/iy/raw/master/%E5%A4%A9%E7%A5%9EIY.json'},
-    {name:'点播',url:'https://xpb.mhfs.eu.org/ZJ/XPB/api.json'},
-    {name:'多多',url:'https://www.iyouhun.com/tv/duo'},
-    {name:'嗷呜',url:'https://9763.kstore.space/aowu.json'}
+    {name:'君子兰',url:'https://cwys.qzz.io/api.json',lineColor:'#e84393'},
+    {name:'饭太硬',url:'http://fty.xxooo.cf/tv',lineColor:'#3498db'},
+    {name:'潇洒',url:'https://qist.wyfc.qzz.io/xiaosa/api.json',lineColor:'#f39c12'},
+    {name:'摸鱼',url:'http://我不是.摸鱼儿.top',lineColor:'#f1c40f'},
+    {name:'王二小',url:'http://tvbox.王二小放牛娃.top',lineColor:'#cddc39'},
+    {name:'天神',url:'https://gitee.com/cpu-iy/iy/raw/master/%E5%A4%A9%E7%A5%9EIY.json',lineColor:'#2ecc71'},
+    {name:'点播',url:'https://xpb.mhfs.eu.org/ZJ/XPB/api.json',lineColor:'#9932CC'},
+    {name:'多多',url:'https://www.iyouhun.com/tv/duo',lineColor:'#e84393'},
+    {name:'嗷呜',url:'https://9763.kstore.space/aowu.json',lineColor:'#ffbc23'}
   ];
+var randomColorArr=['#e84393','#3498db','#f39c12','#f1c40f','#cddc39','#2ecc71','#9932CC','#ffbc23','#9b59b6','#1abc9c','#e74c3c','#3498db'];
 var defaultBgLibrary = [
     {name:'梦幻海边',url:'https://picsum.photos/seed/ocean1/1920/1080'},
     {name:'璀璨星河',url:'https://picsum.photos/seed/galaxy2/1920/1080'},
@@ -915,16 +904,9 @@ var vm = new Vue({
     dockItems: [],
     githubToken: '',
     showToken: false,
+    showRepoEdit: false,
+    githubRepo: 'guangtoulao/cwys',
     widgetVisible: {note:true, todo:true, countdown:true, calendar:true, weather:true, hot:true, fish:true},
-    widgetOptions: [
-      {key:'note', icon:'📝', name:'笔记'},
-      {key:'todo', icon:'✅', name:'待办'},
-      {key:'countdown', icon:'⏰', name:'倒计时'},
-      {key:'calendar', icon:'📅', name:'日历'},
-      {key:'weather', icon:'🌤', name:'天气'},
-      {key:'hot', icon:'🔥', name:'热搜'},
-      {key:'fish', icon:'🥁', name:'电子木鱼'}
-    ],
     cloudMsg: '',
     cloudMsgColor: '#aaa',
     currentTime: '',
@@ -1078,7 +1060,8 @@ var vm = new Vue({
       this.currentDateFull = d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日 星期' + days[d.getDay()];
       this.currentDateShort = (d.getMonth() + 1) + '/' + d.getDate();
       this.currentLunar = this.getLunar(d);
-      this.dailyBlessing = '今日大吉';
+      var blessings = ['今日大吉','万事如意','心想事成','诸事顺遂','好运连连','平安喜乐','吉祥如意','福星高照'];
+      this.dailyBlessing = blessings[d.getDate() % blessings.length];
     },
     getLunar: function(d) {
       var months = ['正', '二', '三', '四', '五', '六', '七', '八', '九', '十', '冬', '腊'];
@@ -1148,9 +1131,6 @@ var vm = new Vue({
     },
 
     /* ===== 设置 ===== */
-    saveWidgetVisible: function() {
-      localStorage.setItem('wetab_widgets', JSON.stringify(this.widgetVisible));
-    },
     saveSettings: function() {
       var s = {
         bgUrl: this.currentBgUrl, bgIdx: this.currentBgIdx, mask: this.maskOpacity, blur: this.blurVal,
@@ -1384,6 +1364,10 @@ var vm = new Vue({
         this.fallbackCopy(text);
       }
     },
+    setRandomColor: function(e,item){
+      var color = randomColorArr[Math.floor(Math.random()*randomColorArr.length)];
+      e.currentTarget.style.setProperty('--randColor',color);
+    },
     fallbackCopy: function(text) {
       var ta = document.createElement('textarea');
       ta.value = text;
@@ -1453,21 +1437,38 @@ var vm = new Vue({
     syncToCloud: function() {
       var self = this;
       if (!this.githubToken) { this.cloudMsg = '请先填写Token'; this.cloudMsgColor = '#ff6b6b'; return; }
+      if (!this.githubRepo) { this.cloudMsg = '请填写仓库名'; this.cloudMsgColor = '#ff6b6b'; return; }
       this.cloudMsg = '上传中...'; this.cloudMsgColor = '#5D6FFB';
+      localStorage.setItem('github_token', this.githubToken);
+      localStorage.setItem('github_repo', this.githubRepo);
       var data = {listShengHuo: this.listShengHuo, listBanGong: this.listBanGong,
                   note: this.noteText, todo: this.todoList, dock: this.dockItems,
                   customCategories: this.customCategories, customLists: this.customLists};
       var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(data))));
-      var apiUrl = 'https://api.github.com/repos/guangtoulao/cwys/contents/wetab_data.json';
-      fetch(apiUrl, {
-        method: 'PUT',
-        headers: {Authorization: 'token ' + this.githubToken, 'Content-Type': 'application/json'},
-        body: JSON.stringify({message: 'sync wetab data', content: b64})
+      var apiBase = 'https://api.github.com/repos/' + this.githubRepo + '/contents/wetab_data.json';
+      /* 先获取文件SHA（如果存在），再PUT更新 */
+      fetch(apiBase, {
+        headers: {Authorization: 'token ' + this.githubToken}
       })
-      .then(function(r) { return r.json(); })
+      .then(function(r) { 
+        if (r.status === 404) return null;
+        return r.json(); 
+      })
+      .then(function(existing) {
+        var body = {message: 'sync wetab data', content: b64};
+        if (existing && existing.sha) body.sha = existing.sha;
+        return fetch(apiBase, {
+          method: 'PUT',
+          headers: {Authorization: 'token ' + self.githubToken, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github.v3+json'},
+          body: JSON.stringify(body)
+        });
+      })
+      .then(function(r) { 
+        if (!r.ok) throw new Error('HTTP ' + r.status); 
+        return r.json(); 
+      })
       .then(function() {
         self.cloudMsg = '上传成功'; self.cloudMsgColor = '#2ecc71';
-        localStorage.setItem('github_token', self.githubToken);
         self.showToast('已同步到云端');
       })
       .catch(function(e) { self.cloudMsg = '上传失败：' + e.message; self.cloudMsgColor = '#ff6b6b'; });
@@ -1475,11 +1476,16 @@ var vm = new Vue({
     syncFromCloud: function() {
       var self = this;
       if (!this.githubToken) { this.cloudMsg = '请先填写Token'; this.cloudMsgColor = '#ff6b6b'; return; }
+      if (!this.githubRepo) { this.cloudMsg = '请填写仓库名'; this.cloudMsgColor = '#ff6b6b'; return; }
       this.cloudMsg = '下载中...'; this.cloudMsgColor = '#5D6FFB';
-      fetch('https://api.github.com/repos/guangtoulao/cwys/contents/wetab_data.json', {
-        headers: {Authorization: 'token ' + this.githubToken}
+      var apiBase = 'https://api.github.com/repos/' + this.githubRepo + '/contents/wetab_data.json';
+      fetch(apiBase, {
+        headers: {Authorization: 'token ' + this.githubToken, 'Accept': 'application/vnd.github.v3+json'}
       })
-      .then(function(r) { return r.json(); })
+      .then(function(r) { 
+        if (!r.ok) throw new Error('HTTP ' + r.status); 
+        return r.json(); 
+      })
       .then(function(d) {
         var data = JSON.parse(decodeURIComponent(escape(atob(d.content))));
         if (data.listShengHuo) self.listShengHuo = data.listShengHuo;
@@ -1543,6 +1549,8 @@ var vm = new Vue({
     if (dk) { try { this.dockItems = JSON.parse(dk); } catch (e) {} }
     var tk = localStorage.getItem('github_token');
     if (tk) this.githubToken = tk;
+    var gr = localStorage.getItem('github_repo');
+    if (gr) this.githubRepo = gr;
     var wv = localStorage.getItem('wetab_widgets');
     if (wv) { try { this.widgetVisible = JSON.parse(wv); } catch (e) {} }
     var fc = localStorage.getItem('wetab_fish');
