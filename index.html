@@ -1201,13 +1201,64 @@ var vm = new Vue({
       this.fishFloatY = e.clientY - rect.top - 20;
       this.fishFloating = true;
       setTimeout(function() { self.fishFloating = false; }, 800);
-      /* 声音 - 360 AItab 真实木鱼音效 */
+      /* 声音 - mp3 优先，失败时用 Web Audio 合成木鱼 */
       if (this.fishSoundEnabled) {
+        var self2 = this;
+        var mp3Ok = false;
+        /* 方案1：播放 mp3 */
         try {
-          var audio = new Audio('muyu.mp3');
-          audio.volume = 1.0;
-          audio.play().catch(function(){});
-        } catch(err) {}
+          if (!this._fishAudio) {
+            this._fishAudio = new Audio('muyu.mp3');
+            this._fishAudio.volume = 0.8;
+          }
+          this._fishAudio.currentTime = 0;
+          var playPromise = this._fishAudio.play();
+          if (playPromise) {
+            playPromise.then(function() { mp3Ok = true; }).catch(function(){});
+          } else {
+            mp3Ok = true;
+          }
+        } catch(e) {}
+        /* 方案2：Web Audio 兜底（mp3 未成功时） */
+        setTimeout(function() {
+          if (mp3Ok) return;
+          try {
+            if (!self2._fishAudioCtx) {
+              self2._fishAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            var ctx = self2._fishAudioCtx;
+            if (ctx.state === 'suspended') ctx.resume();
+            var t = ctx.currentTime;
+            var master = ctx.createGain();
+            master.gain.setValueAtTime(0.7, t);
+            master.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
+            master.connect(ctx.destination);
+            /* 主体：低频sine，快速降到更低 */
+            var osc1 = ctx.createOscillator();
+            var g1 = ctx.createGain();
+            osc1.type = 'sine';
+            osc1.frequency.setValueAtTime(140, t);
+            osc1.frequency.exponentialRampToValueAtTime(25, t + 0.1);
+            g1.gain.setValueAtTime(1, t);
+            g1.gain.exponentialRampToValueAtTime(0.001, t + 0.1);
+            osc1.connect(g1);
+            g1.connect(master);
+            /* 泛音：稍高频，更短 */
+            var osc2 = ctx.createOscillator();
+            var g2 = ctx.createGain();
+            osc2.type = 'triangle';
+            osc2.frequency.setValueAtTime(260, t);
+            osc2.frequency.exponentialRampToValueAtTime(50, t + 0.05);
+            g2.gain.setValueAtTime(0.3, t);
+            g2.gain.exponentialRampToValueAtTime(0.001, t + 0.05);
+            osc2.connect(g2);
+            g2.connect(master);
+            osc1.start(t);
+            osc2.start(t);
+            osc1.stop(t + 0.12);
+            osc2.stop(t + 0.12);
+          } catch(err) {}
+        }, 80);
       }
     },
     addTodo: function() {
@@ -1825,6 +1876,11 @@ var vm = new Vue({
 
   mounted: function() {
     var self = this;
+
+    /* 预加载木鱼音效 */
+    this._fishAudio = new Audio('muyu.mp3');
+    this._fishAudio.volume = 0.8;
+    this._fishAudio.preload = 'auto';
 
     /* 加载设置 */
     this.loadSettings();
