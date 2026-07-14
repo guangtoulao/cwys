@@ -1201,64 +1201,77 @@ var vm = new Vue({
       this.fishFloatY = e.clientY - rect.top - 20;
       this.fishFloating = true;
       setTimeout(function() { self.fishFloating = false; }, 800);
-      /* 声音 - mp3 优先，失败时用 Web Audio 合成木鱼 */
+      /* 声音 - 内联base64 mp3 + Web Audio兜底 */
       if (this.fishSoundEnabled) {
         var self2 = this;
         var mp3Ok = false;
-        /* 方案1：播放 mp3 */
         try {
           if (!this._fishAudio) {
-            this._fishAudio = new Audio('muyu.mp3');
+            this._fishAudio = new Audio('data:audio/mpeg;base64,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');
             this._fishAudio.volume = 0.8;
           }
           this._fishAudio.currentTime = 0;
-          var playPromise = this._fishAudio.play();
-          if (playPromise) {
-            playPromise.then(function() { mp3Ok = true; }).catch(function(){});
-          } else {
-            mp3Ok = true;
-          }
+          this._fishAudio.play().then(function() { mp3Ok = true; }).catch(function(){});
         } catch(e) {}
-        /* 方案2：Web Audio 兜底（mp3 未成功时） */
-        setTimeout(function() {
-          if (mp3Ok) return;
-          try {
-            if (!self2._fishAudioCtx) {
-              self2._fishAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            var ctx = self2._fishAudioCtx;
-            if (ctx.state === 'suspended') ctx.resume();
-            var t = ctx.currentTime;
-            var master = ctx.createGain();
-            master.gain.setValueAtTime(0.7, t);
-            master.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
-            master.connect(ctx.destination);
-            /* 主体：低频sine，快速降到更低 */
-            var osc1 = ctx.createOscillator();
-            var g1 = ctx.createGain();
-            osc1.type = 'sine';
-            osc1.frequency.setValueAtTime(140, t);
-            osc1.frequency.exponentialRampToValueAtTime(25, t + 0.1);
-            g1.gain.setValueAtTime(1, t);
-            g1.gain.exponentialRampToValueAtTime(0.001, t + 0.1);
-            osc1.connect(g1);
-            g1.connect(master);
-            /* 泛音：稍高频，更短 */
-            var osc2 = ctx.createOscillator();
-            var g2 = ctx.createGain();
-            osc2.type = 'triangle';
-            osc2.frequency.setValueAtTime(260, t);
-            osc2.frequency.exponentialRampToValueAtTime(50, t + 0.05);
-            g2.gain.setValueAtTime(0.3, t);
-            g2.gain.exponentialRampToValueAtTime(0.001, t + 0.05);
-            osc2.connect(g2);
-            g2.connect(master);
-            osc1.start(t);
-            osc2.start(t);
-            osc1.stop(t + 0.12);
-            osc2.stop(t + 0.12);
-          } catch(err) {}
-        }, 80);
+        /* Web Audio 兜底 */
+        if (!mp3Ok) {
+          setTimeout(function() {
+            if (mp3Ok) return;
+            try {
+              if (!self2._fishAudioCtx) {
+                self2._fishAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+              }
+              var ctx = self2._fishAudioCtx;
+              if (ctx.state === 'suspended') ctx.resume();
+              var t = ctx.currentTime;
+              var master = ctx.createGain();
+              master.gain.setValueAtTime(0.8, t);
+              master.connect(ctx.destination);
+              var bufLen = Math.floor(ctx.sampleRate * 0.015);
+              var noiseBuf = ctx.createBuffer(1, bufLen, ctx.sampleRate);
+              var noiseData = noiseBuf.getChannelData(0);
+              for (var i = 0; i < bufLen; i++) {
+                noiseData[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufLen * 0.15));
+              }
+              var noiseSrc = ctx.createBufferSource();
+              noiseSrc.buffer = noiseBuf;
+              var noiseGain = ctx.createGain();
+              noiseGain.gain.setValueAtTime(0.25, t);
+              noiseGain.gain.exponentialRampToValueAtTime(0.001, t + 0.015);
+              var noiseFilter = ctx.createBiquadFilter();
+              noiseFilter.type = 'bandpass';
+              noiseFilter.frequency.value = 800;
+              noiseFilter.Q.value = 1.5;
+              noiseSrc.connect(noiseFilter);
+              noiseFilter.connect(noiseGain);
+              noiseGain.connect(master);
+              noiseSrc.start(t);
+              var osc = ctx.createOscillator();
+              var oscGain = ctx.createGain();
+              osc.type = 'sine';
+              osc.frequency.setValueAtTime(160, t);
+              osc.frequency.exponentialRampToValueAtTime(35, t + 0.12);
+              oscGain.gain.setValueAtTime(0.6, t);
+              oscGain.gain.setValueAtTime(0.6, t + 0.005);
+              oscGain.gain.exponentialRampToValueAtTime(0.001, t + 0.15);
+              osc.connect(oscGain);
+              oscGain.connect(master);
+              osc.start(t);
+              osc.stop(t + 0.15);
+              var osc2 = ctx.createOscillator();
+              var osc2Gain = ctx.createGain();
+              osc2.type = 'sine';
+              osc2.frequency.setValueAtTime(520, t);
+              osc2.frequency.exponentialRampToValueAtTime(200, t + 0.06);
+              osc2Gain.gain.setValueAtTime(0.12, t);
+              osc2Gain.gain.exponentialRampToValueAtTime(0.001, t + 0.06);
+              osc2.connect(osc2Gain);
+              osc2Gain.connect(master);
+              osc2.start(t);
+              osc2.stop(t + 0.06);
+            } catch(err) {}
+          }, 50);
+        }
       }
     },
     addTodo: function() {
@@ -1877,11 +1890,6 @@ var vm = new Vue({
   mounted: function() {
     var self = this;
 
-    /* 预加载木鱼音效 */
-    this._fishAudio = new Audio('muyu.mp3');
-    this._fishAudio.volume = 0.8;
-    this._fishAudio.preload = 'auto';
-
     /* 加载设置 */
     this.loadSettings();
 
@@ -1926,7 +1934,7 @@ var vm = new Vue({
         {name:'微信', url:'https://weixin.qq.com/', imgSrc:''},
         {name:'淘宝', url:'https://taobao.com', imgSrc:''},
         {name:'京东', url:'https://jd.com', imgSrc:''},
-        {name:'哔哩', url:'https://bilibili.com', imgSrc:''},
+        {name:'哔哩哔哩', url:'https://bilibili.com', imgSrc:''},
         {name:'抖音', url:'https://Douyin.com', imgSrc:''}
       ];
       this.addFavicons(this.dockItems);
