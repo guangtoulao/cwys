@@ -1476,15 +1476,25 @@ var vm = new Vue({
       if (!wrapper) return;
       var rect = wrapper.getBoundingClientRect();
       if (e.clientY < rect.top || e.clientY > rect.bottom) return;
+      /* 判断页面滚动位置 */
+      var scrollTop = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      var scrollH = document.documentElement.scrollHeight || document.body.scrollHeight || 0;
+      var clientH = document.documentElement.clientHeight || window.innerHeight || 0;
+      var atBottom = scrollTop + clientH >= scrollH - 5;
+      var atTop = scrollTop <= 5;
       var self = this;
       var now = Date.now();
+      var delta = e.deltaY;
+      if (e.deltaMode === 1) delta *= 40;
+      if (e.deltaMode === 2) delta *= 800;
+      /* 向下滚动：没到底部时让内容正常滚动，到底了才切换 */
+      if (delta > 0 && !atBottom) return;
+      /* 向上滚动：没到顶部时让内容正常滚动，到顶了才切换 */
+      if (delta < 0 && !atTop) return;
       /* 灵敏度越低，冷却越长（50~950ms） */
       var cooldown = Math.max(50, 950 - self.scrollFlipSensitivity * 7);
       /* 灵敏度越低，需要的累积滚动量越大（5~205） */
       var threshold = Math.max(5, 205 - self.scrollFlipSensitivity * 1.5);
-      var delta = e.deltaY;
-      if (e.deltaMode === 1) delta *= 40;
-      if (e.deltaMode === 2) delta *= 800;
       self.catFlipAccum += delta;
       if (self._catAccumTimer) clearTimeout(self._catAccumTimer);
       /* 灵敏度越低，累积窗口越长 */
@@ -1502,12 +1512,14 @@ var vm = new Vue({
           if (next.isApi) { self.currentView = 'api'; }
           else { self.currentView = 'home'; self.activeTab = next.id; }
           self._lastCatFlipTime = now;
+          window.scrollTo(0, 0);
         } else if (self.catFlipAccum < 0 && idx > 0) {
           e.preventDefault();
           var prev = sections[idx - 1];
           if (prev.isApi) { self.currentView = 'api'; }
           else { self.currentView = 'home'; self.activeTab = prev.id; }
           self._lastCatFlipTime = now;
+          window.scrollTo(0, 0);
         }
         self.catFlipAccum = 0;
       }
