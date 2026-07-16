@@ -5,15 +5,16 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>君子兰主页</title>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
-<script src="https://at.alicdn.com/t/c/font_5198821_zvqmcojflkj.js" crossorigin></script>
-<script src="https://at.alicdn.com/t/c/font_5204659_yfw5wsjyg2.js" crossorigin></script>
+<script defer src="https://at.alicdn.com/t/c/font_5198821_zvqmcojflkj.js" crossorigin></script>
+<script defer src="https://at.alicdn.com/t/c/font_5204659_yfw5wsjyg2.js" crossorigin></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 [v-cloak]{display:none}
 body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;overflow-x:hidden;overflow-y:auto;min-height:100vh;background:#111}
 
 /* ===== 背景层 ===== */
-.bg-layer{position:fixed;top:0;left:0;width:100%;height:100%;background-size:cover;background-position:center;z-index:0;transition:background-image .6s ease}
+.bg-layer{position:fixed;top:0;left:0;width:100%;height:100%;background-size:cover;background-position:center;z-index:0;transition:opacity .5s ease}
+.bg-loading{opacity:0}
 .bg-mask{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;transition:background .3s}
 
 /* ===== 左侧导航栏 ===== */
@@ -419,7 +420,7 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
 </svg>
 <div id="app" v-cloak @click="globalClick">
   <!-- 背景 -->
-  <div class="bg-layer" :style="{backgroundImage:'url('+currentBgUrl+')',filter:blurVal?'blur('+blurVal+'px)':''}"></div>
+  <div class="bg-layer" :style="{backgroundImage:bgLoaded?'url('+currentBgUrl+')':'none',background:bgLoaded?'':'linear-gradient(135deg,#0c0c1d,#1a1a2e)'}" :class="{'bg-loading':!bgLoaded}"></div>
   <div class="bg-mask" :style="{background:'rgba(0,0,0,'+(maskOpacity/100)+')'}"></div>
 
   <!-- 左侧导航 -->
@@ -626,9 +627,9 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
              @dragover.prevent="onDragOver($event,idx)" @drop.prevent="onDrop($event,idx)"
              :class="{dragging:dragIdx===idx}">
           <div class="site-icon-wrap" :style="{borderRadius:iconShape==='circle'?'50%':iconShape==='square'?'10px':'22%',opacity:iconOpacity/100,background:item.imgSrc||(!item.iconId&&item.faviconUrl&&!item.iconErr)?'rgba(255,255,255,.12)':'transparent'}">
-            <img v-if="item.imgSrc" :src="item.imgSrc" @error="onIconErr(item)">
+            <img v-if="item.imgSrc" :src="item.imgSrc" loading="lazy" @error="onIconErr(item)">
             <svg v-else-if="item.iconId" class="icon" aria-hidden="true"><use :xlink:href="'#'+item.iconId"></use></svg>
-            <img v-else-if="item.faviconUrl&&!item.iconErr" :src="item.faviconUrl" @error="onIconErr(item)">
+            <img v-else-if="item.faviconUrl&&!item.iconErr" :src="item.faviconUrl" loading="lazy" @error="onIconErr(item)">
             <span v-else class="site-icon-text" :style="{background:getIconColor(idx)}">{{item.name.charAt(0)}}</span>
           </div>
           <div class="site-name">{{item.name}}</div>
@@ -698,9 +699,9 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
         <div class="edit-btn" @click.stop="editSiteInMgr(idx)">✏</div>
         <div class="del-btn" @click="deleteFromMgr(idx)">✕</div>
         <div class="site-icon-wrap">
-          <img v-if="item.imgSrc" :src="item.imgSrc">
+          <img v-if="item.imgSrc" :src="item.imgSrc" loading="lazy">
           <svg v-else-if="item.iconId" class="icon" aria-hidden="true"><use :xlink:href="'#'+item.iconId"></use></svg>
-          <img v-else-if="item.faviconUrl&&!item.iconErr" :src="item.faviconUrl" @error="onIconErr(item)">
+          <img v-else-if="item.faviconUrl&&!item.iconErr" :src="item.faviconUrl" loading="lazy" @error="onIconErr(item)">
           <span v-else class="site-icon-text" :style="{background:getIconColor(idx)}">{{item.name.charAt(0)}}</span>
         </div>
         <div class="site-name">{{item.name}}</div>
@@ -1120,6 +1121,7 @@ var vm = new Vue({
     calMonth: new Date().getMonth(),
     currentBgUrl: 'https://picsum.photos/seed/ocean1/1920/1080',
     currentBgIdx: 0,
+    bgLoaded: false,
     customBgUrl: '',
     maskOpacity: 25,
     blurVal: 0,
@@ -1348,8 +1350,7 @@ var vm = new Vue({
       try {
         var u = new URL(url);
         var host = u.hostname;
-        /* 多源备选：优先favicon.im，备用Google/DDG */
-        return 'https://favicon.im/' + host + '?defaulticon=lightpng&size=128';
+        return 'https://' + host + '/favicon.ico';
       } catch (e) { return ''; }
     },
     getFaviconSources: function(host) {
@@ -1574,11 +1575,23 @@ var vm = new Vue({
     },
 
     /* ===== 背景 ===== */
-    selectBg: function(idx) { this.currentBgIdx = idx; this.currentBgUrl = this.bgLibrary[idx].url; this.saveSettings(); },
+    preloadBg: function(url) {
+      var self = this;
+      var img = new Image();
+      img.onload = function() { self.bgLoaded = true; };
+      img.onerror = function() { self.bgLoaded = true; };
+      img.src = url;
+    },
+    selectBg: function(idx) {
+      this.bgLoaded = false;
+      this.currentBgIdx = idx; this.currentBgUrl = this.bgLibrary[idx].url; this.preloadBg(this.currentBgUrl); this.saveSettings();
+    },
     applyCustomBg: function() {
       if (!this.customBgUrl.trim()) return;
+      this.bgLoaded = false;
       this.currentBgUrl = this.customBgUrl.trim();
       this.currentBgIdx = -1;
+      this.preloadBg(this.currentBgUrl);
       this.saveSettings();
     },
 
@@ -2272,10 +2285,15 @@ var vm = new Vue({
       item.lineColor = shuffled[i % shuffled.length];
     });
 
-    /* 给所有网站添加 favicon */
-    this.addFavicons(this.listShengHuo);
-    this.addFavicons(this.listBanGong);
-    for (var key in this.customLists) { this.addFavicons(this.customLists[key]); }
+    /* 预加载背景图 */
+    this.preloadBg(this.currentBgUrl);
+
+    /* 延迟加载 favicon（不阻塞首屏） */
+    setTimeout(function() {
+      self.addFavicons(self.listShengHuo);
+      self.addFavicons(self.listBanGong);
+      for (var key in self.customLists) { self.addFavicons(self.customLists[key]); }
+    }, 300);
 
     /* 默认 Dock */
     if (this.dockItems.length === 0) {
