@@ -13,7 +13,10 @@
 body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;overflow-x:hidden;overflow-y:auto;min-height:100vh;background:#111}
 
 /* ===== 背景层 ===== */
-.bg-layer{position:fixed;top:0;left:0;width:100%;height:100%;background-size:cover;background-position:center;z-index:0;transition:opacity .5s ease}
+.bg-placeholder{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;background:linear-gradient(135deg,#0c0c1d,#1a1a2e)}
+.bg-layer{position:fixed;top:0;left:0;width:100%;height:100%;background-size:cover;background-position:center;z-index:0;transition:opacity .8s ease}
+.bg-video{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;transition:opacity .8s ease;background:#0a1628}
+#oceanCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0}
 .bg-loading{opacity:0}
 .bg-mask{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;transition:background .3s}
 
@@ -230,7 +233,7 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
 .set-section{margin-bottom:28px}
 .set-label{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px}
 .bg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
-.bg-thumb{width:100%;height:70px;border-radius:12px;cursor:pointer;transition:all .2s;border:2px solid transparent;background-size:cover;background-position:center}
+.bg-thumb{width:100%;height:70px;border-radius:12px;cursor:pointer;transition:all .2s;border:2px solid transparent;background-size:cover;background-position:center;position:relative;overflow:hidden}
 .bg-thumb.active{border-color:rgba(93,111,251,.8);box-shadow:0 0 12px rgba(93,111,251,.3)}
 .bg-thumb:hover{transform:scale(1.05)}
 .slider-row{display:flex;align-items:center;gap:12px;margin-bottom:14px}
@@ -420,7 +423,10 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
 </svg>
 <div id="app" v-cloak @click="globalClick">
   <!-- 背景 -->
-  <div class="bg-layer" :style="{backgroundImage:bgLoaded?'url('+currentBgUrl+')':'none',background:bgLoaded?'':'linear-gradient(135deg,#0c0c1d,#1a1a2e)'}" :class="{'bg-loading':!bgLoaded}"></div>
+  <div class="bg-placeholder"></div>
+  <video v-if="currentBgType==='video'" class="bg-video" :class="{'bg-loading':!bgLoaded}" autoplay muted loop playsinline @canplay="onVideoCanPlay" @error="onVideoError" :src="currentBgUrl" :key="currentBgUrl"></video>
+  <canvas v-else-if="currentBgType==='ocean'" id="oceanCanvas"></canvas>
+  <div v-else class="bg-layer" :class="{'bg-loading':!bgLoaded}" :style="{backgroundImage:bgLoaded?'url('+currentBgUrl+')':'none'}" :key="currentBgUrl"></div>
   <div class="bg-mask" :style="{background:'rgba(0,0,0,'+(maskOpacity/100)+')'}"></div>
 
   <!-- 左侧导航 -->
@@ -845,7 +851,14 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
       <div class="set-label">背景设置</div>
       <div class="bg-grid">
         <div class="bg-thumb" v-for="(bg,bi) in bgLibrary" :key="bi" :class="{active:currentBgIdx===bi}"
-             :style="{backgroundImage:'url('+bg.url+')'}" @click="selectBg(bi)" :title="bg.name"></div>
+             @click="selectBg(bi)" :title="bg.name">
+          <video v-if="bg.type==='video'" :src="bg.url" muted preload="metadata" style="width:100%;height:100%;object-fit:cover;border-radius:10px;pointer-events:none"></video>
+          <div v-else-if="bg.type==='ocean'" style="width:100%;height:100%;border-radius:10px;background:linear-gradient(180deg,#1a2a4a 45%,#0a3d62 100%);display:flex;align-items:center;justify-content:center">
+            <span style="color:rgba(255,255,255,.5);font-size:12px">动态大海</span>
+          </div>
+          <div v-else :style="{width:'100%',height:'100%',borderRadius:'10px',backgroundImage:'url('+bg.url+')',backgroundSize:'cover',backgroundPosition:'center'}"></div>
+          <div v-if="bg.type==='video'||bg.type==='ocean'" style="position:absolute;bottom:4px;right:4px;font-size:9px;color:rgba(255,255,255,.7);background:rgba(0,0,0,.5);padding:1px 5px;border-radius:4px">动</div>
+        </div>
       </div>
       <div class="form-row">
         <input class="form-input" v-model="customBgUrl" placeholder="自定义背景图URL">
@@ -966,15 +979,14 @@ var defaultApiList = [
   ];
 var randomColorArr=['#e84393','#3498db','#f39c12','#f1c40f','#cddc39','#2ecc71','#9932CC','#ffbc23','#9b59b6','#1abc9c','#e74c3c','#3498db'];
 var defaultBgLibrary = [
-    {name:'梦幻海边',url:'https://picsum.photos/seed/ocean1/1920/1080'},
-    {name:'璀璨星河',url:'https://picsum.photos/seed/galaxy2/1920/1080'},
-    {name:'碧海沙滩',url:'https://picsum.photos/seed/beach3/1920/1080'},
-    {name:'星空夜景',url:'https://picsum.photos/seed/night4/1920/1080'},
-    {name:'水墨山峰',url:'https://picsum.photos/seed/mountain5/1920/1080'},
-    {name:'梦幻绿洲',url:'https://picsum.photos/seed/green6/1920/1080'},
-    {name:'多彩闪电',url:'https://picsum.photos/seed/light7/1920/1080'},
-    {name:'湖边静桥',url:'https://picsum.photos/seed/lake8/1920/1080'},
-    {name:'紫红相间',url:'https://picsum.photos/seed/purple9/1920/1080'}
+    {name:'大海',url:'https://guangtoulao.github.io/cwys/video/dahai.mp4',type:'video'},
+    {name:'海浪',url:'https://raw.giteeusercontent.com/lan-x-j/lan/raw/master/icon/dahai.mp4'},
+    {name:'山湖倒影',url:'https://5501.kstore.space/icon/niu.mp4',type:'image'},
+    {name:'海岸风光',url:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80',type:'image'},
+    {name:'湖泊山峦',url:'https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=1920&q=80',type:'image'},
+    {name:'清晨河流',url:'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1920&q=80',type:'image'},
+    {name:'雪山湖泊',url:'https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=1920&q=80',type:'image'},
+    {name:'森林小径',url:'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&q=80',type:'image'}
 ];
 var iconColors=['#5D6FFB','#e84393','#00b894','#fdcb6e','#6c5ce7','#00cec9','#e17055','#0984e3','#d63031','#2d3436','#a29bfe','#fd79a8','#6ab04c','#fab1a0','#74b9ff','#ff7675'];
 var defaultHotList=[
@@ -1119,9 +1131,11 @@ var vm = new Vue({
     countdownDate: '2027-01-01',
     calYear: new Date().getFullYear(),
     calMonth: new Date().getMonth(),
-    currentBgUrl: 'https://picsum.photos/seed/ocean1/1920/1080',
+    currentBgUrl: 'video/dahai.mp4',
     currentBgIdx: 0,
+    currentBgType: 'video',
     bgLoaded: false,
+    oceanRAF: null,
     customBgUrl: '',
     maskOpacity: 25,
     blurVal: 0,
@@ -1403,7 +1417,7 @@ var vm = new Vue({
         this.openUrl(url);
         return;
       }
-      window.open(eng.url + encodeURIComponent(text), '_self');
+      window.open(eng.url + encodeURIComponent(text), '_blank');
     },
     onSearchInput: function() {
       var self = this;
@@ -1578,27 +1592,178 @@ var vm = new Vue({
     preloadBg: function(url) {
       var self = this;
       var img = new Image();
+      img.crossOrigin = 'anonymous';
       img.onload = function() { self.bgLoaded = true; };
       img.onerror = function() { self.bgLoaded = true; };
       img.src = url;
     },
     selectBg: function(idx) {
+      this.stopOcean();
       this.bgLoaded = false;
-      this.currentBgIdx = idx; this.currentBgUrl = this.bgLibrary[idx].url; this.preloadBg(this.currentBgUrl); this.saveSettings();
+      this.currentBgIdx = idx;
+      var bg = this.bgLibrary[idx];
+      if (bg.type === 'ocean') {
+        this.currentBgType = 'ocean';
+        this.currentBgUrl = '';
+        this.bgLoaded = true;
+        this.$nextTick(this.startOcean);
+      } else if (bg.type === 'video') {
+        this.currentBgType = 'video';
+        this.currentBgUrl = bg.url;
+        var self = this;
+        setTimeout(function(){ if(!self.bgLoaded) self.bgLoaded = true; }, 3000);
+      } else {
+        this.currentBgType = 'image';
+        this.currentBgUrl = bg.url;
+        this.preloadBg(bg.url);
+      }
+      this.saveSettings();
     },
     applyCustomBg: function() {
       if (!this.customBgUrl.trim()) return;
+      this.stopOcean();
       this.bgLoaded = false;
       this.currentBgUrl = this.customBgUrl.trim();
       this.currentBgIdx = -1;
+      this.currentBgType = 'image';
       this.preloadBg(this.currentBgUrl);
       this.saveSettings();
+    },
+    /* ===== Canvas 大海动画 ===== */
+    startOcean: function() {
+      var canvas = document.getElementById('oceanCanvas');
+      if (!canvas) return;
+      var ctx = canvas.getContext('2d');
+      var w, h, t = 0;
+      function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+      resize();
+      window.addEventListener('resize', resize);
+      var self = this;
+      function draw() {
+        t += 0.008;
+        /* 天空渐变 */
+        var skyH = h * 0.45;
+        var sky = ctx.createLinearGradient(0, 0, 0, skyH);
+        sky.addColorStop(0, '#1a2a4a');
+        sky.addColorStop(0.3, '#2d4a7a');
+        sky.addColorStop(0.6, '#4a7a9b');
+        sky.addColorStop(0.85, '#7ab0c4');
+        sky.addColorStop(1, '#b8d8e0');
+        ctx.fillStyle = sky;
+        ctx.fillRect(0, 0, w, skyH);
+        /* 太阳 */
+        var sunX = w * 0.7, sunY = skyH * 0.5;
+        var sunGlow = ctx.createRadialGradient(sunX, sunY, 0, sunX, sunY, 120);
+        sunGlow.addColorStop(0, 'rgba(255,220,150,0.6)');
+        sunGlow.addColorStop(0.3, 'rgba(255,200,100,0.2)');
+        sunGlow.addColorStop(1, 'rgba(255,180,80,0)');
+        ctx.fillStyle = sunGlow;
+        ctx.fillRect(sunX - 120, sunY - 120, 240, 240);
+        ctx.beginPath();
+        ctx.arc(sunX, sunY, 25, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffe4b0';
+        ctx.fill();
+        /* 云 */
+        for (var ci = 0; ci < 3; ci++) {
+          var cx = ((t * 15 * (ci + 1) + ci * 300) % (w + 400)) - 200;
+          var cy = 40 + ci * 45;
+          ctx.globalAlpha = 0.15 + ci * 0.05;
+          ctx.fillStyle = '#fff';
+          for (var cj = 0; cj < 4; cj++) {
+            ctx.beginPath();
+            ctx.ellipse(cx + cj * 30 - 45, cy + Math.sin(t + ci + cj) * 3, 40 + cj * 5, 15, 0, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+        ctx.globalAlpha = 1;
+        /* 海洋 */
+        var seaTop = skyH;
+        var sea = ctx.createLinearGradient(0, seaTop, 0, h);
+        sea.addColorStop(0, '#1a6b8a');
+        sea.addColorStop(0.3, '#0e5a7a');
+        sea.addColorStop(0.7, '#0a3d62');
+        sea.addColorStop(1, '#062a4a');
+        ctx.fillStyle = sea;
+        ctx.fillRect(0, seaTop, w, h - seaTop);
+        /* 海浪（多层叠加） */
+        for (var layer = 0; layer < 5; layer++) {
+          var baseY = seaTop + layer * ((h - seaTop) / 5);
+          var amp = 8 - layer;
+          var freq = 0.003 + layer * 0.001;
+          var speed = t * (1.5 - layer * 0.2);
+          var alpha = 0.12 - layer * 0.02;
+          ctx.beginPath();
+          ctx.moveTo(0, h);
+          for (var x = 0; x <= w; x += 3) {
+            var y = baseY
+              + Math.sin(x * freq + speed) * amp
+              + Math.sin(x * freq * 2.3 + speed * 1.3) * (amp * 0.5)
+              + Math.sin(x * freq * 0.7 + speed * 0.7 + layer) * (amp * 0.8);
+            ctx.lineTo(x, y);
+          }
+          ctx.lineTo(w, h);
+          ctx.closePath();
+          ctx.fillStyle = 'rgba(255,255,255,' + alpha + ')';
+          ctx.fill();
+        }
+        /* 浪花（白色泡沫线） */
+        for (var fi = 0; fi < 3; fi++) {
+          var foamY = seaTop + 2 + fi * 15;
+          ctx.beginPath();
+          for (var fx = 0; fx <= w; fx += 2) {
+            var fy = foamY
+              + Math.sin(fx * 0.008 + t * 2 + fi * 2) * 4
+              + Math.sin(fx * 0.02 + t * 3 + fi) * 2;
+            if (fx === 0) ctx.moveTo(fx, fy); else ctx.lineTo(fx, fy);
+          }
+          ctx.strokeStyle = 'rgba(255,255,255,' + (0.2 - fi * 0.05) + ')';
+          ctx.lineWidth = 1.5 - fi * 0.3;
+          ctx.stroke();
+        }
+        /* 水面光斑反射 */
+        for (var ri = 0; ri < 15; ri++) {
+          var rx = (Math.sin(t * 0.5 + ri * 1.7) * 0.5 + 0.5) * w;
+          var ry = seaTop + 10 + ri * ((h - seaTop - 10) / 15);
+          var rSize = 2 + Math.sin(t * 2 + ri * 3) * 1.5;
+          ctx.beginPath();
+          ctx.ellipse(rx, ry, Math.max(1, rSize * 4), Math.max(1, rSize), Math.sin(t + ri) * 0.3, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(255,255,220,' + (0.06 + Math.sin(t * 2.5 + ri * 2) * 0.04) + ')';
+          ctx.fill();
+        }
+        /* 太阳倒影 */
+        var refGrad = ctx.createLinearGradient(sunX, seaTop, sunX, seaTop + 150);
+        refGrad.addColorStop(0, 'rgba(255,220,150,0.15)');
+        refGrad.addColorStop(1, 'rgba(255,200,100,0)');
+        ctx.fillStyle = refGrad;
+        for (var rj = 0; rj < 8; rj++) {
+          var ry2 = seaTop + 5 + rj * 18;
+          var rw = 30 + Math.sin(t * 2 + rj) * 15;
+          ctx.fillRect(sunX - rw + Math.sin(t + rj * 0.5) * 10, ry2, rw * 2, 8);
+        }
+        self.oceanRAF = requestAnimationFrame(draw);
+      }
+      draw();
+    },
+    stopOcean: function() {
+      if (this.oceanRAF) { cancelAnimationFrame(this.oceanRAF); this.oceanRAF = null; }
+    },
+    onVideoCanPlay: function(e) {
+      this.bgLoaded = true;
+      var v = e.target;
+      if (v.paused) v.play().catch(function(){});
+    },
+    onVideoError: function(e) {
+      /* ERR_ABORTED(1) 是DOM重建导致的，忽略 */
+      if (e.target.error && e.target.error.code === 1) return;
+      this.bgLoaded = true;
+      this.showToast('背景加载失败');
     },
 
     /* ===== 设置 ===== */
     saveSettings: function() {
       var s = {
-        bgUrl: this.currentBgUrl, bgIdx: this.currentBgIdx, mask: this.maskOpacity, blur: this.blurVal,
+        bgUrl: this.currentBgUrl, bgIdx: this.currentBgIdx, bgType: this.currentBgType,
+        mask: this.maskOpacity, blur: this.blurVal,
         iconShape: this.iconShape, iconOpacity: this.iconOpacity, iconSize: this.iconSize, iconGap: this.iconGap, openInNewTab: this.openInNewTab,
         scrollFlipEnabled: this.scrollFlipEnabled, scrollFlipSensitivity: this.scrollFlipSensitivity
       };
@@ -1609,8 +1774,22 @@ var vm = new Vue({
       if (s) {
         try {
           var j = JSON.parse(s);
-          if (j.bgUrl) this.currentBgUrl = j.bgUrl;
-          if (j.bgIdx !== undefined) this.currentBgIdx = j.bgIdx;
+          if (j.bgIdx !== undefined && j.bgIdx >= 0 && j.bgIdx < this.bgLibrary.length) {
+            var bg = this.bgLibrary[j.bgIdx];
+            if (bg.type === 'ocean') {
+              this.currentBgType = 'ocean'; this.currentBgUrl = ''; this.bgLoaded = true;
+            } else if (bg.type === 'video') {
+              this.currentBgType = 'video'; this.currentBgUrl = bg.url;
+              var self = this;
+              setTimeout(function(){ if(!self.bgLoaded) self.bgLoaded = true; }, 3000);
+            } else {
+              this.currentBgUrl = bg.url; this.currentBgType = 'image';
+            }
+            this.currentBgIdx = j.bgIdx;
+          } else if (j.bgUrl && j.bgUrl.indexOf('mixkit') === -1) {
+            this.currentBgUrl = j.bgUrl.replace('https://raw.githubusercontent.com/','https://cdn.jsdelivr.net/gh/').replace('/main/','@main/');
+            this.currentBgType = (j.bgType === 'video' || j.bgUrl.match(/\.mp4|\.webm|\.mov/i)) ? 'video' : 'image';
+          }
           if (j.mask !== undefined) this.maskOpacity = j.mask;
           if (j.blur !== undefined) this.blurVal = j.blur;
           if (j.iconShape) this.iconShape = j.iconShape;
@@ -1822,10 +2001,8 @@ var vm = new Vue({
       this.editForm = {name:'', url:'', imgSrc:'', iconUrl:'', iconId:'', idx:-1};
     },
     ctxRandomBg: function() {
-      var seed = 'rand' + Date.now();
-      this.currentBgUrl = 'https://picsum.photos/seed/' + seed + '/1920/1080';
-      this.currentBgIdx = -1;
-      this.saveSettings();
+      var idx = Math.floor(Math.random() * this.bgLibrary.length);
+      this.selectBg(idx);
       this.showToast('已更换壁纸');
     },
     ctxDownloadBg: function() {
@@ -2003,7 +2180,8 @@ var vm = new Vue({
         listShengHuo: this.listShengHuo, listBanGong: this.listBanGong, apiList: this.apiList,
         note: this.noteText, todo: this.todoList, dock: this.dockItems,
         customCategories: this.customCategories, customLists: this.customLists,
-        settings: {bgUrl: this.currentBgUrl, bgIdx: this.currentBgIdx, mask: this.maskOpacity,
+        settings: {bgUrl: this.currentBgUrl, bgIdx: this.currentBgIdx, bgType: this.currentBgType,
+                   mask: this.maskOpacity,
                    blur: this.blurVal, iconShape: this.iconShape, iconOpacity: this.iconOpacity, iconSize: this.iconSize, iconGap: this.iconGap, openInNewTab: this.openInNewTab}
       };
       var blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
@@ -2030,7 +2208,20 @@ var vm = new Vue({
           if (d.customLists) self.customLists = d.customLists;
           if (d.settings) {
             var s = d.settings;
-            if (s.bgUrl) self.currentBgUrl = s.bgUrl;
+            if (s.bgIdx !== undefined && s.bgIdx >= 0 && s.bgIdx < self.bgLibrary.length) {
+              self.currentBgIdx = s.bgIdx;
+              var bg = self.bgLibrary[s.bgIdx];
+              if (bg.type === 'ocean') {
+                self.currentBgType = 'ocean'; self.currentBgUrl = ''; self.bgLoaded = true;
+              } else if (bg.type === 'video') {
+                self.currentBgType = 'video'; self.currentBgUrl = bg.url;
+              } else {
+                self.currentBgUrl = bg.url; self.currentBgType = 'image';
+              }
+            } else if (s.bgUrl) {
+              self.currentBgUrl = s.bgUrl;
+              self.currentBgType = (s.bgType === 'video' || s.bgUrl.match(/\.mp4|\.webm|\.mov/i)) ? 'video' : 'image';
+            }
             if (s.mask !== undefined) self.maskOpacity = s.mask;
             if (s.blur !== undefined) self.blurVal = s.blur;
             if (s.iconShape) self.iconShape = s.iconShape;
@@ -2285,8 +2476,13 @@ var vm = new Vue({
       item.lineColor = shuffled[i % shuffled.length];
     });
 
-    /* 预加载背景图 */
-    this.preloadBg(this.currentBgUrl);
+    /* 启动背景 */
+    if (this.currentBgType === 'ocean') {
+      this.$nextTick(this.startOcean);
+    } else if (this.currentBgType === 'image' && this.currentBgUrl) {
+      this.preloadBg(this.currentBgUrl);
+    }
+    /* video类型由浏览器自动加载 */
 
     /* 延迟加载 favicon（不阻塞首屏） */
     setTimeout(function() {
