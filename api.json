@@ -15,19 +15,6 @@
       "ext": "https://file.icve.com.cn/file_doc/803/892/C8FDF0894D61FA21A937E21135CB9125.aowu"
     },
     {
-    "name": "影视天堂",
-    "key": "movie_site",
-    "type": 3,
-    "api": "csp_Apple",
-    "searchable": 1,
-    "quickSearch": 1,
-    "changeable": 0,
-    "ext": {
-        "sites": ["https://example.com/api.php"],
-        "filters": ""
-    }
-},
-    {
       "key": "tenteng",
       "name": "腾讯视频",
       "type": 3,
