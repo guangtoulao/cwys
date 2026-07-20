@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -16,6 +17,7 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
 /* ===== 背景层 ===== */
 .bg-placeholder{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;background:linear-gradient(135deg,#0c0c1d,#1a1a2e)}
 .bg-layer{position:fixed;top:0;left:0;width:100%;height:100%;background-size:cover;background-position:center;z-index:0;transition:opacity .8s ease}
+.bg-video{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;transition:opacity .8s ease;background:#0a1628}
 .bg-loading{opacity:0}
 .bg-mask{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;transition:background .3s}
 
@@ -425,7 +427,9 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
 <div id="app" v-cloak @click="globalClick">
   <!-- 背景 -->
   <div class="bg-placeholder"></div>
-  <div class="bg-layer" :class="{'bg-loading':!bgLoaded}" :style="{backgroundImage:bgLoaded?'url('+currentBgUrl+')':'none'}" :key="currentBgUrl"></div>
+  <video v-if="currentBgType==='video'" class="bg-video" :class="{'bg-loading':!bgLoaded}" autoplay muted loop playsinline @canplay="bgLoaded=true;var v=$event.target;if(v.paused)v.play().catch(function(){});" @error="if($event.target.error&&$event.target.error.code!==1){bgLoaded=true;showToast('背景加载失败')}" :src="currentBgUrl" :key="currentBgUrl"></video>
+  <div v-else-if="currentBgType==='css'" class="bg-layer" :style="{background:bgLibrary[currentBgIdx]?bgLibrary[currentBgIdx].bg:''}" :key="currentBgIdx"></div>
+  <div v-else class="bg-layer" :class="{'bg-loading':!bgLoaded}" :style="{backgroundImage:bgLoaded?'url('+currentBgUrl+')':'none'}" :key="currentBgUrl"></div>
   <div class="bg-mask" :style="{background:'rgba(0,0,0,'+(maskOpacity/100)+')'}"></div>
 
   <!-- 左侧导航 -->
@@ -851,7 +855,8 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
       <div class="bg-grid">
         <div class="bg-thumb" v-for="(bg,bi) in bgLibrary" :key="bi" :class="{active:currentBgIdx===bi}"
              @click="selectBg(bi)" :title="bg.name"
-             :style="{backgroundImage:'url('+bg.url+')'}">
+             :style="bg.type==='css'?{background:bg.bg}:{backgroundImage:'url('+bg.url+')'}">
+          <span v-if="bg.type==='video'" style="position:absolute;bottom:4px;right:4px;font-size:9px;color:rgba(255,255,255,.7);background:rgba(0,0,0,.5);padding:1px 5px;border-radius:4px">动</span>
         </div>
       </div>
       <div class="form-row">
@@ -902,7 +907,7 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
 
 <script>
 /* ===== 数据版本（每次更新默认数据时递增） ===== */
-var DATA_VERSION = '1.2';
+var DATA_VERSION = '1.3';
 
 /* ===== 原始数据（不可修改） ===== */
 var defaultListShengHuo = [
@@ -985,15 +990,30 @@ var defaultApiList = [
   ];
 var randomColorArr=['#e84393','#3498db','#f39c12','#f1c40f','#cddc39','#2ecc71','#9932CC','#ffbc23','#9b59b6','#1abc9c','#e74c3c','#3498db'];
 var defaultBgLibrary = [
-    {name:'海岸风光',url:'https://picsum.photos/seed/coast1/1920/1080',type:'image'},
-    {name:'湖泊山峦',url:'https://picsum.photos/seed/lake2/1920/1080',type:'image'},
-    {name:'清晨河流',url:'https://picsum.photos/seed/river3/1920/1080',type:'image'},
-    {name:'雪山湖泊',url:'https://picsum.photos/seed/snow4/1920/1080',type:'image'},
-    {name:'森林小径',url:'https://picsum.photos/seed/forest5/1920/1080',type:'image'},
-    {name:'日落海滩',url:'https://picsum.photos/seed/sunset6/1920/1080',type:'image'},
-    {name:'星空银河',url:'https://picsum.photos/seed/galaxy7/1920/1080',type:'image'},
-    {name:'城市夜景',url:'https://picsum.photos/seed/city8/1920/1080',type:'image'},
-    {name:'樱花盛开',url:'https://picsum.photos/seed/cherry9/1920/1080',type:'image'}
+    /* 静态壁纸（CSS渐变，零加载） */
+    {name:'暮色海岸',bg:'linear-gradient(135deg,#0f2027 0%,#203a43 30%,#2c5364 100%)',type:'css'},
+    {name:'极光森林',bg:'linear-gradient(135deg,#0b3d0b 0%,#1a5c2a 30%,#2d8659 60%,#1a3a2a 100%)',type:'css'},
+    {name:'日落山峦',bg:'linear-gradient(135deg,#2c1810 0%,#8b4513 25%,#cd853f 50%,#ff8c00 75%,#4a1a2e 100%)',type:'css'},
+    {name:'深海星空',bg:'linear-gradient(135deg,#0a0a2e 0%,#1a1a4e 30%,#0d3b66 60%,#0a0a2e 100%)',type:'css'},
+    {name:'樱花粉黛',bg:'linear-gradient(135deg,#4a2040 0%,#8b4060 30%,#d4a0b0 60%,#f0c8d8 100%)',type:'css'},
+    {name:'冰川蓝调',bg:'linear-gradient(135deg,#1a2a4a 0%,#2c4a6a 30%,#4a7a9b 60%,#a0c4d8 100%)',type:'css'},
+    {name:'暗夜紫金',bg:'linear-gradient(135deg,#1a0a2e 0%,#2d1b4e 30%,#4a2a6e 50%,#c9a84c 80%,#1a0a2e 100%)',type:'css'},
+    /* 动态壁纸（替换video/下的mp4文件即可） */
+    {name:'大海',url:'video/dahai.mp4',type:'video'},
+    {name:'草地',url:'video/cao.mp4',type:'video'},
+    {name:'草原',url:'video/caoyuan.mp4',type:'video'},
+    {name:'发电',url:'video/fadian.mp4',type:'video'},
+    {name:'花海',url:'video/hua.mp4',type:'video'},
+    {name:'乡村',url:'video/niu.mp4',type:'video'},
+    {name:'日出',url:'video/richu.mp4',type:'video'},
+    {name:'山峦',url:'video/san2.mp4',type:'video'},
+    {name:'山峰',url:'video/sandong.mp4',type:'video'},
+    {name:'山梁',url:'video/sansu.mp4',type:'video'},
+    {name:'森林',url:'video/shu.mp4',type:'video'},
+    {name:'游泳',url:'video/youyong.mp4',type:'video'},
+    {name:'云海',url:'video/yun.mp4',type:'video'},
+    {name:'云山',url:'video/yunsan.mp4',type:'video'},
+    {name:'海浪',url:'video/haisui.mp4',type:'video'}
 ];
 var iconColors=['#5D6FFB','#e84393','#00b894','#fdcb6e','#6c5ce7','#00cec9','#e17055','#0984e3','#d63031','#2d3436','#a29bfe','#fd79a8','#6ab04c','#fab1a0','#74b9ff','#ff7675'];
 var defaultHotList=[
@@ -1138,9 +1158,9 @@ var vm = new Vue({
     countdownDate: '2027-01-01',
     calYear: new Date().getFullYear(),
     calMonth: new Date().getMonth(),
-    currentBgUrl: defaultBgLibrary[0].url,
-    currentBgIdx: 0,
-    currentBgType: 'image',
+    currentBgUrl: '',
+    currentBgIdx: 2,
+    currentBgType: 'css',
     bgLoaded: false,
     customBgUrl: '',
     maskOpacity: 25,
@@ -1607,9 +1627,20 @@ var vm = new Vue({
       this.bgLoaded = false;
       this.currentBgIdx = idx;
       var bg = this.bgLibrary[idx];
-      this.currentBgType = 'image';
-      this.currentBgUrl = bg.url;
-      this.preloadBg(bg.url);
+      if (bg.type === 'video') {
+        this.currentBgType = 'video';
+        this.currentBgUrl = bg.url;
+        var self = this;
+        setTimeout(function(){ if(!self.bgLoaded) self.bgLoaded = true; }, 5000);
+      } else if (bg.type === 'css') {
+        this.currentBgType = 'css';
+        this.currentBgUrl = '';
+        this.bgLoaded = true;
+      } else {
+        this.currentBgType = 'image';
+        this.currentBgUrl = bg.url;
+        this.preloadBg(bg.url);
+      }
       this.saveSettings();
     },
     applyCustomBg: function() {
@@ -1639,12 +1670,18 @@ var vm = new Vue({
         try {
           var j = JSON.parse(s);
           if (j.bgIdx !== undefined && j.bgIdx >= 0 && j.bgIdx < this.bgLibrary.length) {
-            this.currentBgUrl = this.bgLibrary[j.bgIdx].url;
-            this.currentBgType = 'image';
+            var bg = this.bgLibrary[j.bgIdx];
             this.currentBgIdx = j.bgIdx;
-          } else if (j.bgUrl && j.bgUrl.indexOf('mixkit') === -1 && !j.bgUrl.match(/\.mp4|\.webm|\.mov/i)) {
+            if (bg.type === 'video') {
+              this.currentBgType = 'video'; this.currentBgUrl = bg.url;
+            } else if (bg.type === 'css') {
+              this.currentBgType = 'css'; this.currentBgUrl = ''; this.bgLoaded = true;
+            } else {
+              this.currentBgUrl = bg.url; this.currentBgType = 'image';
+            }
+          } else if (j.bgUrl && j.bgUrl.indexOf('mixkit') === -1) {
             this.currentBgUrl = j.bgUrl;
-            this.currentBgType = 'image';
+            this.currentBgType = j.bgUrl.match(/\.mp4|\.webm|\.mov/i) ? 'video' : 'image';
           }
           if (j.mask !== undefined) this.maskOpacity = j.mask;
           if (j.blur !== undefined) this.blurVal = j.blur;
@@ -1738,9 +1775,10 @@ var vm = new Vue({
       this.openInNewTab = true;
       this.scrollFlipEnabled = true;
       this.scrollFlipSensitivity = 50;
-      this.currentBgIdx = 0;
-      this.currentBgUrl = defaultBgLibrary[0].url;
-      this.currentBgType = 'image';
+      this.currentBgIdx = 2;
+      this.currentBgUrl = '';
+      this.currentBgType = 'css';
+      this.bgLoaded = true;
       this.widgetVisible = {note:true, todo:true, countdown:true, calendar:true, weather:true, hot:true, fish:true};
       localStorage.setItem('wetab_data_version', DATA_VERSION);
       this.saveSites();
@@ -2106,16 +2144,16 @@ var vm = new Vue({
             if (s.bgIdx !== undefined && s.bgIdx >= 0 && s.bgIdx < self.bgLibrary.length) {
               self.currentBgIdx = s.bgIdx;
               var bg = self.bgLibrary[s.bgIdx];
-              if (bg.type === 'ocean') {
-                self.currentBgType = 'ocean'; self.currentBgUrl = ''; self.bgLoaded = true;
-              } else if (bg.type === 'video') {
+              if (bg.type === 'video') {
                 self.currentBgType = 'video'; self.currentBgUrl = bg.url;
+              } else if (bg.type === 'css') {
+                self.currentBgType = 'css'; self.currentBgUrl = ''; self.bgLoaded = true;
               } else {
                 self.currentBgUrl = bg.url; self.currentBgType = 'image';
               }
             } else if (s.bgUrl) {
               self.currentBgUrl = s.bgUrl;
-              self.currentBgType = (s.bgType === 'video' || s.bgUrl.match(/\.mp4|\.webm|\.mov/i)) ? 'video' : 'image';
+              self.currentBgType = s.bgUrl.match(/\.mp4|\.webm|\.mov/i) ? 'video' : 'image';
             }
             if (s.mask !== undefined) self.maskOpacity = s.mask;
             if (s.blur !== undefined) self.blurVal = s.blur;
@@ -2386,8 +2424,11 @@ var vm = new Vue({
     });
 
     /* 启动背景 */
-    if (this.currentBgUrl) {
+    if (this.currentBgType === 'image' && this.currentBgUrl) {
       this.preloadBg(this.currentBgUrl);
+    } else if (this.currentBgType === 'video' && this.currentBgUrl) {
+      var self = this;
+      setTimeout(function(){ if(!self.bgLoaded) self.bgLoaded = true; }, 5000);
     }
     /* video类型由浏览器自动加载 */
 
