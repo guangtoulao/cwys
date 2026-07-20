@@ -855,8 +855,9 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
       <div class="bg-grid">
         <div class="bg-thumb" v-for="(bg,bi) in bgLibrary" :key="bi" :class="{active:currentBgIdx===bi}"
              @click="selectBg(bi)" :title="bg.name"
-             :style="bg.type==='css'?{background:bg.bg}:{backgroundImage:'url('+bg.url+')'}">
+             :style="bg.type==='css'?{background:bg.bg}:(bg.type==='video'?{background:'linear-gradient(135deg,#1a2a4a,#0a3d62)'}:{backgroundImage:'url('+bg.url+')'})">
           <span v-if="bg.type==='video'" style="position:absolute;bottom:4px;right:4px;font-size:9px;color:rgba(255,255,255,.7);background:rgba(0,0,0,.5);padding:1px 5px;border-radius:4px">动</span>
+          <span v-if="bg.type==='video'" style="color:rgba(255,255,255,.5);font-size:12px">{{bg.name}}</span>
         </div>
       </div>
       <div class="form-row">
