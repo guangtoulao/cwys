@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -12,6 +13,7 @@
 *{margin:0;padding:0;box-sizing:border-box}
 [v-cloak]{display:none}
 body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;overflow-x:hidden;overflow-y:auto;min-height:100vh;background:#111}
+.icon{width:1em;height:1em;vertical-align:-0.15em;fill:currentColor;overflow:hidden}
 
 /* ===== 背景层 ===== */
 .bg-placeholder{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;background:linear-gradient(135deg,#0c0c1d,#1a1a2e)}
@@ -492,7 +494,7 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
             <div class="sug-site-item" v-for="(item,si) in searchSiteMatches" :key="'site'+si" @click="searchText='';showSug=false;openUrl(item.url)">
               <div class="sug-site-icon" :style="{background:item.imgSrc||(!item.iconId&&item.faviconUrl&&!item.iconErr)?'rgba(255,255,255,.12)':'transparent'}">
                 <img v-if="item.imgSrc" :src="item.imgSrc">
-                <svg v-else-if="item.iconId" class="icon" aria-hidden="true"><use :xlink:href="'#'+item.iconId"></use></svg>
+                <svg v-else-if="item.iconId" class="icon" aria-hidden="true"><use :href="'#'+item.iconId"></use></svg>
                 <img v-else-if="item.faviconUrl&&!item.iconErr" :src="item.faviconUrl">
                 <span v-else class="sug-site-letter" :style="{background:getIconColor(-1)}">{{item.name.charAt(0)}}</span>
               </div>
@@ -636,7 +638,7 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
              :class="{dragging:dragIdx===idx}">
           <div class="site-icon-wrap" :style="{borderRadius:iconShape==='circle'?'50%':iconShape==='square'?'10px':'22%',opacity:iconOpacity/100,background:item.imgSrc||(!item.iconId&&item.faviconUrl&&!item.iconErr)?'rgba(255,255,255,.12)':'transparent'}">
             <img v-if="item.imgSrc" :src="item.imgSrc" loading="lazy" @error="onIconErr(item)">
-            <svg v-else-if="item.iconId" class="icon" aria-hidden="true"><use :xlink:href="'#'+item.iconId"></use></svg>
+            <svg v-else-if="item.iconId" class="icon" aria-hidden="true"><use :href="'#'+item.iconId"></use></svg>
             <img v-else-if="item.faviconUrl&&!item.iconErr" :src="item.faviconUrl" loading="lazy" @error="onIconErr(item)">
             <span v-else class="site-icon-text" :style="{background:getIconColor(idx)}">{{item.name.charAt(0)}}</span>
           </div>
@@ -708,7 +710,7 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
         <div class="del-btn" @click="deleteFromMgr(idx)">✕</div>
         <div class="site-icon-wrap">
           <img v-if="item.imgSrc" :src="item.imgSrc" loading="lazy">
-          <svg v-else-if="item.iconId" class="icon" aria-hidden="true"><use :xlink:href="'#'+item.iconId"></use></svg>
+          <svg v-else-if="item.iconId" class="icon" aria-hidden="true"><use :href="'#'+item.iconId"></use></svg>
           <img v-else-if="item.faviconUrl&&!item.iconErr" :src="item.faviconUrl" loading="lazy" @error="onIconErr(item)">
           <span v-else class="site-icon-text" :style="{background:getIconColor(idx)}">{{item.name.charAt(0)}}</span>
         </div>
@@ -723,7 +725,7 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
         <div style="width:48px;height:48px;border-radius:12px;overflow:hidden;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;flex-shrink:0">
           <img v-if="editForm.imgSrc" :src="editForm.imgSrc" style="width:100%;height:100%;object-fit:contain">
-          <svg v-else-if="editForm.iconId" class="icon" aria-hidden="true" style="width:100%;height:100%"><use :xlink:href="'#'+editForm.iconId"></use></svg>
+          <svg v-else-if="editForm.iconId" class="icon" aria-hidden="true" style="width:100%;height:100%"><use :href="'#'+editForm.iconId"></use></svg>
           <span v-else style="color:rgba(255,255,255,.2);font-size:20px">📷</span>
         </div>
         <div style="display:flex;gap:6px;flex-wrap:wrap">
@@ -744,7 +746,7 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
           <div v-for="sym in iconSearchResults" :key="sym" @click="pickIconfont(sym)"
                style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:8px;cursor:pointer;transition:all .15s;background:rgba(255,255,255,.06)"
                @mouseover="$event.currentTarget.style.background='rgba(93,111,251,.2)'" @mouseout="$event.currentTarget.style.background='rgba(255,255,255,.06)'">
-            <svg class="icon" aria-hidden="true" style="width:22px;height:22px;fill:rgba(255,255,255,.8)"><use :xlink:href="'#'+sym"></use></svg>
+            <svg class="icon" aria-hidden="true" style="width:22px;height:22px;fill:rgba(255,255,255,.8)"><use :href="'#'+sym"></use></svg>
           </div>
           <div v-if="iconSearchResults.length===0" style="color:rgba(255,255,255,.3);font-size:12px;padding:8px">输入关键词搜索图标</div>
         </div>
@@ -2596,5 +2598,6 @@ var vm = new Vue({
 </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1e074feac3cb90e',t:'MTc4NDUzNDY4Ng=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b228234959e04346a40515e77a1a092e","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b228234959e04346a40515e77a1a092e","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1e6aad04aa49fcc',t:'MTc4NDU5OTgwNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b228234959e04346a40515e77a1a092e","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
