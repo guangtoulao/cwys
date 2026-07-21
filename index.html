@@ -7,7 +7,7 @@
 <title>君子兰主页</title>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
 <script defer src="https://at.alicdn.com/t/c/font_5198821_zvqmcojflkj.js" crossorigin></script>
-<script defer src="https://at.alicdn.com/t/c/font_5204659_yfw5wsjyg2.js" crossorigin></script>
+<script defer src="https://at.alicdn.com/t/c/font_5204659_cjjffpo9z8h.js" crossorigin></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 [v-cloak]{display:none}
@@ -67,8 +67,9 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
 .sug-divider{height:1px;background:rgba(255,255,255,.08);margin:4px 12px}
 .sug-site-item{padding:10px 14px;color:rgba(255,255,255,.8);cursor:pointer;border-radius:12px;font-size:14px;transition:all .15s;display:flex;align-items:center;gap:12px}
 .sug-site-item:hover{background:rgba(93,111,251,.4);color:#fff}
-.sug-site-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0}
+.sug-site-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;color:#fff}
 .sug-site-icon img{width:22px;height:22px;object-fit:contain}
+.sug-site-icon svg{width:22px;height:22px}
 .sug-site-letter{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:600;color:#fff;border-radius:8px}
 .sug-site-info{display:flex;flex-direction:column;gap:2px;overflow:hidden}
 .sug-site-name{font-size:14px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -159,7 +160,7 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
 .sites-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--icon-gap,22px);max-width:900px;margin:0 auto;padding-bottom:20px}
 .site-card{width:calc(var(--icon-size,56px) + 24px);display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;transition:all .3s;position:relative}
 .site-card:hover{transform:translateY(-4px) scale(1.05)}
-.site-icon-wrap{width:var(--icon-size,56px);height:var(--icon-size,56px);border-radius:calc(var(--icon-size,56px) * 0.22);display:flex;align-items:center;justify-content:center;overflow:visible;box-shadow:0 4px 12px rgba(0,0,0,.1);transition:all .3s;position:relative;flex-shrink:0}
+.site-icon-wrap{width:var(--icon-size,56px);height:var(--icon-size,56px);border-radius:calc(var(--icon-size,56px) * 0.22);display:flex;align-items:center;justify-content:center;overflow:visible;box-shadow:0 4px 12px rgba(0,0,0,.1);transition:all .3s;position:relative;flex-shrink:0;color:#fff}
 .site-card:hover .site-icon-wrap{transform:scale(1.08);box-shadow:0 6px 20px rgba(0,0,0,.18)}
 .site-icon-wrap>img{width:100%;height:100%;object-fit:cover;border-radius:inherit}
 .site-icon-wrap>svg{width:100%;height:100%;border-radius:inherit;overflow:hidden}
@@ -168,7 +169,7 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
 
 /* ===== Mac 风格 Dock ===== */
 .dock{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;align-items:flex-end;gap:6px;background:rgba(255,255,255,.1);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-radius:24px;padding:10px 14px;z-index:100;border:1px solid rgba(255,255,255,.12);box-shadow:0 8px 40px rgba(0,0,0,.2)}
-.dock-item{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .25s cubic-bezier(.34,1.56,.64,1);overflow:hidden;position:relative}
+.dock-item{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .25s cubic-bezier(.34,1.56,.64,1);overflow:hidden;position:relative;color:#fff}
 .dock-item:hover{transform:translateY(-10px) scale(1.3);z-index:10}
 .dock-item img{width:100%;height:100%;object-fit:cover;border-radius:inherit}
 .dock-item svg{width:100%;height:100%}
@@ -295,7 +296,7 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
 </style>
 </head>
 <body>
-<svg style="display:none">
+<svg id="builtin-icons" style="display:none">
   <defs>
     <symbol id="icon-home" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
     <symbol id="icon-briefcase" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
@@ -722,7 +723,7 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
     </div>
     <div v-if="showEditForm" style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.06)">
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-        <div style="width:48px;height:48px;border-radius:12px;overflow:hidden;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <div style="width:48px;height:48px;border-radius:12px;overflow:hidden;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff">
           <img v-if="editForm.imgSrc" :src="editForm.imgSrc" style="width:100%;height:100%;object-fit:contain">
           <svg v-else-if="editForm.iconId" class="icon" aria-hidden="true" style="width:100%;height:100%"><use :href="'#'+editForm.iconId"></use></svg>
           <span v-else style="color:rgba(255,255,255,.2);font-size:20px">📷</span>
@@ -732,14 +733,14 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
           <button :class="editIconMode==='auto'?'form-btn btn-primary':'form-btn btn-ghost'" @click="autoFetchIcon;editIconMode='auto'" style="padding:4px 10px;font-size:11px">🔄自动获取</button>
           <button :class="editIconMode==='upload'?'form-btn btn-primary':'form-btn btn-ghost'" @click="$refs.iconFile.click();editIconMode='upload'" style="padding:4px 10px;font-size:11px">📁本地上传</button>
           <button :class="editIconMode==='solid'?'form-btn btn-primary':'form-btn btn-ghost'" @click="showSolidIcon=!showSolidIcon;showIconPicker=false;editIconMode='solid'" style="padding:4px 10px;font-size:11px">🎨纯色图标</button>
-          <button :class="editIconMode==='library'?'form-btn btn-primary':'form-btn btn-ghost'" @click="showIconPicker=!showIconPicker;editIconMode='library'" style="padding:4px 10px;font-size:11px">🔎图标库</button>
+          <button :class="editIconMode==='library'?'form-btn btn-primary':'form-btn btn-ghost'" @click="toggleIconPicker" style="padding:4px 10px;font-size:11px">🔎图标库</button>
         </div>
       </div>
       <input type="file" ref="iconFile" class="hidden" accept="image/*" @change="handleIconUpload">
       <!-- 阿里图标搜索选择 -->
       <div v-if="showIconPicker" style="margin-bottom:12px">
         <div style="display:flex;gap:6px;margin-bottom:8px">
-          <input class="form-input" v-model="iconSearchKey" placeholder="搜索图标（如：微信、购物、视频）" style="flex:1;font-size:12px" @input="searchIconfont">
+          <input class="form-input" v-model="iconSearchKey" placeholder="搜索图标，输入完整ID按回车直接使用（如：icon-b-honghui）" style="flex:1;font-size:12px" @input="searchIconfont" @keyup.enter="applyIconfontInput">
         </div>
         <div style="max-height:140px;overflow-y:auto;display:flex;flex-wrap:wrap;gap:6px;padding:8px;background:rgba(255,255,255,.04);border-radius:10px">
           <div v-for="sym in iconSearchResults" :key="sym" @click="pickIconfont(sym)"
@@ -747,7 +748,7 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
                @mouseover="$event.currentTarget.style.background='rgba(93,111,251,.2)'" @mouseout="$event.currentTarget.style.background='rgba(255,255,255,.06)'">
             <svg class="icon" aria-hidden="true" style="width:22px;height:22px;fill:rgba(255,255,255,.8)"><use :href="'#'+sym"></use></svg>
           </div>
-          <div v-if="iconSearchResults.length===0" style="color:rgba(255,255,255,.3);font-size:12px;padding:8px">输入关键词搜索图标</div>
+          <div v-if="iconSearchResults.length===0 && iconSearchKey" style="color:rgba(255,255,255,.3);font-size:12px;padding:8px">未找到匹配的图标</div>
         </div>
       </div>
       <!-- 纯色图标 -->
@@ -772,7 +773,7 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
         </div>
       </div>
       <div class="form-row">
-        <input class="form-input" v-model="editForm.iconUrl" placeholder="或输入图标URL" @blur="applyIconUrl">
+        <input class="form-input" v-model="editForm.iconUrl" placeholder="或输入图标URL">
       </div>
       <div class="form-row">
         <input class="form-input" v-model="editForm.name" placeholder="网站名称">
@@ -910,6 +911,7 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
 <script>
 /* ===== 数据版本（每次更新默认数据时递增） ===== */
 var DATA_VERSION = '1.3';
+var BUILTIN_ICON_IDS = new Set(['icon-home','icon-briefcase','icon-film','icon-plus','icon-plus-square','icon-settings','icon-star','icon-grid','icon-heart','icon-music','icon-camera','icon-globe','icon-book','icon-coffee','icon-shopping-bag','icon-trash','icon-edit','icon-smile','icon-zap','icon-image','icon-map-pin','icon-pen-tool','icon-search','icon-x','icon-check','icon-folder','icon-gamepad','icon-airplane','icon-car','icon-monitor','icon-dollar','icon-clipboard','icon-cloud','icon-bell','icon-phone','icon-mail','icon-sun','icon-tv','icon-code','icon-watch','icon-umbrella','icon-video','icon-calendar','icon-clock','icon-award','icon-bar-chart','icon-box','icon-briefcase2','icon-cast','icon-chrome','icon-command','icon-copy','icon-cpu','icon-crosshair','icon-disc','icon-download','icon-external-link','icon-eye','icon-fast-forward','icon-feather','icon-file','icon-flag','icon-hash','icon-headphones','icon-help-circle','icon-inbox','icon-layers','icon-link','icon-list','icon-loader','icon-lock','icon-log-in','icon-log-out','icon-map','icon-maximize','icon-mic','icon-minimize','icon-moon','icon-more-horizontal','icon-more-vertical','icon-move','icon-paperclip','icon-pause','icon-pie-chart','icon-play','icon-pocket','icon-power','icon-printer','icon-radio','icon-refresh-cw','icon-save','icon-scissors','icon-share','icon-shield','icon-shopping-cart','icon-shuffle','icon-sidebar','icon-slider','icon-speaker','icon-square','icon-stop','icon-sunrise','icon-sunset','icon-tablet','icon-tag','icon-target','icon-terminal','icon-thermometer','icon-thumbs-down','icon-thumbs-up','icon-toggle-left','icon-toggle-right','icon-tool','icon-trash-2','icon-trending-up','icon-trending-down','icon-triangle','icon-truck','icon-type','icon-upload','icon-user','icon-users','icon-voicemail','icon-volume','icon-wifi']);
 
 /* ===== 原始数据（不可修改） ===== */
 var defaultListShengHuo = [
@@ -1642,10 +1644,24 @@ var vm = new Vue({
         this.currentBgUrl = '';
         this.bgLoaded = true;
       } else if (bg.type === 'random') {
+        var self = this;
         var n = Math.floor(Math.random() * bg.count) + 1;
-        this.currentBgType = 'image';
-        this.currentBgUrl = bg.baseUrl + n + bg.ext;
-        this.preloadBg(this.currentBgUrl);
+        var url = bg.baseUrl + n + bg.ext;
+        this.showToast('正在加载壁纸...');
+        var img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = function() {
+          self.currentBgType = 'image';
+          self.bgLoaded = false;
+          self.currentBgUrl = url;
+          self.$nextTick(function() { self.bgLoaded = true; });
+          self.saveSettings();
+        };
+        img.onerror = function() {
+          self.showToast('壁纸加载失败，请重试');
+          self.bgLoaded = true;
+        };
+        img.src = url;
       } else {
         this.currentBgType = 'image';
         this.currentBgUrl = bg.url;
@@ -1844,7 +1860,14 @@ var vm = new Vue({
     },
     saveEditForm: function() {
       if (!this.editForm.name.trim() || !this.editForm.url.trim()) { this.showToast('请填写名称和URL'); return; }
-      var site = {name: this.editForm.name.trim(), url: this.editForm.url.trim(), iconId: this.editForm.iconId || '', imgSrc: this.editForm.imgSrc || ''};
+      // 有图标ID时，imgSrc必须为空（图标ID优先）
+      var iconId = this.editForm.iconId || '';
+      var imgSrc = '';
+      if (!iconId) {
+        // 没有图标ID时，使用URL或imgSrc
+        imgSrc = this.editForm.imgSrc || this.editForm.iconUrl || '';
+      }
+      var site = {name: this.editForm.name.trim(), url: this.editForm.url.trim(), iconId: iconId, imgSrc: imgSrc};
       this.$set(site, 'faviconUrl', this.getFaviconUrl(site.url));
       this.$set(site, 'iconErr', false);
       var list = this.editCategoryList;
@@ -1899,10 +1922,14 @@ var vm = new Vue({
     searchIconfont: function() {
       var key = this.iconSearchKey.trim().toLowerCase();
       if (!key) { this.iconSearchResults = []; return; }
-      var symbols = document.querySelectorAll('svg.symbol');
-      if (!symbols.length) symbols = document.querySelectorAll('symbol');
+      var all = document.querySelectorAll('symbol');
       var ids = [];
-      symbols.forEach(function(s) { if (s.id && s.id.toLowerCase().indexOf(key) !== -1) ids.push(s.id); });
+      for (var i = 0; i < all.length; i++) {
+        var id = all[i].id;
+        if (!id) continue;
+        if (BUILTIN_ICON_IDS.has(id)) continue;
+        if (id.toLowerCase().indexOf(key) !== -1) ids.push(id);
+      }
       this.iconSearchResults = ids;
     },
     searchIcons: function() {
@@ -1923,6 +1950,39 @@ var vm = new Vue({
       this.editForm.iconUrl = '';
       this.showIconPicker = false;
       this.$forceUpdate();
+    },
+    toggleIconPicker: function() {
+      this.showIconPicker = !this.showIconPicker;
+      this.editIconMode = 'library';
+      this.showSolidIcon = false;
+      if (this.showIconPicker) {
+        this.iconSearchKey = '';
+        this.iconSearchResults = [];
+      }
+    },
+    applyIconfontInput: function() {
+      var input = this.iconSearchKey.trim();
+      if (!input) return;
+      // 如果搜索结果只有一个，直接使用第一个
+      if (this.iconSearchResults.length === 1) {
+        this.pickIconfont(this.iconSearchResults[0]);
+        return;
+      }
+      // 检查输入是否是一个完整的图标ID（以icon-开头）
+      if (input.indexOf('icon-') === 0) {
+        // 验证该图标是否存在于页面中（搜索symbol元素）
+        var exists = document.querySelector('symbol[id="' + input + '"], svg.symbol#' + input + ', #' + input);
+        if (exists) {
+          this.pickIconfont(input);
+        } else {
+          this.showToast('未找到图标：' + input);
+        }
+      } else if (this.iconSearchResults.length > 0) {
+        // 有搜索结果但不唯一，提示用户
+        this.showToast('找到多个结果，请点击选择或输入完整ID');
+      } else {
+        this.showToast('未找到匹配的图标');
+      }
     },
     autoFetchIcon: function() {
       if (!this.editForm.url.trim()) { this.showToast('请先输入网址URL'); return; }
@@ -1949,13 +2009,24 @@ var vm = new Vue({
       this.editForm = {name:'', url:'', imgSrc:'', iconUrl:'', iconId:'', idx:-1};
     },
     ctxRandomBg: function() {
+      var self = this;
       var n = Math.floor(Math.random() * 115) + 1;
-      this.currentBgType = 'image';
-      this.currentBgUrl = 'https://cdn.jsdelivr.net/gh/guangtoulao/zuye/icon/bz' + n + '.jpg';
-      this.currentBgIdx = -1;
-      this.preloadBg(this.currentBgUrl);
-      this.saveSettings();
-      this.showToast('已更换壁纸');
+      var url = 'https://cdn.jsdelivr.net/gh/guangtoulao/zuye/icon/bz' + n + '.jpg';
+      this.showToast('正在加载壁纸...');
+      var img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = function() {
+        self.currentBgType = 'image';
+        self.bgLoaded = false;
+        self.currentBgUrl = url;
+        self.currentBgIdx = -1;
+        self.$nextTick(function() { self.bgLoaded = true; });
+        self.saveSettings();
+      };
+      img.onerror = function() {
+        self.showToast('壁纸加载失败，请重试');
+      };
+      img.src = url;
     },
     ctxDownloadBg: function() {
       var a = document.createElement('a');
