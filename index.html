@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -451,7 +452,7 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
 <div id="app" v-cloak @click="globalClick">
   <!-- 背景 -->
   <div class="bg-placeholder"></div>
-  <video v-if="currentBgType==='video'" class="bg-video" :class="{'bg-loading':!bgLoaded,'bg-loaded':bgLoaded}" autoplay muted loop playsinline @canplay="bgLoaded=true;var v=$event.target;if(v.paused)v.play().catch(function(){});" @error="if($event.target.error&&$event.target.error.code!==1){bgLoaded=true;showToast('背景加载失败')}" :src="currentBgUrl" :key="currentBgUrl"></video>
+  <video v-if="currentBgType==='video'" class="bg-video" :class="{'bg-loading':!bgLoaded,'bg-loaded':bgLoaded}" autoplay muted loop playsinline preload="auto" @loadeddata="bgLoaded=true;var v=$event.target;if(v.paused)v.play().catch(function(){});" @error="if($event.target.error&&$event.target.error.code!==1){bgLoaded=true;showToast('背景加载失败')}" :src="currentBgUrl" :key="currentBgUrl"></video>
   <div v-else-if="currentBgType==='css'" class="bg-layer" :style="{background:bgLibrary[currentBgIdx]?bgLibrary[currentBgIdx].bg:''}" :key="currentBgIdx"></div>
   <div v-else class="bg-layer" :class="{'bg-loading':!bgLoaded,'bg-loaded':bgLoaded}" :style="{backgroundImage:'url('+currentBgUrl+')'}" :key="currentBgUrl"></div>
   <div class="bg-mask" :style="{background:'rgba(0,0,0,'+(maskOpacity/100)+')'}"></div>
@@ -944,7 +945,7 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
 
 <script>
 /* ===== 数据版本（每次更新默认数据时递增） ===== */
-var DATA_VERSION = '1.3';
+var DATA_VERSION = '1.4';
 var SITE_NAME_MAP = {
   '淘宝': 'https://www.taobao.com', '天猫': 'https://www.tmall.com', '京东': 'https://www.jd.com',
   '拼多多': 'https://www.pinduoduo.com', '唯品会': 'https://www.vip.com', '苏宁': 'https://www.suning.com',
@@ -1833,6 +1834,12 @@ var vm = new Vue({
           if (j.githubToken) this.githubToken = j.githubToken;
           if (j.githubRepo) this.githubRepo = j.githubRepo;
         } catch (e) {}
+      }
+      /* 首次打开或壁纸未初始化时，自动选中第一张静态壁纸 */
+      if (!this.currentBgUrl && this.currentBgType !== 'css') {
+        this.selectBg(0);
+      } else if (this.currentBgType === 'image' && this.currentBgUrl) {
+        this.preloadBg(this.currentBgUrl);
       }
     },
 
@@ -2808,5 +2815,6 @@ var vm = new Vue({
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1e6aad04aa49fcc',t:'MTc4NDU5OTgwNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b228234959e04346a40515e77a1a092e","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b228234959e04346a40515e77a1a092e","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1f216f059abb1cb',t:'MTc4NDcxOTU3Nw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b228234959e04346a40515e77a1a092e","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b228234959e04346a40515e77a1a092e","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
