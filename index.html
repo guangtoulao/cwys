@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -16,9 +17,10 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
 
 /* ===== 背景层 ===== */
 .bg-placeholder{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;background:linear-gradient(135deg,#0c0c1d,#1a1a2e)}
-.bg-layer{position:fixed;top:0;left:0;width:100%;height:100%;background-size:cover;background-position:center;z-index:0;transition:opacity .8s ease}
-.bg-video{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;transition:opacity .8s ease;background:#0a1628}
-.bg-loading{opacity:0}
+.bg-layer{position:fixed;top:0;left:0;width:100%;height:100%;background-size:cover;background-position:center;z-index:0;transition:opacity .8s ease;will-change:opacity}
+.bg-video{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;transition:opacity .8s ease;background:#0a1628;will-change:opacity}
+.bg-loading{opacity:0;filter:blur(30px);transform:scale(1.1)}
+.bg-loaded{opacity:1;filter:blur(0);transform:scale(1);transition:opacity .6s ease, filter .6s ease, transform .6s ease}
 .bg-mask{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;transition:background .3s}
 
 /* ===== 左侧导航栏 ===== */
@@ -164,7 +166,7 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
 .site-card:hover .site-icon-wrap{transform:scale(1.08);box-shadow:0 6px 20px rgba(0,0,0,.18)}
 .site-icon-wrap>img{width:100%;height:100%;object-fit:cover;border-radius:inherit}
 .site-icon-wrap>svg{width:100%;height:100%;border-radius:inherit;overflow:hidden}
-.site-icon-text{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:calc(var(--icon-size,56px) * 0.4);font-weight:600;color:#fff;border-radius:inherit;overflow:hidden}
+.site-icon-text{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:calc(var(--icon-size,56px) * 0.42);font-weight:700;color:#fff;border-radius:inherit;overflow:hidden;text-shadow:0 2px 4px rgba(0,0,0,.25);letter-spacing:1px}
 .site-name{font-size:14px;font-weight:500;color:rgba(255,255,255,.92);text-align:center;max-width:calc(var(--icon-size,56px) + 24px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-shadow:0 1px 4px rgba(0,0,0,.3);margin-top:8px}
 
 /* ===== Mac 风格 Dock ===== */
@@ -231,13 +233,17 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
 .btn-danger:hover{background:rgba(239,68,68,1)}
 
 /* ===== 设置面板 ===== */
-.settings-panel{position:fixed;top:0;right:0;width:400px;height:100vh;background:rgba(20,20,40,.96);backdrop-filter:blur(24px);z-index:201;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);overflow-y:auto;padding:28px;border-left:1px solid rgba(255,255,255,.06)}
+.settings-panel{position:fixed;top:0;left:0;width:400px;height:100vh;background:rgba(20,20,40,.96);backdrop-filter:blur(24px);z-index:201;transform:translateX(-100%);transition:transform .35s cubic-bezier(.4,0,.2,1);overflow-y:auto;padding:28px;border-right:1px solid rgba(255,255,255,.06)}
 .settings-panel.open{transform:translateX(0)}
 .set-title{font-size:20px;font-weight:600;color:#fff;margin-bottom:24px}
 .set-section{margin-bottom:28px}
 .set-label{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px}
-.bg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
-.bg-thumb{width:100%;height:70px;border-radius:12px;cursor:pointer;transition:all .2s;border:2px solid transparent;background-size:cover;background-position:center;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.bg-cats{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.bg-cat-tag{padding:5px 14px;border-radius:20px;font-size:12px;cursor:pointer;color:rgba(255,255,255,.5);background:rgba(255,255,255,.05);transition:all .15s}
+.bg-cat-tag:hover{background:rgba(255,255,255,.1);color:rgba(255,255,255,.8)}
+.bg-cat-tag.active{background:rgba(93,111,251,.25);color:#fff}
+.bg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.bg-thumb{width:100%;height:70px;border-radius:10px;cursor:pointer;transition:all .2s;border:2px solid transparent;background-size:cover;background-position:center;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .bg-thumb.active{border-color:rgba(93,111,251,.8);box-shadow:0 0 12px rgba(93,111,251,.3)}
 .bg-thumb:hover{transform:scale(1.05)}
 .slider-row{display:flex;align-items:center;gap:12px;margin-bottom:14px}
@@ -294,6 +300,24 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
   .api-grid{grid-template-columns:1fr}
 }
 </style>
+<script>
+/* 尽早预加载壁纸（在 Vue 初始化之前，让浏览器尽早开始下载） */
+(function(){
+  try {
+    var s = localStorage.getItem('wetab_settings');
+    if (s) {
+      var j = JSON.parse(s);
+      if (j.bgUrl && j.bgUrl.indexOf('.mp4') === -1 && j.bgUrl.indexOf('.webm') === -1) {
+        var lk = document.createElement('link');
+        lk.rel = 'preload';
+        lk.as = 'image';
+        lk.href = j.bgUrl;
+        document.head.appendChild(lk);
+      }
+    }
+  } catch(e) {}
+})();
+</script>
 </head>
 <body>
 <svg id="builtin-icons" style="display:none">
@@ -428,9 +452,9 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
 <div id="app" v-cloak @click="globalClick">
   <!-- 背景 -->
   <div class="bg-placeholder"></div>
-  <video v-if="currentBgType==='video'" class="bg-video" :class="{'bg-loading':!bgLoaded}" autoplay muted loop playsinline @canplay="bgLoaded=true;var v=$event.target;if(v.paused)v.play().catch(function(){});" @error="if($event.target.error&&$event.target.error.code!==1){bgLoaded=true;showToast('背景加载失败')}" :src="currentBgUrl" :key="currentBgUrl"></video>
+  <video v-if="currentBgType==='video'" class="bg-video" :class="{'bg-loading':!bgLoaded,'bg-loaded':bgLoaded}" autoplay muted loop playsinline @canplay="bgLoaded=true;var v=$event.target;if(v.paused)v.play().catch(function(){});" @error="if($event.target.error&&$event.target.error.code!==1){bgLoaded=true;showToast('背景加载失败')}" :src="currentBgUrl" :key="currentBgUrl"></video>
   <div v-else-if="currentBgType==='css'" class="bg-layer" :style="{background:bgLibrary[currentBgIdx]?bgLibrary[currentBgIdx].bg:''}" :key="currentBgIdx"></div>
-  <div v-else class="bg-layer" :class="{'bg-loading':!bgLoaded}" :style="{backgroundImage:bgLoaded?'url('+currentBgUrl+')':'none'}" :key="currentBgUrl"></div>
+  <div v-else class="bg-layer" :class="{'bg-loading':!bgLoaded,'bg-loaded':bgLoaded}" :style="{backgroundImage:'url('+currentBgUrl+')'}" :key="currentBgUrl"></div>
   <div class="bg-mask" :style="{background:'rgba(0,0,0,'+(maskOpacity/100)+')'}"></div>
 
   <!-- 左侧导航 -->
@@ -776,7 +800,7 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
         <input class="form-input" v-model="editForm.iconUrl" placeholder="或输入图标URL">
       </div>
       <div class="form-row">
-        <input class="form-input" v-model="editForm.name" placeholder="网站名称">
+        <input class="form-input" v-model="editForm.name" placeholder="网站名称（如：淘宝）" @input="onNameInput">
         <input class="form-input" v-model="editForm.url" placeholder="网址URL">
       </div>
       <div class="form-row">
@@ -853,18 +877,29 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
     </div>
     <div class="set-section">
       <div class="set-label">背景设置</div>
-      <div class="bg-grid">
-        <div class="bg-thumb" v-for="(bg,bi) in bgLibrary" :key="bi" :class="{active:currentBgIdx===bi}"
+      <div class="bg-cats">
+        <span class="bg-cat-tag" :class="{active:bgCategory==='image'}" @click="bgCategory='image'">静态壁纸</span>
+        <span class="bg-cat-tag" :class="{active:bgCategory==='video'}" @click="bgCategory='video'">动态壁纸</span>
+        <span class="bg-cat-tag" :class="{active:bgCategory==='css'}" @click="bgCategory='css'">CSS渐变</span>
+        <span class="bg-cat-tag" :class="{active:bgCategory==='random'}" @click="bgCategory='random'">随机壁纸</span>
+        <span class="bg-cat-tag" :class="{active:bgCategory==='custom'}" @click="bgCategory='custom'">自定义</span>
+      </div>
+      <div class="bg-grid" v-if="bgCategory!=='custom'" style="margin-top:10px">
+        <div class="bg-thumb" v-for="(bg,bi) in bgLibrary" v-if="bg.type===bgCategory" :key="bi" :class="{active:currentBgIdx===bi}"
              @click="selectBg(bi)" :title="bg.name"
              :style="bg.type==='css'?{background:bg.bg}:(bg.type==='image'?{backgroundImage:'url('+bg.url+')'}:(bg.type==='random'?{background:'linear-gradient(135deg,#2c3e50,#3498db)'}:{}))">
           <video v-if="bg.type==='video'" :src="bg.url" muted preload="metadata" style="width:100%;height:100%;object-fit:cover;border-radius:10px;pointer-events:none"></video>
-          <span v-if="bg.type==='video'" style="position:absolute;bottom:4px;right:4px;font-size:9px;color:rgba(255,255,255,.7);background:rgba(0,0,0,.5);padding:1px 5px;border-radius:4px">动</span>
           <span v-if="bg.type==='random'" style="color:rgba(255,255,255,.6);font-size:13px">🎲 {{bg.name}}</span>
         </div>
       </div>
-      <div class="form-row">
-        <input class="form-input" v-model="customBgUrl" placeholder="自定义背景图URL">
-        <button class="form-btn btn-primary" @click="applyCustomBg">应用</button>
+      <div v-if="bgCategory==='custom'" style="margin-top:10px">
+        <div class="form-row">
+          <input class="form-input" v-model="customBgUrl" placeholder="输入图片或视频URL" style="flex:1">
+          <button class="form-btn btn-primary" @click="applyCustomBg">应用</button>
+        </div>
+        <div style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.6;margin-top:8px">
+          支持 jpg/png/webp/mp4 等格式，推荐使用 HTTPS 链接
+        </div>
       </div>
       <div class="slider-row">
         <label>遮罩透明度</label>
@@ -911,6 +946,78 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
 <script>
 /* ===== 数据版本（每次更新默认数据时递增） ===== */
 var DATA_VERSION = '1.3';
+var SITE_NAME_MAP = {
+  '淘宝': 'https://www.taobao.com', '天猫': 'https://www.tmall.com', '京东': 'https://www.jd.com',
+  '拼多多': 'https://www.pinduoduo.com', '唯品会': 'https://www.vip.com', '苏宁': 'https://www.suning.com',
+  '亚马逊': 'https://www.amazon.cn', '1688': 'https://www.1688.com', '阿里巴巴': 'https://www.alibaba.com',
+  '百度': 'https://www.baidu.com', '谷歌': 'https://www.google.com', '必应': 'https://www.bing.com',
+  '搜狗': 'https://www.sogou.com', '360': 'https://www.so.com', '知乎': 'https://www.zhihu.com',
+  '微博': 'https://weibo.com', '哔哩哔哩': 'https://www.bilibili.com', 'B站': 'https://www.bilibili.com',
+  '抖音': 'https://www.douyin.com', '快手': 'https://www.kuaishou.com', '小红书': 'https://www.xiaohongshu.com',
+  '豆瓣': 'https://www.douban.com', '贴吧': 'https://tieba.baidu.com', '微信': 'https://weixin.qq.com',
+  'QQ': 'https://im.qq.com', '网易': 'https://www.163.com', '新浪': 'https://www.sina.com.cn',
+  '搜狐': 'https://www.sohu.com', '凤凰': 'https://www.ifeng.com', '腾讯': 'https://www.qq.com',
+  '优酷': 'https://www.youku.com', '爱奇艺': 'https://www.iqiyi.com', '腾讯视频': 'https://v.qq.com',
+  '芒果TV': 'https://www.mgtv.com', '央视': 'https://www.cctv.com', '头条': 'https://www.toutiao.com',
+  '网易云音乐': 'https://music.163.com', 'QQ音乐': 'https://y.qq.com', '酷狗': 'https://www.kugou.com',
+  '酷我': 'https://www.kuwo.cn', '全民K歌': 'https://kg.qq.com', '虎牙': 'https://www.huya.com',
+  '斗鱼': 'https://www.douyu.com', 'YY': 'https://www.yy.com', '起点': 'https://www.qidian.com',
+  '晋江': 'https://www.jjwxc.net', '微信读书': 'https://weread.qq.com', '掌阅': 'https://www.zhangyue.com',
+  'QQ邮箱': 'https://mail.qq.com', '163邮箱': 'https://mail.163.com', '126邮箱': 'https://mail.126.com',
+  'Gmail': 'https://mail.google.com', 'Outlook': 'https://outlook.live.com',
+  '高德': 'https://ditu.amap.com', '百度地图': 'https://map.baidu.com', '腾讯地图': 'https://map.qq.com',
+  '滴滴': 'https://www.didiglobal.com', '美团': 'https://www.meituan.com', '饿了么': 'https://www.ele.me',
+  '大众点评': 'https://www.dianping.com', '携程': 'https://www.ctrip.com', '去哪儿': 'https://www.qunar.com',
+  '飞猪': 'https://www.fliggy.com', '马蜂窝': 'https://www.mafengwo.cn', '途牛': 'https://www.tuniu.com',
+  '同程': 'https://www.ly.com', '贝壳': 'https://www.ke.com', '链家': 'https://www.lianjia.com',
+  '安居客': 'https://www.anjuke.com', '房天下': 'https://www.fang.com', '58同城': 'https://www.58.com',
+  '赶集': 'https://www.ganji.com', '闲鱼': 'https://www.xianyu.com', '转转': 'https://www.zhuanzhuan.com',
+  '瓜子': 'https://www.guazi.com', '小米': 'https://www.mi.com', '华为': 'https://www.huawei.com',
+  '苹果': 'https://www.apple.com.cn', '三星': 'https://www.samsung.com/cn', 'OPPO': 'https://www.oppo.com',
+  'vivo': 'https://www.vivo.com', '荣耀': 'https://www.hihonor.com', '一加': 'https://www.oneplus.com',
+  '魅族': 'https://www.meizu.com', '联想': 'https://www.lenovo.com.cn', '微软': 'https://www.microsoft.com/zh-cn',
+  'GitHub': 'https://github.com', '码云': 'https://gitee.com', 'GitLab': 'https://gitlab.com',
+  'StackOverflow': 'https://stackoverflow.com', 'CSDN': 'https://www.csdn.net', '掘金': 'https://juejin.cn',
+  '博客园': 'https://www.cnblogs.com', '开源中国': 'https://www.oschina.net', 'V2EX': 'https://www.v2ex.com',
+  'SegmentFault': 'https://segmentfault.com', '简书': 'https://www.jianshu.com', '语雀': 'https://www.yuque.com',
+  '石墨': 'https://shimo.im', '腾讯文档': 'https://docs.qq.com', '金山文档': 'https://www.kdocs.cn',
+  '飞书': 'https://www.feishu.cn', '钉钉': 'https://www.dingtalk.com', '企业微信': 'https://work.weixin.qq.com',
+  '腾讯会议': 'https://meeting.tencent.com', 'Zoom': 'https://zoom.us', '阿里云': 'https://www.aliyun.com',
+  '腾讯云': 'https://cloud.tencent.com', '华为云': 'https://www.huaweicloud.com', '百度云': 'https://cloud.baidu.com',
+  '七牛': 'https://www.qiniu.com', 'AWS': 'https://aws.amazon.com', 'Azure': 'https://azure.microsoft.com',
+  'Docker': 'https://www.docker.com', 'npm': 'https://www.npmjs.com', 'Figma': 'https://www.figma.com',
+  'Sketch': 'https://www.sketch.com', '墨刀': 'https://modao.cc', '蓝湖': 'https://lanhuapp.com',
+  '即时设计': 'https://js.design', 'Canva': 'https://www.canva.cn', 'WPS': 'https://www.wps.cn',
+  'Office': 'https://www.office.com', 'ProcessOn': 'https://www.processon.com', '百度脑图': 'https://naotu.baidu.com',
+  'XMind': 'https://www.xmind.cn', '幕布': 'https://mubu.com', '印象笔记': 'https://www.yinxiang.com',
+  '有道云笔记': 'https://note.youdao.com', 'Notion': 'https://www.notion.so', 'OneNote': 'https://www.onenote.com',
+  '滴答清单': 'https://dida365.com', 'Trello': 'https://trello.com', 'Asana': 'https://asana.com',
+  'Jira': 'https://www.atlassian.com/software/jira', '禅道': 'https://www.zentao.net',
+  'Teambition': 'https://www.teambition.com', 'Tower': 'https://tower.im', 'Axure': 'https://www.axure.com',
+  '支付宝': 'https://www.alipay.com', '微信支付': 'https://pay.weixin.qq.com', '云闪付': 'https://www.95516.com',
+  '京东支付': 'https://www.jdpay.com', 'PayPal': 'https://www.paypal.com', 'Stripe': 'https://stripe.com',
+  '工商银行': 'https://www.icbc.com.cn', '建设银行': 'https://www.ccb.com', '农业银行': 'https://www.abchina.com',
+  '中国银行': 'https://www.boc.cn', '招商银行': 'https://www.cmbchina.com', '交通银行': 'https://www.bankcomm.com',
+  '邮储银行': 'https://www.psbc.com', '中信银行': 'https://www.citicbank.com', '光大银行': 'https://www.cebbank.com',
+  '民生银行': 'https://www.cmbc.com.cn', '平安银行': 'https://bank.pingan.com', '浦发银行': 'https://www.spdb.com.cn',
+  '兴业银行': 'https://www.cib.com.cn', '北京银行': 'https://www.bankofbeijing.com.cn', '上海银行': 'https://www.bosc.cn',
+  '阿里图标': 'https://www.iconfont.cn', 'Iconfont': 'https://www.iconfont.cn', 'FontAwesome': 'https://fontawesome.com',
+  '剪映': 'https://www.capcut.cn', '必剪': 'https://bcut.bilibili.cn', '美图秀秀': 'https://pc.meitu.com',
+  '站酷': 'https://www.zcool.com.cn', 'Dribbble': 'https://dribbble.com', 'Behance': 'https://www.behance.net',
+  'Pinterest': 'https://www.pinterest.com', '花瓣': 'https://huaban.com', '500px': 'https://500px.com',
+  '视觉中国': 'https://www.vcg.com', '图虫': 'https://tuchong.com', '极客时间': 'https://time.geekbang.org',
+  '得到': 'https://www.igetget.com', '樊登读书': 'https://www.dushu365.com', '喜马拉雅': 'https://www.ximalaya.com',
+  '荔枝': 'https://www.lizhi.fm', '蜻蜓': 'https://www.qingting.fm', '企鹅FM': 'https://fm.qq.com',
+  '移动': 'https://www.10086.cn', '联通': 'https://www.10010.com', '电信': 'https://www.189.cn',
+  '腾讯问卷': 'https://wj.qq.com', '问卷星': 'https://www.wjx.cn', '金数据': 'https://jinshuju.net',
+  'ECharts': 'https://echarts.apache.org', 'D3': 'https://d3js.org', 'Chart.js': 'https://www.chartjs.org',
+  'Redis': 'https://redis.io', 'MongoDB': 'https://www.mongodb.com', 'MySQL': 'https://www.mysql.com',
+  'Nginx': 'https://nginx.org', 'Apache': 'https://www.apache.org', 'Spring': 'https://spring.io',
+  'Vue': 'https://vuejs.org', 'React': 'https://react.dev', 'Angular': 'https://angular.io',
+  'Tailwind': 'https://tailwindcss.com', 'Bootstrap': 'https://getbootstrap.com', 'Element': 'https://element.eleme.io',
+  'Ant': 'https://ant.design', 'Vuetify': 'https://vuetifyjs.com', 'Vant': 'https://vant-ui.github.io',
+  'TDesign': 'https://tdesign.tencent.com', 'Arco': 'https://arco.design'
+};
 var BUILTIN_ICON_IDS = new Set(['icon-home','icon-briefcase','icon-film','icon-plus','icon-plus-square','icon-settings','icon-star','icon-grid','icon-heart','icon-music','icon-camera','icon-globe','icon-book','icon-coffee','icon-shopping-bag','icon-trash','icon-edit','icon-smile','icon-zap','icon-image','icon-map-pin','icon-pen-tool','icon-search','icon-x','icon-check','icon-folder','icon-gamepad','icon-airplane','icon-car','icon-monitor','icon-dollar','icon-clipboard','icon-cloud','icon-bell','icon-phone','icon-mail','icon-sun','icon-tv','icon-code','icon-watch','icon-umbrella','icon-video','icon-calendar','icon-clock','icon-award','icon-bar-chart','icon-box','icon-briefcase2','icon-cast','icon-chrome','icon-command','icon-copy','icon-cpu','icon-crosshair','icon-disc','icon-download','icon-external-link','icon-eye','icon-fast-forward','icon-feather','icon-file','icon-flag','icon-hash','icon-headphones','icon-help-circle','icon-inbox','icon-layers','icon-link','icon-list','icon-loader','icon-lock','icon-log-in','icon-log-out','icon-map','icon-maximize','icon-mic','icon-minimize','icon-moon','icon-more-horizontal','icon-more-vertical','icon-move','icon-paperclip','icon-pause','icon-pie-chart','icon-play','icon-pocket','icon-power','icon-printer','icon-radio','icon-refresh-cw','icon-save','icon-scissors','icon-share','icon-shield','icon-shopping-cart','icon-shuffle','icon-sidebar','icon-slider','icon-speaker','icon-square','icon-stop','icon-sunrise','icon-sunset','icon-tablet','icon-tag','icon-target','icon-terminal','icon-thermometer','icon-thumbs-down','icon-thumbs-up','icon-toggle-left','icon-toggle-right','icon-tool','icon-trash-2','icon-trending-up','icon-trending-down','icon-triangle','icon-truck','icon-type','icon-upload','icon-user','icon-users','icon-voicemail','icon-volume','icon-wifi']);
 
 /* ===== 原始数据（不可修改） ===== */
@@ -985,7 +1092,7 @@ var defaultApiList = [
     {name:'君子兰',url:'https://cwys.qzz.io/api.json',lineColor:'#e84393'},
     {name:'饭太硬',url:'http://fty.xxooo.cf/tv',lineColor:'#3498db'},
     {name:'潇洒',url:'https://qist.wyfc.qzz.io/xiaosa/api.json',lineColor:'#f39c12'},
-    {name:'摸鱼',url:'http://我不是.摸鱼儿.top',lineColor:'#f1c40f'},
+    {name:'摸鱼',url:'http://www.小不点.com',lineColor:'#f1c40f'},
     {name:'王二小',url:'http://tvbox.王二小放牛娃.top',lineColor:'#cddc39'},
     {name:'天神',url:'https://gitee.com/cpu-iy/iy/raw/master/%E5%A4%A9%E7%A5%9EIY.json',lineColor:'#2ecc71'},
     {name:'点播',url:'https://xpb.mhfs.eu.org/ZJ/XPB/api.json',lineColor:'#9932CC'},
@@ -995,32 +1102,26 @@ var defaultApiList = [
 var randomColorArr=['#e84393','#3498db','#f39c12','#f1c40f','#cddc39','#2ecc71','#9932CC','#ffbc23','#9b59b6','#1abc9c','#e74c3c','#3498db'];
 var defaultBgLibrary = [
      /* 静态壁纸（CSS渐变，零加载） */
-    {name:'竹林',url:'icon/bz5.jpg',type:'image'},
-    {name:'山河',url:'icon/bz110.jpg',type:'image'},
-    {name:'山川',url:'icon/bz109.jpg',type:'image'},
-    {name:'湖泊',url:'icon/bz51.jpg',type:'image'},
-    {name:'山地',url:'icon/bz58.jpg',type:'image'},
-    {name:'椰林',url:'icon/bz68.jpg',type:'image'},
-    {name:'红叶',url:'icon/bz91.jpg',type:'image'},
-    {name:'草地',url:'icon/bz99.jpg',type:'image'},
-    /* 动态壁纸（替换video/下的mp4文件即可） */
-    {name:'大海',url:'video/dahai.mp4',type:'video'},
-    {name:'草地',url:'video/cao.mp4',type:'video'},
-    {name:'草原',url:'video/caoyuan.mp4',type:'video'},
-    {name:'发电',url:'video/fadian.mp4',type:'video'},
-    {name:'花海',url:'video/hua.mp4',type:'video'},
-    {name:'乡村',url:'video/niu.mp4',type:'video'},
-    {name:'日出',url:'video/richu.mp4',type:'video'},
-    {name:'山峦',url:'video/san2.mp4',type:'video'},
-    {name:'山峰',url:'video/sandong.mp4',type:'video'},
-    {name:'山梁',url:'video/sansu.mp4',type:'video'},
-    {name:'森林',url:'video/shu.mp4',type:'video'},
-    {name:'游泳',url:'video/youyong.mp4',type:'video'},
-    {name:'云海',url:'video/yun.mp4',type:'video'},
-    {name:'云山',url:'video/yunsan.mp4',type:'video'},
-    {name:'海浪',url:'video/haisui.mp4',type:'video'},
+    {name:'a',url:'icon/bz2.webp',type:'image'},
+    {name:'b',url:'icon/bz3.webp',type:'image'},
+    {name:'c',url:'icon/bz4.webp',type:'image'},
+    {name:'d',url:'icon/bz5.webp',type:'image'},
+    {name:'e',url:'icon/bz7.webp',type:'image'},
+    {name:'f',url:'icon/bz15.webp',type:'image'},
+    {name:'g',url:'icon/bz25.webp',type:'image'},
+    {name:'h',url:'icon/bz69.webp',type:'image'},
+    /* 动态壁纸 */
+    {name:'1',url:'video/dtbz1.mp4',type:'video'},
+    {name:'2',url:'video/dtbz2.mp4',type:'video'},
+    {name:'3',url:'video/dtbz3.mp4',type:'video'},
+    {name:'4',url:'video/dtbz4.mp4',type:'video'},
+    {name:'5',url:'video/dtbz5.mp4',type:'video'},
+    {name:'6',url:'video/dtbz6.mp4',type:'video'},
+    {name:'7',url:'video/dtbz7.mp4',type:'video'},
+    {name:'8',url:'video/dtbz8.mp4',type:'video'},
+    {name:'9',url:'video/dtbz9.mp4',type:'video'},
     /* 随机壁纸（每次选择随机一张） */
-    {name:'随机壁纸',type:'random',baseUrl:'https://cdn.jsdelivr.net/gh/guangtoulao/zuye/icon/bz',count:115,ext:'.jpg'}
+    {name:'随机壁纸',type:'random',baseUrl:'https://cdn.jsdelivr.net/gh/guangtoulao/zuye/icon/bz',count:109,ext:'.webp'}
 ];
 var iconColors=['#5D6FFB','#e84393','#00b894','#fdcb6e','#6c5ce7','#00cec9','#e17055','#0984e3','#d63031','#2d3436','#a29bfe','#fd79a8','#6ab04c','#fab1a0','#74b9ff','#ff7675'];
 var defaultHotList=[
@@ -1172,6 +1273,7 @@ var vm = new Vue({
     customBgUrl: '',
     maskOpacity: 25,
     blurVal: 0,
+    bgCategory: 'image',
     bgLibrary: JSON.parse(JSON.stringify(defaultBgLibrary)),
     openInNewTab: true,
     iconShape: 'rounded',
@@ -1433,7 +1535,10 @@ var vm = new Vue({
         this.$set(item, 'iconErr', true);
       }
     },
-    getIconColor: function(idx) { return iconColors[idx % iconColors.length]; },
+    getIconColor: function(idx) {
+      var colors = ['linear-gradient(135deg,#667eea 0%,#764ba2 100%)','linear-gradient(135deg,#f093fb 0%,#f5576c 100%)','linear-gradient(135deg,#4facfe 0%,#00f2fe 100%)','linear-gradient(135deg,#43e97b 0%,#38f9d7 100%)','linear-gradient(135deg,#fa709a 0%,#fee140 100%)','linear-gradient(135deg,#30cfd0 0%,#330867 100%)','linear-gradient(135deg,#a8edea 0%,#fed6e3 100%)','linear-gradient(135deg,#ff9a9e 0%,#fecfef 100%)','linear-gradient(135deg,#ffecd2 0%,#fcb69f 100%)','linear-gradient(135deg,#667eea 0%,#764ba2 100%)','linear-gradient(135deg,#f093fb 0%,#f5576c 100%)','linear-gradient(135deg,#4facfe 0%,#00f2fe 100%)'];
+      return colors[idx % colors.length];
+    },
 
     /* ===== 视图切换 ===== */
     switchView: function(view) { this.currentView = view; },
@@ -1625,7 +1730,6 @@ var vm = new Vue({
     preloadBg: function(url) {
       var self = this;
       var img = new Image();
-      img.crossOrigin = 'anonymous';
       img.onload = function() { self.bgLoaded = true; };
       img.onerror = function() { self.bgLoaded = true; };
       img.src = url;
@@ -1634,6 +1738,7 @@ var vm = new Vue({
       this.bgLoaded = false;
       this.currentBgIdx = idx;
       var bg = this.bgLibrary[idx];
+      this.bgCategory = bg.type;
       if (bg.type === 'video') {
         this.currentBgType = 'video';
         this.currentBgUrl = bg.url;
@@ -1649,7 +1754,6 @@ var vm = new Vue({
         var url = bg.baseUrl + n + bg.ext;
         this.showToast('正在加载壁纸...');
         var img = new Image();
-        img.crossOrigin = 'anonymous';
         img.onload = function() {
           self.currentBgType = 'image';
           self.bgLoaded = false;
@@ -1675,6 +1779,7 @@ var vm = new Vue({
       this.currentBgUrl = this.customBgUrl.trim();
       this.currentBgIdx = -1;
       this.currentBgType = 'image';
+      this.bgCategory = 'custom';
       this.preloadBg(this.currentBgUrl);
       this.saveSettings();
     },
@@ -1698,6 +1803,7 @@ var vm = new Vue({
           if (j.bgIdx !== undefined && j.bgIdx >= 0 && j.bgIdx < this.bgLibrary.length) {
             var bg = this.bgLibrary[j.bgIdx];
             this.currentBgIdx = j.bgIdx;
+            this.bgCategory = bg.type;
             if (bg.type === 'video') {
               this.currentBgType = 'video'; this.currentBgUrl = bg.url;
             } else if (bg.type === 'css') {
@@ -1713,6 +1819,7 @@ var vm = new Vue({
           } else if (j.bgUrl && j.bgUrl.indexOf('mixkit') === -1) {
             this.currentBgUrl = j.bgUrl;
             this.currentBgType = j.bgUrl.match(/\.mp4|\.webm|\.mov/i) ? 'video' : 'image';
+            this.bgCategory = 'custom';
           }
           if (j.mask !== undefined) this.maskOpacity = j.mask;
           if (j.blur !== undefined) this.blurVal = j.blur;
@@ -1912,7 +2019,18 @@ var vm = new Vue({
       var r = Math.round(parseInt(color.slice(1,3),16));
       var g = Math.round(parseInt(color.slice(3,5),16));
       var b = Math.round(parseInt(color.slice(5,7),16));
-      var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120"><rect width="120" height="120" fill="rgb('+r+','+g+','+b+')"/><text x="60" y="60" text-anchor="middle" dominant-baseline="central" fill="white" font-size="48" font-weight="600" font-family="system-ui,sans-serif">'+text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</text></svg>';
+      // 生成渐变色（基于主色，稍微变亮）
+      var r2 = Math.min(255, r + 40);
+      var g2 = Math.min(255, g + 40);
+      var b2 = Math.min(255, b + 40);
+      var gradId = 'g' + Date.now();
+      var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120">' +
+        '<defs><linearGradient id="'+gradId+'" x1="0%" y1="0%" x2="100%" y2="100%">' +
+        '<stop offset="0%" style="stop-color:rgb('+r2+','+g2+','+b2+')"/>' +
+        '<stop offset="100%" style="stop-color:rgb('+r+','+g+','+b+')"/>' +
+        '</linearGradient></defs>' +
+        '<rect width="120" height="120" rx="24" fill="url(#'+gradId+')"/>' +
+        '<text x="60" y="60" text-anchor="middle" dominant-baseline="central" fill="white" font-size="52" font-weight="700" font-family="system-ui,-apple-system,sans-serif" style="text-shadow:0 2px 4px rgba(0,0,0,.2)">'+text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</text></svg>';
       this.editForm.imgSrc = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svg)));
       this.editForm.iconId = '';
       this.editForm.iconUrl = '';
@@ -1984,6 +2102,24 @@ var vm = new Vue({
         this.showToast('未找到匹配的图标');
       }
     },
+    onNameInput: function() {
+      var name = this.editForm.name.trim();
+      if (!name) return;
+      // 自动匹配网址
+      if (!this.editForm.url && SITE_NAME_MAP[name]) {
+        this.editForm.url = SITE_NAME_MAP[name];
+      }
+      // 如果还没有图标，自动获取 favicon
+      if (!this.editForm.imgSrc && !this.editForm.iconId && this.editForm.url) {
+        try {
+          var u = new URL(this.editForm.url);
+          var sources = this.getFaviconSources(u.hostname);
+          this.editForm.imgSrc = sources[0];
+          this.editForm.iconUrl = sources[0];
+          this.$forceUpdate();
+        } catch (e) {}
+      }
+    },
     autoFetchIcon: function() {
       if (!this.editForm.url.trim()) { this.showToast('请先输入网址URL'); return; }
       var url = this.editForm.url.trim();
@@ -2011,10 +2147,9 @@ var vm = new Vue({
     ctxRandomBg: function() {
       var self = this;
       var n = Math.floor(Math.random() * 115) + 1;
-      var url = 'https://cdn.jsdelivr.net/gh/guangtoulao/zuye/icon/bz' + n + '.jpg';
+      var url = 'http://wangyebizi.test.upcdn.net/tupian/bz' + n + '.jpg';
       this.showToast('正在加载壁纸...');
       var img = new Image();
-      img.crossOrigin = 'anonymous';
       img.onload = function() {
         self.currentBgType = 'image';
         self.bgLoaded = false;
@@ -2475,7 +2610,16 @@ var vm = new Vue({
     var self = this;
 
     /* 加载设置 */
-    this.loadSettings();
+     this.loadSettings();
+
+    /* 自动迁移旧壁纸 URL（jsdelivr → 又拍云） */
+    if (this.currentBgUrl && this.currentBgUrl.indexOf('cdn.jsdelivr.net/gh/guangtoulao/zuye') !== -1) {
+      var m = this.currentBgUrl.match(/bz(\d+)\.jpg/);
+      if (m) {
+        this.currentBgUrl = 'http://wangyebizi.test.upcdn.net/tupian/bz' + m[1] + '.jpg';
+        this.saveSettings();
+      }
+    }
 
     /* 版本号检查：代码更新后自动刷新默认数据 */
     var savedVer = localStorage.getItem('wetab_data_version');
@@ -2670,5 +2814,6 @@ var vm = new Vue({
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b228234959e04346a40515e77a1a092e","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1e6aad04aa49fcc',t:'MTc4NDU5OTgwNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b228234959e04346a40515e77a1a092e","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b228234959e04346a40515e77a1a092e","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1f216f059abb1cb',t:'MTc4NDcxOTU3Nw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b228234959e04346a40515e77a1a092e","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
