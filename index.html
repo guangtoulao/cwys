@@ -1100,27 +1100,36 @@ var defaultApiList = [
   ];
 var randomColorArr=['#e84393','#3498db','#f39c12','#f1c40f','#cddc39','#2ecc71','#9932CC','#ffbc23','#9b59b6','#1abc9c','#e74c3c','#3498db'];
 var defaultBgLibrary = [
-     /* 静态壁纸（CSS渐变，零加载） */
-    {name:'a',url:'icon/bz2.webp',type:'image'},
-    {name:'b',url:'icon/bz3.webp',type:'image'},
-    {name:'c',url:'icon/bz4.webp',type:'image'},
-    {name:'d',url:'icon/bz5.webp',type:'image'},
-    {name:'e',url:'icon/bz7.webp',type:'image'},
-    {name:'f',url:'icon/bz15.webp',type:'image'},
-    {name:'g',url:'icon/bz25.webp',type:'image'},
-    {name:'h',url:'icon/bz69.webp',type:'image'},
-    /* 动态壁纸 */
-    {name:'1',url:'video/dtbz1.mp4',type:'video'},
-    {name:'2',url:'video/dtbz2.mp4',type:'video'},
-    {name:'3',url:'video/dtbz3.mp4',type:'video'},
-    {name:'4',url:'video/dtbz4.mp4',type:'video'},
-    {name:'5',url:'video/dtbz5.mp4',type:'video'},
-    {name:'6',url:'video/dtbz6.mp4',type:'video'},
-    {name:'7',url:'video/dtbz7.mp4',type:'video'},
-    {name:'8',url:'video/dtbz8.mp4',type:'video'},
-    {name:'9',url:'video/dtbz9.mp4',type:'video'},
-    /* 随机壁纸（每次选择随机一张） */
-    {name:'随机壁纸',type:'random',baseUrl:'https://cdn.jsdelivr.net/gh/guangtoulao/zuye/icon/bz',count:109,ext:'.webp'}
+    /* static */
+    {name:'竹林',url:'icon/bz5.webp',type:'image'},
+    {name:'山河',url:'icon/bz110.webp',type:'image'},
+    {name:'山川',url:'icon/bz109.webp',type:'image'},
+    {name:'湖泊',url:'icon/bz51.webp',type:'image'},
+    {name:'山地',url:'icon/bz58.webp',type:'image'},
+    {name:'椰林',url:'icon/bz68.webp',type:'image'},
+    {name:'红叶',url:'icon/bz91.webp',type:'image'},
+    {name:'草地',url:'icon/bz99.webp',type:'image'},
+    /* dynamic */
+    {name:'动态壁纸1',url:'video/dtbz1.mp4',type:'video'},
+    {name:'动态壁纸2',url:'video/dtbz2.mp4',type:'video'},
+    {name:'动态壁纸3',url:'video/dtbz3.mp4',type:'video'},
+    {name:'动态壁纸4',url:'video/dtbz4.mp4',type:'video'},
+    {name:'动态壁纸5',url:'video/dtbz5.mp4',type:'video'},
+    {name:'动态壁纸6',url:'video/dtbz6.mp4',type:'video'},
+    {name:'动态壁纸7',url:'video/dtbz7.mp4',type:'video'},
+    {name:'动态壁纸8',url:'video/dtbz8.mp4',type:'video'},
+    {name:'动态壁纸9',url:'video/dtbz9.mp4',type:'video'},
+    {name:'动态壁纸10',url:'video/dtbz10.mp4',type:'video'},
+    {name:'动态壁纸11',url:'video/dtbz11.mp4',type:'video'},
+    {name:'动态壁纸12',url:'video/dtbz12.mp4',type:'video'},
+    {name:'动态壁纸13',url:'video/dtbz13.mp4',type:'video'},
+    {name:'动态壁纸14',url:'video/dtbz14.mp4',type:'video'},
+    {name:'动态壁纸15',url:'video/dtbz15.mp4',type:'video'},
+    {name:'动态壁纸16',url:'video/dtbz16.mp4',type:'video'},
+    {name:'动态壁纸17',url:'video/dtbz17.mp4',type:'video'},
+    {name:'动态壁纸18',url:'video/dtbz18.mp4',type:'video'},
+    /* random */
+    {name:'随机壁纸',type:'random',baseUrl:'icon/bz',count:108,ext:'.webp'}
 ];
 var iconColors=['#5D6FFB','#e84393','#00b894','#fdcb6e','#6c5ce7','#00cec9','#e17055','#0984e3','#d63031','#2d3436','#a29bfe','#fd79a8','#6ab04c','#fab1a0','#74b9ff','#ff7675'];
 var defaultHotList=[
@@ -2146,7 +2155,7 @@ var vm = new Vue({
     ctxRandomBg: function() {
       var self = this;
       var n = Math.floor(Math.random() * 115) + 1;
-      var url = 'http://wangyebizi.test.upcdn.net/tupian/bz' + n + '.jpg';
+      var url = 'icon/bz' + n + '.webp';
       this.showToast('正在加载壁纸...');
       var img = new Image();
       img.onload = function() {
@@ -2611,14 +2620,7 @@ var vm = new Vue({
     /* 加载设置 */
      this.loadSettings();
 
-    /* 自动迁移旧壁纸 URL（jsdelivr → 又拍云） */
-    if (this.currentBgUrl && this.currentBgUrl.indexOf('cdn.jsdelivr.net/gh/guangtoulao/zuye') !== -1) {
-      var m = this.currentBgUrl.match(/bz(\d+)\.jpg/);
-      if (m) {
-        this.currentBgUrl = 'http://wangyebizi.test.upcdn.net/tupian/bz' + m[1] + '.jpg';
-        this.saveSettings();
-      }
-    }
+
 
     /* 版本号检查：代码更新后自动刷新默认数据 */
     var savedVer = localStorage.getItem('wetab_data_version');
