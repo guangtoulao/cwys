@@ -18,8 +18,8 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
 .bg-placeholder{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;background:linear-gradient(135deg,#0c0c1d,#1a1a2e)}
 .bg-layer{position:fixed;top:0;left:0;width:100%;height:100%;background-size:cover;background-position:center;z-index:0;transition:opacity .8s ease;will-change:opacity}
 .bg-video{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;transition:opacity .8s ease;background:#0a1628;will-change:opacity}
-.bg-loading{opacity:0;filter:blur(30px);transform:scale(1.1)}
-.bg-loaded{opacity:1;filter:blur(0);transform:scale(1);transition:opacity .6s ease, filter .6s ease, transform .6s ease}
+.bg-loading{opacity:0}
+.bg-loaded{opacity:1;transition:opacity .3s ease}
 .bg-mask{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;transition:background .3s}
 
 /* ===== 左侧导航栏 ===== */
@@ -327,6 +327,9 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
         if (j.bgUrl && j.bgUrl.indexOf('.mp4') === -1 && j.bgUrl.indexOf('.webm') === -1) {
           var img = new Image();
           img.src = j.bgUrl;
+          /* 如果图片已在浏览器缓存中，img.complete 会立即为 true */
+          if (img.complete) window.__bgReady = true;
+          else img.onload = function() { window.__bgReady = true; };
         }
       }
     } catch(e) {}
@@ -1117,31 +1120,22 @@ var randomColorArr=['#e84393','#3498db','#f39c12','#f1c40f','#cddc39','#2ecc71',
 
 var defaultBgLibrary = [
     {name:'竹林',url:'icon/bz5.webp',type:'image'},
-    {name:'山河',url:'icon/bz110.webp',type:'image'},
-    {name:'山川',url:'icon/bz109.webp',type:'image'},
+    {name:'山河',url:'icon/bz73.webp',type:'image'},
+    {name:'山川',url:'icon/bz85.webp',type:'image'},
     {name:'湖泊',url:'icon/bz51.webp',type:'image'},
     {name:'山地',url:'icon/bz58.webp',type:'image'},
     {name:'椰林',url:'icon/bz68.webp',type:'image'},
     {name:'红叶',url:'icon/bz91.webp',type:'image'},
     {name:'草地',url:'icon/bz99.webp',type:'image'},
-    {name:'动态壁纸1',url:'https://5501.kstore.space/video/dtbz1.mp4',type:'video'},
-    {name:'动态壁纸2',url:'https://5501.kstore.space/video/dtbz2.mp4',type:'video'},
-    {name:'动态壁纸3',url:'https://5501.kstore.space/video/dtbz3.mp4',type:'video'},
-    {name:'动态壁纸4',url:'https://5501.kstore.space/video/dtbz4.mp4',type:'video'},
-    {name:'动态壁纸5',url:'https://5501.kstore.space/video/dtbz5.mp4',type:'video'},
-    {name:'动态壁纸6',url:'https://5501.kstore.space/video/dtbz6.mp4',type:'video'},
-    {name:'动态壁纸7',url:'https://5501.kstore.space/video/dtbz7.mp4',type:'video'},
-    {name:'动态壁纸8',url:'https://5501.kstore.space/video/dtbz8.mp4',type:'video'},
-    {name:'动态壁纸9',url:'https://5501.kstore.space/video/dtbz9.mp4',type:'video'},
-    {name:'动态壁纸10',url:'https://5501.kstore.space/video/dtbz10.mp4',type:'video'},
-    {name:'动态壁纸11',url:'https://5501.kstore.space/video/dtbz11.mp4',type:'video'},
-    {name:'动态壁纸12',url:'https://5501.kstore.space/video/dtbz12.mp4',type:'video'},
-    {name:'动态壁纸13',url:'https://5501.kstore.space/video/dtbz13.mp4',type:'video'},
-    {name:'动态壁纸14',url:'https://5501.kstore.space/video/dtbz14.mp4',type:'video'},
-    {name:'动态壁纸15',url:'https://5501.kstore.space/video/dtbz15.mp4',type:'video'},
-    {name:'动态壁纸16',url:'https://5501.kstore.space/video/dtbz16.mp4',type:'video'},
-    {name:'动态壁纸17',url:'https://5501.kstore.space/video/dtbz17.mp4',type:'video'},
-    {name:'动态壁纸18',url:'https://5501.kstore.space/video/dtbz18.mp4',type:'video'},
+    {name:'动态壁纸1',url:'video/dtbz1.mp4',type:'video'},
+    {name:'动态壁纸2',url:'video/dtbz2.mp4',type:'video'},
+    {name:'动态壁纸3',url:'video/dtbz3.mp4',type:'video'},
+    {name:'动态壁纸4',url:'video/dtbz4.mp4',type:'video'},
+    {name:'动态壁纸5',url:'video/dtbz5.mp4',type:'video'},
+    {name:'动态壁纸6',url:'video/dtbz6.mp4',type:'video'},
+    {name:'动态壁纸7',url:'video/dtbz7.mp4',type:'video'},
+    {name:'动态壁纸8',url:'video/dtbz8.mp4',type:'video'},
+    {name:'动态壁纸9',url:'video/dtbz9.mp4',type:'video'},
     {name:'随机壁纸',type:'random',baseUrl:'icon/bz',count:108,ext:'.webp'}
 ];
 
@@ -1859,7 +1853,9 @@ var vm = new Vue({
        if (!this.currentBgUrl || this.bgLibrary[this.currentBgIdx] && this.bgLibrary[this.currentBgIdx].type === 'css') {
          this.selectBg(0);
        } else if (this.currentBgType === 'image' && this.currentBgUrl) {
-         this.preloadBg(this.currentBgUrl);
+         /* 如果预加载脚本已标记缓存命中，直接显示，避免闪烁 */
+         if (window.__bgReady) { this.bgLoaded = true; }
+         else { this.preloadBg(this.currentBgUrl); }
        }
     },
 
