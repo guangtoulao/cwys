@@ -315,9 +315,24 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
       }
     }
   } catch(e) {}
-})();
-</script>
-</head>
+  })();
+  </script>
+  <script>
+  /* 尽早预加载壁纸图片，利用浏览器缓存 */
+  (function(){
+    try {
+      var s = localStorage.getItem('wetab_settings');
+      if (s) {
+        var j = JSON.parse(s);
+        if (j.bgUrl && j.bgUrl.indexOf('.mp4') === -1 && j.bgUrl.indexOf('.webm') === -1) {
+          var img = new Image();
+          img.src = j.bgUrl;
+        }
+      }
+    } catch(e) {}
+  })();
+  </script>
+  </head>
 <body>
 <svg id="builtin-icons" style="display:none">
   <defs>
@@ -1099,31 +1114,37 @@ var defaultApiList = [
     {name:'嗷呜',url:'https://9763.kstore.space/aowu.json',lineColor:'#ffbc23'}
   ];
 var randomColorArr=['#e84393','#3498db','#f39c12','#f1c40f','#cddc39','#2ecc71','#9932CC','#ffbc23','#9b59b6','#1abc9c','#e74c3c','#3498db'];
+
 var defaultBgLibrary = [
-    /* static */
-    {name:'壁纸1',url:'https://5501.kstore.space/icon/bz1.webp',type:'image'},
-    {name:'壁纸2',url:'https://5501.kstore.space/icon/bz2.webp',type:'image'},
-    {name:'壁纸3',url:'https://5501.kstore.space/icon/bz3.webp',type:'image'},
-    {name:'壁纸4',url:'https://5501.kstore.space/icon/bz4.webp',type:'image'},
-    {name:'壁纸5',url:'https://5501.kstore.space/icon/bz5.webp',type:'image'},
-    {name:'壁纸6',url:'https://5501.kstore.space/icon/bz6.webp',type:'image'},
-    {name:'壁纸7',url:'https://5501.kstore.space/icon/bz7.webp',type:'image'},
-    {name:'壁纸8',url:'https://5501.kstore.space/icon/bz8.webp',type:'image'},
-    {name:'壁纸9',url:'https://5501.kstore.space/icon/bz9.webp',type:'image'},
-    /* dynamic */
+    {name:'竹林',url:'icon/bz5.webp',type:'image'},
+    {name:'山河',url:'icon/bz110.webp',type:'image'},
+    {name:'山川',url:'icon/bz109.webp',type:'image'},
+    {name:'湖泊',url:'icon/bz51.webp',type:'image'},
+    {name:'山地',url:'icon/bz58.webp',type:'image'},
+    {name:'椰林',url:'icon/bz68.webp',type:'image'},
+    {name:'红叶',url:'icon/bz91.webp',type:'image'},
+    {name:'草地',url:'icon/bz99.webp',type:'image'},
     {name:'动态壁纸1',url:'https://5501.kstore.space/video/dtbz1.mp4',type:'video'},
     {name:'动态壁纸2',url:'https://5501.kstore.space/video/dtbz2.mp4',type:'video'},
     {name:'动态壁纸3',url:'https://5501.kstore.space/video/dtbz3.mp4',type:'video'},
     {name:'动态壁纸4',url:'https://5501.kstore.space/video/dtbz4.mp4',type:'video'},
-    {name:'动态壁纸1',url:'https://5501.kstore.space/video/dtbz5.mp4',type:'video'},
-    {name:'动态壁纸1',url:'https://5501.kstore.space/video/dtbz6.mp4',type:'video'},
-    {name:'动态壁纸1',url:'https://5501.kstore.space/video/dtbz7.mp4',type:'video'},
-    {name:'动态壁纸1',url:'https://5501.kstore.space/video/dtbz8.mp4',type:'video'},
-    {name:'动态壁纸1',url:'https://5501.kstore.space/video/dtbz9.mp4',type:'video'},
-    /* random */
-    {name:'随机壁纸',type:'random',baseUrl:'https://5501.kstore.space/icon/bz',count:108,ext:'.webp'}
+    {name:'动态壁纸5',url:'https://5501.kstore.space/video/dtbz5.mp4',type:'video'},
+    {name:'动态壁纸6',url:'https://5501.kstore.space/video/dtbz6.mp4',type:'video'},
+    {name:'动态壁纸7',url:'https://5501.kstore.space/video/dtbz7.mp4',type:'video'},
+    {name:'动态壁纸8',url:'https://5501.kstore.space/video/dtbz8.mp4',type:'video'},
+    {name:'动态壁纸9',url:'https://5501.kstore.space/video/dtbz9.mp4',type:'video'},
+    {name:'动态壁纸10',url:'https://5501.kstore.space/video/dtbz10.mp4',type:'video'},
+    {name:'动态壁纸11',url:'https://5501.kstore.space/video/dtbz11.mp4',type:'video'},
+    {name:'动态壁纸12',url:'https://5501.kstore.space/video/dtbz12.mp4',type:'video'},
+    {name:'动态壁纸13',url:'https://5501.kstore.space/video/dtbz13.mp4',type:'video'},
+    {name:'动态壁纸14',url:'https://5501.kstore.space/video/dtbz14.mp4',type:'video'},
+    {name:'动态壁纸15',url:'https://5501.kstore.space/video/dtbz15.mp4',type:'video'},
+    {name:'动态壁纸16',url:'https://5501.kstore.space/video/dtbz16.mp4',type:'video'},
+    {name:'动态壁纸17',url:'https://5501.kstore.space/video/dtbz17.mp4',type:'video'},
+    {name:'动态壁纸18',url:'https://5501.kstore.space/video/dtbz18.mp4',type:'video'},
+    {name:'随机壁纸',type:'random',baseUrl:'icon/bz',count:108,ext:'.webp'}
 ];
-var iconColors=['#5D6FFB','#e84393','#00b894','#fdcb6e','#6c5ce7','#00cec9','#e17055','#0984e3','#d63031','#2d3436','#a29bfe','#fd79a8','#6ab04c','#fab1a0','#74b9ff','#ff7675'];
+
 var defaultHotList=[
   {text:'AI人工智能最新进展'},{text:'今日热搜排行榜'},{text:'天气预报实时查询'},
   {text:'热门电影推荐'},{text:'在线工具大全'},{text:'GitHub开源项目'},
@@ -1267,8 +1288,8 @@ var vm = new Vue({
     calYear: new Date().getFullYear(),
     calMonth: new Date().getMonth(),
     currentBgUrl: '',
-    currentBgIdx: 2,
-    currentBgType: 'css',
+    currentBgIdx: 0,
+    currentBgType: 'image',
     bgLoaded: false,
     customBgUrl: '',
     maskOpacity: 25,
@@ -1835,11 +1856,11 @@ var vm = new Vue({
         } catch (e) {}
       }
       /* 首次打开或壁纸未初始化时，自动选中第一张静态壁纸 */
-      if (!this.currentBgUrl && this.currentBgType !== 'css') {
-        this.selectBg(0);
-      } else if (this.currentBgType === 'image' && this.currentBgUrl) {
-        this.preloadBg(this.currentBgUrl);
-      }
+       if (!this.currentBgUrl || this.bgLibrary[this.currentBgIdx] && this.bgLibrary[this.currentBgIdx].type === 'css') {
+         this.selectBg(0);
+       } else if (this.currentBgType === 'image' && this.currentBgUrl) {
+         this.preloadBg(this.currentBgUrl);
+       }
     },
 
     /* ===== 分类管理 ===== */
