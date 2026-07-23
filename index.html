@@ -1778,8 +1778,17 @@ var vm = new Vue({
           self.saveSettings();
         };
         img.onerror = function() {
-          self.showToast('壁纸加载失败，请重试');
-          self.bgLoaded = true;
+          /* 静默重试另一张，最多3次 */
+          if (!self._randomRetry) self._randomRetry = 0;
+          self._randomRetry++;
+          if (self._randomRetry < 3) {
+            var n2 = Math.floor(Math.random() * bg.count) + 1;
+            var url2 = bg.baseUrl + n2 + bg.ext;
+            img.src = url2;
+          } else {
+            self._randomRetry = 0;
+            self.bgLoaded = true;
+          }
         };
         img.src = url;
       } else {
