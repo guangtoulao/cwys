@@ -6,9 +6,9 @@
 <meta name="referrer" content="no-referrer">
 <title>君子兰主页</title>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
-<script src="https://at.alicdn.com/t/c/font_5198821_0iq8ygg3tpq.js" crossorigin></script>
-<script src="https://at.alicdn.com/t/c/font_5204659_7rnt0jvesj7.js" crossorigin></script>
-<script src="https://at.alicdn.com/t/c/font_5214850_grka0or801h.js" crossorigin></script>
+<script src="https://at.alicdn.com/t/c/font_5198821_gwphgn2a8w.js" crossorigin></script>
+<script src="https://at.alicdn.com/t/c/font_5204659_8fa32bpinar.js" crossorigin></script>
+<script src="https://at.alicdn.com/t/c/font_5214850_jaoc4ogvp8l.js" crossorigin></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 [v-cloak]{display:none}
@@ -678,7 +678,7 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
              draggable="true" @dragstart="onDragStart($event,idx)" @dragend="onDragEnd"
              @dragover.prevent="onDragOver($event,idx)" @drop.prevent="onDrop($event,idx)"
              :class="{dragging:dragIdx===idx}">
-          <div class="site-icon-wrap" :style="{borderRadius:iconShape==='circle'?'50%':iconShape==='square'?'10px':'22%',opacity:iconOpacity/100,background:'transparent'}">
+          <div class="site-icon-wrap" :style="{borderRadius:iconShape==='circle'?'50%':iconShape==='square'?'10px':'22%',opacity:iconOpacity/100,background:item.bgColor||(item.iconId?iconBgColor:'transparent')}">
             <img v-if="item.imgSrc" :src="item.imgSrc" loading="lazy" @error="onIconErr(item)">
             <svg v-else-if="item.iconId" aria-hidden="true"><use :href="'#'+item.iconId"></use></svg>
             <img v-else-if="item.faviconUrl&&!item.iconErr" :src="item.faviconUrl" loading="lazy" @error="onIconErr(item)">
@@ -816,6 +816,13 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
       </div>
       <div class="form-row">
         <input class="form-input" v-model="editForm.iconUrl" placeholder="或输入图标URL">
+      </div>
+      <div class="form-row" style="align-items:center">
+        <label style="color:rgba(255,255,255,.5);font-size:12px;white-space:nowrap">图标背景色</label>
+        <input type="color" v-model="editForm.bgColor" :disabled="editForm.bgColor==='transparent'" style="width:36px;height:24px;border:none;border-radius:6px;cursor:pointer;background:transparent;padding:0">
+        <span style="color:rgba(255,255,255,.4);font-size:11px">{{editForm.bgColor==='transparent'?'透明':(editForm.bgColor||'默认')}}</span>
+        <button @click="editForm.bgColor='transparent'" :style="{marginRight:'6px',padding:'2px 8px',fontSize:'11px',border:'1px solid rgba(255,255,255,.15)',borderRadius:'6px',background:editForm.bgColor==='transparent'?'rgba(93,111,251,.25)':'transparent',color:'rgba(255,255,255,.6)',cursor:'pointer'}">透明</button>
+        <button v-if="editForm.bgColor" @click="editForm.bgColor=''" style="padding:2px 8px;font-size:11px;border:1px solid rgba(255,255,255,.15);border-radius:6px;background:transparent;color:rgba(255,255,255,.5);cursor:pointer">清除</button>
       </div>
       <div class="form-row">
         <input class="form-input" v-model="editForm.name" placeholder="网站名称（如：淘宝）" @input="onNameInput">
@@ -1081,7 +1088,7 @@ var defaultListBanGong = [
       {"url":"http://m.wmsio.cn","iconId":"icon-zhaogonghezi","imgSrc":"","name":"盒子地窖"},
       {"url":"https://bjq.catvod.site/","iconId":"icon-b-tv","imgSrc":"","name":"TB接口编辑"},
       {"url":"https://www.iconfont.cn/","iconId":"icon-a-yemian11","imgSrc":"","name":"阿里图库"},
-      {"url":"https://steampp.net/","iconId":"icon-b-wate","imgSrc":"","name":"瓦特加速"},
+      {"url":"https://steampp.net/","iconId":"icon-c-wate","imgSrc":"","name":"瓦特加速"},
       {"url":"https://kstore.cc/","iconId":"icon-c-kaisu","imgSrc":"","name":"凯速网"},
       {"url":"https://mt2.cn/download/","iconId":"icon-b-eadec","imgSrc":"","name":"MT管理器"},
       {"url":"https://www.jyshare.com/","iconId":"icon-c-zaixian","imgSrc":"","name":"菜鸟工具"},
@@ -1302,11 +1309,12 @@ var vm = new Vue({
     iconOpacity: 100,
     iconSize: 56,
     iconGap: 22,
+    iconBgColor: '#667eea',
     showSettings: false,
     showSiteMgr: false,
     showEditForm: false,
     editTab: 'shenghuo',
-    editForm: {name:'', url:'', imgSrc:'', iconUrl:'', iconId:'', idx:-1},
+    editForm: {name:'', url:'', imgSrc:'', iconUrl:'', iconId:'', bgColor:'', idx:-1},
     showIconPicker: false,
     editIconMode: '',
     iconSearchKey: '',
@@ -1820,7 +1828,7 @@ var vm = new Vue({
       var s = {
         bgUrl: this.currentBgUrl, bgIdx: this.currentBgIdx, bgType: this.currentBgType,
         mask: this.maskOpacity, blur: this.blurVal,
-        iconShape: this.iconShape, iconOpacity: this.iconOpacity, iconSize: this.iconSize, iconGap: this.iconGap, openInNewTab: this.openInNewTab,
+        iconShape: this.iconShape, iconOpacity: this.iconOpacity, iconSize: this.iconSize, iconGap: this.iconGap, iconBgColor: this.iconBgColor, openInNewTab: this.openInNewTab,
         scrollFlipEnabled: this.scrollFlipEnabled, scrollFlipSensitivity: this.scrollFlipSensitivity,
         githubToken: this.githubToken, githubRepo: this.githubRepo
       };
@@ -1858,6 +1866,7 @@ var vm = new Vue({
           if (j.iconOpacity) this.iconOpacity = j.iconOpacity;
           if (j.iconSize) this.iconSize = j.iconSize;
           if (j.iconGap !== undefined) this.iconGap = j.iconGap;
+          if (j.iconBgColor) this.iconBgColor = j.iconBgColor;
           if (j.openInNewTab !== undefined) this.openInNewTab = j.openInNewTab;
           if (j.scrollFlipEnabled !== undefined) this.scrollFlipEnabled = j.scrollFlipEnabled;
           if (j.scrollFlipSensitivity !== undefined) this.scrollFlipSensitivity = j.scrollFlipSensitivity;
@@ -1949,6 +1958,7 @@ var vm = new Vue({
       this.iconOpacity = 100;
       this.iconSize = 56;
       this.iconGap = 22;
+      this.iconBgColor = '#667eea';
       this.openInNewTab = true;
       this.scrollFlipEnabled = true;
       this.scrollFlipSensitivity = 50;
@@ -1981,12 +1991,12 @@ var vm = new Vue({
       this.showEditForm = true;
       this.showSolidIcon = false;
       this.solidIconText = '';
-      this.editForm = {name:'', url:'', imgSrc:'', iconUrl:'', iconId:'', idx:-1};
+      this.editForm = {name:'', url:'', imgSrc:'', iconUrl:'', iconId:'', bgColor:'', idx:-1};
     },
     editSiteInMgr: function(idx) {
       this.showEditForm = true;
       var item = this.editCategoryList[idx];
-      this.editForm = {name: item.name, url: item.url, imgSrc: item.imgSrc || '', iconUrl: item.imgSrc || '', iconId: item.iconId || '', idx: idx};
+      this.editForm = {name: item.name, url: item.url, imgSrc: item.imgSrc || '', iconUrl: item.imgSrc || '', iconId: item.iconId || '', bgColor: item.bgColor || '', idx: idx};
     },
     editSiteFromCtx: function(idx) {
       this.openSiteMgr();
@@ -2013,7 +2023,7 @@ var vm = new Vue({
         // 没有图标ID时，使用URL或imgSrc
         imgSrc = this.editForm.imgSrc || this.editForm.iconUrl || '';
       }
-      var site = {name: this.editForm.name.trim(), url: this.editForm.url.trim(), iconId: iconId, imgSrc: imgSrc};
+      var site = {name: this.editForm.name.trim(), url: this.editForm.url.trim(), iconId: iconId, imgSrc: imgSrc, bgColor: this.editForm.bgColor || ''};
       this.$set(site, 'faviconUrl', this.getFaviconUrl(site.url));
       this.$set(site, 'iconErr', false);
       var list = this.editCategoryList;
@@ -2379,7 +2389,7 @@ var vm = new Vue({
         customCategories: this.customCategories, customLists: this.customLists,
         settings: {bgUrl: this.currentBgUrl, bgIdx: this.currentBgIdx, bgType: this.currentBgType,
                    mask: this.maskOpacity,
-                   blur: this.blurVal, iconShape: this.iconShape, iconOpacity: this.iconOpacity, iconSize: this.iconSize, iconGap: this.iconGap, openInNewTab: this.openInNewTab}
+                   blur: this.blurVal, iconShape: this.iconShape, iconOpacity: this.iconOpacity, iconSize: this.iconSize, iconGap: this.iconGap, iconBgColor: this.iconBgColor, openInNewTab: this.openInNewTab}
       };
       var blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
       var a = document.createElement('a');
@@ -2429,6 +2439,7 @@ var vm = new Vue({
             if (s.iconOpacity) self.iconOpacity = s.iconOpacity;
           if (s.iconSize) self.iconSize = s.iconSize;
           if (s.iconGap) self.iconGap = s.iconGap;
+          if (s.iconBgColor) self.iconBgColor = s.iconBgColor;
           }
           self.addFavicons(self.listShengHuo);
           self.addFavicons(self.listBanGong);
