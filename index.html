@@ -159,7 +159,7 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
 .hot-text{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
 /* ===== 网址图标网格 ===== */
-.sites-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--icon-gap,22px);max-width:900px;margin:0 auto;padding-bottom:20px}
+.sites-grid{display:flex;flex-wrap:wrap;justify-content:center;column-gap:var(--icon-gap,22px);row-gap:var(--icon-row-gap,16px);max-width:900px;margin:0 auto;padding-bottom:20px}
 .site-card{width:calc(var(--icon-size,56px) + 24px);display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;transition:all .3s;position:relative}
 .site-card:hover{transform:translateY(-4px) scale(1.05)}
 .site-icon-wrap{width:var(--icon-size,56px);height:var(--icon-size,56px);border-radius:calc(var(--icon-size,56px) * 0.22);display:flex;align-items:center;justify-content:center;overflow:visible;box-shadow:0 4px 12px rgba(0,0,0,.1);transition:all .3s;position:relative;flex-shrink:0;color:#fff}
@@ -196,60 +196,93 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
 
 /* ===== 弹窗 ===== */
 .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.4);z-index:200;backdrop-filter:blur(2px)}
-.modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(24,24,42,.96);backdrop-filter:blur(24px);border-radius:24px;padding:28px;max-height:85vh;overflow-y:auto;width:720px;max-width:95vw;box-shadow:0 16px 48px rgba(0,0,0,.4);z-index:201;border:1px solid rgba(255,255,255,.08);animation:modalIn .25s ease}
+.modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:24px;padding:28px;max-height:85vh;overflow-y:auto;width:720px;max-width:95vw;box-shadow:0 16px 48px rgba(0,0,0,.2);z-index:201;border:1px solid rgba(0,0,0,.06);animation:modalIn .25s ease}
 @keyframes modalIn{from{opacity:0;transform:translate(-50%,-46%) scale(.95)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
-.modal-title{font-size:18px;font-weight:600;color:#fff;margin-bottom:20px}
-.modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .2s;border:none}
-.modal-close:hover{background:rgba(255,255,255,.2);color:#fff}
+.modal-title{font-size:18px;font-weight:600;color:#1d1d1f;margin-bottom:20px}
+.modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,.06);color:#999;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .2s;border:none}
+.modal-close:hover{background:rgba(0,0,0,.1);color:#333}
 
 /* 网址管理 */
 .cat-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
-.cat-tab{padding:6px 18px;border-radius:16px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);font-size:13px;cursor:pointer;transition:all .2s;border:none}
-.cat-tab.active{background:rgba(93,111,251,.8);color:#fff}
-.cat-tab:hover:not(.active){background:rgba(255,255,255,.15)}
+.cat-tab{padding:6px 18px;border-radius:16px;background:#f5f5f5;color:#666;font-size:13px;cursor:pointer;transition:all .2s;border:none}
+.cat-tab.active{background:#1d1d1f;color:#fff}
+.cat-tab:hover:not(.active){background:#eee}
 .mgr-list{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:16px}
 .mgr-item{width:84px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;position:relative}
 .mgr-item .site-icon-wrap{width:40px;height:40px;border-radius:9px}
 .mgr-item .site-icon-wrap img{width:100%;height:100%;object-fit:cover;border-radius:inherit}
 .mgr-item .site-icon-wrap svg{width:100%;height:100%}
 .mgr-item .site-icon-text{width:100%;height:100%;font-size:16px;border-radius:inherit}
-.mgr-item .site-name{font-size:11px}
-.mgr-item .edit-btn{position:absolute;top:-4px;left:10px;width:18px;height:18px;border-radius:50%;background:rgba(93,111,251,.85);color:#fff;font-size:9px;display:none;align-items:center;justify-content:center;cursor:pointer;z-index:5}
-.mgr-item .del-btn{position:absolute;top:-4px;right:10px;width:18px;height:18px;border-radius:50%;background:rgba(255,60,60,.8);color:#fff;font-size:11px;display:none;align-items:center;justify-content:center;cursor:pointer;z-index:5}
+.mgr-item .site-name{font-size:11px;color:#555}
+.mgr-item .edit-btn{position:absolute;top:-4px;left:10px;width:18px;height:18px;border-radius:50%;background:#1d1d1f;color:#fff;font-size:9px;display:none;align-items:center;justify-content:center;cursor:pointer;z-index:5}
+.mgr-item .del-btn{position:absolute;top:-4px;right:10px;width:18px;height:18px;border-radius:50%;background:#ff4d4f;color:#fff;font-size:11px;display:none;align-items:center;justify-content:center;cursor:pointer;z-index:5}
 .mgr-item:hover .edit-btn,.mgr-item:hover .del-btn{display:flex}
 
 /* 表单 */
 .form-row{display:flex;gap:12px;margin-bottom:12px}
-.form-input{flex:1;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:10px 16px;color:#fff;font-size:14px;outline:none;transition:all .2s}
-.form-input:focus{border-color:rgba(93,111,251,.5);background:rgba(255,255,255,.15)}
-.form-input::placeholder{color:rgba(255,255,255,.3)}
-.form-input option{background:#1a1a2e}
+.form-input{flex:1;background:#f5f5f5;border:1px solid #e5e5e5;border-radius:12px;padding:10px 16px;color:#333;font-size:14px;outline:none;transition:all .2s}
+.form-input:focus{border-color:rgba(0,0,0,.2);background:#fff}
+.form-input::placeholder{color:#bbb}
+.form-input option{background:#fff;color:#333}
 .form-btn{padding:10px 24px;border-radius:12px;border:none;cursor:pointer;font-size:14px;transition:all .2s}
-.btn-primary{background:rgba(93,111,251,.85);color:#fff}
-.btn-primary:hover{background:rgba(93,111,251,1)}
-.btn-ghost{background:rgba(255,255,255,.1);color:rgba(255,255,255,.7)}
-.btn-ghost:hover{background:rgba(255,255,255,.2)}
-.btn-danger{background:rgba(239,68,68,.8);color:#fff}
-.btn-danger:hover{background:rgba(239,68,68,1)}
+.btn-primary{background:#1d1d1f;color:#fff}
+.btn-primary:hover{background:#333}
+.btn-ghost{background:#f5f5f5;color:#555}
+.btn-ghost:hover{background:#eee}
+.btn-danger{background:#1d1d1f;color:#fff}
+.btn-danger:hover{background:#333}
 
 /* ===== 设置面板 ===== */
-.settings-panel{position:fixed;top:0;left:0;width:400px;height:100vh;background:rgba(20,20,40,.96);backdrop-filter:blur(24px);z-index:201;transform:translateX(-100%);transition:transform .35s cubic-bezier(.4,0,.2,1);overflow-y:auto;padding:28px;border-right:1px solid rgba(255,255,255,.06)}
-.settings-panel.open{transform:translateX(0)}
-.set-title{font-size:20px;font-weight:600;color:#fff;margin-bottom:24px}
-.set-section{margin-bottom:28px}
-.set-label{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px}
+.settings-panel{position:fixed;top:0;left:0;width:620px;height:100vh;max-width:90vw;background:#fff;border-radius:0 20px 20px 0;z-index:201;display:flex;overflow:hidden;box-shadow:4px 0 40px rgba(0,0,0,.2);opacity:0;transform:translateX(-100%);transition:all .3s cubic-bezier(.4,0,.2,1);pointer-events:none}
+.settings-panel.open{opacity:1;transform:translateX(0);pointer-events:auto}
+.set-nav{width:180px;background:#f5f5f7;padding:16px 0;display:flex;flex-direction:column;gap:2px;flex-shrink:0;border-right:1px solid #e5e5e5}
+.set-nav-head{display:flex;align-items:center;gap:10px;padding:12px 18px 20px;margin-bottom:4px;border-bottom:1px solid rgba(0,0,0,.06)}
+.set-nav-head .avatar{width:32px;height:32px;border-radius:50%;background:#e5e5e5;display:flex;align-items:center;justify-content:center;color:#999;font-size:14px}
+.set-nav-head .name{font-size:13px;color:#666;font-weight:500}
+.set-nav-item{display:flex;align-items:center;gap:10px;padding:9px 14px;margin:0 10px;border-radius:8px;cursor:pointer;transition:all .15s;color:#666;font-size:13px;border:none;background:transparent}
+.set-nav-item:hover{color:#333;background:rgba(0,0,0,.04)}
+.set-nav-item.active{color:#fff;background:#1d1d1f}
+.set-nav-item.active svg{stroke:#fff}
+.set-nav-item svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.set-content{flex:1;padding:24px 28px;overflow-y:auto;background:#fff}
+.set-title{font-size:18px;font-weight:600;color:#1d1d1f;margin-bottom:20px}
+.set-section{margin-bottom:24px}
+.set-section-title{font-size:13px;font-weight:600;color:#1d1d1f;margin-bottom:12px}
+.set-label{font-size:11px;color:#999;margin-bottom:10px;text-transform:uppercase;letter-spacing:1.2px;font-weight:500}
 .bg-cats{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
-.bg-cat-tag{padding:5px 14px;border-radius:20px;font-size:12px;cursor:pointer;color:rgba(255,255,255,.5);background:rgba(255,255,255,.05);transition:all .15s}
-.bg-cat-tag:hover{background:rgba(255,255,255,.1);color:rgba(255,255,255,.8)}
-.bg-cat-tag.active{background:rgba(93,111,251,.25);color:#fff}
+.bg-cat-tag{padding:5px 14px;border-radius:20px;font-size:12px;cursor:pointer;color:#666;background:#f5f5f5;transition:all .15s;border:1px solid transparent}
+.bg-cat-tag:hover{background:#eee;color:#333}
+.bg-cat-tag.active{background:rgba(0,0,0,.08);color:#1d1d1f;border-color:rgba(0,0,0,.15)}
 .bg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .bg-thumb{width:100%;height:70px;border-radius:10px;cursor:pointer;transition:all .2s;border:2px solid transparent;background-size:cover;background-position:center;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.bg-thumb.active{border-color:rgba(93,111,251,.8);box-shadow:0 0 12px rgba(93,111,251,.3)}
+.bg-thumb.active{border-color:#1d1d1f;box-shadow:0 0 12px rgba(0,0,0,.15)}
 .bg-thumb:hover{transform:scale(1.05)}
-.slider-row{display:flex;align-items:center;gap:12px;margin-bottom:14px}
-.slider-row label{font-size:13px;color:rgba(255,255,255,.6);min-width:80px}
-.slider-row input[type=range]{flex:1;accent-color:#5D6FFB;cursor:pointer}
-.slider-row .val{font-size:13px;color:rgba(255,255,255,.4);min-width:40px;text-align:right}
+.slider-row{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.slider-row label{font-size:13px;color:#555;min-width:90px}
+.slider-row input[type=range]{flex:1;accent-color:#1d1d1f;cursor:pointer;height:4px;border-radius:2px}
+.slider-row .val{font-size:12px;color:#999;min-width:44px;text-align:right;font-variant-numeric:tabular-nums}
+.set-toggle-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.set-toggle-row label{font-size:13px;color:#555}
+.set-toggle-row input[type=checkbox]{width:36px;height:20px;-webkit-appearance:none;appearance:none;background:#ddd;border-radius:10px;position:relative;cursor:pointer;outline:none;transition:background .2s}
+.set-toggle-row input[type=checkbox]::after{content:'';position:absolute;width:16px;height:16px;background:#fff;border-radius:50%;top:2px;left:2px;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.set-toggle-row input[type=checkbox]:checked{background:#1d1d1f}
+.set-toggle-row input[type=checkbox]:checked::after{transform:translateX(16px)}
+.settings-panel .form-input{background:#f5f5f5;border:1px solid #e5e5e5;color:#333}
+.settings-panel .form-input:focus{border-color:rgba(0,0,0,.3);background:#fff}
+.settings-panel .form-input::placeholder{color:#bbb}
+.settings-panel .form-input option{background:#fff;color:#333}
+.settings-panel .btn-ghost{background:#f5f5f5;color:#555}
+.settings-panel .btn-ghost:hover{background:#eee}
+.settings-panel .btn-primary{background:#1d1d1f;color:#fff}
+.settings-panel .btn-primary:hover{background:#333}
+.settings-panel .btn-danger{background:#1d1d1f;color:#fff}
+.settings-panel .btn-danger:hover{background:#333}
+.settings-panel select.form-input{background:#f5f5f5;color:#333}
+.set-desc{font-size:13px;color:#999;line-height:1.6;margin-bottom:14px}
+.set-content::-webkit-scrollbar{width:6px}
+.set-content::-webkit-scrollbar-track{background:transparent}
+.set-content::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15);border-radius:3px}
+.set-content::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,.25)}
 
 /* ===== API 接口区 ===== */
 .api-title{
@@ -296,7 +329,10 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
   .widgets-grid{grid-template-columns:1fr 1fr;padding:0 8px}
   .main-wrap{padding:30px 12px 160px}
   .modal{width:95vw;padding:20px}
-  .settings-panel{width:100vw}
+  .settings-panel{width:90vw;height:100vh;border-radius:0 16px 16px 0}
+  .set-nav{width:120px}
+  .set-nav-item{padding:8px 10px;font-size:12px}
+  .set-content{padding:16px}
   .api-grid{grid-template-columns:1fr}
 }
 </style>
@@ -671,7 +707,7 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
       </div>
 
       <!-- 网址图标网格 -->
-      <div class="sites-grid" :style="{'--icon-size':iconSize+'px','--icon-gap':iconGap+'px'}" ref="sitesGridWrapper">
+      <div class="sites-grid" :style="{'--icon-size':iconSize+'px','--icon-gap':iconGap+'px','--icon-row-gap':iconRowGap+'px'}" ref="sitesGridWrapper">
         <div class="site-card" v-for="(item,idx) in activeCategoryList" :key="activeTab+'_'+idx"
              :data-idx="idx"
              @click="openUrl(item.url)"
@@ -744,31 +780,33 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
     <div class="cat-tabs">
       <button class="cat-tab" v-for="cat in allCategories" :key="cat.id"
         :class="{active:editTab===cat.id}"
-        @click="editTab=cat.id">{{cat.name}}</button>
-    </div>
-    <div class="mgr-list">
-      <div class="mgr-item" v-for="(item,idx) in editCategoryList" :key="'mgr'+editTab+idx">
-        <div class="edit-btn" @click.stop="editSiteInMgr(idx)">✏</div>
-        <div class="del-btn" @click="deleteFromMgr(idx)">✕</div>
-        <div class="site-icon-wrap">
-          <img v-if="item.imgSrc" :src="item.imgSrc" loading="lazy">
-          <svg v-else-if="item.iconId" aria-hidden="true"><use :href="'#'+item.iconId"></use></svg>
-          <img v-else-if="item.faviconUrl&&!item.iconErr" :src="item.faviconUrl" loading="lazy" @error="onIconErr(item)">
-          <span v-else class="site-icon-text" :style="{background:getIconColor(idx)}">{{item.name.charAt(0)}}</span>
-        </div>
-        <div class="site-name">{{item.name}}</div>
-      </div>
+        @click="editTab=cat.id;mgrShowIcons=true">{{cat.name}}</button>
     </div>
     <div class="form-row">
       <button class="form-btn btn-primary" @click="addSiteInMgr">+ 添加网址</button>
       <button class="form-btn btn-ghost" @click="closeSiteMgr">完成</button>
     </div>
-    <div v-if="showEditForm" style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.06)">
+    <div v-show="mgrShowIcons">
+      <div class="mgr-list">
+        <div class="mgr-item" v-for="(item,idx) in editCategoryList" :key="'mgr'+editTab+idx">
+          <div class="edit-btn" @click.stop="editSiteInMgr(idx)">✏</div>
+          <div class="del-btn" @click="deleteFromMgr(idx)">✕</div>
+          <div class="site-icon-wrap">
+            <img v-if="item.imgSrc" :src="item.imgSrc" loading="lazy">
+            <svg v-else-if="item.iconId" aria-hidden="true"><use :href="'#'+item.iconId"></use></svg>
+            <img v-else-if="item.faviconUrl&&!item.iconErr" :src="item.faviconUrl" loading="lazy" @error="onIconErr(item)">
+            <span v-else class="site-icon-text" :style="{background:getIconColor(idx)}">{{item.name.charAt(0)}}</span>
+          </div>
+          <div class="site-name">{{item.name}}</div>
+        </div>
+      </div>
+    </div>
+    <div v-if="showEditForm" style="margin-top:16px;padding-top:16px;border-top:1px solid #eee">
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-        <div style="width:48px;height:48px;border-radius:12px;overflow:hidden;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff">
+        <div style="width:48px;height:48px;border-radius:12px;overflow:hidden;background:#f5f5f5;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#333">
           <img v-if="editForm.imgSrc" :src="editForm.imgSrc" style="width:100%;height:100%;object-fit:contain">
           <svg v-else-if="editForm.iconId" class="icon" aria-hidden="true" style="width:100%;height:100%"><use :href="'#'+editForm.iconId"></use></svg>
-          <span v-else style="color:rgba(255,255,255,.2);font-size:20px">📷</span>
+          <span v-else style="color:#ddd;font-size:20px">📷</span>
         </div>
         <div style="display:flex;gap:6px;flex-wrap:wrap">
           <button :class="editIconMode==='remove'?'form-btn btn-primary':'form-btn btn-ghost'" @click="editForm.imgSrc='';editForm.iconUrl='';editForm.iconId='';editIconMode='remove'" style="padding:4px 10px;font-size:11px">移除</button>
@@ -784,17 +822,17 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
         <div style="display:flex;gap:6px;margin-bottom:8px">
           <input class="form-input" v-model="iconSearchKey" placeholder="搜索图标，输入完整ID按回车直接使用（如：icon-b-honghui）" style="flex:1;font-size:12px" @input="searchIconfont" @keyup.enter="applyIconfontInput">
         </div>
-        <div style="max-height:140px;overflow-y:auto;display:flex;flex-wrap:wrap;gap:6px;padding:8px;background:rgba(255,255,255,.04);border-radius:10px">
+        <div style="max-height:140px;overflow-y:auto;display:flex;flex-wrap:wrap;gap:6px;padding:8px;background:#f8f8f8;border-radius:10px">
           <div v-for="sym in iconSearchResults" :key="sym" @click="pickIconfont(sym)"
-               style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:8px;cursor:pointer;transition:all .15s;background:rgba(255,255,255,.06)"
-               @mouseover="$event.currentTarget.style.background='rgba(93,111,251,.2)'" @mouseout="$event.currentTarget.style.background='rgba(255,255,255,.06)'">
-            <svg class="icon" aria-hidden="true" style="width:22px;height:22px;fill:rgba(255,255,255,.8)"><use :href="'#'+sym"></use></svg>
+               style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:8px;cursor:pointer;transition:all .15s;background:#eee"
+               @mouseover="$event.currentTarget.style.background='rgba(0,0,0,.08)'" @mouseout="$event.currentTarget.style.background='#eee'">
+            <svg class="icon" aria-hidden="true" style="width:22px;height:22px;fill:#555"><use :href="'#'+sym"></use></svg>
           </div>
-          <div v-if="iconSearchResults.length===0 && iconSearchKey" style="color:rgba(255,255,255,.3);font-size:12px;padding:8px">未找到匹配的图标</div>
+          <div v-if="iconSearchResults.length===0 && iconSearchKey" style="color:#999;font-size:12px;padding:8px">未找到匹配的图标</div>
         </div>
       </div>
       <!-- 纯色图标 -->
-      <div v-if="showSolidIcon" style="margin-bottom:12px;padding:12px;background:rgba(255,255,255,.04);border-radius:10px">
+      <div v-if="showSolidIcon" style="margin-bottom:12px;padding:12px;background:#f8f8f8;border-radius:10px">
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
           <div :style="{width:'48px',height:'48px',borderRadius:iconShape==='circle'?'50%':iconShape==='square'?'10px':'22%',background:solidIconColor,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,transition:'all .15s'}">
             <span style="color:#fff;font-size:20px;font-weight:600;text-shadow:0 1px 2px rgba(0,0,0,.2)">{{solidIconText||'Aa'}}</span>
@@ -804,11 +842,11 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
         <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px">
           <div v-for="c in ['#5D6FFB','#FF6B6B','#FFA940','#52C41A','#13C2C2','#2F54EB','#F5222D','#FA8C16','#A0D911','#1890FF','#722ED1','#EB2F96','#FA541C','#237804','#096DD9','#531DAB','#C41D7F','#D4380D','#389E0D','#006D75','#1D39C4','#CF1322','#D48806','#08979C']"
                :key="c" @click="solidIconColor=c"
-               :style="{width:'24px',height:'24px',borderRadius:'6px',background:c,cursor:'pointer',transition:'all .15s',transform:solidIconColor===c?'scale(1.2)':'scale(1)',boxShadow:solidIconColor===c?'0 0 0 2px rgba(255,255,255,.6)':'none'}">
+               :style="{width:'24px',height:'24px',borderRadius:'6px',background:c,cursor:'pointer',transition:'all .15s',transform:solidIconColor===c?'scale(1.2)':'scale(1)',boxShadow:solidIconColor===c?'0 0 0 2px rgba(0,0,0,.2)':'none'}">
           </div>
         </div>
         <div style="display:flex;align-items:center;gap:8px">
-          <span style="color:rgba(255,255,255,.4);font-size:11px">自定义</span>
+          <span style="color:#999;font-size:11px">自定义</span>
           <input type="color" v-model="solidIconColor" style="width:28px;height:28px;border:none;background:none;cursor:pointer;padding:0">
           <div style="flex:1"></div>
           <button class="form-btn btn-primary" @click="applySolidIcon" style="padding:4px 12px;font-size:11px">应用</button>
@@ -818,11 +856,11 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
         <input class="form-input" v-model="editForm.iconUrl" placeholder="或输入图标URL">
       </div>
       <div class="form-row" style="align-items:center">
-        <label style="color:rgba(255,255,255,.5);font-size:12px;white-space:nowrap">图标背景色</label>
+        <label style="color:#666;font-size:12px;white-space:nowrap">图标背景色</label>
         <input type="color" v-model="editForm.bgColor" :disabled="editForm.bgColor==='transparent'" style="width:36px;height:24px;border:none;border-radius:6px;cursor:pointer;background:transparent;padding:0">
-        <span style="color:rgba(255,255,255,.4);font-size:11px">{{editForm.bgColor==='transparent'?'透明':(editForm.bgColor||'默认')}}</span>
-        <button @click="editForm.bgColor='transparent'" :style="{marginRight:'6px',padding:'2px 8px',fontSize:'11px',border:'1px solid rgba(255,255,255,.15)',borderRadius:'6px',background:editForm.bgColor==='transparent'?'rgba(93,111,251,.25)':'transparent',color:'rgba(255,255,255,.6)',cursor:'pointer'}">透明</button>
-        <button v-if="editForm.bgColor" @click="editForm.bgColor=''" style="padding:2px 8px;font-size:11px;border:1px solid rgba(255,255,255,.15);border-radius:6px;background:transparent;color:rgba(255,255,255,.5);cursor:pointer">清除</button>
+        <span style="color:#999;font-size:11px">{{editForm.bgColor==='transparent'?'透明':(editForm.bgColor||'默认')}}</span>
+        <button @click="editForm.bgColor='transparent'" :style="{marginRight:'6px',padding:'2px 8px',fontSize:'11px',border:'1px solid #ddd',borderRadius:'6px',background:editForm.bgColor==='transparent'?'rgba(0,0,0,.08)':'transparent',color:'#666',cursor:'pointer'}">透明</button>
+        <button v-if="editForm.bgColor" @click="editForm.bgColor=''" style="padding:2px 8px;font-size:11px;border:1px solid #ddd;border-radius:6px;background:transparent;color:#999;cursor:pointer">清除</button>
       </div>
       <div class="form-row">
         <input class="form-input" v-model="editForm.name" placeholder="网站名称（如：淘宝）" @input="onNameInput">
@@ -846,8 +884,8 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
         <div v-for="ic in catIconList" :key="ic.id"
           @click="newCategoryIcon=ic.id"
           style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s"
-          :style="newCategoryIcon===ic.id?{background:'rgba(93,111,251,.4)',transform:'scale(1.1)'}:{background:'rgba(255,255,255,.08)'}">
-          <svg style="width:20px;height:20px;stroke:rgba(255,255,255,.8);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use :href="'#icon-'+ic.id"></use></svg>
+          :style="newCategoryIcon===ic.id?{background:'rgba(0,0,0,.12)',transform:'scale(1.1)'}:{background:'#f5f5f5'}">
+          <svg style="width:20px;height:20px;stroke:#555;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use :href="'#icon-'+ic.id"></use></svg>
         </div>
       </div>
     </div>
@@ -860,106 +898,137 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
   <!-- 设置面板 -->
   <div class="overlay" v-if="showSettings" @click="showSettings=false"></div>
   <div class="settings-panel" :class="{open:showSettings}" @click.stop>
-    <div class="set-title">⚙️ 设置</div>
-    <div class="set-section">
-      <div class="set-label">基础设置</div>
-      <div class="slider-row">
-        <label>图标形状</label>
-        <select v-model="iconShape" class="form-input" style="flex:1" @change="saveSettings">
-          <option value="rounded">圆角</option>
-          <option value="circle">圆形</option>
-          <option value="square">方形</option>
-        </select>
+    <div class="set-nav">
+      <div class="set-nav-head">
+        <div class="avatar">⚙️</div>
+        <div class="name">设置</div>
       </div>
-      <div class="slider-row">
-        <label>图标透明度</label>
-        <input type="range" min="30" max="100" v-model.number="iconOpacity" @change="saveSettings">
-        <span class="val">{{iconOpacity}}%</span>
+      <div class="set-nav-item" :class="{active:settingsTab==='general'}" @click="settingsTab='general'">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.68 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.32 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>通用
       </div>
-      <div class="slider-row">
-        <label>图标大小</label>
-        <input type="range" min="36" max="80" v-model.number="iconSize" @change="saveSettings">
-        <span class="val">{{iconSize}}px</span>
+      <div class="set-nav-item" :class="{active:settingsTab==='wallpaper'}" @click="settingsTab='wallpaper'">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>壁纸
       </div>
-      <div class="slider-row">
-        <label>图标间距</label>
-        <input type="range" min="8" max="40" v-model.number="iconGap" @change="saveSettings">
-        <span class="val">{{iconGap}}px</span>
+      <div class="set-nav-item" :class="{active:settingsTab==='appearance'}" @click="settingsTab='appearance'">
+        <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>外观
       </div>
-      <div class="slider-row">
-        <label>新标签打开</label>
-        <input type="checkbox" v-model="openInNewTab" @change="saveSettings" style="width:18px;height:18px;cursor:pointer">
-      </div>
-      <div class="slider-row">
-        <label>滚动切换分类</label>
-        <input type="checkbox" v-model="scrollFlipEnabled" @change="saveSettings" style="width:18px;height:18px;cursor:pointer">
-      </div>
-      <div class="slider-row" v-show="scrollFlipEnabled">
-        <label>切换灵敏度</label>
-        <input type="range" min="10" max="140" v-model.number="scrollFlipSensitivity" @change="saveSettings">
-        <span class="val">{{scrollFlipSensitivity}}</span>
+      <div class="set-nav-item" :class="{active:settingsTab==='reset'}" @click="settingsTab='reset'">
+        <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>重置
       </div>
     </div>
-    <div class="set-section">
-      <div class="set-label">背景设置</div>
-      <div class="bg-cats">
-        <span class="bg-cat-tag" :class="{active:bgCategory==='image'}" @click="bgCategory='image'">静态壁纸</span>
-        <span class="bg-cat-tag" :class="{active:bgCategory==='video'}" @click="bgCategory='video'">动态壁纸</span>
-        <span class="bg-cat-tag" :class="{active:bgCategory==='css'}" @click="bgCategory='css'">CSS渐变</span>
-        <span class="bg-cat-tag" :class="{active:bgCategory==='random'}" @click="bgCategory='random'">随机壁纸</span>
-        <span class="bg-cat-tag" :class="{active:bgCategory==='custom'}" @click="bgCategory='custom'">自定义</span>
-      </div>
-      <div class="bg-grid" v-if="bgCategory!=='custom'" style="margin-top:10px">
-        <div class="bg-thumb" v-for="(bg,bi) in bgLibrary" v-if="bg.type===bgCategory" :key="bi" :class="{active:currentBgIdx===bi}"
-             @click="selectBg(bi)" :title="bg.name"
-             :style="bg.type==='css'?{background:bg.bg}:(bg.type==='image'?{backgroundImage:'url('+bg.url+')'}:(bg.type==='random'?{background:'linear-gradient(135deg,#2c3e50,#3498db)'}:{}))">
-          <video v-if="bg.type==='video'" :src="bg.url" muted preload="metadata" style="width:100%;height:100%;object-fit:cover;border-radius:10px;pointer-events:none"></video>
-          <span v-if="bg.type==='random'" style="color:rgba(255,255,255,.6);font-size:13px">🎲 {{bg.name}}</span>
+    <div class="set-content">
+      <!-- 通用 -->
+      <div v-if="settingsTab==='general'">
+        <div class="set-title">通用</div>
+        <div class="set-section">
+          <div class="set-section-title">打开方式</div>
+          <div class="set-toggle-row">
+            <label>新标签页打开链接</label>
+            <input type="checkbox" v-model="openInNewTab" @change="saveSettings">
+          </div>
+        </div>
+        <div class="set-section">
+          <div class="set-section-title">滚动切换</div>
+          <div class="set-toggle-row">
+            <label>滚动切换分类</label>
+            <input type="checkbox" v-model="scrollFlipEnabled" @change="saveSettings">
+          </div>
+          <div class="slider-row" v-show="scrollFlipEnabled" style="margin-top:12px">
+            <label>切换灵敏度</label>
+            <input type="range" min="10" max="140" v-model.number="scrollFlipSensitivity" @change="saveSettings">
+            <span class="val">{{scrollFlipSensitivity}}</span>
+          </div>
         </div>
       </div>
-      <div v-if="bgCategory==='custom'" style="margin-top:10px">
-        <div class="form-row">
-          <input class="form-input" v-model="customBgUrl" placeholder="输入图片或视频URL" style="flex:1">
-          <button class="form-btn btn-primary" @click="applyCustomBg">应用</button>
+      <!-- 壁纸 -->
+      <div v-if="settingsTab==='wallpaper'">
+        <div class="set-title">壁纸</div>
+        <div class="set-section">
+          <div class="set-label">壁纸库</div>
+          <div class="bg-cats">
+            <span class="bg-cat-tag" :class="{active:bgCategory==='image'}" @click="bgCategory='image'">静态壁纸</span>
+            <span class="bg-cat-tag" :class="{active:bgCategory==='video'}" @click="bgCategory='video'">动态壁纸</span>
+            <span class="bg-cat-tag" :class="{active:bgCategory==='custom'}" @click="bgCategory='custom'">自定义</span>
+          </div>
+          <div class="bg-grid" v-if="bgCategory!=='custom'" style="margin-top:10px">
+            <div class="bg-thumb" v-for="(bg,bi) in bgLibrary" v-if="bg.type===bgCategory" :key="bi" :class="{active:currentBgIdx===bi}"
+                 @click="selectBg(bi)" :title="bg.name"
+                 :style="bg.type==='css'?{background:bg.bg}:(bg.type==='image'?{backgroundImage:'url('+bg.url+')'}:(bg.type==='random'?{background:'linear-gradient(135deg,#2c3e50,#3498db)'}:{}))">
+              <video v-if="bg.type==='video'" :src="bg.url" muted preload="metadata" style="width:100%;height:100%;object-fit:cover;border-radius:10px;pointer-events:none"></video>
+              <span v-if="bg.type==='random'" style="color:rgba(255,255,255,.6);font-size:13px">🎲 {{bg.name}}</span>
+            </div>
+          </div>
+          <div v-if="bgCategory==='custom'" style="margin-top:10px">
+            <div class="form-row">
+              <input class="form-input" v-model="customBgUrl" placeholder="输入图片或视频URL" style="flex:1">
+              <button class="form-btn btn-primary" @click="applyCustomBg">应用</button>
+            </div>
+            <div class="set-desc" style="margin-top:8px">
+              支持 jpg/png/webp/mp4 等格式，推荐使用 HTTPS 链接
+            </div>
+          </div>
         </div>
-        <div style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.6;margin-top:8px">
-          支持 jpg/png/webp/mp4 等格式，推荐使用 HTTPS 链接
+        <div class="set-section">
+          <div class="set-section-title">背景效果</div>
+          <div class="slider-row">
+            <label>遮罩透明度</label>
+            <input type="range" min="0" max="80" v-model.number="maskOpacity" @change="saveSettings">
+            <span class="val">{{maskOpacity}}%</span>
+          </div>
+          <div class="slider-row">
+            <label>背景模糊</label>
+            <input type="range" min="0" max="20" v-model.number="blurVal" @change="saveSettings">
+            <span class="val">{{blurVal}}px</span>
+          </div>
         </div>
       </div>
-      <div class="slider-row">
-        <label>遮罩透明度</label>
-        <input type="range" min="0" max="80" v-model.number="maskOpacity" @change="saveSettings">
-        <span class="val">{{maskOpacity}}%</span>
+      <!-- 外观 -->
+      <div v-if="settingsTab==='appearance'">
+        <div class="set-title">外观</div>
+        <div class="set-section">
+          <div class="set-section-title">图标</div>
+          <div class="slider-row">
+            <label>图标形状</label>
+            <select v-model="iconShape" class="form-input" style="flex:1" @change="saveSettings">
+              <option value="rounded">圆角</option>
+              <option value="circle">圆形</option>
+              <option value="square">方形</option>
+            </select>
+          </div>
+          <div class="slider-row">
+            <label>图标大小</label>
+            <input type="range" min="36" max="80" v-model.number="iconSize" @change="saveSettings">
+            <span class="val">{{iconSize}}px</span>
+          </div>
+          <div class="slider-row">
+            <label>图标间距</label>
+            <input type="range" min="8" max="50" v-model.number="iconGap" @change="saveSettings">
+            <span class="val">{{iconGap}}px</span>
+          </div>
+          <div class="slider-row">
+            <label>图标行间距</label>
+            <input type="range" min="8" max="60" v-model.number="iconRowGap" @change="saveSettings">
+            <span class="val">{{iconRowGap}}px</span>
+          </div>
+          <div class="slider-row">
+            <label>图标透明度</label>
+            <input type="range" min="30" max="100" v-model.number="iconOpacity" @change="saveSettings">
+            <span class="val">{{iconOpacity}}%</span>
+          </div>
+        </div>
       </div>
-      <div class="slider-row">
-        <label>背景模糊</label>
-        <input type="range" min="0" max="20" v-model.number="blurVal" @change="saveSettings">
-        <span class="val">{{blurVal}}px</span>
-      </div>
-    </div>
-    <div class="set-section">
-      <div class="set-label">数据管理</div>
-      <div class="form-row">
-        <button class="form-btn btn-ghost" @click="exportData" style="flex:1">📦 导出数据</button>
-        <input class="form-input" ref="importFile" type="file" accept=".json" @change="handleImport" style="display:none">
-        <button class="form-btn btn-ghost" @click="$refs.importFile.click()" style="flex:1">📥 导入数据</button>
-      </div>
-    </div>
-    <div class="set-section">
-      <div class="set-label">云端同步</div>
-      <div class="form-row">
-        <input class="form-input" v-model="githubToken" placeholder="GitHub Token（需repo权限）" style="flex:1">
-      </div>
-      <div class="form-row" style="margin-top:8px">
-        <button class="form-btn btn-primary" @click="syncToCloud" style="flex:1">☁️ 上传到云端</button>
-        <button class="form-btn btn-ghost" @click="syncFromCloud" style="flex:1">☁️ 从云端恢复</button>
-      </div>
-      <div v-if="cloudMsg" style="font-size:12px;margin-top:8px" :style="{color:cloudMsgColor}">{{cloudMsg}}</div>
-    </div>
-    <div class="set-section">
-      <div class="set-label">重置数据</div>
-      <div class="form-row">
-        <button class="form-btn btn-danger" @click="resetToDefault" style="flex:1">🔄 恢复默认图标和设置</button>
+      <!-- 重置 -->
+      <div v-if="settingsTab==='reset'">
+        <div class="set-title">重置</div>
+        <div class="set-section">
+          <div class="set-section-title">恢复默认</div>
+          <div class="set-desc">
+            恢复默认将清空所有自定义图标、分类、Dock 和设置，恢复到初始状态。
+          </div>
+          <div class="form-row">
+            <button class="form-btn btn-danger" @click="resetToDefault" style="flex:1">🔄 恢复默认图标和设置</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1309,9 +1378,13 @@ var vm = new Vue({
     iconOpacity: 100,
     iconSize: 56,
     iconGap: 22,
+    iconRowGap: 16,
     iconBgColor: '#ffffff',
     showSettings: false,
+    settingsTab: 'general',
+    sidebarExpanded: false,
     showSiteMgr: false,
+    mgrShowIcons: false,
     showEditForm: false,
     editTab: 'shenghuo',
     editForm: {name:'', url:'', imgSrc:'', iconUrl:'', iconId:'', bgColor:'', idx:-1},
@@ -1370,13 +1443,7 @@ var vm = new Vue({
     solidIconText: '',
     showSolidIcon: false,
     dockItems: [],
-    githubToken: '',
-    showToken: false,
-    showRepoEdit: false,
-    githubRepo: 'guangtoulao/cwys',
     widgetVisible: {note:true, todo:true, countdown:true, calendar:true, weather:true, hot:true, fish:true},
-    cloudMsg: '',
-    cloudMsgColor: '#aaa',
     currentTime: '',
     currentDateFull: '',
     currentDateShort: '',
@@ -1828,9 +1895,8 @@ var vm = new Vue({
       var s = {
         bgUrl: this.currentBgUrl, bgIdx: this.currentBgIdx, bgType: this.currentBgType,
         mask: this.maskOpacity, blur: this.blurVal,
-        iconShape: this.iconShape, iconOpacity: this.iconOpacity, iconSize: this.iconSize, iconGap: this.iconGap, iconBgColor: this.iconBgColor, openInNewTab: this.openInNewTab,
-        scrollFlipEnabled: this.scrollFlipEnabled, scrollFlipSensitivity: this.scrollFlipSensitivity,
-        githubToken: this.githubToken, githubRepo: this.githubRepo
+        iconShape: this.iconShape, iconOpacity: this.iconOpacity, iconSize: this.iconSize, iconGap: this.iconGap, iconRowGap: this.iconRowGap, iconBgColor: this.iconBgColor, openInNewTab: this.openInNewTab,
+        scrollFlipEnabled: this.scrollFlipEnabled, scrollFlipSensitivity: this.scrollFlipSensitivity
       };
       localStorage.setItem('wetab_settings', JSON.stringify(s));
     },
@@ -1866,12 +1932,11 @@ var vm = new Vue({
           if (j.iconOpacity) this.iconOpacity = j.iconOpacity;
           if (j.iconSize) this.iconSize = j.iconSize;
           if (j.iconGap !== undefined) this.iconGap = j.iconGap;
+          if (j.iconRowGap !== undefined) this.iconRowGap = j.iconRowGap;
           if (j.iconBgColor) this.iconBgColor = j.iconBgColor;
           if (j.openInNewTab !== undefined) this.openInNewTab = j.openInNewTab;
           if (j.scrollFlipEnabled !== undefined) this.scrollFlipEnabled = j.scrollFlipEnabled;
           if (j.scrollFlipSensitivity !== undefined) this.scrollFlipSensitivity = j.scrollFlipSensitivity;
-          if (j.githubToken) this.githubToken = j.githubToken;
-          if (j.githubRepo) this.githubRepo = j.githubRepo;
         } catch (e) {}
       }
       /* 首次打开或壁纸未初始化时，自动选中第一张静态壁纸 */
@@ -1958,6 +2023,7 @@ var vm = new Vue({
       this.iconOpacity = 100;
       this.iconSize = 56;
       this.iconGap = 22;
+      this.iconRowGap = 16;
       this.iconBgColor = '#ffffff';
       this.openInNewTab = true;
       this.scrollFlipEnabled = true;
@@ -1984,9 +2050,10 @@ var vm = new Vue({
       this.currentView = 'home';
       this.showSiteMgr = true;
       this.editTab = this.activeTab;
+      this.mgrShowIcons = false;
       this.showEditForm = false;
     },
-    closeSiteMgr: function() { this.saveSites(); this.showSiteMgr = false; },
+    closeSiteMgr: function() { this.saveSites(); this.showSiteMgr = false; this.mgrShowIcons = false; },
     addSiteInMgr: function() {
       this.showEditForm = true;
       this.showSolidIcon = false;
@@ -2039,10 +2106,14 @@ var vm = new Vue({
       this.showToast('已保存');
     },
     saveSites: function() {
-      localStorage.setItem('listShengHuo', JSON.stringify(this.listShengHuo));
-      localStorage.setItem('listBanGong', JSON.stringify(this.listBanGong));
-      localStorage.setItem('wetab_custom_categories', JSON.stringify(this.customCategories));
-      localStorage.setItem('wetab_custom_lists', JSON.stringify(this.customLists));
+      try {
+        localStorage.setItem('listShengHuo', JSON.stringify(this.listShengHuo));
+        localStorage.setItem('listBanGong', JSON.stringify(this.listBanGong));
+        localStorage.setItem('wetab_custom_categories', JSON.stringify(this.customCategories));
+        localStorage.setItem('wetab_custom_lists', JSON.stringify(this.customLists));
+      } catch(e) {
+        this.showToast('保存失败：数据过大，请使用更小的图标');
+      }
     },
 
     /* ===== 图标上传 ===== */
@@ -2050,8 +2121,31 @@ var vm = new Vue({
       var file = e.target.files[0];
       if (!file) return;
       var self = this;
+      // 先用FileReader读取，然后用canvas压缩
       var r = new FileReader();
-      r.onload = function(ev) { self.editForm.imgSrc = ev.target.result; self.$forceUpdate(); };
+      r.onload = function(ev) {
+        var img = new Image();
+        img.onload = function() {
+          // 压缩到最大128x128，保持比例
+          var max = 128;
+          var w = img.width, h = img.height;
+          if (w > h) { if (w > max) { h = h * max / w; w = max; } }
+          else { if (h > max) { w = w * max / h; h = max; } }
+          var canvas = document.createElement('canvas');
+          canvas.width = w; canvas.height = h;
+          var ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+          // 尝试PNG，如果太大则用JPEG
+          var dataUrl = canvas.toDataURL('image/png');
+          if (dataUrl.length > 100000) {
+            dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+          }
+          self.editForm.imgSrc = dataUrl;
+          self.editForm.iconId = '';
+          self.$forceUpdate();
+        };
+        img.src = ev.target.result;
+      };
       r.readAsDataURL(file);
       e.target.value = '';
     },
@@ -2381,152 +2475,7 @@ var vm = new Vue({
       this.showToast('已复制');
     },
 
-    /* ===== 导出/导入 ===== */
-    exportData: function() {
-      var data = {
-        listShengHuo: this.listShengHuo, listBanGong: this.listBanGong, apiList: this.apiList,
-        note: this.noteText, todo: this.todoList, dock: this.dockItems,
-        customCategories: this.customCategories, customLists: this.customLists,
-        settings: {bgUrl: this.currentBgUrl, bgIdx: this.currentBgIdx, bgType: this.currentBgType,
-                   mask: this.maskOpacity,
-                   blur: this.blurVal, iconShape: this.iconShape, iconOpacity: this.iconOpacity, iconSize: this.iconSize, iconGap: this.iconGap, iconBgColor: this.iconBgColor, openInNewTab: this.openInNewTab}
-      };
-      var blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
-      var a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'wetab_backup_' + new Date().toISOString().slice(0, 10) + '.json';
-      a.click();
-      this.showToast('已导出数据');
-    },
-    handleImport: function(e) {
-      var file = e.target.files[0];
-      if (!file) return;
-      var self = this;
-      var r = new FileReader();
-      r.onload = function(ev) {
-        try {
-          var d = JSON.parse(ev.target.result);
-          if (d.listShengHuo) self.listShengHuo = d.listShengHuo;
-          if (d.listBanGong) self.listBanGong = d.listBanGong;
-          if (d.note) self.noteText = d.note;
-          if (d.todo) self.todoList = d.todo;
-          if (d.dock) self.dockItems = d.dock;
-          if (d.customCategories) self.customCategories = d.customCategories;
-          if (d.customLists) self.customLists = d.customLists;
-          if (d.settings) {
-            var s = d.settings;
-            if (s.bgIdx !== undefined && s.bgIdx >= 0 && s.bgIdx < self.bgLibrary.length) {
-              self.currentBgIdx = s.bgIdx;
-              var bg = self.bgLibrary[s.bgIdx];
-              if (bg.type === 'video') {
-                self.currentBgType = 'video'; self.currentBgUrl = bg.url;
-              } else if (bg.type === 'css') {
-                self.currentBgType = 'css'; self.currentBgUrl = ''; self.bgLoaded = true;
-              } else if (bg.type === 'random') {
-                var n = Math.floor(Math.random() * bg.count) + 1;
-                self.currentBgUrl = bg.baseUrl + n + bg.ext;
-                self.currentBgType = 'image';
-              } else {
-                self.currentBgUrl = bg.url; self.currentBgType = 'image';
-              }
-            } else if (s.bgUrl) {
-              self.currentBgUrl = s.bgUrl;
-              self.currentBgType = s.bgUrl.match(/\.mp4|\.webm|\.mov/i) ? 'video' : 'image';
-            }
-            if (s.mask !== undefined) self.maskOpacity = s.mask;
-            if (s.blur !== undefined) self.blurVal = s.blur;
-            if (s.iconShape) self.iconShape = s.iconShape;
-            if (s.iconOpacity) self.iconOpacity = s.iconOpacity;
-          if (s.iconSize) self.iconSize = s.iconSize;
-          if (s.iconGap) self.iconGap = s.iconGap;
-          if (s.iconBgColor) self.iconBgColor = s.iconBgColor;
-          }
-          self.addFavicons(self.listShengHuo);
-          self.addFavicons(self.listBanGong);
-          self.saveSites(); self.saveNote(); self.saveTodo(); self.saveDock(); self.saveSettings();
-          self.showToast('导入成功');
-        } catch (err) {
-          self.showToast('导入失败：' + err.message);
-        }
-      };
-      r.readAsText(file);
-      e.target.value = '';
-    },
-
-    /* ===== 云端同步 ===== */
-    syncToCloud: function() {
-      var self = this;
-      if (!this.githubToken) { this.cloudMsg = '请先填写Token'; this.cloudMsgColor = '#ff6b6b'; return; }
-      if (!this.githubRepo) { this.cloudMsg = '请填写仓库名'; this.cloudMsgColor = '#ff6b6b'; return; }
-      this.cloudMsg = '上传中...'; this.cloudMsgColor = '#5D6FFB';
-      localStorage.setItem('github_token', this.githubToken);
-      localStorage.setItem('github_repo', this.githubRepo);
-      var data = {listShengHuo: this.listShengHuo, listBanGong: this.listBanGong,
-                  note: this.noteText, todo: this.todoList, dock: this.dockItems,
-                  customCategories: this.customCategories, customLists: this.customLists};
-      var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(data))));
-      var apiBase = 'https://api.github.com/repos/' + this.githubRepo + '/contents/wetab_data.json';
-      /* 先获取文件SHA（如果存在），再PUT更新 */
-      fetch(apiBase, {
-        headers: {Authorization: 'Bearer ' + this.githubToken, 'Accept': 'application/vnd.github.v3+json'}
-      })
-      .then(function(r) {
-        if (r.status === 401) throw new Error('HTTP 401：Token无效或已过期，请重新配置');
-        if (r.status === 404) return null;
-        if (!r.ok) throw new Error('HTTP ' + r.status);
-        return r.json();
-      })
-      .then(function(existing) {
-        var body = {message: 'sync wetab data', content: b64};
-        if (existing && existing.sha) body.sha = existing.sha;
-        return fetch(apiBase, {
-          method: 'PUT',
-          headers: {Authorization: 'Bearer ' + self.githubToken, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github.v3+json'},
-          body: JSON.stringify(body)
-        });
-      })
-      .then(function(r) {
-        if (r.status === 401) throw new Error('HTTP 401：Token无效或已过期，请重新配置');
-        if (!r.ok) throw new Error('HTTP ' + r.status);
-        return r.json();
-      })
-      .then(function() {
-        self.cloudMsg = '上传成功'; self.cloudMsgColor = '#2ecc71';
-        self.showToast('已同步到云端');
-      })
-      .catch(function(e) { self.cloudMsg = '上传失败：' + e.message; self.cloudMsgColor = '#ff6b6b'; });
-    },
-    syncFromCloud: function() {
-      var self = this;
-      if (!this.githubToken) { this.cloudMsg = '请先填写Token'; this.cloudMsgColor = '#ff6b6b'; return; }
-      if (!this.githubRepo) { this.cloudMsg = '请填写仓库名'; this.cloudMsgColor = '#ff6b6b'; return; }
-      this.cloudMsg = '下载中...'; this.cloudMsgColor = '#5D6FFB';
-      var apiBase = 'https://api.github.com/repos/' + this.githubRepo + '/contents/wetab_data.json';
-      fetch(apiBase, {
-        headers: {Authorization: 'Bearer ' + this.githubToken, 'Accept': 'application/vnd.github.v3+json'}
-      })
-      .then(function(r) {
-        if (r.status === 401) throw new Error('HTTP 401：Token无效或已过期，请重新配置');
-        if (!r.ok) throw new Error('HTTP ' + r.status);
-        return r.json();
-      })
-      .then(function(d) {
-        var data = JSON.parse(decodeURIComponent(escape(atob(d.content))));
-        if (data.listShengHuo) self.listShengHuo = data.listShengHuo;
-        if (data.listBanGong) self.listBanGong = data.listBanGong;
-        if (data.note) self.noteText = data.note;
-        if (data.todo) self.todoList = data.todo;
-        if (data.dock) self.dockItems = data.dock;
-        if (data.customCategories) self.customCategories = data.customCategories;
-        if (data.customLists) self.customLists = data.customLists;
-        self.addFavicons(self.listShengHuo);
-        self.addFavicons(self.listBanGong);
-        self.saveSites(); self.saveNote(); self.saveTodo(); self.saveDock();
-        self.cloudMsg = '恢复成功'; self.cloudMsgColor = '#2ecc71';
-        self.showToast('已从云端恢复');
-      })
-      .catch(function(e) { self.cloudMsg = '下载失败：' + e.message; self.cloudMsgColor = '#ff6b6b'; });
-    },
+    /* ===== 导出/导入 / 云端同步 已移除 ===== */
 
     /* ===== 天气 ===== */
     loadWeather: function() {
@@ -2685,10 +2634,6 @@ var vm = new Vue({
     if (td) { try { this.todoList = JSON.parse(td); } catch (e) {} }
     var dk = localStorage.getItem('wetab_dock');
     if (dk) { try { this.dockItems = JSON.parse(dk); } catch (e) {} }
-    var tk = localStorage.getItem('github_token');
-    if (tk) this.githubToken = tk;
-    var gr = localStorage.getItem('github_repo');
-    if (gr) this.githubRepo = gr;
     var wv = localStorage.getItem('wetab_widgets');
     if (wv) { try { var saved = JSON.parse(wv); for (var k in this.widgetVisible) { if (saved[k] !== undefined) this.widgetVisible[k] = saved[k]; } } catch (e) {} }
     var fc = localStorage.getItem('wetab_fish');
@@ -2861,5 +2806,6 @@ var vm = new Vue({
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b228234959e04346a40515e77a1a092e","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b228234959e04346a40515e77a1a092e","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b228234959e04346a40515e77a1a092e","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1f894458c08fb87',t:'MTc4NDc4NzYyNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1f894458c08fb87',t:'MTc4NDc4NzYyNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b228234959e04346a40515e77a1a092e","r":1}' crossorigin="anonymous"></script>
+</body>
 </html>
