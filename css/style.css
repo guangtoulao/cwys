@@ -1,6 +1,6 @@
 *{margin:0;padding:0;box-sizing:border-box}
 [v-cloak]{display:none}
-body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;overflow-x:hidden;overflow-y:auto;min-height:100vh;background:#111}
+body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;overflow-x:hidden;overflow-y:auto;min-height:100vh;background:#111;-webkit-text-size-adjust:100%}
 .icon{width:1em;height:1em;vertical-align:-0.15em;fill:currentColor;overflow:hidden}
 
 /* ===== 背景层 ===== */
@@ -515,6 +515,8 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
 
 /* ===== 响应式 ===== */
 @media(max-width:768px){
+  /* iOS Safari fixed定位bug：用absolute+sticky替代 */
+  html,body{overflow-x:hidden;width:100%;position:relative}
   .clock-area{gap:6px}
   .clock-row-top{font-size:36px}
   .clock-row-bottom{font-size:18px}
@@ -530,14 +532,17 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
   .set-nav-item{padding:8px 10px;font-size:12px}
   .set-content{padding:16px}
   .api-grid{grid-template-columns:1fr}
-  /* 侧边栏改为底部固定 */
-  .sidebar{left:50%;transform:translateX(-50%);top:auto;bottom:12px;flex-direction:row;width:auto;padding:8px 12px;gap:2px}
+  /* 侧边栏：absolute底部固定，避免iOS fixed bug */
+  .sidebar{position:absolute;left:50%;transform:translateX(-50%);top:auto;bottom:12px;flex-direction:row;width:auto;padding:8px 12px;gap:2px;border-radius:16px}
   .sb-spacer,.sb-divider{display:none}
   .sb-cat{width:32px;height:32px}
   .sb-cat svg,.sb-btn svg,.sb-add svg{width:20px;height:20px}
   .sb-tooltip{display:none}
-  /* 背景层改用absolute避免fixed渲染bug */
-  .bg-placeholder,.bg-layer,.bg-video,.bg-mask{position:absolute}
+  /* 背景层：absolute定位+full尺寸 */
+  .bg-placeholder{position:absolute;top:0;left:0;width:100%;height:100%;min-height:100vh}
+  .bg-layer{position:absolute;top:0;left:0;width:100%;height:100%;min-height:100vh}
+  .bg-video{position:absolute;top:0;left:0;width:100%;height:100%;min-height:100vh}
+  .bg-mask{position:absolute;top:0;left:0;width:100%;height:100%;min-height:100vh}
   /* 降低blur强度提升性能 */
   .sidebar{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
   .search-box{backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
