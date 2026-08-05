@@ -1,5 +1,8 @@
-/* ===== 数据版本（每次更新默认数据时递增） ===== */
-var DATA_VERSION = '1.5';
+/* ===== 数据版本（自动按日期生成，改了 data.js 后部署即自动刷新） ===== */
+var DATA_VERSION = (function(){
+  var d = new Date();
+  return 'd' + d.getFullYear() + (d.getMonth()+1) + d.getDate() + 'r' + d.getHours();
+})();
 var SITE_NAME_MAP = {
   '淘宝': 'https://www.taobao.com', '天猫': 'https://www.tmall.com', '京东': 'https://www.jd.com',
   '拼多多': 'https://www.pinduoduo.com', '唯品会': 'https://www.vip.com', '苏宁': 'https://www.suning.com',
