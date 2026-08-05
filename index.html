@@ -12,7 +12,7 @@
 <script src="https://at.alicdn.com/t/c/font_5215650_1zte20gc7z5.js" crossorigin></script>
 <script src="https://at.alicdn.com/t/c/font_5204659_vk8pugs36bb.js" crossorigin></script>
 <script src="https://at.alicdn.com/t/c/font_5214850_n1pxyyy739c.js" crossorigin></script>
-<link rel="stylesheet" href="css/style.css?v=20260805b">
+<link rel="stylesheet" href="css/style.css?v=20260805c">
 <script src="js/preload.js?v=20260805a"></script>
   <script type="speculationrules">
   {
@@ -179,7 +179,7 @@
   <div class="bg-mask" :style="{background:'rgba(0,0,0,'+(maskOpacity/100)+')'}"></div>
 
   <!-- 左侧导航 -->
-  <div class="sidebar" style="position:fixed;left:12px;top:82px;bottom:82px;transform:none;width:52px;background:rgba(0,0,0,.45);backdrop-filter:saturate(2) blur(40px);-webkit-backdrop-filter:saturate(2) blur(40px);z-index:100;display:flex;flex-direction:column;align-items:center;padding:16px 0;gap:12px;border-radius:20px;box-shadow:0 8px 32px rgba(0,0,0,.3),0 0 0 1px rgba(255,255,255,.06) inset">
+  <div class="sidebar">
     <button class="sb-cat" v-for="cat in allCategories" :key="cat.id"
       :class="{active:currentView==='home'&&activeTab===cat.id}"
       :data-cat-id="cat.id"
