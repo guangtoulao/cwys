@@ -530,8 +530,8 @@ body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-se
   .set-nav-item{padding:8px 10px;font-size:12px}
   .set-content{padding:16px}
   .api-grid{grid-template-columns:1fr}
-  /* 侧边栏改为底部固定 */
-  .sidebar{left:50%;transform:translateX(-50%);top:auto;bottom:12px;flex-direction:row;width:auto;padding:8px 12px;gap:2px}
+  /* 侧边栏改为底部固定（!important覆盖内联样式） */
+  .sidebar{position:fixed !important;left:50% !important;transform:translateX(-50%) !important;top:auto !important;bottom:12px !important;flex-direction:row !important;width:auto !important;padding:8px 12px !important;gap:2px !important}
   .sb-spacer,.sb-divider{display:none}
   .sb-cat{width:32px;height:32px}
   .sb-cat svg,.sb-btn svg,.sb-add svg{width:20px;height:20px}
