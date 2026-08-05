@@ -293,7 +293,7 @@
                      draggable="true" @dragstart="onFolderItemDragStart($event,ci)" @dragend="onFolderItemDragEnd"
                      @dragover.prevent="onFolderItemDragOver($event,ci)" @drop.prevent="onFolderItemDrop($event,ci)"
                      :class="{dragging:folderItemDragIdx===ci}">
-                  <div class="site-icon-wrap" :style="{borderRadius:iconShape==='circle'?'50%':iconShape==='square'?'10px':'22%',opacity:iconOpacity/100,background:child.bgColor||(child.iconId?iconBgColor:'transparent')}">
+                  <div class="site-icon-wrap" :style="{borderRadius:iconShape==='circle'?'50%':iconShape==='square'?'10px':'22%',opacity:iconOpacity/100,background:child.bgColor||((child.iconId||child.imgSrc)?iconBgColor:'transparent')}">
                     <img v-if="child.imgSrc" :src="child.imgSrc" loading="lazy" draggable="false" @error="onIconErr(child)">
                     <svg v-else-if="child.iconId" aria-hidden="true"><use :href="'#'+child.iconId"></use></svg>
                     <img v-else-if="child.faviconUrl&&!child.iconErr" :src="child.faviconUrl" loading="lazy" draggable="false" @error="onIconErr(child)">
@@ -459,7 +459,7 @@
               <div class="folder-badge">{{activeCategoryList[card.idx].children ? activeCategoryList[card.idx].children.length : 0}}</div>
             </template>
             <template v-else>
-              <div class="site-icon-wrap" :style="{borderRadius:iconShape==='circle'?'50%':iconShape==='square'?'10px':'22%',opacity:iconOpacity/100,background:activeCategoryList[card.idx].bgColor||(activeCategoryList[card.idx].iconId?iconBgColor:'transparent')}">
+              <div class="site-icon-wrap" :style="{borderRadius:iconShape==='circle'?'50%':iconShape==='square'?'10px':'22%',opacity:iconOpacity/100,background:activeCategoryList[card.idx].bgColor||((activeCategoryList[card.idx].iconId||activeCategoryList[card.idx].imgSrc)?iconBgColor:'transparent')}">
                 <img v-if="activeCategoryList[card.idx].imgSrc" :src="activeCategoryList[card.idx].imgSrc" loading="lazy" draggable="false" @error="onIconErr(activeCategoryList[card.idx])">
                 <svg v-else-if="activeCategoryList[card.idx].iconId" aria-hidden="true"><use :href="'#'+activeCategoryList[card.idx].iconId"></use></svg>
                 <img v-else-if="activeCategoryList[card.idx].faviconUrl&&!activeCategoryList[card.idx].iconErr" :src="activeCategoryList[card.idx].faviconUrl" loading="lazy" draggable="false" @error="onIconErr(activeCategoryList[card.idx])">
