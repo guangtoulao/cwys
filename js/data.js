@@ -1,4 +1,4 @@
-﻿﻿/* ===== 数据版本（每次更新默认数据时递增） ===== */
+﻿/* ===== 数据版本（每次更新默认数据时递增） ===== */
 var DATA_VERSION = '1.5';
 var SITE_NAME_MAP = {
   '淘宝': 'https://www.taobao.com', '天猫': 'https://www.tmall.com', '京东': 'https://www.jd.com',
@@ -101,7 +101,7 @@ var defaultListShengHuo = [
       {"url":"https://ximalaya.com","iconId":"","imgSrc":" https://raw.giteeusercontent.com/lanzaong/lan/raw/master/icons/tubiao/ximalaya.png","name":"喜马拉雅"},
       {"url":"https://www.zhihu.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/lan/raw/master/icons/tubiao/zihu.png","name":"知乎"},
       {"url":"https://www.12306.cn/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/lan/raw/master/icons/tubiao/12306.png","name":"12306"},
-      {"url":"https://kugou.com","","imgSrc":"https://raw.giteeusercontent.com/lanzaong/lan/raw/master/icons/tubiao/kugou.png","name":"酷狗"},
+      {"url":"https://kugou.com/","iconid":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/lan/raw/master/icons/tubiao/kugou.png","name":"酷狗"},
       {"url":"https://y.qq.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/lan/raw/master/icons/tubiao/txyy.png","name":"QQ音乐"},
       {"url":"https://v.qq.com","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/lan/raw/master/icons/tubiao/tencent.png","name":"腾讯视频"},
       {"url":"https://miguvideo.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/lan/raw/master/icons/tubiao/ykys.png","name":"咪咕视频"},
