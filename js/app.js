@@ -277,7 +277,11 @@ var vm = new Vue({
       var gapX = this.iconGap;
       var gapY = this.iconRowGap;
       var maxW = 900;
-      var availW = Math.max(cellW + gapX, this.winW - 92 - 80);
+      /* 手机端侧边栏在底部，不减92px左边距；桌面端才减 */
+      var isMobile = this.winW <= 768;
+      var sidebarOffset = isMobile ? 0 : 92;
+      var padding = isMobile ? 24 : 80;
+      var availW = Math.max(cellW + gapX, this.winW - sidebarOffset - padding);
       var containerW = Math.min(maxW, availW);
       var colStep = cellW + gapX;
       var rowStep = cellH + gapY;
