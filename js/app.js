@@ -946,6 +946,8 @@ var vm = new Vue({
       if (!this.cloudAutoSync) return;
       if (!this._cloudSyncReady) return;
       var self = this;
+      /* 记录本地最后修改时间，防止云端拉取覆盖本地新数据 */
+      localStorage.setItem('cwys_local_modified_ts', String(Date.now()));
       if (this._syncTimer) clearTimeout(this._syncTimer);
       this._syncTimer = setTimeout(function() {
         self.cloudSyncPush(true);
@@ -1036,7 +1038,12 @@ var vm = new Vue({
           try {
             var localTs = parseInt(localStorage.getItem('cwys_last_push_ts') || '0');
             var cloudTs = d.data.timestamp || 0;
-            if (cloudTs > localTs) {
+            /* 检查本地是否有未同步的修改（5分钟内的修改算未同步） */
+            var localModifiedTs = parseInt(localStorage.getItem('cwys_local_modified_ts') || '0');
+            var nowTs = Date.now();
+            var hasLocalChanges = (nowTs - localModifiedTs) < 300000;
+            /* 只有云端比上次推送时间新，且本地没有未同步的修改时才拉取 */
+            if (cloudTs > localTs && !hasLocalChanges) {
               self.restoreAllData(d.data);
               self.cloudSyncTime = new Date().toLocaleString('zh-CN');
               localStorage.setItem('cwys_cloud_sync_time', self.cloudSyncTime);
@@ -2353,10 +2360,8 @@ var vm = new Vue({
     /* 页面加载后检查登录状态 */
     setTimeout(function() { self.checkSession(); }, 300);
 
-    /* 页面加载后立即拉取云端数据（静默，500ms后执行） */
-    setTimeout(function() {
-      self.cloudSyncPullSilent();
-    }, 500);
+    /* 页面加载后不再自动拉取云端数据，避免覆盖仓库 data.js 的最新默认数据 */
+    /* 需要恢复云端数据时手动点击"从云端恢复"按钮 */
 
     /* 5秒后开启自动同步，避免初始化时触发循环 */
     setTimeout(function() {
