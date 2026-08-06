@@ -393,8 +393,37 @@
       "filterable": 1
     },
     {
+  "name": "哔哩歌曲",
+  "key": "BiliGequ",
+  "type": 3,
+  "api": "csp_BiliAmns",
+  "searchable": 0,
+  "quickSearch": 0,
+  "changeable": 0,
+  "ext": {
+    "json": "https://cdn.waimaimingtang.com/file/images/bwc/20260527100843-9aefe070b5.aowu",
+    "cookie": ""
+  },
+  "style": {
+    "type": "rect",
+    "ratio": 1.433
+  },
+  "jar": "https://nos.netease.com/ysf/5796b487b7b641255c855359718d6315.png"
+},
+    {
+  "name": "酷狗音乐",
+  "key": "KuGou",
+  "type": 3,
+  "api": "csp_KuGouAmns",
+  "searchable": 1,
+  "quickSearch": 1,
+  "changeable": 0,
+  "genre": "music",
+  "jar": "https://nos.netease.com/ysf/5796b487b7b641255c855359718d6315.png"
+},
+    {
       "key": "呦呦DJ",
-      "name": "呦呦DJ",
+      "name": "呦呦音乐",
       "type": 3,
       "api": "csp_Djuu",
       "style": {
@@ -403,7 +432,7 @@
     },
     {
       "key": "轮回DJ",
-      "name": "轮回DJ",
+      "name": "轮回音乐",
       "type": 3,
       "api": "csp_Djlh",
       "style": {
