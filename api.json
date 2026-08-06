@@ -30,7 +30,7 @@
       "type": 3,
       "api": "csp_LocalFile"
     },
-        {
+    {
       "key": "tenteng",
       "name": "腾讯视频",
       "type": 3,
@@ -68,6 +68,23 @@
       "type": 3,
       "api": "csp_HB360",
       "jar": "http://121.205.88.174:25252/仅供测试/custom_spider.jar"
+    },
+    {
+      "key": "瓜子影视",
+      "name": "瓜子影视",
+      "type": 3,
+      "api": "csp_Gz360"
+    },
+    {
+      "name": "上海专线",
+      "key": "NewGrV2",
+      "type": 3,
+      "api": "csp_NewGrV2Amns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": "05d95714a2413f05151fea686450950ace809216b88f37b7b1fb4f1ce80eff9fab1b6be3fd1f9df9a5a915365aefecb314d297b5e1747337c20236c3637c2aeaebfce371e9053be3898bb20a9ef20bbf13173fb2ad38b4474346328a3a354451a1b5f96c490cc09840a195bc498f9e11499df11b3946e58e4c705a8457521ed3ce5672e23e500042163788dd6faf8ad235d254cec932a9c4d881e21aa9d10e339a913efbbc09e0d49cf15fb74b2a12b859fcd7dcc7d3b7ef502e95ef9da4b41f54296d03279048aa01d73b730582a5f5b7824bcf08ba9b80b4c521c8581245886c04311b80e40baa6abd7e33839426be18f60d4c58dcd66a40e8c56ecc6b44b2302c3823a5ff69e521e2fde15583c530475063321c652bf7b79d04be83c44feb12a6c5ac1c33fb7d99cffb",
+      "jar": "https://nos.netease.com/ysf/5796b487b7b641255c855359718d6315.png"
     },
     {
       "key": "热播app",
@@ -340,12 +357,6 @@
       "api": "csp_Tvyb"
     },
     {
-      "key": "瓜子影视",
-      "name": "瓜子影视",
-      "type": 3,
-      "api": "csp_Gz360"
-    },
-    {
       "key": "厂长影视",
       "name": "厂长影视",
       "type": 3,
@@ -393,34 +404,34 @@
       "filterable": 1
     },
     {
-  "name": "哔哩歌曲",
-  "key": "BiliGequ",
-  "type": 3,
-  "api": "csp_BiliAmns",
-  "searchable": 0,
-  "quickSearch": 0,
-  "changeable": 0,
-  "ext": {
-    "json": "https://cdn.waimaimingtang.com/file/images/bwc/20260527100843-9aefe070b5.aowu",
-    "cookie": ""
-  },
-  "style": {
-    "type": "rect",
-    "ratio": 1.433
-  },
-  "jar": "https://nos.netease.com/ysf/5796b487b7b641255c855359718d6315.png"
-},
+      "name": "哔哩歌曲",
+      "key": "BiliGequ",
+      "type": 3,
+      "api": "csp_BiliAmns",
+      "searchable": 0,
+      "quickSearch": 0,
+      "changeable": 0,
+      "ext": {
+        "json": "https://cdn.waimaimingtang.com/file/images/bwc/20260527100843-9aefe070b5.aowu",
+        "cookie": ""
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.433
+      },
+      "jar": "https://nos.netease.com/ysf/5796b487b7b641255c855359718d6315.png"
+    },
     {
-  "name": "酷狗音乐",
-  "key": "KuGou",
-  "type": 3,
-  "api": "csp_KuGouAmns",
-  "searchable": 1,
-  "quickSearch": 1,
-  "changeable": 0,
-  "genre": "music",
-  "jar": "https://nos.netease.com/ysf/5796b487b7b641255c855359718d6315.png"
-},
+      "name": "酷狗音乐",
+      "key": "KuGou",
+      "type": 3,
+      "api": "csp_KuGouAmns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "genre": "music",
+      "jar": "https://nos.netease.com/ysf/5796b487b7b641255c855359718d6315.png"
+    },
     {
       "key": "呦呦DJ",
       "name": "呦呦音乐",
@@ -524,7 +535,7 @@
     }
   ],
   "lives": [
-        {
+    {
       "name": "综合直播",
       "type": 0,
       "playerType": 2,
