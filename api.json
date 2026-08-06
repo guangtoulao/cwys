@@ -70,8 +70,8 @@
       "jar": "http://121.205.88.174:25252/仅供测试/custom_spider.jar"
     },
     {
-      "key": "热播影视",
-      "name": "热播APP",
+      "key": "热播app",
+      "name": "热播影视",
       "type": 3,
       "api": "csp_AppRJ",
       "searchable": 1,
@@ -82,8 +82,8 @@
       }
     },
     {
-      "key": "一起影视",
-      "name": "一起APP",
+      "key": "一起app",
+      "name": "一起影视",
       "type": 3,
       "api": "csp_AppYQK",
       "searchable": 1,
@@ -91,8 +91,8 @@
       "filterable": 0
     },
     {
-      "key": "三秋影视",
-      "name": "三秋APP",
+      "key": "三秋app",
+      "name": "三秋影视",
       "type": 3,
       "api": "csp_App3Q",
       "ext": {
@@ -107,8 +107,8 @@
       }
     },
     {
-      "key": "马猴影视",
-      "name": "马猴APP",
+      "key": "马猴app",
+      "name": "马猴影视",
       "type": 3,
       "api": "csp_App3Q",
       "ext": {
@@ -123,8 +123,8 @@
       }
     },
     {
-      "key": "云朵影视",
-      "name": "云朵APP",
+      "key": "云朵app",
+      "name": "云朵影视",
       "type": 3,
       "api": "csp_App3Q",
       "ext": {
@@ -140,7 +140,7 @@
     },
     {
       "key": "剧圈99",
-      "name": "剧圈APP",
+      "name": "剧圈影视",
       "type": 3,
       "api": "csp_App99",
       "ext": {
@@ -155,7 +155,7 @@
     },
     {
       "key": "天堂",
-      "name": "天堂APP",
+      "name": "天堂影视",
       "type": 3,
       "api": "csp_AppDrama",
       "searchable": 1,
@@ -175,7 +175,7 @@
     },
     {
       "key": "橘汁",
-      "name": "橘汁APP",
+      "name": "橘汁影视",
       "type": 3,
       "api": "csp_AppDrama",
       "searchable": 1,
@@ -195,7 +195,7 @@
     },
     {
       "key": "华谊",
-      "name": "华谊APP",
+      "name": "华谊影视",
       "type": 3,
       "api": "csp_AppDrama",
       "searchable": 1,
@@ -215,7 +215,7 @@
     },
     {
       "key": "苹果",
-      "name": "苹果APP",
+      "name": "苹果影视",
       "type": 3,
       "api": "csp_AppDrama",
       "searchable": 1,
@@ -235,7 +235,7 @@
     },
     {
       "key": "薯条",
-      "name": "薯条APP",
+      "name": "薯条影视",
       "type": 3,
       "api": "csp_AppDrama",
       "searchable": 1,
@@ -255,7 +255,7 @@
     },
     {
       "key": "不戳",
-      "name": "不戳APP",
+      "name": "不戳影视",
       "type": 3,
       "api": "csp_AppGet",
       "searchable": 1,
@@ -268,7 +268,7 @@
     },
     {
       "key": "王子",
-      "name": "王子APP",
+      "name": "王子影视",
       "type": 3,
       "api": "csp_AppGet",
       "searchable": 1,
@@ -281,7 +281,7 @@
     },
     {
       "key": "茉莉",
-      "name": "茉莉APP",
+      "name": "茉莉影视",
       "type": 3,
       "api": "csp_AppGet",
       "searchable": 1,
