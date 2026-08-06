@@ -87,14 +87,55 @@
       "jar": "https://nos.netease.com/ysf/5796b487b7b641255c855359718d6315.png"
     },
     {
-      "key": "YunDuo",
-      "name": "云朵影视",
+      "key": "旺旺app",
+      "name": "旺旺影视",
       "type": 3,
-      "api": "csp_YunDuo",
+      "api": "csp_XBPQ",
+      "ext": "http://rihou.cc:88/xb/%E6%97%BA%E6%97%BA%E5%BD%B1%E8%A7%86.json",
+      "jar": "http://rihou.cc:88/jar/xbpq.jar"
+    },
+    {
+      "key": "量子",
+      "name": "量子影视",
+      "type": 1,
+      "api": "https://cj.lziapi.com/api.php/provide/vod/",
       "searchable": 1,
-      "changeable": 1,
-      "filterable": 1,
-      "jar": "https://tc-new.z.wiki/autoupload/k2fxc/20260802/826v/fish08022249.jar"
+      "categories": [
+        "动作片",
+        "喜剧片",
+        "爱情片",
+        "科幻片",
+        "恐怖片",
+        "剧情片",
+        "战争片",
+        "国产剧",
+        "香港剧",
+        "韩国剧",
+        "欧美剧",
+        "记录片",
+        "台湾剧",
+        "日本剧",
+        "海外剧",
+        "泰国剧",
+        "大陆综艺",
+        "港台综艺",
+        "日韩综艺",
+        "欧美综艺",
+        "国产动漫",
+        "日韩动漫",
+        "欧美动漫",
+        "港台动漫",
+        "海外动漫"
+      ],
+      "jar": "https://xpb.mhfs.eu.org/ZJ/XPB/jars/Yoursmile.jar"
+    },
+    {
+      "key": "采集之王",
+      "name": "采集合集",
+      "type": 3,
+      "api": "https://cdn.jsdmirror.com/gh/ouhaibo1980/tvbox@main/js/drpy2.min.js",
+      "ext": "https://cdn.jsdmirror.com/gh/ouhaibo1980/tvbox@main/js/采集之王.js?type=url&params=https://cdn.jsdmirror.com/gh/ouhaibo1980/tvbox@main/json/采集静态.json",
+      "jar": "https://xpb.mhfs.eu.org/ZJ/XPB/spider20260509.jar"
     },
     {
       "key": "PianKu8",
@@ -113,7 +154,7 @@
       "type": 3,
       "api": "csp_App88",
       "ext": "Aa+WBBIIxghmbVYkWqlC4wrZvlocl4rSZS9+QyJDF6RgWFfYSb+nEM6WkMHPVbQFva551Srt16FqFroyjNssEXemH+xC5pCMj/ewgFuLEIbY2mXCVJ1bJxWRJAggNgH1f3mjwrBxlZA0kGgfAd0os29Mdi3RNJilSo5VMkPpcQPMeF8/PTbZHNymotiTwtICNcA5Q0WXsqe/wJ3HoLU4gBYQs1lBmYdxtAuvsnte3SbumQEFlaQnygFscx6EGrwKMFZLVcmu9egAXxygsf5PmyzN/xvOr+b+HslccoKqDbHNU/C6yWFwaHBawww0ckXRtoJ8fFbV7Xv4NiRcEf6ePm/cd06xYiZmjRts11gE0r8f7D0vx/TgigmU3v8nrgNYDokUGl/jDdza3o7BXyQumCWRD45wYbmKJ1LKb0ybRvNt",
-     "jar": "https://tc-new.z.wiki/autoupload/k2fxc/20260802/826v/fish08022249.jar"
+      "jar": "https://tc-new.z.wiki/autoupload/k2fxc/20260802/826v/fish08022249.jar"
     },
     {
       "key": "热播app",
