@@ -147,7 +147,7 @@ var defaultApiList = [
     {name:'潇洒',url:'https://qist.wyfc.qzz.io/xiaosa/api.json',lineColor:'#f39c12'},
     {name:'摸鱼',url:'http://www.小不点.com',lineColor:'#f1c40f'},
     {name:'王二小',url:'http://tvbox.王二小放牛娃.top',lineColor:'#cddc39'},
-    {name:'天神',url:'https://gitee.com/cpu-iy/iy/raw/master/%E5%A4%A9%E7%A5%9EIY.json',lineColor:'#2ecc71'},
+    {name:'小虎斑',url:'http://hb.小虎斑.site:25252/仅供测试',lineColor:'#2ecc71'},
     {name:'点播',url:'https://xpb.mhfs.eu.org/ZJ/XPB/api.json',lineColor:'#9932CC'},
     {name:'多多',url:'https://www.iyouhun.com/tv/duo',lineColor:'#e84393'},
     {name:'嗷呜',url:'https://9763.kstore.space/aowu.json',lineColor:'#ffbc23'}
