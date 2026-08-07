@@ -45,9 +45,9 @@ var vm = new Vue({
     openInNewTab: true,
     iconShape: 'rounded',
     iconOpacity: 100,
-    iconSize: 56,
-    iconGap: 22,
-    iconRowGap: 16,
+    iconSize: 52,
+    iconGap: 14,
+    iconRowGap: 14,
     iconBgColor: '#ffffff',
     winW: window.innerWidth || 1200,
     showSettings: false,
@@ -272,7 +272,7 @@ var vm = new Vue({
     },
     /* ===== 卡片位置计算 ===== */
     cardLayout: function() {
-      var cellW = this.iconSize + 44;
+      var cellW = this.iconSize + 30;
       var cellH = this.iconSize + 34;
       var gapX = this.iconGap;
       var gapY = this.iconRowGap;
@@ -823,7 +823,8 @@ var vm = new Vue({
         bgUrl: this.currentBgUrl, bgIdx: this.currentBgIdx, bgType: this.currentBgType,
         mask: this.maskOpacity, blur: this.blurVal,
         iconShape: this.iconShape, iconOpacity: this.iconOpacity, iconSize: this.iconSize, iconGap: this.iconGap, iconRowGap: this.iconRowGap, iconBgColor: this.iconBgColor, openInNewTab: this.openInNewTab,
-        scrollFlipEnabled: this.scrollFlipEnabled, scrollFlipSensitivity: this.scrollFlipSensitivity
+        scrollFlipEnabled: this.scrollFlipEnabled, scrollFlipSensitivity: this.scrollFlipSensitivity,
+        settingsVer: 2
       };
       localStorage.setItem('wetab_settings', JSON.stringify(s));
       this.scheduleCloudSync();
@@ -833,6 +834,12 @@ var vm = new Vue({
       if (s) {
         try {
           var j = JSON.parse(s);
+          /* 设置版本升级：旧版本强制更新图标大小和间距 */
+          if (!j.settingsVer || j.settingsVer < 2) {
+            j.iconSize = 48;
+            j.iconGap = 14;
+            j.iconRowGap = 14;
+          }
           if (j.bgIdx !== undefined && j.bgIdx >= 0 && j.bgIdx < this.bgLibrary.length) {
             var bg = this.bgLibrary[j.bgIdx];
             this.currentBgIdx = j.bgIdx;
@@ -1129,9 +1136,9 @@ var vm = new Vue({
       this.blurVal = 0;
       this.iconShape = 'rounded';
       this.iconOpacity = 100;
-      this.iconSize = 56;
-      this.iconGap = 22;
-      this.iconRowGap = 16;
+      this.iconSize = 52
+      this.iconGap = 14;
+      this.iconRowGap = 14;
       this.iconBgColor = '#ffffff';
       this.openInNewTab = true;
       this.scrollFlipEnabled = true;
