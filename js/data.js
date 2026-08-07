@@ -94,7 +94,7 @@ var defaultListShengHuo = [
       {"url":"https://dongchedi.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/dongchedi.png","name":"懂车帝"},
       {"url":"https://www.goofish.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/xianyu.png","name":"闲鱼"},
       {"url":"https://music.migu.cn/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/b-miguyinle.png","name":"咪咕音乐"},
-      {"url":"https://ctrip.com","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/xiechenglvhang.png","name":"携程汽车"},
+      {"url":"https://ctrip.com","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/xiechenglvhang.png","name":"携程"},
       {"url":"https://vip.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/weipinhui.png","name":"唯品会"},
       {"url":"https://weibo.com/","iconId":"b-weibo","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/b-weibo.png","name":"微博"},
       {"url":"https://www.sf-express.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/shunfeng.png","name":"顺丰"},
