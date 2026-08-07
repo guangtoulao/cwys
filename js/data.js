@@ -134,7 +134,7 @@ var defaultListBanGong = [
       {"url":"https://www.yxzhi.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/b-yazi.png","name":"鸭先知"},
       {"url":"https://tugaigai.com/online_ps/","iconId":"i","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/AdobePs.png","name":"PS修图"},
       {"url":"https://qiushui.vip/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/qiushui.png","name":"秋水网"},
-      {"url":"https://adzhp.cc/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/A.png","name":"爱达杂货铺"},
+      {"url":"https://adzhp.cc/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/A.webp","name":"爱达杂货铺"},
       {"url":"https://pan.baidu.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/baiduwangpan.png","name":"百度网盘"},
       {"url":"https://drivergenius.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/b-qudongjingling.png","name":"驱动精灵"},
       {"url":"https://huorong.cn/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/b-huorong.png","name":"火绒安全"},
