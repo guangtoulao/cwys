@@ -45,9 +45,9 @@ var vm = new Vue({
     openInNewTab: true,
     iconShape: 'rounded',
     iconOpacity: 100,
-    iconSize: 52,
-    iconGap: 14,
-    iconRowGap: 14,
+    iconSize: 50,
+    iconGap: 12,
+    iconRowGap: 12,
     iconBgColor: '#ffffff',
     winW: window.innerWidth || 1200,
     showSettings: false,
@@ -272,7 +272,7 @@ var vm = new Vue({
     },
     /* ===== 卡片位置计算 ===== */
     cardLayout: function() {
-      var cellW = this.iconSize + 30;
+      var cellW = this.iconSize + 24;
       var cellH = this.iconSize + 34;
       var gapX = this.iconGap;
       var gapY = this.iconRowGap;
@@ -1136,9 +1136,9 @@ var vm = new Vue({
       this.blurVal = 0;
       this.iconShape = 'rounded';
       this.iconOpacity = 100;
-      this.iconSize = 52
-      this.iconGap = 14;
-      this.iconRowGap = 14;
+      this.iconSize = 50;
+      this.iconGap = 12;
+      this.iconRowGap = 12;
       this.iconBgColor = '#ffffff';
       this.openInNewTab = true;
       this.scrollFlipEnabled = true;
