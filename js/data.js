@@ -125,7 +125,6 @@ var defaultListBanGong = [
       {"url":"https://kstore.cc/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/kaisu.png","name":"凯速网"},
       {"url":"https://github.com/fxsound2/fxsound-app","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/yinxiao.png","name":"音效调节"},
       {"url":"https://mt2.cn/download/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/b-mt.png","name":"MT管理器"},
-      {"url":"https://www.jyshare.com/","iconId":"c-zaixian","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/zaixian.png","name":"菜鸟工具"},
       {"url":"https://guangtoulao.github.io/fenl/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/b-xiugai.png","name":"修图工具"},
       {"url":"https://github.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/github.png","name":"github"},
       {"url":"https://www.neatdownloadmanager.com/index.php/en","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/ndm.png","name":"NDM下载器"},
