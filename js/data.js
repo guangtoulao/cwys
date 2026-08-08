@@ -126,6 +126,7 @@ var defaultListBanGong = [
       {"url":"https://steampp.net/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/watt.webp","name":"瓦特加速"},
       {"url":"https://kstore.cc/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/kaisu.webp","name":"凯速网"},
       {"url":"https://www.coolapk.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/kuan.webp","name":"酷安网"},
+      {"url":"https://www.cnnav.com/","iconId":"","imgSrc":"https://www.cnnav.com/wp-content/themes/nav/images/app-ico.png","name":"超能导航"},
       {"url":"https://www.oschina.net/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/logo.webp","name":"开源中国"},
       {"url":"https://github.com/fxsound2/fxsound-app","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/yinxiao.webp","name":"音效调节"},
       {"url":"https://mt2.cn/download/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/b-mt.webp","name":"MT管理器"},
