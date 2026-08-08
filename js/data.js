@@ -160,7 +160,7 @@ var randomColorArr=['#e84393','#3498db','#f39c12','#f1c40f','#cddc39','#2ecc71',
 
 var defaultBgLibrary = [
     /* === 自然风景 (nature) === */
-    {name:'自然1',url:'https://img2.baidu.com/it/u=399019925,2499719398&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500',type:'image',cat:'nature'},
+    {name:'自然74',url:'https://raw.giteeusercontent.com/lanzaong/lan/raw/master/icon/bz74.webp',type:'image',cat:'nature'},
     {name:'自然2',url:'https://raw.giteeusercontent.com/lanzaong/lan/raw/master/icon/bz2.webp',type:'image',cat:'nature'},
     {name:'自然3',url:'https://raw.giteeusercontent.com/lanzaong/lan/raw/master/icon/bz3.webp',type:'image',cat:'nature'},
     {name:'自然4',url:'https://raw.giteeusercontent.com/lanzaong/lan/raw/master/icon/bz4.webp',type:'image',cat:'nature'},
@@ -233,7 +233,7 @@ var defaultBgLibrary = [
     {name:'自然71',url:'https://raw.giteeusercontent.com/lanzaong/lan/raw/master/icon/bz71.webp',type:'image',cat:'nature'},
     {name:'自然72',url:'https://raw.giteeusercontent.com/lanzaong/lan/raw/master/icon/bz72.webp',type:'image',cat:'nature'},
     {name:'自然73',url:'https://raw.giteeusercontent.com/lanzaong/lan/raw/master/icon/bz73.webp',type:'image',cat:'nature'},
-    {name:'自然74',url:'https://raw.giteeusercontent.com/lanzaong/lan/raw/master/icon/bz74.webp',type:'image',cat:'nature'},
+    {name:'自然1',url:'https://raw.giteeusercontent.com/lanzaong/lan/raw/master/icon/bz1.webp',type:'image',cat:'nature'},
     {name:'自然75',url:'https://raw.giteeusercontent.com/lanzaong/lan/raw/master/icon/bz75.webp',type:'image',cat:'nature'},
     {name:'自然76',url:'https://raw.giteeusercontent.com/lanzaong/lan/raw/master/icon/bz76.webp',type:'image',cat:'nature'},
     {name:'自然77',url:'https://raw.giteeusercontent.com/lanzaong/lan/raw/master/icon/bz77.webp',type:'image',cat:'nature'},
