@@ -120,7 +120,7 @@ var defaultListShengHuo = [
 var defaultListBanGong = [
       {"url":"https://guangtoulao.github.io/fenl/zqzb/ys.html","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/b-yingshi.webp","name":"影视导航"},
       {"url":"https://www.iconfont.cn/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/a-yemian11.webp","name":"阿里图库"},
-      {"url":"https://www.trae.cn/","iconId":"","imgSrc":"https://lf-cdn.trae.com.cn/obj/trae-com-cn/trae_website_prod_cn/favicon.webp","name":"trae work"},
+      {"url":"https://www.trae.cn/","iconId":"","imgSrc":"https://lf-cdn.trae.com.cn/obj/trae-com-cn/trae_website_prod_cn/favicon.png","name":"trae work"},
       {"url":"https://steampp.net/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/watt.webp","name":"瓦特加速"},
       {"url":"https://kstore.cc/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/kaisu.webp","name":"凯速网"},
       {"url":"https://github.com/fxsound2/fxsound-app","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/yinxiao.webp","name":"音效调节"},
