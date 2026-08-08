@@ -24,6 +24,19 @@
       "quickSearch": 0,
       "changeable": 0
     },
+        {
+      "key": "yingshiyingshi",
+      "name": "初见影视",
+      "type": 3,
+      "api": "csp_AppYQK",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0,
+      "ext": {
+        "host": "https://cjysw.cc",
+        "categories": "Netflix,电影,剧集,动漫,综艺,纪录片,短剧"
+      }
+    },
     {
       "key": "tenteng",
       "name": "腾讯视频",
