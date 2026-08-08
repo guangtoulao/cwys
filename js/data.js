@@ -79,7 +79,7 @@ var BUILTIN_ICON_IDS = new Set(['home','briefcase','film','plus','plus-square','
 
 /* ===== 原始数据（不可修改） ===== */
 var defaultListShengHuo = [
-      {"url":"https://weixin.qq.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/weixin.webp","name":"微信"},
+      {"url":"https://weixin.qq.com/","iconId":"","imgSrc":"http://www.kuaipng.com/Uploads/pic/w/2021/04-21/99519/water_99519_260_260.png","name":"微信"},
       {"url":"https://www.doubao.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/doubao.webp","name":"豆包"},
       {"url":"https://www.qianwen.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/qianwen.webp","name":"千问"},
       {"url":"http://www.qmcc.cc/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/b-ai.webp","name":"AI大全"},
@@ -88,7 +88,7 @@ var defaultListShengHuo = [
       {"url":"https://taobao.com","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/tb.webp","name":"淘宝"},
       {"url":"https://jd.com","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/jingdong.webp","name":"京东"},
       {"url":"https://douban.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/db.webp","name":"豆瓣"},
-      {"url":"https://www.qidian.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/qdzw.webp","name":"起点中文网"},
+      {"url":"https://www.qidian.com/","iconId":"","imgSrc":"https://p4.ssl.qhimg.com/t110b9a9301d6e05b0e442afee6.webp","name":"起点中文网"},
       {"url":"https://www.dianping.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/dazhongdianping.webp","name":"大众点评"},
       {"url":"https://hz.58.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/b-tongcheng.webp","name":"58同城"},
       {"url":"https://xiaohongshu.com","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/xiaohongshu.webp","name":"小红书"},
