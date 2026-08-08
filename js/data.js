@@ -79,7 +79,7 @@ var BUILTIN_ICON_IDS = new Set(['home','briefcase','film','plus','plus-square','
 
 /* ===== 原始数据（不可修改） ===== */
 var defaultListShengHuo = [
-      {"url":"https://weixin.qq.com/","iconId":"","imgSrc":"http://www.kuaipng.com/Uploads/pic/w/2021/04-21/99519/water_99519_260_260.png","name":"微信"},
+      {"url":"https://weixin.qq.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/weixin.webp","name":"微信"},
       {"url":"https://www.doubao.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/doubao.webp","name":"豆包"},
       {"url":"https://www.qianwen.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/qianwen.webp","name":"千问"},
       {"url":"http://www.qmcc.cc/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/b-ai.webp","name":"AI大全"},
