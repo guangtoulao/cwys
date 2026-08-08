@@ -230,18 +230,12 @@
   <div class="main-wrap" ref="mainWrap">
     <!-- 首页视图 -->
     <div v-if="currentView=='home'">
-      <!-- 大时钟 -->
-      <div class="clock-area">
-        <div class="clock-row-top">{{currentTime}}</div>
-        <div class="clock-row-bottom"><span>{{currentDateFull}}</span><span class="clock-lucky">{{dailyBlessing}}</span></div>
-      </div>
-
       <!-- 搜索框 -->
       <div class="search-area">
         <div class="search-wrapper">
           <div class="search-box">
             <span class="search-icon">🔍</span>
-            <input :placeholder="'使用'+searchEngineName+'搜索，或输入网址'" v-model="searchText" @keyup.enter="doSearch" @focus="showSug=true" @input="onSearchInput">
+            <input :placeholder="'今日大吉'" v-model="searchText" @keyup.enter="doSearch" @focus="showSug=true" @input="onSearchInput">
             <button class="eng-btn" @click.stop="showEngineMenu=!showEngineMenu">{{searchEngineName}} ▾</button>
           </div>
           <div class="eng-menu" v-if="showEngineMenu" @click.stop>
