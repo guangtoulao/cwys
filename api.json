@@ -86,22 +86,15 @@
         "filters": "https://file.icve.com.cn/file_doc/822/528/CD984013F5776F759DFC815995F87BFB.aowu"
       }
     },
-    {
-  "key": "云朵影视",
-  "name": "广州专线",
+  {
+  "key": "YunDuo",
+  "name": "云朵影视",
   "type": 3,
-  "api": "csp_App3Q",
-  "ext": {
-    "host": "https://ds3xy2yunsa.xyz",
-    "finger": "SF-F5F11CB15897115AE6BCFE063C288F730CA865588F572C780A3E8477D0DD3776",
-    "updateId": "175070c3-075c-468b-950a-bf575769f4f1",
-    "deviceBrand": "vivo",
-    "deviceModel": "V2309A",
-    "pkg": "com.tvcloud.io",
-    "sk": "SK-sk_13oXDZ7u9j2Tk1c0cawWVFfO",
-    "ver": "1"
-  },
-  "jar": "https://qist.wyfc.qzz.io/xiaosa/spider.jar"
+  "api": "csp_YunDuo",
+  "searchable": 1,
+  "changeable": 1,
+  "filterable": 1,
+  "jar": "https://tc-new.z.wiki/autoupload/k2fxc/20260802/826v/fish08022249.jar"
 },
     {
       "key": "旺旺app",
