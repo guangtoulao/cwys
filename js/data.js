@@ -87,7 +87,7 @@ var defaultListShengHuo = [
       {"url":"http://www.qmcc.cc/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/b-ai.webp","name":"AI大全"},
       {"url":"https://jiankang.baidu.com/","iconId":"","imgSrc":"https://tse4-mm.cn.bing.net/th/id/OIP-C.ODnA3Pv6vHa8PQBwKeEDkwAAAA?w=188&h=188&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3","name":"百度健康"},
       {"url":"https://www.qishui.com/","iconId":"qishuiyinle","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/qishuiyinle.webp","name":"汽水音乐"},
-      {"url":"https://taobao.com","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/tb.webp","name":"淘宝"},
+      {"url":"https://taobao.com","iconId":"","imgSrc":"https://p3.ssl.qhimg.com/t110b9a93018442386f02fdd719.webp","name":"淘宝"},
       {"url":"https://jd.com","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/jingdong.webp","name":"京东"},
       {"url":"https://douban.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/db.webp","name":"豆瓣"},
       {"url":"https://www.qidian.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/qdzw.webp","name":"起点中文网"},
