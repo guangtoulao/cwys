@@ -80,6 +80,7 @@ var BUILTIN_ICON_IDS = new Set(['home','briefcase','film','plus','plus-square','
 /* ===== 原始数据（不可修改） ===== */
 var defaultListShengHuo = [
       {"url":"https://weixin.qq.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/weixin.webp","name":"微信"},
+      {"url":"https://zj.122.gov.cn/","iconId":"","imgSrc":"https://zj.122.gov.cn/favicon.ico","name":"交通服务"},
       {"url":"https://www.10086.cn/","iconId":"","imgSrc":"https://p1.ssl.qhimgs1.com/sdr/400__/t0181cceca8d9f26257.jpg","name":"中国移动"},
       {"url":"https://www.189.cn/","iconId":"","imgSrc":"https://img1.baidu.com/it/u=585982004,3826408598&fm=253&fmt=auto&app=138&f=JPEG?w=400&h=400","name":"中国电信"},
       {"url":"https://www.doubao.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/doubao.webp","name":"豆包"},
@@ -125,6 +126,7 @@ var defaultListBanGong = [
       {"url":"https://guangtoulao.github.io/fenl/zqzb/ys.html","iconId":"","imgSrc":"https://p0.ssl.qhimgs1.com/t04e3fc9395c0c5f024.png","name":"影视导航"},
       {"url":"https://www.iconfont.cn/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/a-yemian11.webp","name":"阿里图库"},
       {"url":"https://www.trae.cn/","iconId":"","imgSrc":"https://lf-cdn.trae.com.cn/obj/trae-com-cn/trae_website_prod_cn/favicon.png","name":"trae work"},
+      {"url":"https://www.codebuddy.cn/","iconId":"","imgSrc":"https://download.codebuddy.cn/web/website/709745d01ec0bb0097bc3807f2da2112e7faa3d7/assets/logo.svg","name":"work buddy"},
       {"url":"https://steampp.net/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/watt.webp","name":"瓦特加速"},
       {"url":"https://kstore.cc/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/kaisu.webp","name":"凯速网"},
       {"url":"https://www.coolapk.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/kuan.webp","name":"酷安网"},
