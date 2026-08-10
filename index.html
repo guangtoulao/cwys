@@ -8,10 +8,10 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>君子兰主页</title>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
-<script src="https://at.alicdn.com/t/c/font_5215650_1zte20gc7z5.js" crossorigin></script>
-<script src="https://at.alicdn.com/t/c/font_5204659_vk8pugs36bb.js" crossorigin></script>
-<script src="https://at.alicdn.com/t/c/font_5214850_n1pxyyy739c.js" crossorigin></script>
+<script src="js/vue.min.js?v=20260811b"></script>
+<script src="js/iconfont_1.js?v=20260811b" crossorigin></script>
+<script src="js/iconfont_2.js?v=20260811b" crossorigin></script>
+<script src="js/iconfont_3.js?v=20260811b" crossorigin></script>
 <link rel="stylesheet" href="css/style.css?v=20260805e">
 <script src="js/preload.js?v=20260805a"></script>
   <script type="speculationrules">
@@ -842,6 +842,15 @@
         </div>
         <div class="set-section">
           <div class="set-section-title">背景效果</div>
+          <div class="set-toggle-row">
+            <label>自动轮播壁纸（不重复）</label>
+            <input type="checkbox" v-model="bgAutoChange" @change="toggleBgAutoChange">
+          </div>
+          <div class="slider-row" v-show="bgAutoChange" style="margin-top:12px">
+            <label>切换间隔</label>
+            <input type="range" min="2" max="60" v-model.number="bgAutoChangeSec" @change="onBgAutoSecChange">
+            <span class="val">{{bgAutoChangeSec}} 秒</span>
+          </div>
           <div class="slider-row">
             <label>遮罩透明度</label>
             <input type="range" min="0" max="80" v-model.number="maskOpacity" @change="saveSettings">
@@ -963,7 +972,7 @@
 </div>
 <script src="js/data.js?v=20260805a"></script>
 <script src="js/utils.js?v=20260805a"></script>
-<script src="js/app.js?v=20260805d"></script>
+<script src="js/app.js?v=20260811a"></script>
 </body>
 </html>
 
