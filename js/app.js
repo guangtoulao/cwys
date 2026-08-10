@@ -40,6 +40,8 @@ var vm = new Vue({
     bgCategory: 'image',
     bgSubCategory: null,
     bgRandomMode: false,
+    bgAutoChange: false,
+    bgAutoChangeSec: 5,
     bgCategoryList: JSON.parse(JSON.stringify(defaultBgCategoryList)),
     bgLibrary: JSON.parse(JSON.stringify(defaultBgLibrary)),
     openInNewTab: true,
@@ -817,6 +819,64 @@ var vm = new Vue({
       this.preloadBg(this.currentBgUrl);
       this.saveSettings();
     },
+    /* 启动壁纸自动轮播（不重复）定时器 */
+    startBgAutoChange: function() {
+      var self = this;
+      this.stopBgAutoChange();
+      if (!this.bgAutoChange || this.bgAutoChangeSec <= 0) return;
+      /* 重置播放队列，下次切换从头开始一轮不重复轮播 */
+      this._bgAutoPlaylist = null;
+      this._bgAutoPlaylistPos = 0;
+      this._bgAutoTimer = setInterval(function() {
+        self.nextRandomBg();
+      }, this.bgAutoChangeSec * 1000);
+    },
+    /* 清除壁纸自动切换定时器 */
+    stopBgAutoChange: function() {
+      if (this._bgAutoTimer) { clearInterval(this._bgAutoTimer); this._bgAutoTimer = null; }
+    },
+    /* 不重复轮播：按顺序播放已打乱的播放列表，一轮结束后重新打乱再播 */
+    nextRandomBg: function() {
+      /* 播放列表为空或已播完一轮，则重新构建并打乱 */
+      if (!this._bgAutoPlaylist || this._bgAutoPlaylistPos >= this._bgAutoPlaylist.length) {
+        var pool = [];
+        this.bgLibrary.forEach(function(bg, i) {
+          if (bg.type === 'image') pool.push({idx: i, url: bg.url});
+        });
+        /* Fisher-Yates 随机打乱，保证一轮内不重复 */
+        for (var k = pool.length - 1; k > 0; k--) {
+          var j = Math.floor(Math.random() * (k + 1));
+          var t = pool[k]; pool[k] = pool[j]; pool[j] = t;
+        }
+        this._bgAutoPlaylist = pool;
+        this._bgAutoPlaylistPos = 0;
+      }
+      if (!this._bgAutoPlaylist.length) return;
+      var pick = this._bgAutoPlaylist[this._bgAutoPlaylistPos];
+      this._bgAutoPlaylistPos++;
+      var self = this;
+      this.bgLoaded = false;
+      var img = new Image();
+      img.onload = function() {
+        self.currentBgType = 'image';
+        self.currentBgUrl = pick.url;
+        self.currentBgIdx = pick.idx;
+        self.$nextTick(function() { self.bgLoaded = true; });
+      };
+      img.onerror = function() { self.bgLoaded = true; };
+      img.src = pick.url;
+    },
+    /* 开关：自动随机切换壁纸 */
+    toggleBgAutoChange: function() {
+      this.saveSettings();
+      if (this.bgAutoChange) { this.startBgAutoChange(); }
+      else { this.stopBgAutoChange(); }
+    },
+    /* 间隔变更：若开启则重启定时器 */
+    onBgAutoSecChange: function() {
+      this.saveSettings();
+      if (this.bgAutoChange) { this.startBgAutoChange(); }
+    },
     /* ===== 设置 ===== */
     saveSettings: function() {
       var s = {
@@ -824,6 +884,7 @@ var vm = new Vue({
         mask: this.maskOpacity, blur: this.blurVal,
         iconShape: this.iconShape, iconOpacity: this.iconOpacity, iconSize: this.iconSize, iconGap: this.iconGap, iconRowGap: this.iconRowGap, iconBgColor: this.iconBgColor, openInNewTab: this.openInNewTab,
         scrollFlipEnabled: this.scrollFlipEnabled, scrollFlipSensitivity: this.scrollFlipSensitivity,
+        bgAutoChange: this.bgAutoChange, bgAutoChangeSec: this.bgAutoChangeSec,
         settingsVer: 2
       };
       localStorage.setItem('wetab_settings', JSON.stringify(s));
@@ -867,6 +928,8 @@ var vm = new Vue({
           if (j.openInNewTab !== undefined) this.openInNewTab = j.openInNewTab;
           if (j.scrollFlipEnabled !== undefined) this.scrollFlipEnabled = j.scrollFlipEnabled;
           if (j.scrollFlipSensitivity !== undefined) this.scrollFlipSensitivity = j.scrollFlipSensitivity;
+          if (j.bgAutoChange !== undefined) this.bgAutoChange = j.bgAutoChange;
+          if (j.bgAutoChangeSec !== undefined) this.bgAutoChangeSec = j.bgAutoChangeSec;
         } catch (e) {}
       }
       /* 首次打开或壁纸未初始化时，自动选中第一张静态壁纸 */
@@ -2639,5 +2702,11 @@ var vm = new Vue({
     /* 同时用 addEventListener + capture 和 oncontextmenu 双重注册，兼容所有浏览器 */
     document.addEventListener('contextmenu', handleCtx, true);
     document.addEventListener('contextmenu', handleCtx, false);
+
+    /* 壁纸自动随机切换：若设置中已开启，则按间隔启动 */
+    this.startBgAutoChange();
+  },
+  beforeDestroy: function() {
+    this.stopBgAutoChange();
   }
 });
