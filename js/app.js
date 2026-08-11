@@ -972,8 +972,14 @@ var vm = new Vue({
       try {
         var d = payload.data;
         for (var k in d) {
+          /* 不恢复版本号，避免触发 mounted 里的默认值重置把刚恢复的数据冲掉 */
+          if (k === 'wetab_data_version') continue;
+          /* 只写字符串，防止脏数据/格式异常写进 localStorage */
+          if (typeof d[k] !== 'string') continue;
           localStorage.setItem(k, d[k]);
         }
+        /* 恢复后把版本标记置为当前，跳过迁移逻辑，保住刚恢复的数据 */
+        localStorage.setItem('wetab_data_version', DATA_VERSION);
         return true;
       } catch(e) { return false; }
     },
@@ -1009,8 +1015,6 @@ var vm = new Vue({
       r.readAsText(file);
       e.target.value = '';
     },
-    /* 保存云同步设置 */
-    saveCloudSettings: function() {},
     /* 延迟自动同步（防抖 5 秒，静默不弹toast，初始化后10秒才允许） */
     scheduleCloudSync: function() {
       if (!this.cloudAutoSync) return;
@@ -1026,8 +1030,8 @@ var vm = new Vue({
     /* 推送数据到 Cloudflare Worker，silent=true 时不弹toast */
     cloudSyncPush: function(silent) {
       var self = this;
-      /* 未登录时不同步（只读模式不推送数据） */
-      if (!this.isLoggedIn) { this.cloudSyncStatus = 'idle'; return; }
+      /* 未登录时不同步（只读模式不推送数据）；手动点击才提示，自动保存不弹 */
+      if (!this.isLoggedIn) { this.cloudSyncStatus = 'idle'; if (!silent) this.showToast('请先登录后再同步'); return; }
       this.cloudSyncStatus = 'syncing';
       var payload = this.collectAllData();
       var headers = { 'Content-Type': 'application/json' };
@@ -1092,9 +1096,11 @@ var vm = new Vue({
         self.showToast('拉取失败: ' + err.message);
       });
     },
-    /* 静默拉取（页面加载时自动调用，云端更新才恢复） */
-    cloudSyncPullSilent: function() {
+    /* 页面打开时自动拉取云端最新内容（云端更新且本地无未保存修改才恢复），实现换设备即同步 */
+    cloudSyncAutoPull: function() {
       var self = this;
+      /* 未登录不自动拉取，避免用共享云端数据覆盖本地 */
+      if (!this.isLoggedIn) return;
       fetch('https://sync.cwys.qzz.io/api/sync?token=' + this.cloudToken, {
         method: 'GET',
         headers: { 'Accept': 'application/json' }
@@ -1108,23 +1114,22 @@ var vm = new Vue({
           try {
             var localTs = parseInt(localStorage.getItem('cwys_last_push_ts') || '0');
             var cloudTs = d.data.timestamp || 0;
-            /* 检查本地是否有未同步的修改（5分钟内的修改算未同步） */
+            /* 本地 5 分钟内有过修改，视为有未同步内容，先不覆盖，避免丢数据 */
             var localModifiedTs = parseInt(localStorage.getItem('cwys_local_modified_ts') || '0');
-            var nowTs = Date.now();
-            var hasLocalChanges = (nowTs - localModifiedTs) < 300000;
-            /* 只有云端比上次推送时间新，且本地没有未同步的修改时才拉取 */
+            var hasLocalChanges = (Date.now() - localModifiedTs) < 300000;
+            /* 只有云端比本地上次推送更新、且本地没有未保存修改时才拉取 */
             if (cloudTs > localTs && !hasLocalChanges) {
               self.restoreAllData(d.data);
               self.cloudSyncTime = new Date().toLocaleString('zh-CN');
               localStorage.setItem('cwys_cloud_sync_time', self.cloudSyncTime);
               localStorage.setItem('cwys_last_push_ts', String(cloudTs));
-              self.showToast('检测到云端有更新，已自动同步');
-              setTimeout(function() { location.reload(); }, 1500);
+              self.showToast('已从云端同步最新内容');
+              setTimeout(function() { location.reload(); }, 1200);
             }
           } catch(e) {}
         }
       })
-      .catch(function(err) {});
+      .catch(function() {});
     },
 
     /* ===== 分类管理 ===== */
@@ -2430,8 +2435,8 @@ var vm = new Vue({
     /* 页面加载后检查登录状态 */
     setTimeout(function() { self.checkSession(); }, 300);
 
-    /* 页面加载后不再自动拉取云端数据，避免覆盖仓库 data.js 的最新默认数据 */
-    /* 需要恢复云端数据时手动点击"从云端恢复"按钮 */
+    /* 页面打开后自动从云端拉取最新内容（已登录且云端更新时），实现换设备即同步 */
+    setTimeout(function() { self.cloudSyncAutoPull(); }, 6000);
 
     /* 5秒后开启自动同步，避免初始化时触发循环 */
     setTimeout(function() {
