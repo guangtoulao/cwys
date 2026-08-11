@@ -1030,8 +1030,8 @@ var vm = new Vue({
     /* 推送数据到 Cloudflare Worker，silent=true 时不弹toast */
     cloudSyncPush: function(silent) {
       var self = this;
-      /* 未登录时不同步（只读模式不推送数据）；手动点击才提示，自动保存不弹 */
-      if (!this.isLoggedIn) { this.cloudSyncStatus = 'idle'; if (!silent) this.showToast('请先登录后再同步'); return; }
+      /* 任意浏览器/设备上添加、删除图标都会自动上传到云端，无需登录；
+         若已登录则带上 sessionToken（后端按 token 隔离时生效），未登录则匿名写入共享桶。 */
       this.cloudSyncStatus = 'syncing';
       var payload = this.collectAllData();
       var headers = { 'Content-Type': 'application/json' };
@@ -1055,7 +1055,7 @@ var vm = new Vue({
             self.isLoggedIn = false;
             self.sessionToken = '';
             localStorage.removeItem('cwys_session_token');
-            if (!silent) self.showToast('登录已过期，请重新登录');
+            if (!silent) self.showToast('云端要求登录后才能同步，请在上方登录');
           } else {
             if (!silent) self.showToast('同步失败: ' + (d.error || '未知错误'));
           }
@@ -1099,8 +1099,8 @@ var vm = new Vue({
     /* 页面打开时自动拉取云端最新内容（云端更新且本地无未保存修改才恢复），实现换设备即同步 */
     cloudSyncAutoPull: function() {
       var self = this;
-      /* 未登录不自动拉取，避免用共享云端数据覆盖本地 */
-      if (!this.isLoggedIn) return;
+      /* 自动拉取不需要登录：云端 pull 是只读公开接口，新浏览器/新设备打开即可自动恢复；
+         push（上传）仍需要登录，防止未授权覆盖云端数据。 */
       fetch('https://sync.cwys.qzz.io/api/sync?token=' + this.cloudToken, {
         method: 'GET',
         headers: { 'Accept': 'application/json' }
