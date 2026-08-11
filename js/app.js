@@ -1124,7 +1124,7 @@ var vm = new Vue({
               localStorage.setItem('cwys_cloud_sync_time', self.cloudSyncTime);
               localStorage.setItem('cwys_last_push_ts', String(cloudTs));
               self.showToast('已从云端同步最新内容');
-              setTimeout(function() { location.reload(); }, 1200);
+              setTimeout(function() { location.reload(); }, 600);
             }
           } catch(e) {}
         }
@@ -2435,8 +2435,8 @@ var vm = new Vue({
     /* 页面加载后检查登录状态 */
     setTimeout(function() { self.checkSession(); }, 300);
 
-    /* 页面打开后自动从云端拉取最新内容（已登录且云端更新时），实现换设备即同步 */
-    setTimeout(function() { self.cloudSyncAutoPull(); }, 6000);
+    /* 页面打开后尽快自动从云端拉取最新内容，实现换设备即同步（缩短等待，仅留首屏稳定缓冲） */
+    setTimeout(function() { self.cloudSyncAutoPull(); }, 1200);
 
     /* 5秒后开启自动同步，避免初始化时触发循环 */
     setTimeout(function() {
