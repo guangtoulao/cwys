@@ -1,7 +1,7 @@
 {
   "spider": "./custom_spider.jar;md5;f06aa2a9d607b104773691315f5c997d",
   "wallpaper": "https://xn--11x805d.xn--4kq62z5rby2qupq9ub.xyz/",
-  "warningText": "仅作学习交流测试使用，配置或下载后请于24小时之内删除",
+  "warningText": "祝您观影愉快",
   "lives": [
     {
       "name": "直播",
@@ -40,6 +40,19 @@
       "ext": "./lib/douban.json"
     },
     {
+      "key": "设置",
+      "name": "网弹设置",
+      "type": 3,
+      "api": "csp_Config",
+      "searchable": 0,
+      "changeable": 0,
+      "indexs": 0,
+      "style": {
+        "type": "rect",
+        "ratio": 1.618
+      }
+    },
+    {
       "key": "HBGuaZi",
       "name": "瓜子影视",
       "type": 3,
@@ -66,6 +79,19 @@
         "播放数组": "anthology-list-play size\">&&</ul>",
         "分类url": "https://www.cd-zj.com/cupfox-list/{cateId}-{area}--{class}-----{catePg}---{year}.html",
         "分类": "短剧$5#电视剧$2#电影$1#动漫$4#综艺$3"
+      }
+    },
+    {
+      "key": "茉莉",
+      "name": "茉莉影视",
+      "type": 3,
+      "searchable": 1,
+      "changeable": 1,
+      "api": "csp_HBgetapp",
+      "ext": {
+        "host": "https://gitee.com/wmmoliill/wimg/raw/master/img/bk/9.txt",
+        "appkey": "88689667dce61725",
+        "appiv": "88689667dce61725"
       }
     },
     {
@@ -98,16 +124,51 @@
     },
     {
       "key": "馆源",
-      "name": "三六视频",
+      "name": "六零视频",
       "type": 3,
       "api": "csp_HB360"
     },
     {
+      "key": "jarcai",
+      "name": "文才影视",
+      "type": 3,
+      "api": "csp_Wcai",
+      "ext": "https://www.jxshdzs.com/"
+    },
+    {
+      "key": "追追",
+      "name": "追追影视",
+      "type": 3,
+      "api": "csp_Wcai",
+      "ext": "https://zjuys.com/"
+    },
+    {
+      "key": "360",
+      "name": "360影视",
+      "type": 3,
+      "api": "csp_HBcms10",
+      "ext": "https://360zy.com/api.php/provide/vod/"
+    },
+    {
+      "key": "如意",
+      "name": "如意采集",
+      "type": 3,
+      "api": "csp_HBcms10",
+      "ext": "https://cj.rycjapi.com/api.php/provide/vod/"
+    },
+    {
       "key": "天堂",
-      "name": "彩虹影视",
+      "name": "天堂影视",
       "type": 3,
       "api": "csp_HBcms10",
       "ext": "http://caiji.dyttzyapi.com/api.php/provide/vod/from/dyttm3u8/at/m3u8/"
+    },
+    {
+      "key": "永乐",
+      "name": "永乐影视",
+      "type": 3,
+      "api": "csp_HBPQ",
+      "ext": "./lib/永乐影视.json"
     },
     {
       "key": "马猴app",
@@ -313,7 +374,7 @@
       "url": "Sequence"
     },
     {
-      "name": "自定：请先设置",
+      "name": "自定",
       "type": 1,
       "url": "http://127.0.0.1:9997/proxy?do=seachdanmu&go=getuserjx&url="
     },
@@ -323,7 +384,7 @@
       "url": "http://127.0.0.1:9997/proxy?do=seachdanmu&go=hubanjiexi1&url="
     },
     {
-      "name": "晴天4K Q1026038872",
+      "name": "晴天4K",
       "type": 1,
       "url": "http://127.0.0.1:9997/proxy?do=seachdanmu&go=hubanjiexi&url="
     },
@@ -333,7 +394,7 @@
       "url": "http://127.0.0.1:9997/proxy?do=seachdanmu&go=getAbjx&url="
     },
     {
-      "name": "虎斑getSBSjx",
+      "name": "虎斑",
       "type": 1,
       "url": "http://127.0.0.1:9978/proxy?do=seachdanmu&go=getSBSjx&url="
     },
@@ -443,7 +504,7 @@
       ]
     },
     {
-      "name": "磁力",
+      "name": "磁力广告",
       "hosts": [
         "magnet"
       ],
@@ -460,6 +521,10 @@
         "有 趣",
         "英皇体育",
         "全中文AV在线",
+        "澳门皇冠赌场",
+        "哥哥快来",
+        "美女荷官",
+        "裸聊",
         "新片首发",
         "UUE29"
       ]
