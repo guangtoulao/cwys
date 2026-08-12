@@ -290,6 +290,24 @@
       "jar": "https://tc-new.z.wiki/autoupload/k2fxc/20260802/826v/fish08022249.jar"
     },
     {
+      "name": "哔哩歌曲",
+      "key": "BiliGequ",
+      "type": 3,
+      "api": "csp_BiliAmns",
+      "searchable": 0,
+      "quickSearch": 0,
+      "changeable": 0,
+      "ext": {
+      "json": "https://cdn.waimaimingtang.com/file/images/bwc/20260527100843-9aefe070b5.aowu",
+      "cookie": ""
+   },
+      "style": {
+      "type": "rect",
+      "ratio": 1.433
+    },
+      "jar": "https://nos.netease.com/ysf/94fce0ad0fb002e36283e7beb2440f64.png"
+    },
+    {
       "key": "MTV",
       "name": "哔哩音乐",
       "type": 3,
