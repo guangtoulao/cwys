@@ -40,7 +40,7 @@ var vm = new Vue({
     bgCategory: 'image',
     bgSubCategory: null,
     bgRandomMode: false,
-    bgAutoChange: false,
+    bgAutoChange: true,
     bgAutoChangeSec: 5,
     bgCategoryList: JSON.parse(JSON.stringify(defaultBgCategoryList)),
     bgLibrary: JSON.parse(JSON.stringify(defaultBgLibrary)),
@@ -885,7 +885,7 @@ var vm = new Vue({
         iconShape: this.iconShape, iconOpacity: this.iconOpacity, iconSize: this.iconSize, iconGap: this.iconGap, iconRowGap: this.iconRowGap, iconBgColor: this.iconBgColor, openInNewTab: this.openInNewTab,
         scrollFlipEnabled: this.scrollFlipEnabled, scrollFlipSensitivity: this.scrollFlipSensitivity,
         bgAutoChange: this.bgAutoChange, bgAutoChangeSec: this.bgAutoChangeSec,
-        settingsVer: 2
+        settingsVer: 3
       };
       localStorage.setItem('wetab_settings', JSON.stringify(s));
       this.scheduleCloudSync();
@@ -900,6 +900,10 @@ var vm = new Vue({
             j.iconSize = 48;
             j.iconGap = 14;
             j.iconRowGap = 14;
+          }
+          /* 版本升级：旧的"关"是默认值残留，重置为默认开启（用户未主动关闭） */
+          if (!j.settingsVer || j.settingsVer < 3) {
+            j.bgAutoChange = true;
           }
           if (j.bgIdx !== undefined && j.bgIdx >= 0 && j.bgIdx < this.bgLibrary.length) {
             var bg = this.bgLibrary[j.bgIdx];
