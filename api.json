@@ -1,4 +1,4 @@
-{
+、{
   "spider": "./custom_spider.jar;md5;f06aa2a9d607b104773691315f5c997d",
   "wallpaper": "https://xn--11x805d.xn--4kq62z5rby2qupq9ub.xyz/",
   "warningText": "仅作学习交流测试使用，配置或下载后请于24小时之内删除",
@@ -68,37 +68,37 @@
         "分类": "短剧$5#电视剧$2#电影$1#动漫$4#综艺$3"
       }
     },
-   {
-        "key": "tenteng",
-        "name": "落日|自定",
-        "type": 3,
-        "api": "http://121.205.88.174:25252/仅供测试/lib/drpy2.min.js",
-        "ext": "http://121.205.88.174:25252/仅供测试/lib/腾腾.js",
+    {
+      "key": "tenteng",
+      "name": "腾讯视频",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "ext": "./lib/腾腾.js"
     },
     {
       "key": "youyou",
-      "name": "优酷影视",
+      "name": "优酷视频",
       "type": 3,
-        "api": "http://121.205.88.174:25252/仅供测试/lib/drpy2.min.js",
-        "ext": "http://121.205.88.174:25252/仅供测试/lib/优优.js",
+      "api": "./lib/drpy2.min.js",
+      "ext": "./lib/优优.js"
     },
     {
       "key": "qiqi",
-      "name": "奇艺影视",
+      "name": "爱奇视频",
       "type": 3,
-        "api": "http://121.205.88.174:25252/仅供测试/lib/drpy2.min.js",
-        "ext": "http://121.205.88.174:25252/仅供测试/lib/奇奇.js",
+      "api": "./lib/drpy2.min.js",
+      "ext": "./lib/奇奇.js"
     },
     {
       "key": "mangmang",
-      "name": "芒果影视",
+      "name": "芒果视频",
       "type": 3,
-        "api": "http://121.205.88.174:25252/仅供测试/lib/drpy2.min.js",
-        "ext": "http://121.205.88.174:25252/仅供测试/lib/茫茫.js",
+      "api": "./lib/drpy2.min.js",
+      "ext": "./lib/茫茫.js"
     },
     {
       "key": "馆源",
-      "name": "三六影视",
+      "name": "三六视频",
       "type": 3,
       "api": "csp_HB360"
     },
