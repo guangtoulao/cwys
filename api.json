@@ -298,13 +298,13 @@
       "quickSearch": 0,
       "changeable": 0,
       "ext": {
-      "json": "https://cdn.waimaimingtang.com/file/images/bwc/20260527100843-9aefe070b5.aowu",
-      "cookie": ""
-   },
+        "json": "https://cdn.waimaimingtang.com/file/images/bwc/20260527100843-9aefe070b5.aowu",
+        "cookie": ""
+      },
       "style": {
-      "type": "rect",
-      "ratio": 1.433
-    },
+        "type": "rect",
+        "ratio": 1.433
+      },
       "jar": "https://nos.netease.com/ysf/94fce0ad0fb002e36283e7beb2440f64.png"
     },
     {
@@ -325,20 +325,23 @@
       "jar": "https://zl.wpscdn.cn/2026/08/03/space_img/31c67f10-796e-4c4b-abe7-75fd4a527cc8.jpg"
     },
     {
-      "key": "Bili",
+      "key": "哔哩",
       "name": "哔哩合集",
       "type": 3,
-      "api": "csp_BiliGuard",
-      "style": {
-        "type": "rect",
-        "ratio": 1.597
-      },
+      "api": "csp_Bili",
       "searchable": 1,
       "quickSearch": 0,
+      "filterable": 0,
       "changeable": 0,
+      "style": {
+        "type": "rect",
+        "ratio": 1.433
+      },
       "ext": {
-        "json": "./lib/0075389dca9afadd4614e9713765ff17.txt"
-      }
+        "n": "哔哩合集",
+        "cookie": "http://127.0.0.1:9978/file/TVBox/bili_cookie.txt"
+      },
+      "jar": "https://qist.wyfc.qzz.io/xiaosa/spider.jar"
     },
     {
       "key": "Biliych",
