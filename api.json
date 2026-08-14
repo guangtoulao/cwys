@@ -39,7 +39,7 @@
       "api": "csp_Douban",
       "ext": "./lib/douban.json"
     },
-        {
+    {
       "key": "www_njayy",
       "name": "njayy赞",
       "type": 3,
@@ -55,7 +55,7 @@
       "type": 3,
       "api": "csp_HBGuaZi"
     },
-           {
+    {
       "key": "www_kktvs",
       "name": "剧集影视",
       "type": 3,
@@ -209,106 +209,106 @@
       }
     },
     {
-  "key": "马猴影视",
-  "name": "马猴 • APP",
-  "type": 3,
-  "api": "csp_App3Q",
-  "ext": {
-    "host": "https://45.150.167.18:8000",
-    "finger": "SF-A962FEC75DA28D7514F2A16580334272A78AC0A8429F10C94F47C1BAFC876E3F",
-    "updateId": "43c1ef69-3748-aaeb-317f-c621c77653ee",
-    "deviceBrand": "vivo",
-    "deviceModel": "V2309A",
-    "pkg": "com.damahou.tv",
-    "sk": "SK-woniu-thanks",
-    "ver": "1"
-  },
-  "jar": "https://qist.wyfc.qzz.io/xiaosa/spider.jar"
-},
-{
-  "key": "一起影视",
-  "name": "一起 • APP",
-  "type": 3,
-  "api": "csp_AppYQK",
-  "searchable": 1,
-  "quickSearch": 1,
-  "filterable": 0,
-  "jar": "https://qist.wyfc.qzz.io/xiaosa/spider.jar"
-},
-{
-  "key": "剧圈99",
-  "name": "剧圈 • APP",
-  "type": 3,
-  "api": "csp_App99",
-  "ext": {
-    "host": "http://124.221.3.182:19987/app/bn",
-    "appkey": "d1f0c269eab74d93821fffc9befdbbba",
-    "versionName": "1.2.0",
-    "name": "剧圈圈",
-    "package": "com.qingtangxiaozhuan.xyz",
-    "buildNumber": "2002",
-    "buildSignature": "054FA8DDA4319C6B6A9B954CA5777541C993F00B1B0BD4394F7EDE48184C4594"
-  },
-  "jar": "https://qist.wyfc.qzz.io/xiaosa/spider.jar"
-},
-{
-  "key": "天堂",
-  "name": "天堂 • APP",
-  "type": 3,
-  "api": "csp_AppDrama",
-  "searchable": 1,
-  "quickSearch": 1,
-  "filterable": 1,
-  "ext": {
-    "appName": "电影天堂",
-    "publicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCduNEnfxGaLuQRk5ABzXHhPV43zi00sCHjLo8BYc+Wi6xXm2b4v0i28Sq4WlNCKhseft9fz8kO/qLr6/022o1RcuOU7e4GFL3U9WnNODwRBYSYWd+K8nqpI/tAUDmZEBGRWqjrc7x6aMl3A+xpnWkLbPCLsuhbuuUE3tv09oeOpwIDAQAB",
-    "dataKey": "D2KREWRIBVNAUJJYEDL4VFHOY2Q0PQ==",
-    "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
-    "pkg": "com.dytiantang.one",
-    "host": "",
-    "site": "https://dyttandroid04-1372779881.cos.ap-shanghai.myqcloud.com/app_dyttandroid.txt",
-    "version": "3.0.0.7",
-    "decrypt": "0"
-  },
-  "jar": "https://qist.wyfc.qzz.io/xiaosa/spider.jar"
-},
-{
-  "key": "热播影视",
-  "name": "热播 • APP",
-  "type": 3,
-  "api": "csp_AppRJ",
-  "searchable": 1,
-  "quickSearch": 1,
-  "filterable": 0,
-  "ext": {
-    "url": "http://v.rbotv.cn"
-  },
-  "jar": "https://qist.wyfc.qzz.io/xiaosa/spider.jar"
-},
-{
-  "key": "怀桑",
-  "name": "怀桑 • APP",
-  "type": 3,
-  "api": "csp_AppQi",
-  "searchable": 1,
-  "changeable": 1,
-  "ext": {
-    "site": "https://daen-1256234123.cos.ap-shanghai.myqcloud.com/MuQi/mqxhqj.txt",
-    "dataKey": "kj37zs29q22jk96t",
-    "dataIv": "kj37zs29q22jk96t",
-    "init": "initV122",
-    "ua": "okhttp/3.10.0"
-  },
-  "jar": "https://qist.wyfc.qzz.io/xiaosa/spider.jar"
-},
-{
-  "key": "枫叶影视",
-  "name": "枫叶 • 影视",
-  "type": 3,
-  "api": "csp_FengYe",
-  "ext": "https://www.vip1949.com/",
-  "jar": "https://qist.wyfc.qzz.io/xiaosa/spider.jar"
-},
+      "key": "马猴影视",
+      "name": "马猴影视",
+      "type": 3,
+      "api": "csp_App3Q",
+      "ext": {
+        "host": "https://45.150.167.18:8000",
+        "finger": "SF-A962FEC75DA28D7514F2A16580334272A78AC0A8429F10C94F47C1BAFC876E3F",
+        "updateId": "43c1ef69-3748-aaeb-317f-c621c77653ee",
+        "deviceBrand": "vivo",
+        "deviceModel": "V2309A",
+        "pkg": "com.damahou.tv",
+        "sk": "SK-woniu-thanks",
+        "ver": "1"
+      },
+      "jar": "https://qist.wyfc.qzz.io/xiaosa/spider.jar"
+    },
+    {
+      "key": "一起影视",
+      "name": "一起影视",
+      "type": 3,
+      "api": "csp_AppYQK",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0,
+      "jar": "https://qist.wyfc.qzz.io/xiaosa/spider.jar"
+    },
+    {
+      "key": "剧圈99",
+      "name": "剧圈影视",
+      "type": 3,
+      "api": "csp_App99",
+      "ext": {
+        "host": "http://124.221.3.182:19987/app/bn",
+        "appkey": "d1f0c269eab74d93821fffc9befdbbba",
+        "versionName": "1.2.0",
+        "name": "剧圈圈",
+        "package": "com.qingtangxiaozhuan.xyz",
+        "buildNumber": "2002",
+        "buildSignature": "054FA8DDA4319C6B6A9B954CA5777541C993F00B1B0BD4394F7EDE48184C4594"
+      },
+      "jar": "https://qist.wyfc.qzz.io/xiaosa/spider.jar"
+    },
+    {
+      "key": "天堂",
+      "name": "天堂影视",
+      "type": 3,
+      "api": "csp_AppDrama",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "appName": "电影天堂",
+        "publicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCduNEnfxGaLuQRk5ABzXHhPV43zi00sCHjLo8BYc+Wi6xXm2b4v0i28Sq4WlNCKhseft9fz8kO/qLr6/022o1RcuOU7e4GFL3U9WnNODwRBYSYWd+K8nqpI/tAUDmZEBGRWqjrc7x6aMl3A+xpnWkLbPCLsuhbuuUE3tv09oeOpwIDAQAB",
+        "dataKey": "D2KREWRIBVNAUJJYEDL4VFHOY2Q0PQ==",
+        "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
+        "pkg": "com.dytiantang.one",
+        "host": "",
+        "site": "https://dyttandroid04-1372779881.cos.ap-shanghai.myqcloud.com/app_dyttandroid.txt",
+        "version": "3.0.0.7",
+        "decrypt": "0"
+      },
+      "jar": "https://qist.wyfc.qzz.io/xiaosa/spider.jar"
+    },
+    {
+      "key": "热播影视",
+      "name": "热播影视",
+      "type": 3,
+      "api": "csp_AppRJ",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0,
+      "ext": {
+        "url": "http://v.rbotv.cn"
+      },
+      "jar": "https://qist.wyfc.qzz.io/xiaosa/spider.jar"
+    },
+    {
+      "key": "怀桑",
+      "name": "怀桑影视",
+      "type": 3,
+      "api": "csp_AppQi",
+      "searchable": 1,
+      "changeable": 1,
+      "ext": {
+        "site": "https://daen-1256234123.cos.ap-shanghai.myqcloud.com/MuQi/mqxhqj.txt",
+        "dataKey": "kj37zs29q22jk96t",
+        "dataIv": "kj37zs29q22jk96t",
+        "init": "initV122",
+        "ua": "okhttp/3.10.0"
+      },
+      "jar": "https://qist.wyfc.qzz.io/xiaosa/spider.jar"
+    },
+    {
+      "key": "枫叶影视",
+      "name": "枫叶影视",
+      "type": 3,
+      "api": "csp_FengYe",
+      "ext": "https://www.vip1949.com/",
+      "jar": "https://qist.wyfc.qzz.io/xiaosa/spider.jar"
+    },
     {
       "key": "茉莉",
       "name": "茉莉影视",
@@ -391,44 +391,44 @@
       "api": "csp_HBcms10",
       "ext": "http://caiji.dyttzyapi.com/api.php/provide/vod/from/dyttm3u8/at/m3u8/"
     },
-{
-  "key": "哔哩合集",
-  "name": "哔哩 • 合集",
-  "type": 3,
-  "api": "csp_Bili",
-  "searchable": 1,
-  "quickSearch": 0,
-  "filterable": 0,
-  "changeable": 0,
-  "style": {
-    "type": "rect",
-    "ratio": 1.433
-  },
-  "ext": {
-    "n": "哔哩合集",
-    "cookie": "http://127.0.0.1:9978/file/TVBox/bili_cookie.txt"
-  },
-  "jar": "https://qist.wyfc.qzz.io/xiaosa/spider.jar"
-},
-{
-  "key": "哔哩哔哩音乐",
-  "name": "哔哩 • 音乐",
-  "type": 3,
-  "api": "csp_Bili",
-  "searchable": 0,
-  "quickSearch": 0,
-  "changeable": 0,
-  "ext": {
-    "n": "哔哩音乐",
-    "cookie": "http://127.0.0.1:9978/file/TVBox/bili_cookie.txt"
-  },
-  "style": {
-    "type": "rect",
-    "ratio": 1.597
-  },
-  "jar": "https://qist.wyfc.qzz.io/xiaosa/spider.jar"
-},
-   {
+    {
+      "key": "哔哩合集",
+      "name": "哔哩合集",
+      "type": 3,
+      "api": "csp_Bili",
+      "searchable": 1,
+      "quickSearch": 0,
+      "filterable": 0,
+      "changeable": 0,
+      "style": {
+        "type": "rect",
+        "ratio": 1.433
+      },
+      "ext": {
+        "n": "哔哩合集",
+        "cookie": "http://127.0.0.1:9978/file/TVBox/bili_cookie.txt"
+      },
+      "jar": "https://qist.wyfc.qzz.io/xiaosa/spider.jar"
+    },
+    {
+      "key": "哔哩哔哩音乐",
+      "name": "哔哩音乐",
+      "type": 3,
+      "api": "csp_Bili",
+      "searchable": 0,
+      "quickSearch": 0,
+      "changeable": 0,
+      "ext": {
+        "n": "哔哩音乐",
+        "cookie": "http://127.0.0.1:9978/file/TVBox/bili_cookie.txt"
+      },
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      },
+      "jar": "https://qist.wyfc.qzz.io/xiaosa/spider.jar"
+    },
+    {
       "key": "push_agent",
       "name": "手机｜推送",
       "type": 3,
