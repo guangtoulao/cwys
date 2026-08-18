@@ -40,6 +40,17 @@
       "ext": "./lib/douban.json"
     },
     {
+      "key": "m.shizhiou.com",
+      "name": "加入",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "ext": "./lib/青柠.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 0
+    },
+    {
       "key": "www_njayy",
       "name": "njayy赞",
       "type": 3,
