@@ -40,24 +40,112 @@
       "ext": "./lib/douban.json"
     },
     {
-      "key": "m.shizhiou.com",
-      "name": "加入",
+      "key": "site",
+      "name": "橘子影视",
       "type": 3,
       "api": "./lib/drpy2.min.js",
-      "ext": "./lib/青柠.js",
+      "ext": "./lib/橘子.js",
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
       "filterable": 0
     },
     {
-      "key": "www_njayy",
-      "name": "njayy赞",
+      "key": "www_234wo",
+      "name": "二三影视",
       "type": 3,
-      "api": "csp_js",
-      "ext": "var rule = {\n  title: \"njayy赞片\",\n  host: \"https://www.njayy.com\",\n  url: \"/fyclass/index-fypage.html\",\n  searchUrl: \"\",\n  searchable: 1,\n  quickSearch: 1,\n  filterable: 1,\n  headers: {\"User-Agent\":\"Mozilla/5.0 (Linux; Android 10; SM-G981B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.162 Mobile Safari/537.36\",\"Accept\":\"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8\",\"Accept-Language\":\"zh-CN,zh;q=0.9,en;q=0.8\",\"Referer\":\"https://www.njayy.com/\"},\n  homeUrl: \"https://www.njayy.com\",\n  class_name: \"电视剧&电影&动漫&综艺&微电影\",\n  class_url: \"dianshiju&dianying&dongman&zongyi&weidianying\",\n  class_parse: \"ul li;a&&Text;a&&href\",\n  play_parse: true,\n  double: false,\n  limit: 6,\n  lazy: \"js:\\nvar html;\\nif(input.charAt(0) === \\\"/\\\"){ input = rule.host + input; }\\nif(new RegExp(\\\"^https?://\\\").test(input)){ html = request(input); } else { html = input; }\\n// 播放器变量名不固定（如 www_lyzhibang_com = {\\\"url\\\":\\\"...m3u8\\\"}）。正则不含反斜杠：{ 直接写、字面点用 [.]。\\nvar m = html.match(new RegExp('[a-zA-Z0-9_]+[ ]*=[ ]*{[^}]*\\\"url\\\"[ ]*:[ ]*\\\"([^\\\"]*[.](?:m3u8|mp4)[^\\\"]*)\\\"', \\\"i\\\"));\\nif(m){\\n  var bs = String.fromCharCode(92);\\n  input = m[1].split(bs).join(\\\"\\\");\\n}\\n\",\n  一级: \"js:\\nvar html;\\n// drpy2 某些壳 request 相对 URL 会丢 host，先补全；已经是 http(s) 则直接请求；否则把 input 当 HTML 用\\nif(input.charAt(0) === \\\"/\\\"){ input = rule.host + input; }\\nif(new RegExp(\\\"^https?://\\\").test(input)){ html = request(input); } else { html = input; }\\nvar VODS = [];\\nvar wsPat = String.fromCharCode(32,9,13,10);\\n// 单一健壮正则：覆盖真实线上两种卡片——\\n//   A) 新版轮播卡: <a class=\\\"video-pic swiper-lazy\\\" href=\\\"/forum/6453.html\\\" title=\\\"非凡医者\\\" data-background=\\\"https://...\\\"><span class=\\\"note ...\\\">全16集</span>...\\n//   B) 旧版列表卡: <a class=\\\"video-pic loading\\\" data-original=\\\"https://...\\\" href=\\\"/forum/366126.html\\\" title=\\\"米良与麦青\\\"> <span class=\\\"note ...\\\">更新至24集</span> </a>\\n// 图片取 data-background > data-original；备注取 <span class=\\\"note ...\\\">；链接必须含 /forum/（或 /cid/）。\\n// 所有正则均用 new RegExp('...') 且【不含任何反斜杠】：任意字符用 [^]，字面点用 [.]，/ 在字符串里无需转义（三层转义稳定）。\\nvar reA = new RegExp('<a[^>]*class=\\\"[^\\\"]*video-pic[^\\\"]*\\\"[^>]*>', \\\"gi\\\");\\nvar m;\\nwhile((m = reA.exec(html)) !== null){\\n  var tag = m[0];\\n  var url = (tag.match(new RegExp('href=\\\"([^\\\"]*)\\\"')) || [])[1] || \\\"\\\";\\n  var name = (tag.match(new RegExp('title=\\\"([^\\\"]*)\\\"')) || [])[1] || \\\"\\\";\\n  var pic = (tag.match(new RegExp('data-background=\\\"([^\\\"]*)\\\"')) || [])[1] || \\\"\\\";\\n  if(!pic){ pic = (tag.match(new RegExp('data-original=\\\"([^\\\"]*)\\\"')) || [])[1] || \\\"\\\"; }\\n  if(!name){ name = (tag.match(new RegExp('alt=\\\"([^\\\"]*)\\\"')) || [])[1] || \\\"\\\"; }\\n  if(!url || (url.indexOf(\\\"/forum/\\\") < 0 && url.indexOf(\\\"/cid/\\\") < 0)){ continue; }\\n  var after = html.substring(m.index + tag.length);\\n  var note = after.match(new RegExp('<span class=\\\"note[^\\\"]*\\\"[^>]*>([^]*?)</span>', \\\"i\\\"));\\n  var remark = note ? note[1].replace(new RegExp(\\\"<[^>]+>\\\", \\\"g\\\"), \\\" \\\").replace(new RegExp(\\\"[\\\" + wsPat + \\\"]+\\\", \\\"g\\\"), \\\" \\\").trim() : \\\"\\\";\\n  VODS.push({ vod_id: url + \\\"@@\\\" + name + \\\"@@\\\" + pic, vod_name: name, vod_pic: pic, vod_remarks: remark, vod_content: \\\"\\\" });\\n}\\n\",\n  二级: \"js:\\nvar raw = (typeof orId !== \\\"undefined\\\" ? orId : input);\\nvar parts = raw.split(\\\"@@\\\");\\nvar detailUrl = parts[0] || raw;\\nvar title0 = (parts[1] || \\\"\\\").trim();\\nvar pic0 = parts[2] || \\\"\\\";\\nvar html;\\nif(detailUrl.charAt(0) === \\\"/\\\"){ detailUrl = rule.host + detailUrl; }\\nif(new RegExp(\\\"^https?://\\\").test(detailUrl)){ html = request(detailUrl); } else { html = detailUrl; }\\nvar VOD = { vod_name: title0, vod_pic: pic0, vod_remarks: \\\"\\\", vod_content: \\\"\\\", vod_play_from: \\\"\\\", vod_play_url: \\\"\\\" };\\nvar wsPat = String.fromCharCode(32,9,13,10);\\nvar t = html.match(new RegExp(\\\"<h1[^>]*>([^]*?)</h1>\\\", \\\"i\\\"));\\nif(t){ VOD.vod_name = t[1].replace(new RegExp(\\\"<[^>]+>\\\", \\\"g\\\"), \\\"\\\").replace(new RegExp(\\\"[\\\" + wsPat + \\\"]+\\\", \\\"g\\\"), \\\" \\\").trim() || title0; }\\nvar c = html.match(new RegExp('<meta[^>]*name=\\\"description\\\"[^>]*content=\\\"([^\\\"]*)\\\"', \\\"i\\\"));\\nif(c){ VOD.vod_content = c[1].replace(new RegExp(\\\"[\\\" + wsPat + \\\"]+\\\", \\\"g\\\"), \\\" \\\").trim(); }\\nvar playFrom = [];\\nvar playList = [];\\nvar epRe = new RegExp('href=\\\"(/(?:cid|bofang)/[0-9]+-[0-9]+-[0-9]+[.]html)\\\"[^>]*>([^]*?)</a>', \\\"gi\\\");\\nvar idRe = new RegExp('<(?:div|ul)[^>]*id=\\\"con_playlist_([0-9]+)\\\"', \\\"gi\\\");\\nvar idxs = [];\\nvar mm;\\nwhile((mm = idRe.exec(html)) !== null){ idxs.push({ n: mm[1], pos: mm.index }); }\\nfor(var k = 0; k < idxs.length; k++){\\n  var n = idxs[k].n;\\n  // 精确匹配容器 <ul...id=\\\"con_playlist_N\\\"...>...</ul> 或 <div...>...</div> 内部，避免把容器之间的\\\"相关推荐\\\"误抓进来\\n  // 精确匹配容器内部；分 ul/div 两种标签写，避免用 \\\\1 回溯引用在 JSON->eval 多层转义后失效\\n  var cm = html.match(new RegExp('<ul[^>]*id=\\\"con_playlist_' + n + '\\\"[^>]*>([^]*?)</ul>', \\\"i\\\"));\\n  if(!cm){ cm = html.match(new RegExp('<div[^>]*id=\\\"con_playlist_' + n + '\\\"[^>]*>([^]*?)</div>', \\\"i\\\")); }\\n  var block = cm ? cm[1] : \\\"\\\";\\n  if(!block){ continue; }\\n  var links = [];\\n  var lm;\\n  while((lm = epRe.exec(block)) !== null){\\n    var epName = lm[2].replace(new RegExp(\\\"<[^>]+>\\\", \\\"g\\\"), \\\"\\\").trim();\\n    if(!epName){ epName = \\\"第\\\" + (links.length + 1) + \\\"集\\\"; }\\n    links.push(epName + \\\"$\\\" + lm[1]);\\n  }\\n  if(links.length){\\n    links.reverse();\\n    var lab = html.match(new RegExp('href=\\\"#con_playlist_' + n + '\\\"[^>]*>([^]*?)</a>'));\\n    var label = lab ? lab[1].replace(new RegExp(\\\"<[^>]+>\\\", \\\"g\\\"), \\\"\\\").trim() : n;\\n    playFrom.push(label);\\n    playList.push(links);\\n  }\\n}\\n// 兜底：没有 con_playlist 分组时直接扫描全页\\nif(playList.length === 0){\\n  var links = [];\\n  var seen = {};\\n  var lm;\\n  while((lm = epRe.exec(html)) !== null){\\n    var epName = lm[2].replace(new RegExp(\\\"<[^>]+>\\\", \\\"g\\\"), \\\"\\\").trim();\\n    if(!epName){ epName = \\\"第\\\" + (Object.keys(seen).length + 1) + \\\"集\\\"; }\\n    if(!seen[lm[1]]){ seen[lm[1]] = epName; }\\n  }\\n  for(var u in seen){ if(seen.hasOwnProperty(u)){ links.push(seen[u] + \\\"$\\\" + u); } }\\n  if(links.length){\\n    playFrom.push(\\\"线路1\\\");\\n    playList.push(links);\\n  }\\n}\\nVOD.vod_play_from = playFrom.join(\\\"$$$\\\");\\nVOD.vod_play_url = playList.map(function(x){ return x.join(\\\"#\\\"); }).join(\\\"$$$\\\");\\n\",\n  template: \"赞片CMS/奇优\"\n};",
+      "api": "csp_HBPQ",
+      "ext": {
+        "编码": "UTF-8",
+        "请求头": "手机",
+        "分类": "电影$1#电视剧$2#综艺$3#动漫$4#短剧$5",
+        "分类url": "https://www.234wo.com/list/{cateId}-{catePg}.html"
+      },
       "searchable": 1,
-      "quickSearch": 1,
+      "filterable": 0
+    },
+    {
+      "key": "www_bnjxjd",
+      "name": "茶壶影视",
+      "type": 3,
+      "api": "csp_HBPQ",
+      "ext": {
+        "编码": "UTF-8",
+        "请求头": "手机",
+        "分类": "电影$1#电视剧$2#综艺$3#动漫$4#短剧$5",
+        "分类url": "https://www.bnjxjd.com/xyz/{cateId}.html"
+      },
+      "searchable": 1,
+      "filterable": 0
+    },
+    {
+      "key": "cjysw",
+      "name": "初见影视",
+      "type": 3,
+      "api": "csp_HBPQ",
+      "ext": {
+        "编码": "UTF-8",
+        "请求头": "手机",
+        "分类": "电影$1#电视剧$2#综艺$3#动漫$4#短剧$5",
+        "分类url": "https://cjysw.cc/voddetail/{cateId}.html"
+      },
+      "searchable": 1,
+      "filterable": 0
+    },
+    {
+      "key": "cengquan",
+      "name": "成全影视",
+      "type": 3,
+      "api": "csp_HBPQ",
+      "ext": {
+        "编码": "UTF-8",
+        "请求头": "手机",
+        "分类": "电影$1#电视剧$2#综艺$3#动漫$4#短剧$5",
+        "分类url": "https://www.haiyuanyanye.com/vodtype/{cateId}.html"
+      },
+      "searchable": 1,
+      "filterable": 1
+    },
+    {
+      "key": "m_shizhiou",
+      "name": "青柠影视",
+      "type": 3,
+      "api": "csp_HBPQ",
+      "ext": {
+        "编码": "UTF-8",
+        "请求头": "手机",
+        "分类": "电影$1#电视剧$2#综艺$3#动漫$4#短剧$5",
+        "分类url": "https://m.shizhiou.com/zhi/{cateId}.html"
+      },
+      "searchable": 1,
+      "filterable": 1
+    },
+    {
+      "key": "haoju",
+      "name": "好剧影视",
+      "type": 3,
+      "api": "csp_HBPQ",
+      "ext": {
+        "编码": "UTF-8",
+        "请求头": "手机",
+        "分类": "电影&nbsp;$1#电视剧&nbsp;$2#综艺&nbsp;$3#动漫&nbsp;$4#短剧$5",
+        "分类url": "https://m.hasuwu.com/vodtype/{cateId}.html"
+      },
+      "searchable": 1,
+      "filterable": 1
+    },
+    {
+      "key": "gaoqing",
+      "name": "天天影视",
+      "type": 3,
+      "api": "csp_HBPQ",
+      "ext": {
+        "编码": "UTF-8",
+        "请求头": "手机",
+        "分类": "电影$1#电视剧$2#综艺$3#动漫$4#短剧$5",
+        "分类url": "https://dknfxs.cn/cov/{cateId}.html"
+      },
+      "searchable": 1,
       "filterable": 1
     },
     {
@@ -67,63 +155,7 @@
       "api": "csp_HBGuaZi"
     },
     {
-      "key": "www_kktvs",
-      "name": "剧集影视",
-      "type": 3,
-      "api": "csp_HBPQ",
-      "ext": {
-        "编码": "UTF-8",
-        "请求头": "手机",
-        "分类": "电视剧$1#电影$2#动漫$3#其他$4#短剧$5",
-        "分类url": "https://www.kktvs.com/type/{cateId}.html"
-      },
-      "searchable": 1,
-      "filterable": 1
-    },
-    {
-      "key": "www_bigdamndeal",
-      "name": "山海影视",
-      "type": 3,
-      "api": "csp_HBPQ",
-      "ext": {
-        "编码": "UTF-8",
-        "请求头": "手机",
-        "分类": "电影$1#电视剧$2#短剧$3#动漫$4#综艺$5",
-        "分类url": "https://www.bigdamndeal.com/tv/{cateId}-{catePg}.html"
-      },
-      "searchable": 1,
-      "filterable": 1
-    },
-    {
-      "key": "www_radiotpr",
-      "name": "灵猫影视",
-      "type": 3,
-      "api": "csp_HBPQ",
-      "ext": {
-        "编码": "UTF-8",
-        "请求头": "手机",
-        "分类": "电影$1#电视剧$2#短剧$3#动漫$4#综艺$5",
-        "分类url": "https://www.radiotpr.com/tv/{cateId}-{catePg}.html"
-      },
-      "searchable": 1,
-      "filterable": 1
-    },
-    {
-      "key": "www_yishengyuanshafa",
-      "name": "星辰影视",
-      "type": 3,
-      "api": "csp_HBPQ",
-      "ext": {
-        "编码": "UTF-8",
-        "请求头": "手机",
-        "分类": "电影$1#电视剧$2#综艺$3#动漫$4#短剧$5",
-        "分类url": "https://www.yishengyuanshafa.com/xcsrtype/{cateId}-{catePg}.html"
-      },
-      "searchable": 1,
-      "filterable": 1
-    },
-    {
-      "key": "www_czxygg",
+      "key": "yinghuag",
       "name": "樱花影视",
       "type": 3,
       "api": "csp_HBPQ",
@@ -137,7 +169,7 @@
       "filterable": 1
     },
     {
-      "key": "www_sijichun888",
+      "key": "xiongmao",
       "name": "熊猫影视",
       "type": 3,
       "api": "csp_HBPQ",
@@ -149,26 +181,6 @@
       },
       "searchable": 1,
       "filterable": 1
-    },
-    {
-      "key": "www_liangziyingshi",
-      "name": "量子资源",
-      "type": 1,
-      "api": "https://www.liangziyingshi.cc/api.php/provide/vod/",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "categories": [
-        "电影",
-        "电视剧",
-        "综艺",
-        "动漫",
-        "少儿",
-        "纪录片",
-        "短剧",
-        "体育",
-        "片单推荐"
-      ]
     },
     {
       "key": "lzzy",
@@ -218,23 +230,6 @@
         "分类url": "https://www.cd-zj.com/cupfox-list/{cateId}-{area}--{class}-----{catePg}---{year}.html",
         "分类": "短剧$5#电视剧$2#电影$1#动漫$4#综艺$3"
       }
-    },
-    {
-      "key": "马猴影视",
-      "name": "马猴影视",
-      "type": 3,
-      "api": "csp_App3Q",
-      "ext": {
-        "host": "https://45.150.167.18:8000",
-        "finger": "SF-A962FEC75DA28D7514F2A16580334272A78AC0A8429F10C94F47C1BAFC876E3F",
-        "updateId": "43c1ef69-3748-aaeb-317f-c621c77653ee",
-        "deviceBrand": "vivo",
-        "deviceModel": "V2309A",
-        "pkg": "com.damahou.tv",
-        "sk": "SK-woniu-thanks",
-        "ver": "1"
-      },
-      "jar": "https://qist.wyfc.qzz.io/xiaosa/spider.jar"
     },
     {
       "key": "一起影视",
