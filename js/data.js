@@ -127,6 +127,7 @@ var defaultListBanGong = [
       {"url":"https://www.iconfont.cn/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/a-yemian11.webp","name":"阿里图库"},
       {"url":"https://www.trae.cn/","iconId":"","imgSrc":"https://lf-cdn.trae.com.cn/obj/trae-com-cn/trae_website_prod_cn/favicon.png","name":"trae work"},
       {"url":"https://www.codebuddy.cn/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/buddy.webp","name":"buddy"},
+       {"url":"https://fatbeans.cn/download.html","iconId":"","imgSrc":"https://fatbeans.cn/favicon.ico","name":"肥豆创客"},
       {"url":"https://steampp.net/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/watt.webp","name":"瓦特加速"},
       {"url":"https://kstore.cc/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/kaisu.webp","name":"凯速网"},
       {"url":"https://www.coolapk.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/kuan.webp","name":"酷安网"},
