@@ -78,20 +78,21 @@
       "searchable": 1,
       "filterable": 0
     },
-    {
-      "key": "cjysw",
-      "name": "初见影视",
-      "type": 3,
-      "api": "csp_HBPQ",
-      "ext": {
-        "编码": "UTF-8",
-        "请求头": "手机",
-        "分类": "电影$1#电视剧$2#综艺$3#动漫$4#短剧$5",
-        "分类url": "https://cjysw.cc/voddetail/{cateId}.html"
-      },
-      "searchable": 1,
-      "filterable": 0
-    },
+   {
+  "key": "https_cjysw_cc",
+  "name": "初见影视",
+  "type": 3,
+  "api": "csp_XBPQ",
+  "ext": {
+    "编码": "UTF-8",
+    "请求头": "手机",
+    "线路数组": "",
+    "分类": "Netflix$60#电影$1#剧集$15#动漫$30#综艺$24#纪录片$63#短剧$47",
+    "分类url": "https://cjysw.cc/vodtype/{cateId}.html"
+  },
+  "searchable": 1,
+  "filterable": 1
+},
     {
       "key": "cengquan",
       "name": "成全影视",
