@@ -40,7 +40,7 @@
     },
   {
   "key": "https_www_4kdyws_top",
-  "name": "4k影视",
+  "name": "高清影视",
   "type": 3,
   "api": "./lib/drpy2.min.js",
   "searchable": 1,
@@ -498,41 +498,7 @@
         "dataIv": "88689667dce61725"
       }
     },
-    {
-      "key": "哔哩合集",
-      "name": "哔哩合集",
-      "type": 3,
-      "api": "csp_Bili",
-      "searchable": 1,
-      "quickSearch": 0,
-      "filterable": 0,
-      "changeable": 0,
-      "style": {
-        "type": "rect",
-        "ratio": 1.433
-      },
-      "ext": {
-        "n": "哔哩合集",
-        "cookie": "http://127.0.0.1:9978/file/TVBox/bili_cookie.txt"
-      }
-    },
-    {
-      "key": "哔哩视频",
-      "name": "哔哩视频",
-      "type": 3,
-      "api": "csp_BiliYS",
-      "searchable": 1,
-      "quickSearch": 0,
-      "filterable": 0,
-      "changeable": 0,
-      "style": {
-        "type": "rect",
-        "ratio": 1.433
-      },
-      "ext": {
-        "cookie": "http://127.0.0.1:9978/file/TVBox/bili_cookie.txt"
-      }
-    },
+  
     {
       "key": "三六",
       "name": "三六影视",
@@ -598,9 +564,44 @@
       "api": "csp_XYQHiker",
       "ext": "https://qist.wyfc.qzz.io/xiaosa/json/JQYS.json"
     },
+      {
+      "key": "哔哩合集",
+      "name": "哔哩合集",
+      "type": 3,
+      "api": "csp_Bili",
+      "searchable": 1,
+      "quickSearch": 0,
+      "filterable": 0,
+      "changeable": 0,
+      "style": {
+        "type": "rect",
+        "ratio": 1.433
+      },
+      "ext": {
+        "n": "哔哩合集",
+        "cookie": "http://127.0.0.1:9978/file/TVBox/bili_cookie.txt"
+      }
+    },
+    {
+      "key": "哔哩视频",
+      "name": "哔哩视频",
+      "type": 3,
+      "api": "csp_BiliYS",
+      "searchable": 1,
+      "quickSearch": 0,
+      "filterable": 0,
+      "changeable": 0,
+      "style": {
+        "type": "rect",
+        "ratio": 1.433
+      },
+      "ext": {
+        "cookie": "http://127.0.0.1:9978/file/TVBox/bili_cookie.txt"
+      }
+    },
     {
       "key": "呦呦DJ",
-      "name": "呦呦DJ",
+      "name": "呦呦音乐",
       "type": 3,
       "api": "csp_Djuu",
       "searchable": 1,
