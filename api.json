@@ -40,7 +40,7 @@
     },
   {
   "key": "https_www_4kdyws_top",
-  "name": "4k",
+  "name": "4k影视",
   "type": 3,
   "api": "./lib/drpy2.min.js",
   "searchable": 1,
