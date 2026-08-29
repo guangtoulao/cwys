@@ -317,16 +317,16 @@
       "ext": "./lib/茫茫.js"
     },
     {
-      "key": "360",
-      "name": "六零影视",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "ext": "./lib/360kan.js",
-      "searchable": 1,
-      "quickSearch": 1,
-      "order_num": 0,
-      "filterable": 0
-    },
+  "key": "https_www_360kan_com",
+  "name": "六零影视",
+  "type": 3,
+  "api": "./lib/drpy2.min.js",
+  "searchable": 1,
+  "quickSearch": 1,
+  "changeable": 1,
+  "filterable": 0,
+  "ext": "./lib/六零影视.js"
+},
     {
       "key": "天堂",
       "name": "天堂影视",
