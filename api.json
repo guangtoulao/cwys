@@ -105,7 +105,6 @@
       "name": "成全影视",
       "type": 3,
       "api": "csp_XBPQ",
-      "jar": "./custom_spider.jar",
       "ext": {
         "编码": "UTF-8",
         "请求头": "手机",
