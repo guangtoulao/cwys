@@ -318,7 +318,7 @@
     },
     {
       "key": "360",
-      "name": "六零影视影视",
+      "name": "六零影视",
       "type": 3,
       "api": "./lib/drpy2.min.js",
       "ext": "./lib/360kan.js",
@@ -326,17 +326,6 @@
       "quickSearch": 1,
       "order_num": 0,
       "filterable": 0
-    },
-    {
-      "key": "360",
-      "name": "六零影视",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "order_num": 0,
-      "ext": "./lib/360影视.js"
     },
     {
       "key": "天堂",
