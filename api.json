@@ -1,7 +1,6 @@
 {
-  "spider": "./custom_spider.jar;md5;f06aa2a9d607b104773691315f5c997d",
-  "wallpaper": "https://xn--11x805d.xn--4kq62z5rby2qupq9ub.xyz/",
-  "warningText": "仅作学习交流测试使用，配置或下载后请于24小时之内删除",
+  "spider": "./spider.jar;md5;23b8503d362e8a234b0ed24bd2fdcc35",
+  "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
   "lives": [
     {
       "name": "直播",
@@ -33,11 +32,11 @@
   ],
   "sites": [
     {
-      "key": "drpy_js_豆瓣",
+      "key": "豆瓣",
       "name": "豆瓣 | 首页",
       "type": 3,
       "api": "csp_Douban",
-      "ext": "./lib/douban.json"
+      "searchable": 0
     },
     {
       "key": "site",
