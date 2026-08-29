@@ -32,23 +32,38 @@
   ],
   "sites": [
     {
-      "key": "douban",
+      "key": "豆瓣",
       "name": "豆瓣 | 首页",
       "type": 3,
       "api": "csp_Douban",
       "searchable": 0
     },
-  {
-  "key": "https_www_4kdyws_top",
-  "name": "高清影视",
-  "type": 3,
-  "api": "./lib/drpy2.min.js",
-  "searchable": 1,
-  "quickSearch": 1,
-  "changeable": 1,
-  "filterable": 0,
-  "ext": "./lib/4k.js"
-},
+    {
+      "key": "https_www_234wo_com",
+      "name": "二三影视",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "ext": {
+        "编码": "UTF-8",
+        "请求头": "手机",
+        "线路数组": "data-target=\"tab\"&&</a>[替换:无尽云>>君子兰①#红牛云>>君子兰②#QY云>>君子兰③]",
+        "分类": "电影$74444447#电视剧$N4444447#综艺$u4444447#动漫$o4444447",
+        "分类url": "https://www.234wo.com/type/{cateId}.html"
+      },
+      "searchable": 1,
+      "filterable": 1
+    },
+    {
+      "key": "https_www_4kdyws_top",
+      "name": "高清影视",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 0,
+      "ext": "./lib/4k.js"
+    },
     {
       "key": "mahua",
       "name": "麻花影视",
@@ -59,17 +74,6 @@
       "changeable": 1,
       "filterable": 0,
       "ext": "./lib/麻花.js"
-    },
-    {
-      "key": "wukong",
-      "name": "悟空影视",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1,
-      "filterable": 0,
-      "ext": "./lib/悟空.js"
     },
     {
       "key": "www_bnjxjd",
@@ -87,18 +91,15 @@
       "filterable": 0
     },
     {
-      "key": "cjysw",
+      "key": "https_cjysw_cc",
       "name": "初见影视",
       "type": 3,
-      "api": "csp_XBPQ",
-      "ext": {
-        "编码": "UTF-8",
-        "请求头": "手机",
-        "分类": "电影$1#电视剧$2#综艺$3#动漫$4#短剧$5",
-        "分类url": "https://cjysw.cc/vodshow/{cateId}--------{catePg}---.html"
-      },
+      "api": "./lib/drpy2.min.js",
       "searchable": 1,
-      "filterable": 0
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 0,
+      "ext": "./lib/初见.js"
     },
     {
       "key": "cengquan",
@@ -131,21 +132,6 @@
       "filterable": 1
     },
     {
-      "key": "gaoqing",
-      "name": "天天影视",
-      "type": 3,
-      "api": "csp_XBPQ",
-      "ext": {
-        "编码": "UTF-8",
-        "请求头": "手机",
-        "线路数组": "data-toggle=\"tab\"&&</a>[替换:播放4>>君子兰②#播放5>>君子兰①#播放2>>君子兰③]",
-        "分类": "电影$1#电视剧$2#综艺$3#动漫$4#短剧$5",
-        "分类url": "https://dknfxs.cn/cov/{cateId}.html"
-      },
-      "searchable": 1,
-      "filterable": 1
-    },
-    {
       "key": "yinghuag",
       "name": "樱花影视",
       "type": 3,
@@ -168,7 +154,7 @@
       "ext": {
         "编码": "UTF-8",
         "请求头": "手机",
-        "线路数组": "class=\"tab-menu\"&&li[替换:量子>>君子兰①#最大>>君子兰②#小豪>>君子兰③#丫丫>>君子兰④#无尽>>君子兰⑤]",
+        "线路数组": "class=\"tab-menu\"&&li[替换:线路1>>君子兰①#线路2>>君子兰②#线路3>>君子兰③#丫丫>>君子兰④#无尽>>君子兰⑤]",
         "分类": "电影$1#电视剧$2#综艺$3#动漫$4#短剧$5",
         "分类url": "http://www.sijichun888.com/v/{cateId}.html"
       },
@@ -201,7 +187,7 @@
         "喜剧片"
       ]
     },
-       {
+    {
       "key": "热播影视",
       "name": "热播影视",
       "type": 3,
@@ -315,17 +301,17 @@
       "ext": "./lib/茫茫.js"
     },
     {
-  "key": "https_www_360kan_com",
-  "name": "六零影视",
-  "type": 3,
-  "api": "./lib/drpy2.min.js",
-  "searchable": 1,
-  "quickSearch": 1,
-  "changeable": 1,
-  "filterable": 0,
-  "ext": "./lib/360kan.js"
-},
-   {
+      "key": "https_www_360kan_com",
+      "name": "六零影视",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 0,
+      "ext": "./lib/360kan.js"
+    },
+    {
       "key": "橘汁",
       "name": "橘汁影视",
       "type": 3,
@@ -498,7 +484,6 @@
         "dataIv": "88689667dce61725"
       }
     },
-  
     {
       "key": "三六",
       "name": "三六影视",
@@ -564,7 +549,7 @@
       "api": "csp_XYQHiker",
       "ext": "https://qist.wyfc.qzz.io/xiaosa/json/JQYS.json"
     },
-      {
+    {
       "key": "哔哩合集",
       "name": "哔哩合集",
       "type": 3,
@@ -748,76 +733,16 @@
   ],
   "rules": [
     {
-      "name": "农民",
+      "name": "cdn.ryplay",
       "hosts": [
-        "toutiaovod.com"
+        "cdn.ryplay"
       ],
       "regex": [
-        "video/tos/cn"
-      ]
-    },
-    {
-      "name": "火山",
-      "hosts": [
-        "huoshan.com"
-      ],
-      "regex": [
-        "item_id="
-      ]
-    },
-    {
-      "name": "抖音",
-      "hosts": [
-        "douyin.com"
-      ],
-      "regex": [
-        "is_play_url="
-      ]
-    },
-    {
-      "name": "磁力广告",
-      "hosts": [
-        "magnet"
-      ],
-      "regex": [
-        "更多",
-        "请访问",
-        "example",
-        "社 區",
-        "x u u",
-        "直 播",
-        "更 新",
-        "社 区",
-        "有趣",
-        "有 趣",
-        "英皇体育",
-        "全中文AV在线",
-        "澳门皇冠赌场",
-        "哥哥快来",
-        "美女荷官",
-        "裸聊",
-        "新片首发",
-        "UUE29"
-      ]
-    },
-    {
-      "name": "饭团点击",
-      "hosts": [
-        "dadagui",
-        "freeok",
-        "dadagui"
-      ],
-      "script": [
-        "document.querySelector(\"#playleftiframe\").contentWindow.document.querySelector(\"#start\").click();"
-      ]
-    },
-    {
-      "name": "毛驴点击",
-      "hosts": [
-        "www.maolvys.com"
-      ],
-      "script": [
-        "document.getElementsByClassName('swal-buttonswal-button--confirm')[0].click()"
+        "5.480000",
+        "#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:5.480000,[\\s\\S]*?#EXT-X-DISCONTINUITY",
+        "#EXT-X-DISCONTINUITY\\s*\\r?\\n#EXTINF:5.320000,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n(?:#EXTINF:[\\d.]+,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n)*?#EXTINF:3.360000,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n#EXT-X-DISCONTINUITY",
+        "#EXT-X-DISCONTINUITY\\s*\\r?\\n#EXTINF:4.000000,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n(?:#EXTINF:[\\d.]+,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n)*?#EXTINF:0.560000,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n#EXT-X-DISCONTINUITY",
+        "#EXTINF.*?\\s+.*?1o.*?\\.ts\\s+"
       ]
     }
   ],
