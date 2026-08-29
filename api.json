@@ -38,16 +38,16 @@
       "api": "csp_Douban",
       "searchable": 0
     },
-   {
+  {
   "key": "https_www_4kdyws_top",
-  "name": "高清",
+  "name": "4k",
   "type": 3,
   "api": "./lib/drpy2.min.js",
   "searchable": 1,
   "quickSearch": 1,
   "changeable": 1,
   "filterable": 0,
-  "ext": "./lib/高清.js"
+  "ext": "./lib/4k.js"
 },
     {
       "key": "mahua",
