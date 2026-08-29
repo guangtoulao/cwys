@@ -78,7 +78,7 @@
       "searchable": 1,
       "filterable": 0
     },
-  {
+ {
   "key": "https_cjysw_cc",
   "name": "初见影视",
   "type": 3,
@@ -86,9 +86,9 @@
   "ext": {
     "编码": "UTF-8",
     "请求头": "手机",
-    "线路数组": "自营c>>君子兰①#极速z>>君子兰②#高清>>君子兰③#极速d>>君子兰④#极速w>>君子兰⑤#超清>>君子兰⑥",
     "分类": "电影$1#剧集$15#动漫$30#综艺$24#纪录片$63#短剧$47",
-    "分类url": "https://cjysw.cc/vodtype/{cateId}.html"
+    "分类url": "https://cjysw.cc/vodtype/{cateId}.html",
+    "线路数组替换": "[替换:自营c>>君子兰①#极速z>>君子兰②#高清>>君子兰③#极速d>>君子兰④#极速w>>君子兰⑤#超清>>君子兰⑥]"
   },
   "searchable": 1,
   "filterable": 1
