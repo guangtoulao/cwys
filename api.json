@@ -1,35 +1,6 @@
 {
   "spider": "./spider.jar;md5;23b8503d362e8a234b0ed24bd2fdcc35",
-  "wallpaper": "https://饭的动态壁纸.xxooo.cf/",
-  "lives": [
-    {
-      "name": "直播",
-      "type": 0,
-      "url": "https://gh.927223.xyz/https://raw.githubusercontent.com/develop202/migu_video/refs/heads/main/interface.txt",
-      "playerType": 2,
-      "epg": "http://diyp5.112114.xyz/?ch={name}&date={date}",
-      "logo": "https://epg.112114.xyz/logo/{name}.png"
-    },
-    {
-      "name": "综合直播",
-      "type": 0,
-      "playerType": 2,
-      "url": "./lib/interface.txt",
-      "ua": "bingcha/1.1 (mianfeifenxiang) "
-    },
-    {
-      "name": "XPB源",
-      "type": 0,
-      "url": "https://xpb.mhfs.eu.org/HZ.txt",
-      "epg": "https://epg.112114.eu.org/?ch={name}&date={date}"
-    },
-    {
-      "name": "速度源",
-      "type": 0,
-      "url": "https://ghfast.top/raw.githubusercontent.com/Supprise0901/TVBox_live/main/live.txt",
-      "epg": "https://epg.112114.eu.org/?ch={name}&date={date}"
-    }
-  ],
+  "logo": "https://pic7.fukit.cn/autoupload/gE6Y0Af2tjXBCNig6CtNDI12_FRYNb81z6UPhMWD8iI/20251224/dJkT/1080X1080/logo.jpg/webp",
   "sites": [
     {
       "key": "豆瓣",
@@ -39,19 +10,37 @@
       "searchable": 0
     },
     {
-      "key": "https_www_234wo_com",
-      "name": "二三影视",
+      "key": "橘汁",
+      "name": "橘汁",
       "type": 3,
-      "api": "csp_XBPQ",
-      "ext": {
-        "编码": "UTF-8",
-        "请求头": "手机",
-        "线路数组": "data-target=\"tab\"&&</a>[替换:无尽云>>君子兰①#红牛云>>君子兰②#QY云>>君子兰③]",
-        "分类": "电影$74444447#电视剧$N4444447#综艺$u4444447#动漫$o4444447",
-        "分类url": "https://www.234wo.com/type/{cateId}.html"
-      },
+      "api": "./lib/橘汁.py"
+    },
+    {
+      "key": "腾爱优b站",
+      "name": "爱优腾芒",
+      "type": 3,
+      "api": "./lib/35c7a3aab09403c05ff7e008367baa85.js"
+    },
+    {
+      "key": "https_www_hwvt_cn",
+      "name": "旺旺影视",
+      "type": 3,
+      "api": "./lib/旺旺.js",
       "searchable": 1,
-      "filterable": 1
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 0
+    },
+    {
+      "key": "永乐J",
+      "name": "永乐影视",
+      "type": 3,
+      "api": "./lib/0338609bd59d7b27226f5a269ec97936.js",
+      "style": {
+        "type": "rect",
+        "ratio": 1.33
+      },
+      "changeable": 1
     },
     {
       "key": "https_www_4kdyws_top",
@@ -76,6 +65,17 @@
       "ext": "./lib/麻花.js"
     },
     {
+      "key": "https_cjysw_cc",
+      "name": "初见影视",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 0,
+      "ext": "./lib/初见.js"
+    },
+    {
       "key": "www_bnjxjd",
       "name": "茶壶影视",
       "type": 3,
@@ -91,15 +91,19 @@
       "filterable": 0
     },
     {
-      "key": "https_cjysw_cc",
-      "name": "初见影视",
+      "key": "https_www_234wo_com",
+      "name": "二三影视",
       "type": 3,
-      "api": "./lib/drpy2.min.js",
+      "api": "csp_XBPQ",
+      "ext": {
+        "编码": "UTF-8",
+        "请求头": "手机",
+        "线路数组": "data-target=\"tab\"&&</a>[替换:无尽云>>君子兰①#红牛云>>君子兰②#QY云>>君子兰③]",
+        "分类": "电影$74444447#电视剧$N4444447#综艺$u4444447#动漫$o4444447",
+        "分类url": "https://www.234wo.com/type/{cateId}.html"
+      },
       "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1,
-      "filterable": 0,
-      "ext": "./lib/初见.js"
+      "filterable": 1
     },
     {
       "key": "cengquan",
@@ -507,10 +511,7 @@
       "name": "厂长影视",
       "type": 3,
       "api": "csp_Czsapp",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "https://cz01.vip"
+      "searchable": 1
     },
     {
       "key": "金牌影视",
@@ -664,6 +665,32 @@
       "searchable": 0,
       "filterable": 0,
       "changeable": 0
+    }
+  ],
+  "lives": [
+    {
+      "name": "直播",
+      "type": 0,
+      "url": "https://17264.kstore.space/lib/zb.txt",
+      "timeout": 10
+    },
+    {
+      "name": "电视直播",
+      "type": 0,
+      "url": "https://17264.kstore.space/lib/iptv.txt",
+      "timeout": 10
+    },
+    {
+      "name": "XPB源",
+      "type": 0,
+      "url": "https://xpb.mhfs.eu.org/HZ.txt",
+      "epg": "https://epg.112114.eu.org/?ch={name}&date={date}"
+    },
+    {
+      "name": "速度源",
+      "type": 0,
+      "url": "https://ghfast.top/raw.githubusercontent.com/Supprise0901/TVBox_live/main/live.txt",
+      "epg": "https://epg.112114.eu.org/?ch={name}&date={date}"
     }
   ],
   "parses": [
