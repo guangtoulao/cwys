@@ -66,6 +66,17 @@
       "ext": "./lib/瓜子影视.js"
     },
     {
+  "key": "https_www_bnjxjd_com",
+  "name": "喝茶",
+  "type": 3,
+  "api": "./lib/drpy2.min.js",
+  "searchable": 1,
+  "quickSearch": 1,
+  "changeable": 1,
+  "filterable": 1,
+  "ext": "./lib/喝茶.js"
+},
+    {
       "key": "555",
       "name": "五五影视",
       "type": 3,
