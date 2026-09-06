@@ -44,7 +44,7 @@
       "ext": "./lib/茫茫.js"
     },
     {
-      "key": "https_www_360kan_com",
+      "key": "360kan",
       "name": "六零影视",
       "type": 3,
       "api": "./lib/drpy2.min.js",
@@ -132,7 +132,7 @@
       "ext": "./lib/4k.js"
     },
     {
-      "key": "https_www_jiyoushangmeng_com",
+      "key": "yinghua",
       "name": "樱花影视",
       "type": 3,
       "api": "./lib/drpy2.min.js",
@@ -212,19 +212,19 @@
       "ext": "./lib/剧圈影视.js"
     },
     {
-      "key": "guaziys",
+      "key": "kuihua",
       "name": "葵花影视",
       "type": 3,
       "api": "./lib/瓜子影视.py"
     },
     {
-      "key": "橘汁",
+      "key": "juzi",
       "name": "橘汁影视",
       "type": 3,
       "api": "./lib/橘汁.py"
     },
     {
-      "key": "怀桑影视",
+      "key": "huaisang",
       "name": "怀桑影视",
       "type": 3,
       "api": "./lib/drpy2.min.js",
@@ -279,7 +279,7 @@
       "ext": "./lib/Bili歌曲.js"
     },
     {
-      "key": "爱听",
+      "key": "aiting",
       "name": "爱听音乐",
       "type": 3,
       "api": "./lib/爱听音乐.py"
