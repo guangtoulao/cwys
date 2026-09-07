@@ -67,12 +67,6 @@
       "ext": "./lib/瓜子影视.js"
     },
     {
-      "key": "duoduo",
-      "name": "多多影视",
-      "type": 3,
-      "api": "./lib/多多.py"
-    },
-    {
       "key": "cabei",
       "name": "茶杯影视",
       "type": 3,
