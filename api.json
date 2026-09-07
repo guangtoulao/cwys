@@ -66,14 +66,15 @@
       "filterable": 0,
       "ext": "./lib/瓜子影视.js"
     },
-        {
+    {
       "key": "cabei",
-      "name": "茶杯",
+      "name": "茶杯影视",
       "type": 3,
       "api": "csp_XBPQ",
       "ext": {
         "编码": "UTF-8",
         "请求头": "手机",
+        "线路数组": "data-toggle=\"tab\"&&</a>[替换:高清云播>>君子兰①#暴风资源>>君子兰②]",
         "分类": "电影$fenlei1#电视剧$fenlei2#综艺$fenlei3#动漫$fenlei4",
         "分类url": "https://www.bnjxjd.com/movie/cateId}-{area}-{by}-{class}-{lang}-{letter}---{catePg}---{year}.html"
       },
