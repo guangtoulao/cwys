@@ -12,10 +12,36 @@ try:
     from base.spider import Spider as BaseSpider
 except ImportError:
     class BaseSpider: pass
-try:
-    import requests
-except ImportError:
-    requests = None
+from urllib.request import Request, urlopen
+from urllib.parse import urlencode
+
+
+class _MiniResp(object):
+    """极简响应对象：兼容 .json() 与 .content 两种用法"""
+    def __init__(self, data):
+        self.content = data
+
+    def json(self):
+        return json.loads(self.content.decode("utf-8", "replace"))
+
+
+class _MiniSession(object):
+    """用 Python 自带 urllib 模拟 requests.Session（设备宿主无 requests）"""
+
+    def __init__(self, headers):
+        self.headers = dict(headers)
+
+    def get(self, url, params=None, timeout=15):
+        if params:
+            url = url + "?" + urlencode(params)
+        req = Request(url, headers=self.headers)
+        return _MiniResp(urlopen(req, timeout=timeout).read())
+
+    def post(self, url, data=None, headers=None, timeout=20):
+        h = dict(self.headers)
+        h.update(headers or {})
+        req = Request(url, data=data, headers=h)
+        return _MiniResp(urlopen(req, timeout=timeout).read())
 
 # ============================================================
 #  WASM解码参数（逆向所得常量）
@@ -43,8 +69,7 @@ class Spider(BaseSpider):
         self.host = "https://323433ssdfd.top"
         self.headers = dict(API_HEADERS)
         self.headers["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
-        self.session = requests.Session()
-        self.session.headers.update(self.headers)
+        self.session = _MiniSession(self.headers)
         self.cache = {}
 
     # ---------- 基础 ----------
@@ -52,7 +77,7 @@ class Spider(BaseSpider):
         pass
 
     def getName(self):
-        return "布布追剧"
+        return "多多"
 
     def isVideoFormat(self, url):
         return ".m3u8" in url or ".mp4" in url
