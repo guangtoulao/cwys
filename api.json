@@ -68,7 +68,7 @@
     },
         {
       "key": "huayi",
-      "name": "华谊",
+      "name": "华谊影视",
       "type": 3,
       "api": "./lib/drpy2.min.js",
       "ext": "./lib/华谊_调试.js"
