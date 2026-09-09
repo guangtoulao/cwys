@@ -75,7 +75,7 @@
       "quickSearch": 1,
       "changeable": 1,
       "filterable": 0,
-      "ext": "./lib/华谊.js"
+      "ext": "./lib/华谊_调试.js"
     },
     {
       "key": "cabei",
