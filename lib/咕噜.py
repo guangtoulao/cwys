@@ -1,3 +1,4 @@
+
 import sys
 import json, os, re, time, zlib, base64, hashlib, hmac, secrets
 import urllib.request, urllib.parse, urllib.error
@@ -9,6 +10,7 @@ except Exception:
 
 BASE = "http://103.45.132.22:19987/app/bn"
 UA = "Dalvik/2.1.0 (Linux; U; Android 11; Pixel 4)"
+
 _BACKEND = None
 try:
     from Crypto.Cipher import AES as _PAES
@@ -19,6 +21,7 @@ except Exception:
         _BACKEND = "cryptography"
     except Exception:
         _BACKEND = "pure"
+
 if _BACKEND == "pure":
     _SBOX = None
     def _init_sbox():
@@ -213,6 +216,7 @@ if _BACKEND == "pure":
             pt += bytes(a ^ b for a, b in zip(blk, ks[:len(blk)]))
             counter += 1
         return bytes(pt)
+
 def aes_cbc_encrypt(key, iv, data):
     if _BACKEND == "pycryptodome":
         return _PAES.new(key, _PAES.MODE_CBC, iv).encrypt(
@@ -253,6 +257,7 @@ def aes_gcm_decrypt(key, nonce, ct):
     if _BACKEND == "cryptography":
         return AESGCM(key).decrypt(nonce, ct, None)
     return _gcm_decrypt(key, nonce, ct)
+
 _P = 0xFFFFFFFF00000001000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF
 _A = P_A = _P - 3
 _B = 0x5AC635D8AA3A93E7B3EBBD55769886BC651D06B0CC53B0F63BCE3C3E27D2604B
@@ -292,6 +297,7 @@ def ecdh_shared(priv, server_pub65):
     sy = int.from_bytes(server_pub65[33:65], "big")
     shared = _pt_mul(priv, (sx, sy))
     return shared[0].to_bytes(32, "big")
+
 def pb_varint(n):
     out = b""
     while True:
@@ -345,6 +351,7 @@ def deflate_raw(data, level=6):
 
 def inflate_raw(data):
     return zlib.decompressobj(-15).decompress(data)
+
 class GuluClient:
     def __init__(self):
         self.session_id = None
@@ -456,8 +463,9 @@ class GuluClient:
         msg = next((v for f, w, v in out if f == 3 and w == 2), None)
         payload = next((v for f, w, v in out if f == 4 and w == 2), None)
         return {"code": code, "msg": msg, "payload": payload}
-LINE_PREFIX   = "君子兰"  
-LINE_NUMBERED = True   
+
+LINE_PREFIX   = "君子兰"   
+LINE_NUMBERED = True 
 CIRCLED = "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳"
 LINE_NAMES = {"dyttm3u8": "电影天堂", "bfzym3u8": "暴风资源",
               "lzm3u8": "量子资源", "ffm3u8": "非凡资源",
@@ -466,6 +474,9 @@ LINE_NAMES = {"dyttm3u8": "电影天堂", "bfzym3u8": "暴风资源",
               "CO4K": "咖啡4K超清", "jplink": "金牌极速",
               "rose": "玫瑰4K", "NBY": "蚂蚁资源",
               "qsvip": "旋风VIP", "qingshan": "青山资源"}
+# 直播分类的线路名
+# 留空 = 用站点原始线路名（f75 的 f1，如 cctv / beiyong / zhibo / zhibo2）
+# 想强制覆盖就填字符串，例如  LIVE_LINE_NAME = "央视直播"
 LIVE_LINE_NAME = ""
 
 CIPHER_API = {
@@ -494,7 +505,6 @@ def _cipher_prefix(url):
             return p
     return None
 
-# 15分类：移除重复纪录片，新增直播
 CATEGORIES = [
     {"type_id": "movie",    "type_name": "电影"},
     {"type_id": "tv",       "type_name": "电视剧"},
@@ -620,7 +630,6 @@ def _parse_live_from_payload(payload):
                     line_name = _live_line_name(line_bytes)
                     break
             if all_channels:
-                # 用分类名作为条目名，vod_id 用特殊前缀 live://分类名
                 result.append({
                     "id": f"live://{cat_name}",
                     "name": cat_name,
@@ -938,15 +947,21 @@ class Spider(_BaseSpider):
 
     # ---------- 播放 ----------
     def _resolve_live(self, url):
-        """逐跳跟完 302，拿到最终 m3u8 地址；失败则原样返回原地址。
+        """逐跳跟完 302，并继续下钻 master 播放列表，最终交出「媒体播放列表」地址。
 
-        咕噜直播链：代理(41718) → 代理签名地址 → miguvideo → 最终 m3u8，共 3 跳。
-        第一跳响应是 text/html（一个 HTML 跳转页），部分壳播放器不跟随 302、
-        把这个 HTML 当 m3u8 解析 → 一直转圈。所以必须在规则里跟完，
-        把最终地址交给播放器。
+        咕噜直播链（3 跳 302 + 1 层 master）：
+          代理 41718/live/ysws.m3u8?token=…&channel=cctv1
+            ├302→ 41718/<hash>-YSWS/cctv1.m3u8?id=…
+            ├302→ gslbmgsplive.miguvideo.com/…/index.m3u8?msisdn=…
+            ├302→ hlsztemgsplive.miguvideo.com:8080/…/index.m3u8?msisdn=…
+            ├200→ master（#EXT-X-STREAM-INF → 01.m3u8?…）
+            └200→ media（#EXTINF → 2026…ts?…）   ← 播放器只要这个就能播
+
+        简单壳播放器既不跟 302、也不解析 master 列表，所以这里一次跟到底，
+        把「媒体播放列表」地址直接交给播放器（失败则原样返回原地址）。
         """
         cur = url
-        for _ in range(8):
+        for _ in range(10):
             try:
                 opener = urllib.request.build_opener(_NoRedirect())
                 r = opener.open(urllib.request.Request(
@@ -961,12 +976,27 @@ class Spider(_BaseSpider):
                 return url
             ct = (r.headers.get("Content-Type") or "").lower()
             try:
-                r.read(64)
+                body = r.read()
             except Exception:
-                pass
-            if "mpegurl" in ct or ".m3u8" in cur.split("?")[0]:
-                return cur
-            return url
+                body = b""
+            txt = body.decode("utf-8", "replace")
+            is_playlist = ("mpegurl" in ct) or (txt.lstrip()[:7].upper() == "#EXTM3U")
+            if not is_playlist:
+                return url
+            # master 列表 → 下钻到第一个子列表
+            if "#EXT-X-STREAM-INF" in txt:
+                child = ""
+                for ln in txt.splitlines():
+                    ln = ln.strip()
+                    if ln and not ln.startswith("#"):
+                        child = ln
+                        break
+                if child:
+                    cur = urllib.parse.urljoin(cur, child)
+                    continue
+                return url
+            # 媒体列表（含 #EXTINF / 分片）→ 就是它
+            return cur
         return cur
 
     def playerContent(self, flag, id, vipFlags):
