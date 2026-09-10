@@ -1,20 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# ============================================================
-# TVBox Python 爬虫 · 咕噜咕噜 (glgl.tv)
-# 协议：ECDH(secp256r1) 握手 + AES-GCM + protobuf + deflate
-# 接口：POST http://103.45.132.22:19987/app/bn/v2
-# 已实测：首页 / 15 分类（含直播）/ 搜索 / 详情 / 播放 全部通过
-# 线路名：见下方 LINE_PREFIX，改成你想要的即可（默认 君子兰①②③...）
-# ============================================================
-# ============================================================
-# TVBox Python 爬虫 · 咕噜咕噜 (glgl.tv) — 修复版
-# 修复内容:
-#   1. searchContent 签名改为 (self, key, quick, pg="1") 兼容 TVBox 三参数调用
-#   2. homeContent 返回 filters 配置，使 TVBox 显示年份/排序筛选器
-#   3. categoryContent 继续使用 m=66 真正分类接口，避免内容重复
-#   4. 修复短剧/纪录片重复：移除重复纪录片，新增"直播"分类 (m=76)
-# ============================================================
 import sys
 import json, os, re, time, zlib, base64, hashlib, hmac, secrets
 import urllib.request, urllib.parse
@@ -27,7 +10,7 @@ except Exception:
 BASE = "http://103.45.132.22:19987/app/bn"
 UA = "Dalvik/2.1.0 (Linux; U; Android 11; Pixel 4)"
 
-# ============ 加密后端 (三级降级) ============
+
 _BACKEND = None
 try:
     from Crypto.Cipher import AES as _PAES
@@ -39,7 +22,7 @@ except Exception:
     except Exception:
         _BACKEND = "pure"
 
-# ---------- 纯 Python AES + GCM (仅当无库时) ----------
+
 if _BACKEND == "pure":
     _SBOX = None
     def _init_sbox():
@@ -277,7 +260,7 @@ def aes_gcm_decrypt(key, nonce, ct):
         return AESGCM(key).decrypt(nonce, ct, None)
     return _gcm_decrypt(key, nonce, ct)
 
-# ---------- 纯 Python secp256r1 ECDH ----------
+
 _P = 0xFFFFFFFF00000001000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF
 _A = P_A = _P - 3
 _B = 0x5AC635D8AA3A93E7B3EBBD55769886BC651D06B0CC53B0F63BCE3C3E27D2604B
@@ -318,7 +301,7 @@ def ecdh_shared(priv, server_pub65):
     shared = _pt_mul(priv, (sx, sy))
     return shared[0].to_bytes(32, "big")
 
-# ============ protobuf 裸编解码 ============
+
 def pb_varint(n):
     out = b""
     while True:
@@ -373,7 +356,7 @@ def deflate_raw(data, level=6):
 def inflate_raw(data):
     return zlib.decompressobj(-15).decompress(data)
 
-# ============ 协议客户端 ============
+
 class GuluClient:
     def __init__(self):
         self.session_id = None
@@ -486,21 +469,6 @@ class GuluClient:
         payload = next((v for f, w, v in out if f == 4 and w == 2), None)
         return {"code": code, "msg": msg, "payload": payload}
 
-# ============ 业务解析 ============
-# ============ 线路名自定义（想换名字改这里）============
-# 方式一（默认）：按顺序编号显示，线路名 = 前缀 + 带圈数字
-LINE_PREFIX   = "君子兰"          # ← 改成你想要的线路名前缀
-LINE_NUMBERED = True              # True=用前缀+序号；False=用下面映射表
-CIRCLED = "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳"
-# 方式二：按站方源名映射（LINE_NUMBERED=False 时生效）
-LINE_NAMES = {"dyttm3u8": "电影天堂", "bfzym3u8": "暴风资源",
-              "lzm3u8": "量子资源", "ffm3u8": "非凡资源",
-              "qq": "腾讯视频", "qiyi": "爱奇艺", "youku": "优酷",
-              "newxfyun": "咕噜4K", "xfyun": "咕噜4K二线",
-              "CO4K": "咖啡4K超清", "jplink": "金牌极速",
-              "rose": "玫瑰4K", "NBY": "蚂蚁资源",
-              "qsvip": "旋风VIP", "qingshan": "青山资源"}
-# 直播分类的线路名
 LIVE_LINE_NAME = "君子兰直播"     # ← 直播线路显示名
 
 CIPHER_API = {
@@ -537,15 +505,6 @@ CATEGORIES = [
     {"type_id": "anime",    "type_name": "动漫"},
     {"type_id": "short",    "type_name": "短剧"},
     {"type_id": "live",     "type_name": "直播"},
-    {"type_id": "cn",       "type_name": "大陆剧"},
-    {"type_id": "hk",       "type_name": "港剧"},
-    {"type_id": "tw",       "type_name": "台剧"},
-    {"type_id": "us",       "type_name": "美剧"},
-    {"type_id": "kr",       "type_name": "韩剧"},
-    {"type_id": "jp",       "type_name": "日剧"},
-    {"type_id": "th",       "type_name": "泰剧"},
-    {"type_id": "uk",       "type_name": "英剧"},
-    {"type_id": "ru",       "type_name": "俄剧"},
 ]
 
 # type_id -> m=66 的 f1 值 (点播分类)
@@ -964,12 +923,25 @@ class Spider(_BaseSpider):
         }
 
     # ---------- 播放 ----------
+    def _resolve_live(self, url):
+        """跟随 302 跳转拿到最终 m3u8；失败则原样返回"""
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": UA})
+            with urllib.request.urlopen(req, timeout=8) as r:
+                final = r.geturl()
+                r.read(16)
+            if final and final.startswith("http"):
+                return final
+        except Exception:
+            pass
+        return url
+
     def playerContent(self, flag, id, vipFlags):
         if not id:
             return {"parse": 0, "url": "", "header": {"User-Agent": UA}}
-        # 直播直链
+        # 直播直链（先在本地跟完 302 跳转，把最终 m3u8 地址交给播放器）
         if id.startswith("http") and ".m3u8" in id:
-            return {"parse": 0, "url": id, "header": {"User-Agent": UA}}
+            return {"parse": 0, "url": self._resolve_live(id), "header": {"User-Agent": UA}}
         if id.startswith("http"):
             is_stream = (".m3u8" in id) or ("m.php" in id)
             return {"parse": 0 if is_stream else 1,
