@@ -69,7 +69,7 @@
           {
       "key": "banri",
       "name": "半日影视",
-      "type": 3,
+      "type": 4,
       "api": "./lib/半日.py"
     },
        {
