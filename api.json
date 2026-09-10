@@ -66,6 +66,12 @@
       "filterable": 0,
       "ext": "./lib/瓜子影视.js"
     },
+       {
+      "key": "gulugulu",
+      "name": "葫芦影视",
+      "type": 3,
+      "api": "./lib/咕噜.py"
+    },
         {
       "key": "huayi",
       "name": "华谊影视",
