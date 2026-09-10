@@ -1,7 +1,6 @@
-
 import sys
 import json, os, re, time, zlib, base64, hashlib, hmac, secrets
-import urllib.request, urllib.parse
+import urllib.request, urllib.parse, urllib.error
 
 try:
     from base.spider import Spider as _BaseSpider
@@ -10,8 +9,6 @@ except Exception:
 
 BASE = "http://103.45.132.22:19987/app/bn"
 UA = "Dalvik/2.1.0 (Linux; U; Android 11; Pixel 4)"
-
-# ============ 加密后端 (三级降级) ============
 _BACKEND = None
 try:
     from Crypto.Cipher import AES as _PAES
@@ -22,8 +19,6 @@ except Exception:
         _BACKEND = "cryptography"
     except Exception:
         _BACKEND = "pure"
-
-# ---------- 纯 Python AES + GCM (仅当无库时) ----------
 if _BACKEND == "pure":
     _SBOX = None
     def _init_sbox():
@@ -218,8 +213,6 @@ if _BACKEND == "pure":
             pt += bytes(a ^ b for a, b in zip(blk, ks[:len(blk)]))
             counter += 1
         return bytes(pt)
-
-# ---------- 统一加密接口 ----------
 def aes_cbc_encrypt(key, iv, data):
     if _BACKEND == "pycryptodome":
         return _PAES.new(key, _PAES.MODE_CBC, iv).encrypt(
@@ -260,8 +253,6 @@ def aes_gcm_decrypt(key, nonce, ct):
     if _BACKEND == "cryptography":
         return AESGCM(key).decrypt(nonce, ct, None)
     return _gcm_decrypt(key, nonce, ct)
-
-# ---------- 纯 Python secp256r1 ECDH ----------
 _P = 0xFFFFFFFF00000001000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF
 _A = P_A = _P - 3
 _B = 0x5AC635D8AA3A93E7B3EBBD55769886BC651D06B0CC53B0F63BCE3C3E27D2604B
@@ -301,8 +292,6 @@ def ecdh_shared(priv, server_pub65):
     sy = int.from_bytes(server_pub65[33:65], "big")
     shared = _pt_mul(priv, (sx, sy))
     return shared[0].to_bytes(32, "big")
-
-# ============ protobuf 裸编解码 ============
 def pb_varint(n):
     out = b""
     while True:
@@ -356,8 +345,6 @@ def deflate_raw(data, level=6):
 
 def inflate_raw(data):
     return zlib.decompressobj(-15).decompress(data)
-
-# ============ 协议客户端 ============
 class GuluClient:
     def __init__(self):
         self.session_id = None
@@ -469,14 +456,9 @@ class GuluClient:
         msg = next((v for f, w, v in out if f == 3 and w == 2), None)
         payload = next((v for f, w, v in out if f == 4 and w == 2), None)
         return {"code": code, "msg": msg, "payload": payload}
-
-# ============ 业务解析 ============
-# ============ 线路名自定义（想换名字改这里）============
-# 方式一（默认）：按顺序编号显示，线路名 = 前缀 + 带圈数字
-LINE_PREFIX   = "君子兰"          # ← 改成你想要的线路名前缀
-LINE_NUMBERED = True              # True=用前缀+序号；False=用下面映射表
+LINE_PREFIX   = "君子兰"  
+LINE_NUMBERED = True   
 CIRCLED = "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳"
-# 方式二：按站方源名映射（LINE_NUMBERED=False 时生效）
 LINE_NAMES = {"dyttm3u8": "电影天堂", "bfzym3u8": "暴风资源",
               "lzm3u8": "量子资源", "ffm3u8": "非凡资源",
               "qq": "腾讯视频", "qiyi": "爱奇艺", "youku": "优酷",
@@ -484,8 +466,7 @@ LINE_NAMES = {"dyttm3u8": "电影天堂", "bfzym3u8": "暴风资源",
               "CO4K": "咖啡4K超清", "jplink": "金牌极速",
               "rose": "玫瑰4K", "NBY": "蚂蚁资源",
               "qsvip": "旋风VIP", "qingshan": "青山资源"}
-# 直播分类的线路名
-LIVE_LINE_NAME = "君子兰直播"     # ← 直播线路显示名
+LIVE_LINE_NAME = ""
 
 CIPHER_API = {
     "CO4K_":     "咖啡4K",
@@ -521,15 +502,6 @@ CATEGORIES = [
     {"type_id": "anime",    "type_name": "动漫"},
     {"type_id": "short",    "type_name": "短剧"},
     {"type_id": "live",     "type_name": "直播"},
-    {"type_id": "cn",       "type_name": "大陆剧"},
-    {"type_id": "hk",       "type_name": "港剧"},
-    {"type_id": "tw",       "type_name": "台剧"},
-    {"type_id": "us",       "type_name": "美剧"},
-    {"type_id": "kr",       "type_name": "韩剧"},
-    {"type_id": "jp",       "type_name": "日剧"},
-    {"type_id": "th",       "type_name": "泰剧"},
-    {"type_id": "uk",       "type_name": "英剧"},
-    {"type_id": "ru",       "type_name": "俄剧"},
 ]
 
 # type_id -> m=66 的 f1 值 (点播分类)
@@ -602,7 +574,14 @@ def _vod_list_from_payload(payload):
                         items.append(d)
     return items
 
-# ---------- 直播解析 ----------
+def _live_line_name(line_bytes):
+    """取 f75 线路的原始名称（f1 字段）"""
+    for f, w, v in pb_decode(line_bytes):
+        if f == 1 and w == 2:
+            return _safe_str(v)
+    return ""
+
+
 def _parse_live_channels(line_bytes):
     """解析 f75 线路中的频道列表"""
     channels = []
@@ -633,10 +612,12 @@ def _parse_live_from_payload(payload):
             # 获取所有 f75 线路，取第一个有频道的
             f75_list = [sv2 for sf2, sw2, sv2 in inner if sf2 == 75 and sw2 == 2]
             all_channels = []
+            line_name = ""
             for line_bytes in f75_list:
                 chs = _parse_live_channels(line_bytes)
                 if chs:
                     all_channels = chs
+                    line_name = _live_line_name(line_bytes)
                     break
             if all_channels:
                 # 用分类名作为条目名，vod_id 用特殊前缀 live://分类名
@@ -645,10 +626,17 @@ def _parse_live_from_payload(payload):
                     "name": cat_name,
                     "pic": cat_pic,
                     "channels": all_channels,
+                    "line_name": line_name,
                 })
         except Exception:
             continue
     return result
+
+class _NoRedirect(urllib.request.HTTPRedirectHandler):
+    """禁止自动跟随重定向，便于逐跳控制拿到最终 m3u8 地址"""
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
 
 class Spider(_BaseSpider):
     HOST = "http://103.45.132.22:22670"
@@ -776,7 +764,7 @@ class Spider(_BaseSpider):
                     "vod_name": d["name"],
                     "vod_pic": d["pic"],
                     "vod_remark": f"{len(d['channels'])}个频道",
-                    "vod_play_from": LIVE_LINE_NAME,
+                    "vod_play_from": LIVE_LINE_NAME or d.get("line_name") or "直播",
                     "vod_play_url": "#".join(pairs),
                 })
         # 直播只有一页
@@ -880,7 +868,8 @@ class Spider(_BaseSpider):
                         "vod_pic": d["pic"],
                         "vod_actor": "", "vod_director": "", "vod_area": "",
                         "vod_year": "", "vod_content": f"{d['name']} 直播频道", "vod_remarks": "",
-                        "type_name": "直播", "vod_play_from": LIVE_LINE_NAME,
+                        "type_name": "直播",
+                        "vod_play_from": LIVE_LINE_NAME or d.get("line_name") or "直播",
                         "vod_play_url": "#".join(pairs),
                     }
                     return {"list": [vod]}
@@ -949,17 +938,36 @@ class Spider(_BaseSpider):
 
     # ---------- 播放 ----------
     def _resolve_live(self, url):
-        """跟随 302 跳转拿到最终 m3u8；失败则原样返回"""
-        try:
-            req = urllib.request.Request(url, headers={"User-Agent": UA})
-            with urllib.request.urlopen(req, timeout=8) as r:
-                final = r.geturl()
-                r.read(16)
-            if final and final.startswith("http"):
-                return final
-        except Exception:
-            pass
-        return url
+        """逐跳跟完 302，拿到最终 m3u8 地址；失败则原样返回原地址。
+
+        咕噜直播链：代理(41718) → 代理签名地址 → miguvideo → 最终 m3u8，共 3 跳。
+        第一跳响应是 text/html（一个 HTML 跳转页），部分壳播放器不跟随 302、
+        把这个 HTML 当 m3u8 解析 → 一直转圈。所以必须在规则里跟完，
+        把最终地址交给播放器。
+        """
+        cur = url
+        for _ in range(8):
+            try:
+                opener = urllib.request.build_opener(_NoRedirect())
+                r = opener.open(urllib.request.Request(
+                    cur, headers={"User-Agent": UA}), timeout=15)
+            except urllib.error.HTTPError as he:
+                loc = he.headers.get("Location")
+                if he.code in (301, 302, 303, 307, 308) and loc:
+                    cur = urllib.parse.urljoin(cur, loc)
+                    continue
+                return url
+            except Exception:
+                return url
+            ct = (r.headers.get("Content-Type") or "").lower()
+            try:
+                r.read(64)
+            except Exception:
+                pass
+            if "mpegurl" in ct or ".m3u8" in cur.split("?")[0]:
+                return cur
+            return url
+        return cur
 
     def playerContent(self, flag, id, vipFlags):
         if not id:
