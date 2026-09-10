@@ -1,5 +1,5 @@
 {
-  "spider": "./spider.jar",
+  "spider": "./spider.jar;md5;c34d68c889d5621a99a02931b35ef293",
   "sites": [
     {
       "key": "douban",
@@ -66,25 +66,60 @@
       "filterable": 0,
       "ext": "./lib/瓜子影视.js"
     },
-        {
+    {
       "key": "banri",
       "name": "半日影视",
       "type": 3,
       "api": "./lib/drpy2.min.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 0,
       "ext": "./lib/半日.js"
     },
-       {
-      "key": "gulugulu",
-      "name": "葫芦影视",
-      "type": 3,
-      "api": "./lib/咕噜.py"
-    },
-        {
+    {
       "key": "huayi",
       "name": "华谊影视",
       "type": 3,
       "api": "./lib/drpy2.min.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 0,
       "ext": "./lib/华谊.js"
+    },
+    {
+      "key": "cat_旺旺网",
+      "name": "旺旺影视",
+      "type": 3,
+      "api": "./lib/旺旺.js",
+      "style": {
+        "type": "rect",
+        "ratio": 1
+      },
+      "changeable": 1
+    },
+    {
+      "key": "cat_剧迷网",
+      "name": "剧迷影视",
+      "type": 3,
+      "api": "./lib/高清剧迷.js",
+      "style": {
+        "type": "rect",
+        "ratio": 1
+      },
+      "changeable": 1
+    },
+    {
+      "key": "ikanbot",
+      "name": "爱看影视",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 0,
+      "ext": "./lib/爱看.js"
     },
     {
       "key": "cabei",
@@ -178,6 +213,17 @@
       "ext": "./lib/樱花影视.js"
     },
     {
+      "key": "234",
+      "name": "二三影视",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 0,
+      "ext": "./lib/二三.js"
+    },
+    {
       "key": "lzzy",
       "name": "量子影视",
       "type": 1,
@@ -246,17 +292,6 @@
       "name": "橘汁影视",
       "type": 3,
       "api": "./lib/橘汁.py"
-    },
-    {
-      "key": "huaisang",
-      "name": "怀桑影视",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1,
-      "filterable": 0,
-      "ext": "./lib/怀桑影视.js"
     },
     {
       "key": "moli",
