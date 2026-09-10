@@ -2,13 +2,15 @@
   "spider": "./spider.jar;md5;c34d68c889d5621a99a02931b35ef293",
   "sites": [
     {
-      "key": "douban",
-      "name": "豆瓣 | 首页",
+      "key": "banri",
+      "name": "豆瓣 |首页",
       "type": 3,
-      "api": "./lib/豆瓣.js",
+      "api": "./lib/drpy2.min.js",
       "searchable": 1,
       "quickSearch": 1,
-      "filterable": 1
+      "changeable": 1,
+      "filterable": 0,
+      "ext": "./lib/半日.js"
     },
     {
       "key": "腾爱优b站",
@@ -67,15 +69,10 @@
       "ext": "./lib/瓜子影视.js"
     },
     {
-      "key": "banri",
-      "name": "半日影视",
+      "key": "gulugulu",
+      "name": "葫芦影视",
       "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1,
-      "filterable": 0,
-      "ext": "./lib/半日.js"
+      "api": "./lib/咕噜.py"
     },
     {
       "key": "huayi",
