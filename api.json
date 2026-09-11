@@ -155,17 +155,6 @@
       "ext": "./lib/悟空.js"
     },
     {
-      "key": "yongle",
-      "name": "永乐影视",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1,
-      "filterable": 0,
-      "ext": "./lib/永乐.js"
-    },
-    {
       "key": "xingcen",
       "name": "星辰影视",
       "type": 3,
