@@ -133,17 +133,6 @@
       "filterable": 1
     },
     {
-      "key": "555",
-      "name": "五五影视",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1,
-      "filterable": 0,
-      "ext": "./lib/555.js"
-    },
-    {
       "key": "wuyun",
       "name": "乌云影视",
       "type": 3,
