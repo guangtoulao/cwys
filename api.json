@@ -199,17 +199,6 @@
       "ext": "./lib/樱花影视.js"
     },
     {
-      "key": "234",
-      "name": "二三影视",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1,
-      "filterable": 0,
-      "ext": "./lib/二三.js"
-    },
-    {
       "key": "lzzy",
       "name": "量子影视",
       "type": 1,
