@@ -158,7 +158,7 @@ var defaultApiList = [
     {name:'君子兰',url:'https://cwys.qzz.io/api.json',lineColor:'#e84393'},
     {name:'饭太硬',url:'http://fty.xxooo.cf/tv',lineColor:'#3498db'},
     {name:'潇洒',url:'https://qist.wyfc.qzz.io/xiaosa/api.json',lineColor:'#f39c12'},
-    {name:'摸鱼',url:'clan://localhost/tvbox/api/api.json',lineColor:'#f1c40f'},
+    {name:'摸鱼',url:'https://play.iptv365.org/摸鱼儿/api.json',lineColor:'#f1c40f'},
     {name:'王二小',url:'https://9280.kstore.vip/aiwex.json',lineColor:'#cddc39'},
     {name:'小虎斑',url:'http://hb.小虎斑.site:25252/仅供测试',lineColor:'#2ecc71'},
     {name:'点播',url:'https://xpb.mhfs.eu.org/ZJ/XPB/api.json',lineColor:'#9932CC'},
