@@ -76,7 +76,7 @@
     },
     {
       "key": "咕噜",
-      "name": "咕噜影视",
+      "name": "葫芦影视",
       "type": 3,
       "api": "csp_Gulu",
       "searchable": 1,
@@ -85,7 +85,7 @@
     },
     {
       "key": "布布",
-      "name": "布布影视",
+      "name": "娃娃影视",
       "type": 3,
       "api": "csp_YunDuo",
       "searchable": 1,
@@ -196,7 +196,7 @@
     },
     {
       "key": "蓝鹰",
-      "name": "蓝鹰影视",
+      "name": "雄鹰影视",
       "type": 3,
       "api": "csp_AppQi",
       "searchable": 1,
@@ -211,7 +211,7 @@
     },
     {
       "key": "世界",
-      "name": "世界影视",
+      "name": "全球影视",
       "type": 3,
       "api": "csp_AppGet",
       "searchable": 1,
@@ -224,7 +224,7 @@
     },
     {
       "key": "王子",
-      "name": "王子影视",
+      "name": "狮子影视",
       "type": 3,
       "api": "csp_AppGet",
       "searchable": 1,
