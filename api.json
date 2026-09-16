@@ -1,5 +1,6 @@
 {
   "spider": "./spider.jar;md5;f089cbf6c12296a80c93d69b382efec6",
+   "wallpaper": "https://raw.giteeusercontent.com/lanzaong/lan/raw/master/icon/bz16.webp",
   "sites": [
     {
       "key": "半日99",
