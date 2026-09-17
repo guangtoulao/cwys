@@ -1,6 +1,6 @@
 {
   "spider": "./spider.jar;md5;f089cbf6c12296a80c93d69b382efec6",
-   "wallpaper": "https://raw.giteeusercontent.com/lanzaong/lan/raw/master/icon/bz16.webp",
+  "wallpaper": "https://raw.giteeusercontent.com/lanzaong/lan/raw/master/icon/bz16.webp",
   "sites": [
     {
       "key": "半日99",
@@ -43,6 +43,138 @@
       "type": 3,
       "api": "./lib/drpy2.min.js",
       "ext": "./lib/茫茫.js"
+    },
+    {
+      "name": "春秋影视",
+      "key": "NewGrV2",
+      "type": 3,
+      "api": "csp_NewGrV2Amns_R",
+      "jar": "./spider_aw.jar;md5;af4c9648e35dd79589ddabf7fd3f72b0",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": "NewGrV2"
+    },
+    {
+      "name": "一线影视",
+      "key": "AppV7Fz",
+      "type": 3,
+      "api": "csp_AppV7Amns_R",
+      "jar": "./spider_aw.jar;md5;af4c9648e35dd79589ddabf7fd3f72b0",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": "AppV7Fz"
+    },
+    {
+      "name": "二线影视",
+      "key": "AppV7Xy",
+      "type": 3,
+      "api": "csp_AppV7Amns_R",
+      "jar": "./spider_aw.jar;md5;af4c9648e35dd79589ddabf7fd3f72b0",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": "AppV7Xy"
+    },
+    {
+      "name": "三线影视",
+      "key": "AppV7Zjdr",
+      "type": 3,
+      "api": "csp_AppV7Amns_R",
+      "jar": "./spider_aw.jar;md5;af4c9648e35dd79589ddabf7fd3f72b0",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": "AppV7Zjdr"
+    },
+    {
+      "name": "四线影视",
+      "key": "AppV7Xyz",
+      "type": 3,
+      "api": "csp_AppV7Amns_R",
+      "jar": "./spider_aw.jar;md5;af4c9648e35dd79589ddabf7fd3f72b0",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": "AppV7Xyz"
+    },
+    {
+      "name": "五线影视",
+      "key": "AppV7Xnm",
+      "type": 3,
+      "api": "csp_AppV7Amns_R",
+      "jar": "./spider_aw.jar;md5;af4c9648e35dd79589ddabf7fd3f72b0",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": "AppV7Xnm"
+    },
+    {
+      "name": "六线影视",
+      "key": "AppV7Mtq",
+      "type": 3,
+      "api": "csp_AppV7Amns_R",
+      "jar": "./spider_aw.jar;md5;af4c9648e35dd79589ddabf7fd3f72b0",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": "AppV7Mtq"
+    },
+    {
+      "name": "七线影视",
+      "key": "AppV7Llq",
+      "type": 3,
+      "api": "csp_AppV7Amns_R",
+      "jar": "./spider_aw.jar;md5;af4c9648e35dd79589ddabf7fd3f72b0",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": "AppV7Llq"
+    },
+    {
+      "name": "八线影视",
+      "key": "AppV7Xsz",
+      "type": 3,
+      "api": "csp_AppV7Amns_R",
+      "jar": "./spider_aw.jar;md5;af4c9648e35dd79589ddabf7fd3f72b0",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": "AppV7Xsz"
+    },
+    {
+      "name": "九线影视",
+      "key": "AppV7Xhr",
+      "type": 3,
+      "api": "csp_AppV7Amns_R",
+      "jar": "./spider_aw.jar;md5;af4c9648e35dd79589ddabf7fd3f72b0",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": "AppV7Xhr"
+    },
+    {
+      "name": "师兄影视",
+      "key": "AppV7Dsx",
+      "type": 3,
+      "api": "csp_AppV7Amns_R",
+      "jar": "./spider_aw.jar;md5;af4c9648e35dd79589ddabf7fd3f72b0",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": "AppV7Dsx"
+    },
+    {
+      "name": "特狗影视",
+      "key": "AppV6Tg",
+      "type": 3,
+      "api": "csp_AppV6Amns_R",
+      "jar": "./spider_aw.jar;md5;af4c9648e35dd79589ddabf7fd3f72b0",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": "AppV6Tg"
     },
     {
       "key": "热播影视",
@@ -102,7 +234,7 @@
       }
     },
     {
-      "key": "剧圈99",
+      "key": "剧圈9",
       "name": "剧圈影视",
       "type": 3,
       "api": "csp_App99",
@@ -193,21 +325,6 @@
         "site": "https://xpgandroid03-1372779881.cos.ap-beijing.myqcloud.com/app_xpg_android.txt",
         "version": "1.0.0.3",
         "decrypt": "0"
-      }
-    },
-    {
-      "key": "蓝鹰",
-      "name": "雄鹰影视",
-      "type": 3,
-      "api": "csp_AppQi",
-      "searchable": 1,
-      "changeable": 1,
-      "ext": {
-        "url": "http://103.217.190.91:5566",
-        "dataKey": "hagYExMdMkeWfemK",
-        "dataIv": "hagYExMdMkeWfemK",
-        "init": "initV122",
-        "ua": "okhttp/3.10.0"
       }
     },
     {
@@ -333,17 +450,6 @@
       "changeable": 1
     },
     {
-      "key": "555",
-      "name": "五五影视",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1,
-      "filterable": 0,
-      "ext": "./lib/555.js"
-    },
-    {
       "key": "wuyun",
       "name": "乌云影视",
       "type": 3,
@@ -353,6 +459,17 @@
       "changeable": 1,
       "filterable": 0,
       "ext": "./lib/乌云.js"
+    },
+    {
+      "key": "555ys",
+      "name": "五五影视",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 0,
+      "ext": "./lib/555.js"
     },
     {
       "key": "wukong",
@@ -434,10 +551,33 @@
       }
     },
     {
+      "name": "酷狗音乐",
+      "key": "KuGou",
+      "type": 3,
+      "api": "csp_KuGouAmns",
+      "jar": "./spider_aw.jar;md5;af4c9648e35dd79589ddabf7fd3f72b0",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "genre": "music"
+    },
+    {
+      "name": "酷听音乐",
+      "key": "Kuwo",
+      "type": 3,
+      "api": "csp_KuwoAmns",
+      "jar": "./spider_aw.jar;md5;af4c9648e35dd79589ddabf7fd3f72b0",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "genre": "music"
+    },
+    {
       "key": "呦呦DJ",
       "name": "呦呦音乐",
       "type": 3,
       "api": "csp_Djuu",
+      "jar": "./spider_aw.jar",
       "searchable": 1,
       "quickSearch": 0,
       "changeable": 0,
@@ -519,7 +659,7 @@
     },
     {
       "key": "push_agent",
-      "name": "手机｜推送",
+      "name": "手机推送",
       "type": 3,
       "api": "csp_Push",
       "searchable": 0,
