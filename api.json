@@ -428,28 +428,6 @@
       "ext": "./lib/瓜子影视.js"
     },
     {
-      "key": "wangwang",
-      "name": "旺旺影视",
-      "type": 3,
-      "api": "./lib/旺旺.js",
-      "style": {
-        "type": "rect",
-        "ratio": 1
-      },
-      "changeable": 1
-    },
-    {
-      "key": "jumi",
-      "name": "剧迷影视",
-      "type": 3,
-      "api": "./lib/高清剧迷.js",
-      "style": {
-        "type": "rect",
-        "ratio": 1
-      },
-      "changeable": 1
-    },
-    {
       "key": "wuyun",
       "name": "乌云影视",
       "type": 3,
