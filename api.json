@@ -461,17 +461,6 @@
       "ext": "./lib/乌云.js"
     },
     {
-      "key": "555ys",
-      "name": "五五影视",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1,
-      "filterable": 0,
-      "ext": "./lib/555.js"
-    },
-    {
       "key": "wukong",
       "name": "悟空影视",
       "type": 3,
