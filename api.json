@@ -55,7 +55,7 @@
       "changeable": 0,
       "ext": "Guazi"
     },
-        {
+    {
       "key": "采集集合",
       "name": "采集之王",
       "type": 4,
@@ -453,6 +453,17 @@
       "changeable": 1,
       "filterable": 0,
       "ext": "./lib/乌云.js"
+    },
+    {
+      "key": "liangzi",
+      "name": "量子影视",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 0,
+      "ext": "./lib/量子.js"
     },
     {
       "key": "wukong",
