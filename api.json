@@ -1,5 +1,5 @@
 {
-  "spider": "./spider.jar;md5;5868c7ac8f46925289cb15559ce2b0b1",
+  "spider": "./spider.jar;md5;037491ff37a217e46f4a7b40c5a6e8f9",
   "wallpaper": "https://raw.giteeusercontent.com/lanzaong/lan/raw/master/icon/bz16.webp",
   "sites": [
     {
@@ -15,6 +15,27 @@
         "buildNumber": "2001",
         "buildSignature": "A40DA80A59D170CAA950CF15C18C454D47A39B26989D8B640ECD745BA71BF5DC"
       }
+    },
+    {
+      "key": "糯米",
+      "name": "糯米影视",
+      "type": 3,
+      "api": "csp_NmyswvGuard",
+      "timeout": 15,
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1
+    },
+    {
+      "key": "文采",
+      "name": "文采影视",
+      "type": 3,
+      "api": "csp_JpysGuard",
+      "timeout": 10,
+      "playerType": 2,
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1
     },
     {
       "key": "tenteng",
@@ -523,7 +544,7 @@
       }
     },
     {
-      "key": "哔哩",
+      "key": "bilisp",
       "name": "哔哩视频",
       "type": 3,
       "api": "csp_BiliYS",
@@ -590,7 +611,7 @@
       "key": "爱听",
       "name": "爱听音乐",
       "type": 3,
-      "searchable": 0,
+      "searchable": 1,
       "quickSearch": 0,
       "changeable": 0,
       "api": "https://qist.wyfc.qzz.io/xiaosa/py/%E7%88%B1%E5%90%AC%E9%9F%B3%E4%B9%90.py"
@@ -600,7 +621,7 @@
       "name": "哔哩音乐",
       "type": 3,
       "api": "csp_Bili",
-      "searchable": 0,
+      "searchable": 1,
       "quickSearch": 0,
       "changeable": 0,
       "ext": {
@@ -617,7 +638,7 @@
       "name": "哔哩相声",
       "type": 3,
       "api": "csp_Bili",
-      "searchable": 0,
+      "searchable": 1,
       "quickSearch": 0,
       "changeable": 0,
       "ext": {
@@ -634,7 +655,7 @@
       "name": "哔哩小品",
       "type": 3,
       "api": "csp_Bili",
-      "searchable": 0,
+      "searchable": 1,
       "quickSearch": 0,
       "changeable": 0,
       "ext": {
@@ -651,12 +672,11 @@
       "name": "少儿教育",
       "type": 3,
       "api": "csp_BiliGuard",
-      "jar": "./fty.jar;md5;e252bed862bb9bb4d4202d516afc0426",
       "style": {
         "type": "rect",
         "ratio": 1.597
       },
-      "searchable": 0,
+      "searchable": 1,
       "quickSearch": 0,
       "changeable": 0,
       "ext": {
@@ -668,12 +688,11 @@
       "name": "小学课堂",
       "type": 3,
       "api": "csp_BiliGuard",
-      "jar": "./fty.jar;md5;e252bed862bb9bb4d4202d516afc0426",
       "style": {
         "type": "rect",
         "ratio": 1.597
       },
-      "searchable": 0,
+      "searchable": 1,
       "quickSearch": 0,
       "changeable": 0,
       "ext": {
@@ -685,12 +704,11 @@
       "name": "初中课堂",
       "type": 3,
       "api": "csp_BiliGuard",
-      "jar": "./fty.jar;md5;e252bed862bb9bb4d4202d516afc0426",
       "style": {
         "type": "rect",
         "ratio": 1.597
       },
-      "searchable": 0,
+      "searchable": 1,
       "quickSearch": 0,
       "changeable": 0,
       "ext": {
@@ -702,12 +720,11 @@
       "name": "高中课堂",
       "type": 3,
       "api": "csp_BiliGuard",
-      "jar": "./fty.jar;md5;e252bed862bb9bb4d4202d516afc0426",
       "style": {
         "type": "rect",
         "ratio": 1.597
       },
-      "searchable": 0,
+      "searchable": 1,
       "quickSearch": 0,
       "changeable": 0,
       "ext": {
@@ -719,7 +736,7 @@
       "name": "手机推送",
       "type": 3,
       "api": "csp_Push",
-      "searchable": 0,
+      "searchable": 1,
       "filterable": 0,
       "changeable": 0
     }
