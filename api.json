@@ -45,15 +45,15 @@
       "ext": "./lib/茫茫.js"
     },
     {
+      "key": "瓜子",
       "name": "瓜子影视",
-      "key": "Guazi",
       "type": 3,
-      "api": "csp_GuaziAmns_R",
-      "jar": "./spider_aw.jar;md5;af4c9648e35dd79589ddabf7fd3f72b0",
+      "api": "csp_AppgzGuard",
+      "timeout": 15,
+      "playerType": "2",
       "searchable": 1,
       "quickSearch": 1,
-      "changeable": 0,
-      "ext": "Guazi"
+      "changeable": 1
     },
     {
       "key": "糯米",
