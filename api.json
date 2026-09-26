@@ -650,68 +650,68 @@
       "key": "少儿教育",
       "name": "少儿教育",
       "type": 3,
-      "api": "csp_Bili",
+      "api": "csp_BiliGuard",
+      "jar": "./fty.jar;md5;e252bed862bb9bb4d4202d516afc0426",
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      },
       "searchable": 0,
       "quickSearch": 0,
       "changeable": 0,
       "ext": {
-        "json": "./lib/SEJY.json",
-        "cookie": "http://127.0.0.1:9978/file/TVBox/bili_cookie.txt"
-      },
-      "style": {
-        "type": "rect",
-        "ratio": 1.618
+        "json": "./lib/少儿教育.txt"
       }
     },
     {
       "key": "小学课堂",
       "name": "小学课堂",
       "type": 3,
-      "api": "csp_Bili",
+      "api": "csp_BiliGuard",
+      "jar": "./fty.jar;md5;e252bed862bb9bb4d4202d516afc0426",
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      },
       "searchable": 0,
       "quickSearch": 0,
       "changeable": 0,
       "ext": {
-        "json": "./lib/XXKT.json",
-        "cookie": "http://127.0.0.1:9978/file/TVBox/bili_cookie.txt"
-      },
-      "style": {
-        "type": "rect",
-        "ratio": 1.618
+        "json": "./lib/小学课堂.txt"
       }
     },
     {
       "key": "初中课堂",
       "name": "初中课堂",
       "type": 3,
-      "api": "csp_Bili",
+      "api": "csp_BiliGuard",
+      "jar": "./fty.jar;md5;e252bed862bb9bb4d4202d516afc0426",
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      },
       "searchable": 0,
       "quickSearch": 0,
       "changeable": 0,
       "ext": {
-        "json": "./lib/CZKT.json",
-        "cookie": "http://127.0.0.1:9978/file/TVBox/bili_cookie.txt"
-      },
-      "style": {
-        "type": "rect",
-        "ratio": 1.618
+        "json": "./lib/初中课堂.txt"
       }
     },
     {
-      "key": "高中课堂",
+      "key": "高中教育",
       "name": "高中课堂",
       "type": 3,
-      "api": "csp_Bili",
+      "api": "csp_BiliGuard",
+      "jar": "./fty.jar;md5;e252bed862bb9bb4d4202d516afc0426",
+      "style": {
+        "type": "rect",
+        "ratio": 1.597
+      },
       "searchable": 0,
       "quickSearch": 0,
       "changeable": 0,
       "ext": {
-        "json": "./lib/GZKT.json",
-        "cookie": "http://127.0.0.1:9978/file/TVBox/bili_cookie.txt"
-      },
-      "style": {
-        "type": "rect",
-        "ratio": 1.618
+        "json": "./lib/高中课堂.txt"
       }
     },
     {
