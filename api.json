@@ -17,27 +17,6 @@
       }
     },
     {
-      "key": "糯米",
-      "name": "糯米影视",
-      "type": 3,
-      "api": "csp_NmyswvGuard_R",
-      "timeout": 15,
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1
-    },
-    {
-      "key": "文采",
-      "name": "文采影视",
-      "type": 3,
-      "api": "csp_JpysGuard_R",
-      "timeout": 10,
-      "playerType": 2,
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1
-    },
-    {
       "key": "tenteng",
       "name": "腾讯影视",
       "type": 3,
@@ -75,6 +54,27 @@
       "quickSearch": 1,
       "changeable": 0,
       "ext": "Guazi"
+    },
+    {
+      "key": "糯米",
+      "name": "糯米影视",
+      "type": 3,
+      "api": "csp_NmyswvGuard_R",
+      "timeout": 15,
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1
+    },
+    {
+      "key": "文采",
+      "name": "文采影视",
+      "type": 3,
+      "api": "csp_JpysGuard_R",
+      "timeout": 10,
+      "playerType": 2,
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1
     },
     {
       "name": "春秋影视",
