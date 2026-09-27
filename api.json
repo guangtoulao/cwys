@@ -1,5 +1,5 @@
 {
-  "spider": "./spider.jar;md5;bc3da6cf1f3fedb3947737d594f68009",
+  "spider": "./spider.jar;md5;3a8fc53b672ad65ec1ca00aebde4dead",
   "wallpaper": "https://raw.giteeusercontent.com/lanzaong/lan/raw/master/icon/bz16.webp",
   "sites": [
     {
@@ -48,7 +48,7 @@
       "key": "瓜子",
       "name": "瓜子影视",
       "type": 3,
-      "api": "csp_AppgzGuard_R",
+      "api": "csp_AppgzGuard",
       "timeout": 15,
       "playerType": "2",
       "searchable": 1,
@@ -75,138 +75,6 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1
-    },
-    {
-      "name": "春秋影视",
-      "key": "NewGrV2",
-      "type": 3,
-      "api": "csp_NewGrV2Amns_R",
-      "jar": "./spider_aw.jar;md5;af4c9648e35dd79589ddabf7fd3f72b0",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0,
-      "ext": "NewGrV2"
-    },
-    {
-      "name": "一线影视",
-      "key": "AppV7Fz",
-      "type": 3,
-      "api": "csp_AppV7Amns_R",
-      "jar": "./spider_aw.jar;md5;af4c9648e35dd79589ddabf7fd3f72b0",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0,
-      "ext": "AppV7Fz"
-    },
-    {
-      "name": "二线影视",
-      "key": "AppV7Xy",
-      "type": 3,
-      "api": "csp_AppV7Amns_R",
-      "jar": "./spider_aw.jar;md5;af4c9648e35dd79589ddabf7fd3f72b0",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0,
-      "ext": "AppV7Xy"
-    },
-    {
-      "name": "三线影视",
-      "key": "AppV7Zjdr",
-      "type": 3,
-      "api": "csp_AppV7Amns_R",
-      "jar": "./spider_aw.jar;md5;af4c9648e35dd79589ddabf7fd3f72b0",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0,
-      "ext": "AppV7Zjdr"
-    },
-    {
-      "name": "四线影视",
-      "key": "AppV7Xyz",
-      "type": 3,
-      "api": "csp_AppV7Amns_R",
-      "jar": "./spider_aw.jar;md5;af4c9648e35dd79589ddabf7fd3f72b0",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0,
-      "ext": "AppV7Xyz"
-    },
-    {
-      "name": "五线影视",
-      "key": "AppV7Xnm",
-      "type": 3,
-      "api": "csp_AppV7Amns_R",
-      "jar": "./spider_aw.jar;md5;af4c9648e35dd79589ddabf7fd3f72b0",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0,
-      "ext": "AppV7Xnm"
-    },
-    {
-      "name": "六线影视",
-      "key": "AppV7Mtq",
-      "type": 3,
-      "api": "csp_AppV7Amns_R",
-      "jar": "./spider_aw.jar;md5;af4c9648e35dd79589ddabf7fd3f72b0",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0,
-      "ext": "AppV7Mtq"
-    },
-    {
-      "name": "七线影视",
-      "key": "AppV7Llq",
-      "type": 3,
-      "api": "csp_AppV7Amns_R",
-      "jar": "./spider_aw.jar;md5;af4c9648e35dd79589ddabf7fd3f72b0",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0,
-      "ext": "AppV7Llq"
-    },
-    {
-      "name": "八线影视",
-      "key": "AppV7Xsz",
-      "type": 3,
-      "api": "csp_AppV7Amns_R",
-      "jar": "./spider_aw.jar;md5;af4c9648e35dd79589ddabf7fd3f72b0",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0,
-      "ext": "AppV7Xsz"
-    },
-    {
-      "name": "九线影视",
-      "key": "AppV7Xhr",
-      "type": 3,
-      "api": "csp_AppV7Amns_R",
-      "jar": "./spider_aw.jar;md5;af4c9648e35dd79589ddabf7fd3f72b0",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0,
-      "ext": "AppV7Xhr"
-    },
-    {
-      "name": "师兄影视",
-      "key": "AppV7Dsx",
-      "type": 3,
-      "api": "csp_AppV7Amns_R",
-      "jar": "./spider_aw.jar;md5;af4c9648e35dd79589ddabf7fd3f72b0",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0,
-      "ext": "AppV7Dsx"
-    },
-    {
-      "name": "特狗影视",
-      "key": "AppV6Tg",
-      "type": 3,
-      "api": "csp_AppV6Amns_R",
-      "jar": "./spider_aw.jar;md5;af4c9648e35dd79589ddabf7fd3f72b0",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 0,
-      "ext": "AppV6Tg"
     },
     {
       "key": "热播影视",
@@ -449,17 +317,6 @@
       }
     },
     {
-      "key": "kuihua",
-      "name": "葵花影视",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1,
-      "filterable": 0,
-      "ext": "./lib/瓜子影视.js"
-    },
-    {
       "key": "liangziziyuan",
       "name": "量子影视",
       "type": 3,
@@ -469,17 +326,6 @@
       "changeable": 1,
       "filterable": 0,
       "ext": "./lib/量子.js"
-    },
-    {
-      "key": "keke",
-      "name": "可可影视",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1,
-      "filterable": 0,
-      "ext": "./lib/可可影视.js"
     },
     {
       "key": "wukong",
