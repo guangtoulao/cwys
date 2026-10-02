@@ -156,7 +156,7 @@ var defaultListBanGong = [
     ];
 var defaultApiList = [
     {name:'君子兰',url:'https://cwys.qzz.io/api.json',lineColor:'#e84393'},
-    {name:'饭太硬',url:'https://www.xn--sss604efuw.cc/',lineColor:'#3498db'},
+    {name:'饭太硬',url:'http://www.饭太硬.cc/tv',lineColor:'#3498db'},
     {name:'潇洒',url:'https://qist.wyfc.qzz.io/xiaosa/api.json',lineColor:'#f39c12'},
     {name:'天微',url:'https://7337.kstore.vip/xw/测试勿传',lineColor:'#f1c40f'},
     {name:'王二小',url:'https://9280.kstore.vip/aiwex.json',lineColor:'#cddc39'},
