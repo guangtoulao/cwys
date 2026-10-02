@@ -55,6 +55,18 @@
       "quickSearch": 1,
       "changeable": 1
     },
+        {
+      "key": "aikanju",
+      "name": "看剧影视",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 0,
+      "play_parse": true,
+      "ext": "./lib/看剧屋.js"
+    },
     {
       "key": "糯米",
       "name": "糯米影视",
