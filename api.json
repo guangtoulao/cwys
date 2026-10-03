@@ -17,40 +17,6 @@
       }
     },
     {
-      "key": "腾爱优b站",
-      "name": "腾爱优芒",
-      "type": 3,
-      "api": "./lib/爱优腾芒.js"
-    },
-    {
-      "key": "tenteng",
-      "name": "腾讯影视",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "ext": "./lib/腾腾.js"
-    },
-    {
-      "key": "youyou",
-      "name": "优酷视频",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "ext": "./lib/优优.js"
-    },
-    {
-      "key": "qiqi",
-      "name": "爱奇视频",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "ext": "./lib/奇奇.js"
-    },
-    {
-      "key": "mangmang",
-      "name": "芒果视频",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "ext": "./lib/茫茫.js"
-    },
-    {
       "key": "瓜子",
       "name": "瓜子影视",
       "type": 3,
