@@ -17,6 +17,12 @@
       }
     },
     {
+      "key": "腾爱优b站",
+      "name": "腾爱优哔",
+      "type": 3,
+      "api": "./lib/爱优腾芒.js"
+    },
+    {
       "key": "tenteng",
       "name": "腾讯影视",
       "type": 3,
@@ -48,24 +54,12 @@
       "key": "瓜子",
       "name": "瓜子影视",
       "type": 3,
-      "api": "csp_AppgzGuard",
+      "api": "csp_AppgzGuard_R",
       "timeout": 15,
       "playerType": "2",
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1
-    },
-        {
-      "key": "aikanju",
-      "name": "看剧影视",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1,
-      "filterable": 0,
-      "play_parse": true,
-      "ext": "./lib/看剧屋.js"
     },
     {
       "key": "糯米",
@@ -240,19 +234,6 @@
       }
     },
     {
-      "key": "世界",
-      "name": "全球影视",
-      "type": 3,
-      "api": "csp_AppGet",
-      "searchable": 1,
-      "changeable": 1,
-      "ext": {
-        "url": "https://appcms.4ksj.app",
-        "dataKey": "O3K6rYx75Q4xtiIE",
-        "dataIv": "O3K6rYx75Q4xtiIE"
-      }
-    },
-    {
       "key": "王子",
       "name": "狮子影视",
       "type": 3,
@@ -340,6 +321,62 @@
       "ext": "./lib/量子.js"
     },
     {
+      "key": "sanliuys",
+      "name": "三六影视",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 0,
+      "ext": "./lib/360kan.js"
+    },
+    {
+      "key": "dsystv",
+      "name": "袋鼠影视",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 0,
+      "ext": "./lib/袋鼠.js"
+    },
+    {
+      "key": "juzong",
+      "name": "剧踪影视",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 0,
+      "ext": "./lib/剧踪.js"
+    },
+    {
+      "key": "aikanju",
+      "name": "看剧影视",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 0,
+      "play_parse": true,
+      "ext": "./lib/看剧屋.js"
+    },
+    {
+      "key": "xiguays",
+      "name": "西瓜影视",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 0,
+      "ext": "./lib/西瓜.js"
+    },
+    {
       "key": "wukong",
       "name": "悟空影视",
       "type": 3,
@@ -349,6 +386,39 @@
       "changeable": 1,
       "filterable": 0,
       "ext": "./lib/悟空.js"
+    },
+    {
+      "key": "qianqian",
+      "name": "千千影视",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 0,
+      "ext": "./lib/千千.js"
+    },
+    {
+      "key": "qinghe",
+      "name": "青禾影视",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 0,
+      "ext": "./lib/青禾.js"
+    },
+    {
+      "key": "aiyingshi",
+      "name": "爱影影视",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 0,
+      "ext": "./lib/爱电影.js"
     },
     {
       "key": "xingcen",
@@ -598,7 +668,7 @@
     {
       "name": "夜幕",
       "type": 0,
-      "url": "https://yemu.xyz/?url=",
+      "url": "https://jx.maoyanjx.top/player/?url=",
       "ext": {
         "header": {
           "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
