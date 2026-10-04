@@ -1,5 +1,5 @@
 {
-  "spider": "./spider.jar;md5;3a8fc53b672ad65ec1ca00aebde4dead",
+  "spider": "./spider.jar;md5;710734229fcd799d93d2187754b06d35",
   "wallpaper": "https://raw.giteeusercontent.com/lanzaong/lan/raw/master/icon/bz16.webp",
   "sites": [
     {
@@ -16,7 +16,7 @@
         "buildSignature": "A40DA80A59D170CAA950CF15C18C454D47A39B26989D8B640ECD745BA71BF5DC"
       }
     },
-     {
+    {
       "key": "tenteng",
       "name": "腾讯视频",
       "type": 3,
@@ -45,10 +45,17 @@
       "ext": "./lib/茫茫.js"
     },
     {
+      "key": "天天",
+      "name": "天天视频",
+      "type": 3,
+      "api": "csp_HBtiantianv3",
+      "ext": "http://v.rbotv.cn"
+    },
+    {
       "key": "瓜子",
       "name": "瓜子影视",
       "type": 3,
-      "api": "csp_AppgzGuard_R",
+      "api": "csp_AppgzGuard",
       "timeout": 15,
       "playerType": "2",
       "searchable": 1,
@@ -59,17 +66,27 @@
       "key": "糯米",
       "name": "糯米影视",
       "type": 3,
-      "api": "csp_NmyswvGuard_R",
+      "api": "csp_NmyswvGuard",
       "timeout": 15,
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1
     },
     {
+      "key": "奶酪",
+      "name": "牛牛影视",
+      "type": 3,
+      "api": "csp_T4Guard",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "ext": "rfOIzPkSUkANv6AT2prC8en3+TzKx9TnlT8vaY37HhtYfAQe6C5xqrVuJPhQwYV6r3eRdMBGm3Qm6Th+BushR86B6KqJGXDsHazHw7alBG/7zUxkN1tK/NypRxnpBNoeUtpw4jcCGhytI75yO4g4zG6SOPA0RSwhksM0IF2friAkrHCWoW3v+0mdw6sjz4t4XB1Df7yL/R5cfaA/5LQYq3I8OkvMrJMU9Q1P7JXwx7NSF2zTyH/ANVmZ4u5m567DW1KVG7OuQjXPjZiOXTYk0+wjpfBRTf19yIq6q/C76k2Fs80joAMPw0ueDR+QHxtuDcTom2rmHkI1Fonkzi6BotbpUcbSi4PiIgmfdbvVwhG6Z+i4nvt+IYa48l5aLA7PLgDiERpuOs31aHaXlgFswT87XyTb8QaF4CuzKWJuXptwNTjvXAS9KHdxH49Ay+hfBAB2bCvUf4CMoldF2wZUv0mI2qY966erFpOFg+FOc7t88EUH8j8ACXQtHJiKC9RQ+SaLIF0="
+    },
+    {
       "key": "文采",
       "name": "文采影视",
       "type": 3,
-      "api": "csp_JpysGuard_R",
+      "api": "csp_JpysGuard",
       "timeout": 10,
       "playerType": 2,
       "searchable": 1,
@@ -451,7 +468,7 @@
       "key": "MTV",
       "name": "哔哩音乐",
       "type": 3,
-      "api": "csp_BiliGuard_R",
+      "api": "csp_BiliGuard",
       "style": {
         "type": "rect",
         "ratio": 1.597
@@ -467,7 +484,7 @@
       "key": "Bili",
       "name": "哔哩合集",
       "type": 3,
-      "api": "csp_BiliGuard_R",
+      "api": "csp_BiliGuard",
       "style": {
         "type": "rect",
         "ratio": 1.597
@@ -483,7 +500,7 @@
       "key": "Biliych",
       "name": "哔哩演唱",
       "type": 3,
-      "api": "csp_BiliGuard_R",
+      "api": "csp_BiliGuard",
       "style": {
         "type": "rect",
         "ratio": 1.597
@@ -499,7 +516,7 @@
       "key": "少儿教育",
       "name": "少儿教育",
       "type": 3,
-      "api": "csp_BiliGuard_R",
+      "api": "csp_BiliGuard",
       "style": {
         "type": "rect",
         "ratio": 1.597
@@ -515,7 +532,7 @@
       "key": "小学课堂",
       "name": "小学课堂",
       "type": 3,
-      "api": "csp_BiliGuard_R",
+      "api": "csp_BiliGuard",
       "style": {
         "type": "rect",
         "ratio": 1.597
@@ -531,7 +548,7 @@
       "key": "初中课堂",
       "name": "初中课堂",
       "type": 3,
-      "api": "csp_BiliGuard_R",
+      "api": "csp_BiliGuard",
       "style": {
         "type": "rect",
         "ratio": 1.597
@@ -547,7 +564,7 @@
       "key": "高中教育",
       "name": "高中课堂",
       "type": 3,
-      "api": "csp_BiliGuard_R",
+      "api": "csp_BiliGuard",
       "style": {
         "type": "rect",
         "ratio": 1.597
@@ -585,11 +602,11 @@
   ],
   "parses": [
     {
-      "name": "聚合",
+      "name": "解析聚合",
       "type": 3,
-      "url": "Web"
+      "url": "Demo"
     },
-        {
+    {
       "name": "Json轮询",
       "type": 2,
       "url": "Sequence"
@@ -674,42 +691,12 @@
       }
     },
     {
-      "name": "虾米",
-      "type": 0,
-      "url": "https://jx.xmflv.com/?url=",
-      "ext": {
-        "header": {
-          "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
-        }
-      }
-    },
-    {
-      "name": "云解",
-      "type": 0,
-      "url": "https://yparse.ik9.cc/index.php?url=",
-      "ext": {
-        "header": {
-          "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
-        }
-      }
-    },
-    {
       "name": "咸鱼",
       "type": 0,
       "url": "https://jx.xymp4.cc/?url=",
       "ext": {
         "header": {
-          "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
-        }
-      }
-    },
-    {
-      "name": "淘片",
-      "type": 0,
-      "url": "https://jx.yparse.com/index.php?url=",
-      "ext": {
-        "header": {
-          "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
+          "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.3124.68"
         }
       }
     },
@@ -734,9 +721,9 @@
       }
     },
     {
-      "name": "盘古",
+      "name": "夜幕",
       "type": 0,
-      "url": "https://www.playm3u8.cn/jiexi.php?url=",
+      "url": "https://yemu.xyz/?url=",
       "ext": {
         "header": {
           "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
@@ -744,12 +731,88 @@
       }
     },
     {
-      "name": "夜幕",
+      "name": "爱心",
+      "type": 4,
+      "url": "http://119.91.123.253:2345/Api/yun.php?url=",
+      "ext": {
+        "header": {
+          "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.57"
+        }
+      }
+    },
+    {
+      "name": "淘片",
       "type": 0,
-      "url": "https://jx.maoyanjx.top/player/?url=",
+      "url": "https://jx.yparse.com/index.php?url=",
       "ext": {
         "header": {
           "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
+        }
+      }
+    },
+    {
+      "name": "虾米",
+      "type": 0,
+      "url": "https://jx.xmflv.com/?url=",
+      "ext": {
+        "header": {
+          "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.57"
+        }
+      }
+    },
+    {
+      "name": "观山",
+      "type": 0,
+      "url": "https://p10.zijincao.cc/?url=",
+      "ext": {
+        "header": {
+          "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.57"
+        }
+      }
+    },
+    {
+      "name": "七哥",
+      "url": "https://jx.nnxv.cn/tv.php?url=",
+      "type": 0,
+      "ext": {
+        "header": {
+          "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.57"
+        }
+      }
+    },
+    {
+      "name": "自定：请先设置",
+      "type": 1,
+      "url": "http://127.0.0.1:9997/proxy?do=seachdanmu&go=getuserjx&url="
+    },
+    {
+      "name": "布偶",
+      "type": 1,
+      "url": "http://127.0.0.1:9997/proxy?do=seachdanmu&go=hubanjiexi1&url="
+    },
+    {
+      "name": "晴天4K Q1026038872",
+      "type": 1,
+      "url": "http://127.0.0.1:9997/proxy?do=seachdanmu&go=hubanjiexi&url="
+    },
+    {
+      "name": "虎斑AB",
+      "type": 1,
+      "url": "http://127.0.0.1:9997/proxy?do=seachdanmu&go=getAbjx&url="
+    },
+    {
+      "name": "虎斑getSBSjx",
+      "type": 1,
+      "url": "http://127.0.0.1:9978/proxy?do=seachdanmu&go=getSBSjx&url="
+    },
+    {
+      "name": "虎斑XM",
+      "type": 1,
+      "url": "http://127.0.0.1:9997/proxy?do=seachdanmu&go=getXmflvjx&url=",
+      "ext": {
+        "header": {
+          "Accept": "*/*",
+          "Origin": "https://jx.xmflv.com"
         }
       }
     }
