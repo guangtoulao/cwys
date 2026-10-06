@@ -342,17 +342,17 @@
       "filterable": 0,
       "ext": "./lib/央视.js"
     },
-    {
-      "key": "xingcen",
-      "name": "星辰影视",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1,
-      "filterable": 0,
-      "ext": "./lib/星辰.js"
-    },
+   {
+    "key": "星辰8",
+    "name": "星辰",
+    "type": 3,
+    "api": "./lib/drpy2.min.js",
+    "searchable": 2,
+    "quickSearch": 0,
+    "changeable": 1,
+    "filterable": 0,
+    "ext": "./lib/星辰.js"
+  },
     {
       "key": "dsystv",
       "name": "袋鼠影视",
