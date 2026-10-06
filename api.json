@@ -332,17 +332,6 @@
       "ext": "./lib/量子.js"
     },
     {
-      "key": "sanliuys",
-      "name": "三六影视",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1,
-      "filterable": 0,
-      "ext": "./lib/360kan.js"
-    },
-    {
       "key": "dsystv",
       "name": "袋鼠影视",
       "type": 3,
