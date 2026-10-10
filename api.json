@@ -1,5 +1,5 @@
 {
-  
+  "spider": "./spider.jar;md5;046d7e00f8b5c7f487a031a26998be23",
   "wallpaper": "https://raw.giteeusercontent.com/lanzaong/lan/raw/master/icon/bz16.webp",
   "sites": [
     {
@@ -14,6 +14,51 @@
         "package": "com.yf.lelian",
         "buildNumber": "2001",
         "buildSignature": "A40DA80A59D170CAA950CF15C18C454D47A39B26989D8B640ECD745BA71BF5DC"
+      }
+    },
+    {
+      "key": "追影",
+      "name": "追影",
+      "type": 3,
+      "api": "csp_HBPQ",
+      "searchable": 1,
+      "quickSearch": 0,
+      "ext": {
+        "分类url": "https://zhuiying3.cc/vodtype/{cateId}.html",
+        "分类": "电影$dianying#电视剧$dianshiju#动漫$dongman#综艺$zongyi#短剧$duanju",
+        "数组": "<a href=\"/video/&&</a>",
+        "标题": "class=\"card-title\">&&<",
+        "图片": "src=\"&&\"",
+        "链接": "&&\"",
+        "链接前缀": "https://zhuiying3.cc/video/",
+        "播放数组": "<div class=\"ep-grid &&</div>",
+        "播放列表": "<a&&</a>",
+        "播放标题": "class=\"ep-num\">&&<",
+        "播放链接": "href=\"&&\"",
+        "线路数组": "<span class=\"tab-item active\"&&</span>",
+        "线路标题": ">&&<",
+        "搜索url": "https://zhuiying3.cc/vod/search/wd/{wd}.html"
+      }
+    },
+    {
+      "key": "枝枝",
+      "name": "枝枝┃HBPQ",
+      "type": 3,
+      "api": "csp_HBPQ",
+      "searchable": 1,
+      "quickSearch": 0,
+      "ext": {
+        "分类url": "https://www.zzoc.cc/vodtype/{cateId}.html",
+        "分类": "电影$1#电视剧$2#综艺$3#动漫$4#短剧$20",
+        "数组": "<div class=\"myui-vodbox-content\">&&</a>",
+        "标题": "class=\"info-title-box\">&&<",
+        "图片": "src=\"&&\"",
+        "链接": "href=\"&&\"",
+        "播放数组": "<div id=\"playlist&&",
+        "播放列表": "class=\"listitem&&</a>",
+        "播放标题": "href=*>&&<",
+        "播放链接": "href=\"&&\"",
+        "搜索url": "https://www.zzoc.cc/vodsearch/-------------.html?wd={wd}"
       }
     },
     {
@@ -141,7 +186,7 @@
     },
     {
       "key": "布布",
-      "name": "多多影视",
+      "name": "布布影视",
       "type": 3,
       "api": "csp_YunDuo",
       "searchable": 1,
@@ -315,20 +360,31 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "filterable": 0,
+      "filterable": 1,
       "ext": "./lib/量子.js"
     },
-   {
-    "key": "星辰8",
-    "name": "星辰",
-    "type": 3,
-    "api": "./lib/drpy2.min.js",
-    "searchable": 2,
-    "quickSearch": 0,
-    "changeable": 1,
-    "filterable": 0,
-    "ext": "./lib/星辰.js"
-  },
+    {
+      "key": "sanliuys",
+      "name": "央视视频",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 1,
+      "ext": "./lib/央视.js"
+    },
+    {
+      "key": "星辰8",
+      "name": "星辰影视",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "searchable": 2,
+      "quickSearch": 0,
+      "changeable": 1,
+      "filterable": 0,
+      "ext": "./lib/星辰.js"
+    },
     {
       "key": "dsystv",
       "name": "袋鼠影视",
@@ -337,7 +393,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "filterable": 0,
+      "filterable": 1,
       "ext": "./lib/袋鼠.js"
     },
     {
@@ -348,7 +404,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "filterable": 0,
+      "filterable": 1,
       "ext": "./lib/西瓜.js"
     },
     {
@@ -359,7 +415,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "filterable": 0,
+      "filterable": 1,
       "ext": "./lib/悟空.js"
     },
     {
@@ -370,7 +426,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "filterable": 0,
+      "filterable": 1,
       "ext": "./lib/千千.js"
     },
     {
@@ -381,7 +437,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "filterable": 0,
+      "filterable": 1,
       "ext": "./lib/青禾.js"
     },
     {
@@ -392,7 +448,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "filterable": 0,
+      "filterable": 1,
       "ext": "./lib/爱电影.js"
     },
     {
@@ -403,8 +459,19 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "filterable": 0,
+      "filterable": 1,
       "ext": "./lib/4k.js"
+    },
+    {
+      "key": "hongxing",
+      "name": "红星影视",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "filterable": 1,
+      "ext": "./lib/红星影院.js"
     },
     {
       "key": "yinghua",
@@ -414,7 +481,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "changeable": 1,
-      "filterable": 0,
+      "filterable": 1,
       "ext": "./lib/樱花影视.js"
     },
     {
@@ -741,52 +808,18 @@
     "seven",
     "m78"
   ],
-   "rules": [
+  "rules": [
     {
-      "name": "农民",
+      "name": "cdn.ryplay",
       "hosts": [
-        "toutiaovod.com"
+        "cdn.ryplay"
       ],
       "regex": [
-        "video/tos/cn"
-      ]
-    },
-    {
-      "name": "火山",
-      "hosts": [
-        "huoshan.com"
-      ],
-      "regex": [
-        "item_id="
-      ]
-    },
-    {
-      "name": "抖音",
-      "hosts": [
-        "douyin.com"
-      ],
-      "regex": [
-        "is_play_url="
-      ]
-    },
-    {
-      "name": "饭团点击",
-      "hosts": [
-        "dadagui",
-        "freeok",
-        "dadagui"
-      ],
-      "script": [
-        "document.querySelector(\"#playleftiframe\").contentWindow.document.querySelector(\"#start\").click();"
-      ]
-    },
-    {
-      "name": "毛驴点击",
-      "hosts": [
-        "www.maolvys.com"
-      ],
-      "script": [
-        "document.getElementsByClassName('swal-buttonswal-button--confirm')[0].click()"
+        "5.480000",
+        "#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:5.480000,[\\s\\S]*?#EXT-X-DISCONTINUITY",
+        "#EXT-X-DISCONTINUITY\\s*\\r?\\n#EXTINF:5.320000,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n(?:#EXTINF:[\\d.]+,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n)*?#EXTINF:3.360000,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n#EXT-X-DISCONTINUITY",
+        "#EXT-X-DISCONTINUITY\\s*\\r?\\n#EXTINF:4.000000,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n(?:#EXTINF:[\\d.]+,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n)*?#EXTINF:0.560000,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n#EXT-X-DISCONTINUITY",
+        "#EXTINF.*?\\s+.*?1o.*?\\.ts\\s+"
       ]
     }
   ],
