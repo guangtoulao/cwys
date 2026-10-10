@@ -770,12 +770,6 @@
       ]
     },
     {
-      "name": "磁力",
-      "hosts": [
-        "magnet"
-      ]
-    },
-    {
       "name": "饭团点击",
       "hosts": [
         "dadagui",
