@@ -372,6 +372,17 @@
     "编码": "UTF-8"
   }
 },
+  {
+      "key": "zuiyingjs",
+      "name": "追影js",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "searchable": 2,
+      "quickSearch": 0,
+      "changeable": 1,
+      "filterable": 0,
+      "ext": "./lib/追影.js"
+    },
 {
   "key": "追影",
   "name": "追影影视",
