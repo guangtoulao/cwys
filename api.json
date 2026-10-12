@@ -385,7 +385,7 @@
     },
        {
       "key": "zuijuys",
-      "name": "追影js",
+      "name": "追影影视",
       "type": 3,
       "api": "./lib/drpy2.min.js",
       "searchable": 2,
