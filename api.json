@@ -355,7 +355,7 @@
     },
   {
       "key": "zuiyingjs",
-      "name": "追影j",
+      "name": "追影js",
       "type": 3,
       "api": "./lib/drpy2.min.js",
       "searchable": 2,
