@@ -342,6 +342,28 @@
         "简介": "<meta name=\"description\" content=\"&&\""
       }
     },
+       {
+      "key": "qiqijs",
+      "name": "琪琪影视",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "searchable": 2,
+      "quickSearch": 0,
+      "changeable": 1,
+      "filterable": 0,
+      "ext": "./lib/琪琪.js"
+    },
+       {
+      "key": "zuijuys",
+      "name": "追影影视",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "searchable": 2,
+      "quickSearch": 0,
+      "changeable": 1,
+      "filterable": 0,
+      "ext": "./lib/追影.js"
+    },
     {
       "key": "星辰8",
       "name": "星辰影视",
