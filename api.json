@@ -342,20 +342,12 @@
         "简介": "<meta name=\"description\" content=\"&&\""
       }
     },
- {
+{
   "key": "追影",
-  "name": "追影影视",
+  "name": "追影",
   "type": 3,
   "api": "csp_XBPQ",
-  "searchable": 1,
-  "quickSearch": 0,
-  "ext": {
-    "分类url": "https://zhuiying1.cc/vodtype/{cateId}-{catePg}.html",
-    "分类": "电影$dianying#电视剧$dianshiju#动漫$dongman#综艺$zongyi#短剧$duanju",
-    "简介": "<meta name=\"description\" content=\"&&\"",
-    "请求头": "User-Agent$MOBILE_UA",
-    "编码": "UTF-8"
-  }
+  "ext":"./追影.json"
 },
     {
       "key": "星辰8",
