@@ -342,9 +342,9 @@
         "简介": "<meta name=\"description\" content=\"&&\""
       }
     },
-    {
+{
   "key": "琪琪",
-  "name": "琪琪",
+  "name": "琪琪影视",
   "type": 3,
   "api": "csp_XBPQ",
   "searchable": 1,
@@ -353,7 +353,7 @@
     "站名": "琪琪",
     "主页url": "https://www.qiqiyingyuan.net",
     "分类url": "https://www.qiqiyingyuan.net/type/{cateId}-{catePg}.html",
-    "分类": "国产剧$1#香港剧$6#韩国剧$2#短剧$7#欧美剧$3#动漫$8#综艺$9#泰国剧$5#纪录片$10#电影$11",
+    "分类": "国产剧$1#香港剧$6#韩国剧$2#短剧$7#欧美剧$3#动漫$8#日本剧$4#综艺$9#泰国剧$5#纪录片$10#电影$11",
     "数组": "class=\"card\"&&</div>",
     "标题": "alt=\"&&\"",
     "图片": "src=\"&&\"",
@@ -368,7 +368,7 @@
     "搜索标题": "alt=\"&&\"",
     "搜索图片": "src=\"&&\"",
     "搜索链接": "href=\"&&\"",
-    "请求头": "User-Agent$MOBILE_UA",
+    "请求头": "User-Agent$Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     "编码": "UTF-8"
   }
 },
