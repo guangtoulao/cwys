@@ -342,36 +342,17 @@
         "简介": "<meta name=\"description\" content=\"&&\""
       }
     },
-{
-  "key": "琪琪",
-  "name": "琪琪",
-  "type": 3,
-  "api": "csp_XBPQ",
-  "searchable": 1,
-  "quickSearch": 0,
-  "ext": {
-    "站名": "琪琪",
-    "主页url": "https://www.qiqiyingyuan.net",
-    "分类url": "https://www.qiqiyingyuan.net/type/{cateId}-{catePg}.html",
-    "分类": "国产剧$1#香港剧$6#韩国剧$2#短剧$7#欧美剧$3#动漫$8#日本剧$4#综艺$9#泰国剧$5#纪录片$10#电影$11",
-    "数组": "class=\"card\"&&</div>",
-    "标题": "alt=\"&&\"",
-    "图片": "src=\"&&\"",
-    "链接": "href=\"&&\"",
-    "播放数组": "class=\"play-episode-list\"&&</div>",
-    "播放列表": "<a&&</a>",
-    "播放标题": "title=\"&&\"",
-    "播放链接": "href=\"&&\"",
-    "简介": "<meta name=\"description\" content=\"&&\"",
-    "搜索url": "https://www.qiqiyingyuan.net/vodsearch/-------------.html?wd={wd}",
-    "搜索数组": "class=\"card\"&&</div>",
-    "搜索标题": "alt=\"&&\"",
-    "搜索图片": "src=\"&&\"",
-    "搜索链接": "href=\"&&\"",
-    "请求头": "User-Agent$Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-    "编码": "UTF-8"
-  }
-},
+  {
+      "key": "qiqiys",
+      "name": "琪琪影视",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "searchable": 2,
+      "quickSearch": 0,
+      "changeable": 1,
+      "filterable": 0,
+      "ext": "./lib/琪琪.js"
+    },
   {
       "key": "zuiyingjs",
       "name": "追影js",
