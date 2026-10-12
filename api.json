@@ -374,7 +374,7 @@
 },
        {
       "key": "qiqijs",
-      "name": "琪琪影视",
+      "name": "琪琪js",
       "type": 3,
       "api": "./lib/drpy2.min.js",
       "searchable": 2,
@@ -385,7 +385,7 @@
     },
        {
       "key": "zuijuys",
-      "name": "追影影视",
+      "name": "追影js",
       "type": 3,
       "api": "./lib/drpy2.min.js",
       "searchable": 2,
