@@ -344,7 +344,7 @@
     },
   {
       "key": "qiqiys",
-      "name": "琪琪影视",
+      "name": "琪琪",
       "type": 3,
       "api": "./lib/drpy2.min.js",
       "searchable": 2,
