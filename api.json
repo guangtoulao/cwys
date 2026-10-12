@@ -342,17 +342,38 @@
         "简介": "<meta name=\"description\" content=\"&&\""
       }
     },
-    {
-      "key": "zuiyingjs",
-      "name": "追影影视",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "searchable": 2,
-      "quickSearch": 0,
-      "changeable": 1,
-      "filterable": 0,
-      "ext": "./lib/追影.js"
-    },
+ {
+  "key": "追影",
+  "name": "追影",
+  "type": 3,
+  "api": "csp_XBPQ",
+  "searchable": 1,
+  "quickSearch": 0,
+  "ext": {
+    "站名": "追影",
+    "主页url": "https://zhuiying1.cc",
+    "分类url": "https://zhuiying1.cc/vodtype/{cateId}-{catePg}.html",
+    "分类": "电影$dianying#电视剧$dianshiju#动漫$dongman#综艺$zongyi#短剧$duanju",
+    "数组": "<a href=\"/video/&&</a>",
+    "标题": "alt=\"&&\"",
+    "图片": "src=\"&&\"",
+    "链接": "data-url=\"&&\"",
+    "线路数组": "class=\"source-tab\"&&</div>",
+    "线路标题": "class=\"tab-name\">&&<",
+    "播放数组": "class=\"ep-square-list\"&&</div>",
+    "播放列表": "<a&&</a>",
+    "播放标题": "href=*>&&<",
+    "播放链接": "href=\"&&\"",
+    "简介": "<meta name=\"description\" content=\"&&\"",
+    "搜索url": "https://zhuiying1.cc/vod/search/wd/{wd}.html",
+    "搜索数组": "class=\"search-list-card&&</div>",
+    "搜索标题": "title=\"&&\"",
+    "搜索图片": "src=\"&&\"",
+    "搜索链接": "href=\"&&\"",
+    "请求头": "User-Agent$MOBILE_UA",
+    "编码": "UTF-8"
+  }
+},
     {
       "key": "星辰8",
       "name": "星辰影视",
