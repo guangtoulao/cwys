@@ -131,7 +131,6 @@ var defaultListBanGong = [
       {"url":"https://steampp.net/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/watt.webp","name":"瓦特加速"},
       {"url":"https://kstore.cc/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/kaisu.webp","name":"凯速网"},
       {"url":"https://www.coolapk.com/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/kuan.webp","name":"酷安网"},
-      {"url":"https://www.cnnav.com/","iconId":"","imgSrc":"https://www.cnnav.com/wp-content/themes/nav/images/app-ico.png","name":"超能导航"},
       {"url":"https://pc.qq.com/","iconId":"","imgSrc":"https://tse2-mm.cn.bing.net/th/id/OIP-C.-B6UDLgaMjXkf41QWYQFNQHaHL?w=164&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3","name":"腾讯软件库"},
       {"url":"https://www.oschina.net/","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/logo.webp","name":"开源中国"},
       {"url":"https://github.com/fxsound2/fxsound-app","iconId":"","imgSrc":"https://raw.giteeusercontent.com/lanzaong/fly/raw/main/icon/yinxiao.webp","name":"音效调节"},
