@@ -304,15 +304,41 @@
       "ext": "./lib/量子.js"
     },
     {
-      "key": "sanliuys",
-      "name": "央视视频",
+      "key": "maque",
+      "name": "麻雀影视",
       "type": 3,
       "api": "./lib/drpy2.min.js",
-      "searchable": 1,
-      "quickSearch": 1,
+      "searchable": 2,
+      "quickSearch": 0,
       "changeable": 1,
-      "filterable": 1,
-      "ext": "./lib/央视.js"
+      "filterable": 0,
+      "ext": "./lib/麻雀.js"
+    },
+    {
+      "key": "剧踪",
+      "name": "剧踪影视",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "searchable": 1,
+      "quickSearch": 0,
+      "ext": {
+        "分类url": "https://www.juzong01.me/vodtype/{cateId}-{catePg}",
+        "分类": "电影$1#剧集$2#综艺$3#动漫$4#动作片$6#喜剧片$7#爱情片$8#科幻片$9#恐怖片$10#剧情片$11#战争片$12#国产剧$13#港台剧$14#日韩剧$15#欧美剧$16#海外剧$20",
+        "简介": "<meta name=\"description\" content=\"&&\""
+      }
+    },
+    {
+      "key": "gaoqing",
+      "name": "高清影视",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "searchable": 1,
+      "quickSearch": 0,
+      "ext": {
+        "分类url": "https://www.4kdyws.top/vodcate/{cateId}-{catePg}.html",
+        "分类": "电影$1#电视剧$2#动漫$3#综艺$4",
+        "简介": "<meta name=\"description\" content=\"&&\""
+      }
     },
     {
       "key": "qiqiys",
