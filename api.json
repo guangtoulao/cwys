@@ -51,6 +51,16 @@
       "api": "csp_SP360"
     },
     {
+      "key": "厂长",
+      "name": "厂长影视",
+      "type": 3,
+      "api": "csp_Czsapp",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "https://cz01.vip"
+    },
+    {
       "key": "天天",
       "name": "天天视频",
       "type": 3,
@@ -58,10 +68,15 @@
       "ext": "http://v.rbotv.cn"
     },
     {
-      "key": "gyazi",
+      "key": "瓜子",
       "name": "瓜子影视",
       "type": 3,
-      "api": "csp_Gz360"
+      "api": "csp_AppgzGuard",
+      "timeout": 15,
+      "playerType": "2",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1
     },
     {
       "key": "糯米",
@@ -304,6 +319,28 @@
       "ext": "./lib/量子.js"
     },
     {
+      "key": "souju",
+      "name": "搜剧影视",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "searchable": 2,
+      "quickSearch": 0,
+      "changeable": 1,
+      "filterable": 0,
+      "ext": "./lib/搜剧.js"
+    },
+    {
+      "key": "zengdian",
+      "name": "整点影视",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "searchable": 2,
+      "quickSearch": 0,
+      "changeable": 1,
+      "filterable": 0,
+      "ext": "./lib/整点视频.js"
+    },
+    {
       "key": "maque",
       "name": "麻雀影视",
       "type": 3,
@@ -361,17 +398,6 @@
       "changeable": 1,
       "filterable": 0,
       "ext": "./lib/枝枝.js"
-    },
-    {
-      "key": "懂片帝",
-      "name": "片帝影视",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "searchable": 2,
-      "quickSearch": 0,
-      "changeable": 1,
-      "filterable": 0,
-      "ext": "./lib/懂片.js"
     },
     {
       "key": "zuiyingys",
